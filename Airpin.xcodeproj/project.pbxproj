@@ -35,6 +35,8 @@
 		E98D7E391B5F574A00D65A10 /* Static.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98D7E381B5F574A00D65A10 /* Static.swift */; };
 		E98D7E3B1B5F5FDA00D65A10 /* Bool.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98D7E3A1B5F5FDA00D65A10 /* Bool.swift */; };
 		E99064CD1B6099C50054C503 /* PinboardDiskOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99064CC1B6099C50054C503 /* PinboardDiskOperations.swift */; };
+		E9F89A241BE020060047B214 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9F89A221BE020060047B214 /* Fabric.framework */; };
+		E9F89A251BE020060047B214 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9F89A231BE020060047B214 /* Crashlytics.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +85,8 @@
 		E98D7E3A1B5F5FDA00D65A10 /* Bool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Bool.swift; path = Base/Bool.swift; sourceTree = "<group>"; };
 		E99064CC1B6099C50054C503 /* PinboardDiskOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PinboardDiskOperations.swift; path = Network/Pinboard/PinboardDiskOperations.swift; sourceTree = "<group>"; };
 		E99EC7F91B2AAEB500A7BB19 /* Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Playground.playground; sourceTree = "<group>"; };
+		E9F89A221BE020060047B214 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		E9F89A231BE020060047B214 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +94,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9F89A251BE020060047B214 /* Crashlytics.framework in Frameworks */,
+				E9F89A241BE020060047B214 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,6 +278,15 @@
 			name = Pinboard;
 			sourceTree = "<group>";
 		};
+		E9EADECF1B68756E007A2467 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E9F89A221BE020060047B214 /* Fabric.framework */,
+				E9F89A231BE020060047B214 /* Crashlytics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -369,6 +384,22 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		E9F89A211BE01FE30047B214 /* Crashlytics */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Crashlytics;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 182283d1c29b737995b930f470e08d71a89f94c2 4a96fecee9d121f9e53c4d57ee44fae49fdce420fd73b3ce5abdd7e4bd763958";
+		};
+/* End PBXShellScriptBuildPhase section */
 /* Begin PBXSourcesBuildPhase section */
 		9865E4FA1AD4E82100201BC5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
