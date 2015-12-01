@@ -1,5 +1,5 @@
 //
-//  BLSViewController.swift
+//  BaseViewController.swift
 //  Airpin
 //
 //  Created by Thomas Carey on 4/16/15.
@@ -8,21 +8,16 @@
 
 import UIKit
 
-class BLSViewController: UIViewController {
+class BaseViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
     configureView()
-    configureConstraints()
     configureStyles()
   }
   
   func configureView() {
     
-  }
-  
-  func configureConstraints() {
-    prepareForConstraints()
   }
   
   func configureStyles() {

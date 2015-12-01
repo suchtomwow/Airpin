@@ -7,13 +7,17 @@
 //
 
 import Foundation
+import RealmSwift
+import SwiftyJSON
 
-typealias BookmarkCompletion = (bookmarks: [Bookmark]) -> Void
+typealias BookmarkCompletion = () -> Void
 
-struct PinboardNetworkOperations {
-  func fetchAllBookmarks(completion: BookmarkCompletion) throws {
+class PinboardNetworkOperations {
+
+  func fetchAllBookmarks(completion completion: BookmarkCompletion) throws {
     let endpoint = Endpoint(resourceTypes: [.Posts, .All])
-    try fetchBookmarksWithEndpoint(endpoint, completion: completion)
+    
+    try fetchBookmarksWithEndpoint(endpoint, parameters: nil, completion: completion)
   }
   
   func fetchRecentBookmarks(completion: BookmarkCompletion) throws {
@@ -21,15 +25,21 @@ struct PinboardNetworkOperations {
     try fetchBookmarksWithEndpoint(endpoint, completion: completion)
   }
   
-  func fetchBookmarksWithEndpoint(endpoint: Endpoint, completion: BookmarkCompletion) throws {
-    NetworkClient.sharedInstance.executeRequest(endpoint) { (result: Result<JSON>) in
+  func fetchBookmarksWithEndpoint(endpoint: Endpoint, parameters: [NSURLQueryItem]? = nil, completion: BookmarkCompletion) throws {
+    NetworkClient.sharedInstance.executeRequest(endpoint, parameters: parameters) { result in
       switch result {
       case .Success(let json):
-          var bookmarks: [Bookmark] = []
-          let posts = json["posts"] as! [JSON]
-          posts.map { bookmarks.append(Bookmark(json: $0)) }
+        let posts = json
         
-        // Save bookmarks to disk
+        let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+        dispatch_async(queue) {
+          for (_, subJson): (String, JSON) in posts {
+            Bookmark.fromJSON(subJson).persist()
+          }
+
+          completion()
+        }
+        
       case .Failure(let error):
         print(error.localizedDescription)
       }
@@ -41,8 +51,9 @@ struct PinboardNetworkOperations {
     NetworkClient.sharedInstance.executeRequest(endpoint) { (result: Result<JSON>) in
       switch result {
       case .Success(let json):
-        let updateTime = json["update_time"] as! String
-        completion(datetime: Formatter.JSON.dateFromString(updateTime)!)
+        let updateTime = json["update_time"].stringValue
+        let datetime = Formatter.JSON.dateFromString(updateTime)!        
+        completion(datetime: datetime)
       case .Failure(let error):
         print(error.localizedDescription)
       }

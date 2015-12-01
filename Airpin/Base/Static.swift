@@ -15,4 +15,13 @@ class Formatter {
     
     return formatter
   }
+  
+  static var humanTime: NSDateFormatter {
+    let formatter = NSDateFormatter()
+    formatter.timeStyle = .NoStyle
+    formatter.dateStyle = .MediumStyle
+    formatter.doesRelativeDateFormatting = true
+    
+    return formatter
+  }
 }

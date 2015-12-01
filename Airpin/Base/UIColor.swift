@@ -24,11 +24,15 @@ extension UIColor {
   // MARK: - Text -
   
   class func primaryTextColor() -> UIColor {
-    return UIColor(hex: 0x333333)
+    return UIColor(hex: 0x4F4F5A)
   }
   
   class func secondaryTextColor() -> UIColor {
-    return UIColor(hex: 0xAAAAAA)
+    return UIColor(hex: 0x929292)
+  }
+  
+  class func tertiaryTextColor() -> UIColor {
+    return UIColor(hex: 0x979797)
   }
   
   class func tableViewCellSeparator() -> UIColor {
@@ -36,6 +40,10 @@ extension UIColor {
   }
   
   class func tintColor() -> UIColor {
-    return UIColor(hex: 0x55E18F)
+    return UIColor(hex: 0x2FE0AC)
+  }
+  
+  class func lightGrey() -> UIColor {
+    return UIColor(hex: 0xF6F6F7)
   }
 }

@@ -6,6 +6,8 @@
 //  Copyright © 2015 Thomas Carey. All rights reserved.
 //
 
+import UIKit
+
 enum UserDefault: String {
   case UpdateTime = "update_time"
 }
@@ -15,10 +17,13 @@ enum CellIdentifier: String {
 }
 
 enum Segue: String {
-  case Default = "Complete Junk"
-
+  case BookmarkViewController
 }
 
 var DefaultInset: Double {
   return 15.0
+}
+
+func ==(lhs: UIStoryboardSegue, rhs: Segue) -> Bool {
+  return lhs.identifier! == rhs.rawValue
 }

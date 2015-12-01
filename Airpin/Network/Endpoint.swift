@@ -13,7 +13,7 @@ struct Endpoint {
   init(resourceTypes: [ResourceType]) {
 
     var resources: [Resource] = []
-    resourceTypes.map { resources.append(Resource(resource: $0)) }
+    resourceTypes.forEach { resources.append(Resource(resource: $0)) }
     
     path = resources.reduce("/" + apiVersion) { $0 + "/" + $1.resourcePath }
   }

@@ -7,8 +7,7 @@
 //
 
 import Foundation
-
-typealias JSON = [String: AnyObject]
+import SwiftyJSON
 
 enum Result<T> {
   case Success(T)
@@ -18,8 +17,9 @@ enum Result<T> {
 class NetworkClient {
   static let sharedInstance = NetworkClient()
   
-  let scheme = "https"
-  let host   = "api.pinboard.in"
+  let scheme               = "https"
+  let host                 = "api.pinboard.in"
+  let accessToken: String? = "thomasjcarey:2cff43a9ac56dd12fa89"
   
   lazy var components: NSURLComponents = {
     let components        = NSURLComponents()
@@ -38,34 +38,34 @@ class NetworkClient {
     return sessionConfig
   }()
   
-  let authTokenQueryItem = NSURLQueryItem(name: "auth_token", value: "thomasjcarey:2cff43a9ac56dd12fa89")
+  var authTokenQueryItem: NSURLQueryItem {
+    return NSURLQueryItem(name: "auth_token", value: accessToken)
+  }
+  
   let formatQueryItem    = NSURLQueryItem(name: "format", value: "json")
   
-  func executeRequest(endpoint: Endpoint, parameters: [String: String]? = nil, completion: (Result<JSON> -> Void)?) {
-    parameters?.map { components.queryItems?.append(NSURLQueryItem(name: $0.0, value: $0.1)) }
+  func executeRequest(endpoint: Endpoint, parameters: [NSURLQueryItem]? = nil, completion: (Result<JSON> -> Void)?) {
+    if let parameters = parameters {
+      components.queryItems?.appendContentsOf(parameters)
+    }
     
     let url     = components.URL?.URLByAppendingPathComponent(endpoint.path)
     let request = NSURLRequest(URL: url!)
     
     let session = NSURLSession(configuration: sessionConfig)
 
-    let dataTask = session.dataTaskWithRequest(request) { (data, response, error) in
+    let dataTask = session.dataTaskWithRequest(request) { data, response, error in
       if let error = error {
         print(error)
       } else if let data = data, response = response as? NSHTTPURLResponse {
         if response.statusCode == StatusCode.OK.rawValue {
-          do {
-            if let json = try NSJSONSerialization.JSONObjectWithData(data, options: [.AllowFragments, .MutableContainers, .MutableLeaves]) as? JSON {
-              completion?(Result.Success(json))
-            }
-          } catch {
-            completion?(Result.Failure(error as NSError))
-          }
+          let json = JSON(data: data)          
+          completion?(Result.Success(json))
         }
       }
     }
     
-    dataTask?.resume()
+    dataTask.resume()
   }
 }
 

@@ -10,31 +10,13 @@ import UIKit
 
 class BLSTextField: UITextField {
   
-  let infoButton = UIButton()
-  let actionButton = UIButton()
-  
   override func awakeFromNib() {
     super.awakeFromNib()
     
     configureView()
-    configureConstraints()
-    configureStyles()
   }
   
   func configureView() {
-    infoButton.translatesAutoresizingMaskIntoConstraints = false
-    actionButton.translatesAutoresizingMaskIntoConstraints = false
-    
-    addSubview(infoButton)
-    addSubview(actionButton)
-  }
-  
-  func configureConstraints() {
-    actionButton.constrainToSuperview(.Right)
-    actionButton.centerWithSuperview(alongAxis: .Vertical)
-  }
-  
-  func configureStyles() {
-    
+
   }
 }

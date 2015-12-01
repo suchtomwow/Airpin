@@ -8,12 +8,16 @@
 
 import UIKit
 
+protocol BLSTableViewDataSource {
+  var Identifier: String { get }
+}
+
 class BLSTableView: UITableView {
   override func awakeFromNib() {
     super.awakeFromNib()
     
     separatorStyle     = .None
-    estimatedRowHeight = 50.0
     rowHeight          = UITableViewAutomaticDimension
+    estimatedRowHeight = 100.0
   }
 }
