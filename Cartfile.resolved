@@ -1,0 +1,2 @@
+github "SwiftyJSON/SwiftyJSON" "2.3.1"
+github "realm/realm-cocoa" "v0.96.2"
