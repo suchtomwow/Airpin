@@ -33,7 +33,6 @@ class CategoryViewController: BaseViewController {
     
     title = viewModel.title
     
-    print(SingleLabelTableViewCell.ReuseIdentifier)
     tableView.registerClass(SingleLabelTableViewCell.self, forCellReuseIdentifier: SingleLabelTableViewCell.ReuseIdentifier)
     
     navigationItem.rightBarButtonItem = UIBarButtonItem(title: viewModel.rightBarButtonText, style: .Plain, target: self, action: "rightBarButtonItemTapped:")

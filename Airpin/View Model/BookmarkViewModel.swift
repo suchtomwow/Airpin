@@ -50,7 +50,6 @@ class BookmarkViewModel: ViewModel {
           bookmarks = bookmarks.filter(filter)
         }
         
-        print(bookmarks.count)
         self.bookmarks = bookmarks
         completion()
       }

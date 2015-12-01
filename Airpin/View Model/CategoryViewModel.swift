@@ -6,7 +6,9 @@
 //  Copyright © 2015 Thomas Carey. All rights reserved.
 //
 
-struct CategoryViewModel: ViewModel {
+import UIKit
+
+class CategoryViewModel: ViewModel {
   enum Category: Int, CustomStringConvertible {
     case All, Unread, Untagged, Public, Private
     

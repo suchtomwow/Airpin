@@ -55,6 +55,7 @@ class BLSTableViewCell: UITableViewCell {
   }
   
   func configureStyles() {
+    selectionStyle = .None
     separator.backgroundColor = UIColor.tableViewCellSeparator()
   }
 }

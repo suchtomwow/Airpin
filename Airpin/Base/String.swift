@@ -15,13 +15,11 @@ extension String {
   }
   
   func condense() -> String {
-//    let noNewLines = stringByReplacingOccurrencesOfString("\n", withString: " ")
-//    
-//    let pattern = "^\\s+|\\s+$|\\s+(?=\\s)"
-//    let trimmed = noNewLines.stringByReplacingOccurrencesOfString(pattern, withString: " ", options: .RegularExpressionSearch)
-//    
-//    return trimmed
+    let noNewLines = stringByReplacingOccurrencesOfString("\n", withString: " ")
     
-    return self
+    let pattern = "^\\s+|\\s+$|\\s+(?=\\s)"
+    let trimmed = noNewLines.stringByReplacingOccurrencesOfString(pattern, withString: " ", options: .RegularExpressionSearch)
+    
+    return trimmed
   }
 }
