@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 import UIKit
 
-class BookmarkViewModel: ViewModel {
+class BookmarkViewModel: BaseViewModel {
   
   let category: CategoryViewModel.Category
   

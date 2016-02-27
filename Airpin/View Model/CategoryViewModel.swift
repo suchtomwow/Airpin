@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CategoryViewModel: ViewModel {
+class CategoryViewModel: BaseViewModel {
   enum Category: Int, CustomStringConvertible {
     case All, Unread, Untagged, Public, Private
     

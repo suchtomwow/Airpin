@@ -6,6 +6,6 @@
 //  Copyright © 2015 Thomas Carey. All rights reserved.
 //
 
-protocol ViewModel {
+protocol BaseViewModel {
   var title: String { get }
 }
