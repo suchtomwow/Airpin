@@ -1,5 +1,5 @@
 //
-//  ViewModel.swift
+//  BaseViewModel.swift
 //  Airpin
 //
 //  Created by Thomas Carey on 4/16/15.
