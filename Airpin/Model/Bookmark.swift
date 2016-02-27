@@ -50,7 +50,7 @@ class Bookmark: Object {
     bookmark.datetime = Formatter.JSON.dateFromString(json["time"].stringValue)!
     bookmark.shared   = Bool(string: json["shared"].stringValue)
     bookmark.toRead   = Bool(string: json["toread"].stringValue)
-    bookmark.userTags  = json["tags"].stringValue
+    bookmark.userTags = json["tags"].stringValue
     
     return bookmark
   }
