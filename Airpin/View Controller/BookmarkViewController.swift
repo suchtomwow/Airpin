@@ -39,7 +39,9 @@ class BookmarkViewController: BaseViewController {
     activityIndicator.hidesWhenStopped = true
     activityIndicator.startAnimating()
 
-    tableView.registerClass(BookmarkTableViewCell.self, forCellReuseIdentifier: BookmarkTableViewCell.ReuseIdentifier)
+    tableView.registerClass(BookmarkTableViewCell.self, forCellReuseIdentifier: String(BookmarkTableViewCell))
+    tableView.rowHeight          = UITableViewAutomaticDimension
+    tableView.estimatedRowHeight = 120.0
   }
 }
 
@@ -49,13 +51,10 @@ extension BookmarkViewController: UITableViewDataSource {
   }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier(BookmarkTableViewCell.ReuseIdentifier, forIndexPath: indexPath) as! BookmarkTableViewCell
+    let cell = tableView.dequeueReusableCellWithIdentifier(String(BookmarkTableViewCell), forIndexPath: indexPath) as! BookmarkTableViewCell
     
     let bookmark = viewModel.bookmarks![indexPath.row]
     cell.configureWithBookmark(bookmark)
-    
-    cell.setNeedsUpdateConstraints()
-    cell.updateConstraintsIfNeeded()
     
     return cell
   }
