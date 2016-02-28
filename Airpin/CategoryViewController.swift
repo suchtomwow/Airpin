@@ -34,6 +34,8 @@ class CategoryViewController: BaseViewController {
     title = viewModel.title
     
     tableView.registerClass(SingleLabelTableViewCell.self, forCellReuseIdentifier: SingleLabelTableViewCell.ReuseIdentifier)
+    tableView.rowHeight          = UITableViewAutomaticDimension
+    tableView.estimatedRowHeight = 60
     
     navigationItem.rightBarButtonItem = UIBarButtonItem(title: viewModel.rightBarButtonText, style: .Plain, target: self, action: "rightBarButtonItemTapped:")
   }
@@ -58,10 +60,6 @@ class CategoryViewController: BaseViewController {
 // MARK: - UITableViewDataSource -
 
 extension CategoryViewController: UITableViewDataSource {
-  func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    return UITableViewAutomaticDimension
-  }
-  
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return CategoryViewModel.Category.allValues.count
   }
