@@ -44,10 +44,6 @@ class BookmarkViewController: BaseViewController {
     tableView.estimatedRowHeight = 120.0
   }
   
-  func setTitleForViewController(viewController: UIViewController, withBookmark bookmark: Bookmark) {
-    viewController.title = bookmark.title.characters.count > 0 ? bookmark.title : bookmark.displayURL
-  }
-  
   func toggleBookmarkReadStateAtIndexPath(indexPath: NSIndexPath) {
     viewModel.toggleBookmarkReadStateAtIndex(indexPath.row)
     
@@ -89,9 +85,8 @@ extension BookmarkViewController: UITableViewDelegate {
     }
     
     let svc = SFSafariViewController(URL: bookmark.URL)
-    setTitleForViewController(svc, withBookmark: bookmark)
     
-    showViewController(svc, sender: nil)
+    presentViewController(svc, animated: true, completion: nil)
   }
   
   func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
