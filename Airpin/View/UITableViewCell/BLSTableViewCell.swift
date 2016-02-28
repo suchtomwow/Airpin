@@ -13,13 +13,9 @@ class BLSTableViewCell: UITableViewCell {
   lazy var separator: UIView = {
     let separator = UIView()
     separator.translatesAutoresizingMaskIntoConstraints = false
-    self.addSubview(separator)
+    self.contentView.addSubview(separator)
     return separator
   }()
-  
-  class var ReuseIdentifier: String {
-    return "BLSTableViewCell"
-  }
   
   override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -28,7 +24,9 @@ class BLSTableViewCell: UITableViewCell {
   }
 
   required init?(coder aDecoder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
+    super.init(coder: aDecoder)
+    
+    commonInit()
   }
   
   override func awakeFromNib() {
@@ -40,22 +38,23 @@ class BLSTableViewCell: UITableViewCell {
   func commonInit() {
     configureView()
     configureConstraints()
+    configureCellSeparator()
     configureStyles()
   }
   
   func configureView() { }
   
-  func configureConstraints() {
-    NSLayoutConstraint(item: separator, attribute: .Bottom, relatedBy: .Equal, toItem: contentView, attribute: .Bottom, multiplier: 1.0, constant: 0.0).active = true
-    
-    let separatorHorizontal = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[separator]-0-|", options: [], metrics: nil, views: ["separator": separator])
-    NSLayoutConstraint.activateConstraints(separatorHorizontal)
-    
-    NSLayoutConstraint(item: separator, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 0.5).active = true
+  func configureConstraints() { }
+  
+  func configureCellSeparator() {
+    separator.bottomAnchor.constraintEqualToAnchor(contentView.bottomAnchor).active = true
+    separator.leadingAnchor.constraintEqualToAnchor(contentView.leadingAnchor).active = true
+    separator.trailingAnchor.constraintEqualToAnchor(contentView.trailingAnchor).active = true
+    separator.heightAnchor.constraintEqualToConstant(2.0).active = true
   }
   
   func configureStyles() {
-    selectionStyle = .None
-    separator.backgroundColor = UIColor.tableViewCellSeparator()
+    selectionStyle            = .None
+    separator.backgroundColor = UIColor.tableViewAccent()
   }
 }
