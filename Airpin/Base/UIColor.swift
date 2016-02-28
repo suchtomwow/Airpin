@@ -35,8 +35,8 @@ extension UIColor {
     return UIColor(hex: 0x979797)
   }
   
-  class func tableViewCellSeparator() -> UIColor {
-    return UIColor(hex: 0xC8C8C8)
+  class func tableViewAccent() -> UIColor {
+    return UIColor(hex: 0xEDF0F4)
   }
   
   class func tintColor() -> UIColor {
