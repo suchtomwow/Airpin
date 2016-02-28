@@ -33,7 +33,7 @@ class CategoryViewController: BaseViewController {
     
     title = viewModel.title
     
-    tableView.registerClass(SingleLabelTableViewCell.self, forCellReuseIdentifier: SingleLabelTableViewCell.ReuseIdentifier)
+    tableView.registerClass(SingleLabelTableViewCell.self, forCellReuseIdentifier: String(SingleLabelTableViewCell))
     tableView.rowHeight          = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 60
     
@@ -65,7 +65,7 @@ extension CategoryViewController: UITableViewDataSource {
   }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier(SingleLabelTableViewCell.ReuseIdentifier, forIndexPath: indexPath) as! SingleLabelTableViewCell
+    let cell = tableView.dequeueReusableCellWithIdentifier(String(SingleLabelTableViewCell), forIndexPath: indexPath) as! SingleLabelTableViewCell
 
     if !viewModel.isLoggedIn {
       cell.key.textColor = UIColor.secondaryTextColor()
