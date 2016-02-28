@@ -10,30 +10,45 @@ import UIKit
 
 class SingleLabelTableViewCell: BLSTableViewCell {
   
-  override class var ReuseIdentifier: String {
-    return "SingleLabelTableViewCell"
-  }
-  
-  lazy var key: UILabel = {
+  lazy var headline: UILabel = {
     let label = UILabel()
+    
     label.translatesAutoresizingMaskIntoConstraints = false
     self.contentView.addSubview(label)
+    
     return label
+  }()
+  
+  lazy var disclosure: UIImageView = {
+    let imageView = UIImageView()
+    
+    imageView.translatesAutoresizingMaskIntoConstraints = false
+    self.contentView.addSubview(imageView)
+    
+    return imageView
   }()
   
   override func configureConstraints() {
     super.configureConstraints()
     
-    NSLayoutConstraint(item: key, attribute: .Top, relatedBy: .Equal, toItem: contentView, attribute: .TopMargin, multiplier: 1.0, constant: 0.0).active = true
-    NSLayoutConstraint(item: key, attribute: .Bottom, relatedBy: .Equal, toItem: contentView, attribute: .BottomMargin, multiplier: 1.0, constant: 0.0).active = true
-    NSLayoutConstraint(item: key, attribute: .Left, relatedBy: .Equal, toItem: contentView, attribute: .LeftMargin, multiplier: 1.0, constant: 0.0).active = true
-    NSLayoutConstraint(item: key, attribute: .Right, relatedBy: .Equal, toItem: contentView, attribute: .RightMargin, multiplier: 1.0, constant: 0.0).active = true
+    headline.topAnchor.constraintEqualToAnchor(contentView.topAnchor, constant: 20).active = true
+    headline.bottomAnchor.constraintEqualToAnchor(contentView.bottomAnchor, constant: -20).active = true
+    headline.leadingAnchor.constraintEqualToAnchor(contentView.leadingAnchor, constant: 20).active = true
+    headline.trailingAnchor.constraintEqualToAnchor(contentView.trailingAnchor, constant: -20).active = true
+    
+    disclosure.trailingAnchor.constraintEqualToAnchor(contentView.trailingAnchor, constant: -12).active = true
+    disclosure.centerYAnchor.constraintEqualToAnchor(headline.centerYAnchor).active = true
+    disclosure.widthAnchor.constraintEqualToConstant(8).active = true
+    disclosure.heightAnchor.constraintEqualToConstant(13).active = true
   }
   
   override func configureStyles() {
     super.configureStyles()
     
-    key.font      = UIFont.headline
-    key.textColor = UIColor.primaryTextColor()
+    headline.font      = UIFont.headline.heavy
+    headline.textColor = UIColor.primaryTextColor()
+    
+    disclosure.tintColor = UIColor.tableViewAccent()
+    disclosure.image = Icon.Disclosure.image
   }
 }
