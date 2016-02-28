@@ -78,7 +78,11 @@ class BookmarkViewModel: BaseViewModel {
     fetchBookmarks(filter: { !$0.shared }, completion: completion)
   }
   
-  func markBookmarkAsReadAtIndex(index: Int) {
-    dataProvider.markBookmarkAsRead(bookmarks![index])
+  func toggleBookmarkReadStateAtIndex(index: Int) {
+    dataProvider.toggleBookmarkReadState(bookmarks![index])
+  }
+  
+  func deleteBookmarkAtIndex(index: Int) {
+    dataProvider.deleteBookmark(bookmarks![index])
   }
 }

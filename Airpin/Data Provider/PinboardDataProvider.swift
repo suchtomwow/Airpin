@@ -49,14 +49,18 @@ struct PinboardDataProvider {
     }
   }
   
-  func markBookmarkAsRead(bookmark: Bookmark) {
-    if bookmark.toRead {
-      networkOperations.markBookmarkAsRead(bookmark)
-    }
+  func toggleBookmarkReadState(bookmark: Bookmark) {
+    networkOperations.markBookmarkAsRead(!bookmark.toRead, withURL: bookmark.URL, andTitle: bookmark.title)
     
     do {
       try Realm().write {
-        bookmark.toRead = false
+        bookmark.toRead = !bookmark.toRead
+      }
+    } catch {
+      print(error)
+    }
+  }
+  
       }
     } catch {
       print(error)

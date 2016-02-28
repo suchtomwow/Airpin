@@ -50,6 +50,14 @@ class BookmarkViewController: BaseViewController {
     } else {
       viewController.title = bookmark.displayURL
     }
+  func toggleBookmarkReadStateAtIndexPath(indexPath: NSIndexPath) {
+    viewModel.toggleBookmarkReadStateAtIndex(indexPath.row)
+    
+    tableView.beginUpdates()
+    tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+    tableView.endUpdates()
+  }
+  
   }
 }
 
@@ -72,8 +80,9 @@ extension BookmarkViewController: UITableViewDelegate {
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     let bookmark = viewModel.bookmarks![indexPath.row]
     
-    viewModel.markBookmarkAsReadAtIndex(indexPath.row)
-    tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+    if bookmark.toRead {
+      toggleBookmarkReadStateAtIndexPath(indexPath)
+    }
     
     let svc = SFSafariViewController(URL: bookmark.URL)
     setTitleForViewController(svc, withBookmark: bookmark)

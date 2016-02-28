@@ -60,11 +60,14 @@ class PinboardNetworkOperations {
     }
   }
   
-  func markBookmarkAsRead(bookmark: Bookmark) {
+  func markBookmarkAsRead(toRead: Bool, withURL URL: NSURL, andTitle title: String) {
     let endpoint = Endpoint(resourceTypes: [.Posts, .Add])
-    let urlQI = NSURLQueryItem(name: "url", value: bookmark.urlString)
-    let titleQI = NSURLQueryItem(name: "description", value: bookmark.title)
+    let urlQI = NSURLQueryItem(name: "url", value: URL.absoluteString)
+    let titleQI = NSURLQueryItem(name: "description", value: title)
+    let toReadQI = NSURLQueryItem(name: "toread", value: toRead ? "yes" : "no")
     
-    NetworkClient.sharedInstance.executeRequest(endpoint, parameters: [urlQI, titleQI], completion: nil)
+    NetworkClient.sharedInstance.executeRequest(endpoint, parameters: [urlQI, titleQI, toReadQI], completion: nil)
+  }
+  
   }
 }
