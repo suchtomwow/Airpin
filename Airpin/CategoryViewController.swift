@@ -68,11 +68,10 @@ extension CategoryViewController: UITableViewDataSource {
     let cell = tableView.dequeueReusableCellWithIdentifier(String(SingleLabelTableViewCell), forIndexPath: indexPath) as! SingleLabelTableViewCell
 
     if !viewModel.isLoggedIn {
-      cell.key.textColor = UIColor.secondaryTextColor()
+      cell.headline.textColor = UIColor.secondaryTextColor()
     }
     
-    cell.key.text = CategoryViewModel.Category.allValues[indexPath.row].description
-    cell.accessoryType = .DisclosureIndicator
+    cell.headline.text = CategoryViewModel.Category.allValues[indexPath.row].description
     
     return cell
   }
