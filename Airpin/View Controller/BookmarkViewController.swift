@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class BookmarkViewController: BaseViewController {
   
@@ -61,4 +62,12 @@ extension BookmarkViewController: UITableViewDataSource {
 }
 
 extension BookmarkViewController: UITableViewDelegate {
+  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    let bookmark = viewModel.bookmarks![indexPath.row]
+    
+    let svc = SFSafariViewController(URL: bookmark.URL)
+    setTitleForViewController(svc, withBookmark: bookmark)
+    
+    showViewController(svc, sender: nil)
+  }
 }
