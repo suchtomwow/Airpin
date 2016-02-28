@@ -45,7 +45,7 @@ class SingleLabelTableViewCell: BLSTableViewCell {
   override func configureStyles() {
     super.configureStyles()
     
-    headline.font      = UIFont.headline.heavy
+    headline.font      = UIFont.headline.medium
     headline.textColor = UIColor.primaryTextColor()
     
     disclosure.tintColor = UIColor.tableViewAccent()
