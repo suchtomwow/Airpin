@@ -56,6 +56,12 @@ class BookmarkViewController: BaseViewController {
     tableView.endUpdates()
   }
   
+  func deleteBookmarkAtIndexPath(indexPath: NSIndexPath) {
+    viewModel.deleteBookmarkAtIndex(indexPath.row)
+
+    tableView.beginUpdates()
+    tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+    tableView.endUpdates()
   }
 }
 
@@ -86,5 +92,21 @@ extension BookmarkViewController: UITableViewDelegate {
     setTitleForViewController(svc, withBookmark: bookmark)
     
     showViewController(svc, sender: nil)
+  }
+  
+  func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+    let bookmark = viewModel.bookmarks![indexPath.row]
+    
+    let toggleReadState = UITableViewRowAction(style: .Default, title: bookmark.toRead ? "Mark as\nread" : "Mark as\nunread") { action, indexPath in
+      self.toggleBookmarkReadStateAtIndexPath(indexPath)
+    }
+    
+    let deleteBookmark = UITableViewRowAction(style: .Destructive, title: "Delete") { action, indexPath in
+      self.deleteBookmarkAtIndexPath(indexPath)
+    }
+    
+    toggleReadState.backgroundColor = UIColor.blueRowAction()
+    
+    return [deleteBookmark, toggleReadState]
   }
 }

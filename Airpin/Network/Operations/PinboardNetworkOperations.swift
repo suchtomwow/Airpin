@@ -69,5 +69,10 @@ class PinboardNetworkOperations {
     NetworkClient.sharedInstance.executeRequest(endpoint, parameters: [urlQI, titleQI, toReadQI], completion: nil)
   }
   
+  func deleteBookmarkWithURL(URL: NSURL) {
+    let endpoint = Endpoint(resourceTypes: [.Posts, .Delete])
+    let urlQI = NSURLQueryItem(name: "url", value: URL.absoluteString)
+    
+    NetworkClient.sharedInstance.executeRequest(endpoint, parameters: [urlQI], completion: nil)
   }
 }

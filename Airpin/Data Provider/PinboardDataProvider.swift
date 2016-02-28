@@ -61,6 +61,14 @@ struct PinboardDataProvider {
     }
   }
   
+  func deleteBookmark(bookmark: Bookmark) {
+    networkOperations.deleteBookmarkWithURL(bookmark.URL)
+
+    do {
+      let realm = try Realm()
+      
+      try realm.write {
+        realm.delete(bookmark)
       }
     } catch {
       print(error)

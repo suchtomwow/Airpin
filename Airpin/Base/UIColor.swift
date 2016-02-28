@@ -46,4 +46,8 @@ extension UIColor {
   class func lightGrey() -> UIColor {
     return UIColor(hex: 0xF6F6F7)
   }
+  
+  class func blueRowAction() -> UIColor {
+    return UIColor(hex: 0x6283A6)
+  }
 }
