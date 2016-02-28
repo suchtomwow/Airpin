@@ -33,6 +33,8 @@ class BookmarkViewController: BaseViewController {
   override func configureView() {
     super.configureView()
     
+    title = viewModel.title
+    
     activityIndicator.hidesWhenStopped = true
     activityIndicator.startAnimating()
 
