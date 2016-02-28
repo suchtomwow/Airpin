@@ -38,6 +38,8 @@
 		E98D7E391B5F574A00D65A10 /* Static.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98D7E381B5F574A00D65A10 /* Static.swift */; };
 		E98D7E3B1B5F5FDA00D65A10 /* Bool.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98D7E3A1B5F5FDA00D65A10 /* Bool.swift */; };
 		E99064CD1B6099C50054C503 /* PinboardDiskOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99064CC1B6099C50054C503 /* PinboardDiskOperations.swift */; };
+		E9F66FCF1C817978003F17D3 /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F66FCE1C817978003F17D3 /* Icons.swift */; };
+		E9F66FD11C8185A8003F17D3 /* JTSSloppyNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F66FD01C8185A8003F17D3 /* JTSSloppyNavigationController.swift */; };
 		E9F7AA701B6895AD00D742C1 /* Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B8038C1AE0E260006A1645 /* Bookmark.swift */; };
 		E9F89A241BE020060047B214 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9F89A221BE020060047B214 /* Fabric.framework */; };
 		E9F89A251BE020060047B214 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9F89A231BE020060047B214 /* Crashlytics.framework */; };
@@ -69,6 +71,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		593FD805E061F80FFFEC5AFF /* Pods_Airpin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Airpin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9865E4FE1AD4E82100201BC5 /* Airpin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Airpin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9865E5021AD4E82100201BC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9865E5031AD4E82100201BC5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -106,6 +109,8 @@
 		E98D7E3A1B5F5FDA00D65A10 /* Bool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Bool.swift; path = Base/Bool.swift; sourceTree = "<group>"; };
 		E99064CC1B6099C50054C503 /* PinboardDiskOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PinboardDiskOperations.swift; path = Network/Pinboard/PinboardDiskOperations.swift; sourceTree = "<group>"; };
 		E99EC7F91B2AAEB500A7BB19 /* Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Playground.playground; sourceTree = "<group>"; };
+		E9F66FCE1C817978003F17D3 /* Icons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Icons.swift; sourceTree = "<group>"; };
+		E9F66FD01C8185A8003F17D3 /* JTSSloppyNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JTSSloppyNavigationController.swift; path = Base/JTSSloppyNavigationController.swift; sourceTree = "<group>"; };
 		E9F89A221BE020060047B214 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		E9F89A231BE020060047B214 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		E9FB5D471BE5E9E7005FA0FE /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = String.swift; path = Base/String.swift; sourceTree = "<group>"; };
@@ -140,6 +145,7 @@
 				E96101D51B2D4A0900D36C0C /* Airpin Tests */,
 				E9EADECF1B68756E007A2467 /* Frameworks */,
 				9865E4FF1AD4E82100201BC5 /* Products */,
+				B650C2E03F589A1656C81971 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -197,6 +203,7 @@
 				E900123F1B22CB5F0067F023 /* BLSTextField.swift */,
 				9870DA161AE0B4A60088A50C /* BaseViewController.swift */,
 				9870DA1A1AE0B5F40088A50C /* BaseViewModel.swift */,
+				E9F66FD01C8185A8003F17D3 /* JTSSloppyNavigationController.swift */,
 			);
 			name = Base;
 			sourceTree = "<group>";
@@ -210,8 +217,16 @@
 				98B803851AE0CB6A006A1645 /* UIColor.swift */,
 				E98D7E3A1B5F5FDA00D65A10 /* Bool.swift */,
 				E9FB5D471BE5E9E7005FA0FE /* String.swift */,
+				E9F66FCE1C817978003F17D3 /* Icons.swift */,
 			);
 			name = Extensions;
+			sourceTree = "<group>";
+		};
+		B650C2E03F589A1656C81971 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		E91FEDFA1BE098A5004187F3 /* Views */ = {
@@ -258,6 +273,7 @@
 				E91CF2901BCB7A4500ED5E1E /* Realm.framework */,
 				E91CF2911BCB7A4500ED5E1E /* RealmSwift.framework */,
 				E91CF2921BCB7A4500ED5E1E /* SwiftyJSON.framework */,
+				593FD805E061F80FFFEC5AFF /* Pods_Airpin.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -434,9 +450,11 @@
 				98B8037C1AE0C3D2006A1645 /* BLSTableViewCell.swift in Sources */,
 				E99064CD1B6099C50054C503 /* PinboardDiskOperations.swift in Sources */,
 				98B803901AE0E3A9006A1645 /* PinboardDataProvider.swift in Sources */,
+				E9F66FCF1C817978003F17D3 /* Icons.swift in Sources */,
 				E9FB5D481BE5E9E7005FA0FE /* String.swift in Sources */,
 				E91A6A901BC8E35300401B54 /* BookmarkViewModel.swift in Sources */,
 				98B8037A1AE0C390006A1645 /* SingleLabelTableViewCell.swift in Sources */,
+				E9F66FD11C8185A8003F17D3 /* JTSSloppyNavigationController.swift in Sources */,
 				98F0039E1AD4FDF900769486 /* Resource.swift in Sources */,
 				98B803821AE0C622006A1645 /* UIFont.swift in Sources */,
 				E98D7E3B1B5F5FDA00D65A10 /* Bool.swift in Sources */,
