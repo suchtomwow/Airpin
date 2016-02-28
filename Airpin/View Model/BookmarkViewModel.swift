@@ -14,7 +14,7 @@ class BookmarkViewModel: BaseViewModel {
   
   let category: CategoryViewModel.Category
   
-  var bookmarks: Results<Bookmark>?
+  var bookmarks: [Bookmark]?
   
   let dataProvider = PinboardDataProvider()
   
@@ -41,10 +41,12 @@ class BookmarkViewModel: BaseViewModel {
     }
   }
   
-  private func fetchBookmarks(filter filter: NSPredicate?, completion: () -> Void) {
+  private func fetchBookmarks(filter filter: ((bookmark: Bookmark) -> Bool)?, completion: () -> Void) {
     dataProvider.fetchAllBookmarks {
       dispatch_async(dispatch_get_main_queue()) {
-        var bookmarks = try! Realm().objects(Bookmark.self)
+        // Need to map these to a regular [Bookmark] because the default value is Results<Bookmark>, which is auto-updating.
+        // Because it is auto-updating, rows are removed from the tableView when I still want to be able to display them to the user.
+        var bookmarks = try! Realm().objects(Bookmark.self).map { $0 }
         
         if let filter = filter {
           bookmarks = bookmarks.filter(filter)
@@ -61,22 +63,22 @@ class BookmarkViewModel: BaseViewModel {
   }
   
   private func fetchUnreadBookmarks(completion completion: () -> Void) {
-    let predicate = NSPredicate(format: "toRead == YES")
-    fetchBookmarks(filter: predicate, completion: completion)
+    fetchBookmarks(filter: { $0.toRead }, completion: completion)
   }
   
   private func fetchUntaggedBookmarks(completion completion: () -> Void) {
-    let predicate = NSPredicate(format: "userTags == %@", "")
-    fetchBookmarks(filter: predicate, completion: completion)
+    fetchBookmarks(filter: { $0.tagsArray.count == 0 }, completion: completion)
   }
   
   private func fetchPublicBookmarks(completion completion: () -> Void) {
-    let predicate = NSPredicate(format: "shared == YES")
-    fetchBookmarks(filter: predicate, completion: completion)
+    fetchBookmarks(filter: { $0.shared }, completion: completion)
   }
   
   private func fetchPrivateBookmarks(completion completion: () -> Void) {
-    let predicate = NSPredicate(format: "shared == NO")
-    fetchBookmarks(filter: predicate, completion: completion)
+    fetchBookmarks(filter: { !$0.shared }, completion: completion)
+  }
+  
+  func markBookmarkAsReadAtIndex(index: Int) {
+    dataProvider.markBookmarkAsRead(bookmarks![index])
   }
 }
