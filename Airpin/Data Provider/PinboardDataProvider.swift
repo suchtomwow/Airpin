@@ -6,6 +6,8 @@
 //  Copyright © 2015 Thomas Carey. All rights reserved.
 //
 
+import RealmSwift
+
 struct PinboardDataProvider {
   private let networkOperations = PinboardNetworkOperations()
   private let diskOperations = PinboardDiskOperations()
@@ -20,6 +22,7 @@ struct PinboardDataProvider {
           if  datetime != lastUpdated {
 
             // If they differ, fetch all bookmarks from server
+            self.diskOperations.lastUpdated = datetime
             self.fetchAllBookmarksFromNetwork(completion: completion)
           } else {
 
