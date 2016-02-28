@@ -89,10 +89,10 @@
             </objects>
             <point key="canvasLocation" x="1982" y="208"/>
         </scene>
-        <!--Sloppy Navigation Controller-->
+        <!--Navigation Controller-->
         <scene sceneID="XMt-qN-nUG">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="MUE-bZ-beP" customClass="JTSSloppyNavigationController" customModule="Airpin" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="MUE-bZ-beP" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="1ZX-w4-CJB">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
