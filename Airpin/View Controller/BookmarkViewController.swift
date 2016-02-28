@@ -43,6 +43,14 @@ class BookmarkViewController: BaseViewController {
     tableView.rowHeight          = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 120.0
   }
+  
+  func setTitleForViewController(viewController: UIViewController, withBookmark bookmark: Bookmark) {
+    if bookmark.title.characters.count > 0 {
+      viewController.title = bookmark.title
+    } else {
+      viewController.title = bookmark.displayURL
+    }
+  }
 }
 
 extension BookmarkViewController: UITableViewDataSource {
