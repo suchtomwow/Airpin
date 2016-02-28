@@ -45,11 +45,9 @@ class BookmarkViewController: BaseViewController {
   }
   
   func setTitleForViewController(viewController: UIViewController, withBookmark bookmark: Bookmark) {
-    if bookmark.title.characters.count > 0 {
-      viewController.title = bookmark.title
-    } else {
-      viewController.title = bookmark.displayURL
-    }
+    viewController.title = bookmark.title.characters.count > 0 ? bookmark.title : bookmark.displayURL
+  }
+  
   func toggleBookmarkReadStateAtIndexPath(indexPath: NSIndexPath) {
     viewModel.toggleBookmarkReadStateAtIndex(indexPath.row)
     
