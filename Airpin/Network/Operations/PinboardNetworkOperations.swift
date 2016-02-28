@@ -21,7 +21,7 @@ class PinboardNetworkOperations {
   }
   
   func fetchRecentBookmarks(completion: BookmarkCompletion) throws {
-    let endpoint = Endpoint(resourceTypes: [.Posts, .All])
+    let endpoint = Endpoint(resourceTypes: [.Posts, .Recent])
     try fetchBookmarksWithEndpoint(endpoint, completion: completion)
   }
   
