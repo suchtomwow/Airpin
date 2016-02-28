@@ -59,4 +59,12 @@ class PinboardNetworkOperations {
       }
     }
   }
+  
+  func markBookmarkAsRead(bookmark: Bookmark) {
+    let endpoint = Endpoint(resourceTypes: [.Posts, .Add])
+    let urlQI = NSURLQueryItem(name: "url", value: bookmark.urlString)
+    let titleQI = NSURLQueryItem(name: "description", value: bookmark.title)
+    
+    NetworkClient.sharedInstance.executeRequest(endpoint, parameters: [urlQI, titleQI], completion: nil)
+  }
 }

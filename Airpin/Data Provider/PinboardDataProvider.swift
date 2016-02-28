@@ -45,4 +45,18 @@ struct PinboardDataProvider {
       print(error)
     }
   }
+  
+  func markBookmarkAsRead(bookmark: Bookmark) {
+    if bookmark.toRead {
+      networkOperations.markBookmarkAsRead(bookmark)
+    }
+    
+    do {
+      try Realm().write {
+        bookmark.toRead = false
+      }
+    } catch {
+      print(error)
+    }
+  }
 }

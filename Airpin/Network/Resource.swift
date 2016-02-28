@@ -8,6 +8,7 @@
 
 enum ResourceType: String {
   case APIToken = "api_token"
+  case Add      = "add"
   case All      = "all"
   case Dates    = "dates"
   case Delete   = "delete"
