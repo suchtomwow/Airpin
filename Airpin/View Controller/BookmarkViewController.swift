@@ -72,6 +72,9 @@ extension BookmarkViewController: UITableViewDelegate {
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     let bookmark = viewModel.bookmarks![indexPath.row]
     
+    viewModel.markBookmarkAsReadAtIndex(indexPath.row)
+    tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+    
     let svc = SFSafariViewController(URL: bookmark.URL)
     setTitleForViewController(svc, withBookmark: bookmark)
     
