@@ -6,4 +6,12 @@
 //  Copyright © 2016 Thomas Carey. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+enum Icon: String {
+  case Disclosure = "disclosure"
+  
+  var image: UIImage? {
+    return UIImage(named: self.rawValue)
+  }
+}
