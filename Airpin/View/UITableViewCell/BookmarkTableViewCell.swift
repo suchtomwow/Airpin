@@ -9,85 +9,108 @@
 import UIKit
 
 class BookmarkTableViewCell: BLSTableViewCell {
-  override class var ReuseIdentifier: String {
-    return "BookmarkTableViewCell"
-  }
-  
   let title    = UILabel()
   let date     = UILabel()
   let subtitle = UILabel()
   let URL      = UILabel()
   
-  var vConstraints: [NSLayoutConstraint]!
-  
   lazy var tagStackView: UIStackView = {
-    let view                                       = UIStackView()
-    view.translatesAutoresizingMaskIntoConstraints = false
-    view.axis                                      = .Horizontal
-    view.spacing                                   = 8.0
-    view.alignment                                 = .Fill
-    view.distribution                              = .Fill
-    return view
+    let stackView                                       = UIStackView()
+
+    stackView.translatesAutoresizingMaskIntoConstraints = false
+    stackView.axis                                      = .Horizontal
+    stackView.spacing                                   = 10.0
+    stackView.alignment                                 = .Fill
+    stackView.distribution                              = .Fill
+
+    return stackView
+  }()
+  
+  lazy var verticalStackView: UIStackView = {
+    let stackView                                       = UIStackView()
+
+    stackView.translatesAutoresizingMaskIntoConstraints = false
+    stackView.axis                                      = .Vertical
+    stackView.spacing                                   = 10.0
+    stackView.alignment                                 = .Fill
+    stackView.distribution                              = .Fill
+
+    return stackView
+  }()
+  
+  lazy var URLDateStackView: UIStackView = {
+    let stackView  = UIStackView()
+    stackView.axis = .Horizontal
+    return stackView
+  }()
+
+  lazy var disclosure: UIImageView = {
+    let imageView = UIImageView()
+    
+    imageView.translatesAutoresizingMaskIntoConstraints = false
+    self.contentView.addSubview(imageView)
+    
+    return imageView
   }()
   
   override func configureView() {
     super.configureView()
     
-    title.translatesAutoresizingMaskIntoConstraints    = false
-    date.translatesAutoresizingMaskIntoConstraints     = false
-    subtitle.translatesAutoresizingMaskIntoConstraints = false
-    URL.translatesAutoresizingMaskIntoConstraints      = false
+    URLDateStackView.addArrangedSubview(URL)
+    URLDateStackView.addArrangedSubview(date)
     
-    contentView.addSubview(title)
-    contentView.addSubview(date)
-    contentView.addSubview(subtitle)
-    contentView.addSubview(URL)
-    contentView.addSubview(tagStackView)
+    contentView.addSubview(verticalStackView)
+    
+    verticalStackView.addArrangedSubview(URLDateStackView)
+    verticalStackView.addArrangedSubview(title)
+    verticalStackView.addArrangedSubview(subtitle)
+    verticalStackView.addArrangedSubview(tagStackView)
   }
   
   override func configureConstraints() {
     super.configureConstraints()
     
-    NSLayoutConstraint(item: URL, attribute: .Leading, relatedBy: .Equal, toItem: contentView, attribute: .LeadingMargin, multiplier: 1.0, constant: 0.0).active = true
-    NSLayoutConstraint(item: URL, attribute: .Trailing, relatedBy: .Equal, toItem: date, attribute: .Leading, multiplier: 1.0, constant: -3.0).active = true
-    NSLayoutConstraint(item: title, attribute: .Leading, relatedBy: .Equal, toItem: contentView, attribute: .LeadingMargin, multiplier: 1.0, constant: 0.0).active = true
-    NSLayoutConstraint(item: title, attribute: .Trailing, relatedBy: .Equal, toItem: contentView, attribute: .TrailingMargin, multiplier: 1.0, constant: -3.0).active = true
-    NSLayoutConstraint(item: date, attribute: .Trailing, relatedBy: .Equal, toItem: contentView, attribute: .TrailingMargin, multiplier: 1.0, constant: 0.0).active = true
-    NSLayoutConstraint(item: date, attribute: .Baseline, relatedBy: .Equal, toItem: URL, attribute: .Baseline, multiplier: 1.0, constant: 0.0).active = true
+    verticalStackView.topAnchor.constraintEqualToAnchor(contentView.topAnchor, constant: 20).active = true
+    verticalStackView.leadingAnchor.constraintEqualToAnchor(contentView.leadingAnchor, constant: 20).active = true
+    verticalStackView.trailingAnchor.constraintEqualToAnchor(disclosure.leadingAnchor, constant: -8).active = true
+    verticalStackView.bottomAnchor.constraintEqualToAnchor(contentView.bottomAnchor, constant: -20).active = true
     
-    NSLayoutConstraint(item: subtitle, attribute: .Leading, relatedBy: .Equal, toItem: contentView, attribute: .LeadingMargin, multiplier: 1.0, constant: 0.0).active = true
-    NSLayoutConstraint(item: subtitle, attribute: .Trailing, relatedBy: .Equal, toItem: contentView, attribute: .TrailingMargin, multiplier: 1.0, constant: 0.0).active = true
-    NSLayoutConstraint(item: tagStackView, attribute: .Leading, relatedBy: .Equal, toItem: contentView, attribute: .LeadingMargin, multiplier: 1.0, constant: 0.0).active = true
-    NSLayoutConstraint(item: tagStackView, attribute: .Trailing, relatedBy: .Equal, toItem: contentView, attribute: .TrailingMargin, multiplier: 1.0, constant: 0.0).active = true
-    
-    date.setContentCompressionResistancePriority(1000, forAxis: .Horizontal)
+    disclosure.trailingAnchor.constraintEqualToAnchor(contentView.trailingAnchor, constant: -12).active = true
+    disclosure.centerYAnchor.constraintEqualToAnchor(contentView.centerYAnchor).active = true
+    disclosure.widthAnchor.constraintEqualToConstant(8).active = true
+    disclosure.heightAnchor.constraintEqualToConstant(13).active = true
   }
   
   override func configureStyles() {
     super.configureStyles()
     
-    title.numberOfLines    = 2
-    date.numberOfLines     = 1
-    subtitle.numberOfLines = 3
-
-    title.font             = UIFont.headline.medium
-    date.font              = UIFont.caption1.light
-    subtitle.font          = UIFont.caption1
-    URL.font               = UIFont.caption1.ultraLight
-
-    title.textAlignment    = .Left
-    subtitle.textAlignment = .Left
-    URL.textAlignment      = .Left
-    date.textAlignment     = .Right
-
-    date.textColor         = UIColor.secondaryTextColor()
-    subtitle.textColor     = UIColor.primaryTextColor()
-    URL.textColor          = UIColor.secondaryTextColor()
+    backgroundColor          = UIColor.whiteColor()
+    title.backgroundColor    = UIColor.whiteColor()
+    date.backgroundColor     = UIColor.whiteColor()
+    subtitle.backgroundColor = UIColor.whiteColor()
+    URL.backgroundColor      = UIColor.whiteColor()
     
-    accessoryType          = .DisclosureIndicator
-    
-//    title.backgroundColor = .greenColor()
-//    date.backgroundColor = .purpleColor()
+    title.numberOfLines      = 2
+    date.numberOfLines       = 1
+    subtitle.numberOfLines   = 3
+
+    title.font               = UIFont.headline.medium
+    date.font                = UIFont.caption1.light
+    subtitle.font            = UIFont.caption1
+    URL.font                 = UIFont.caption1.ultraLight
+
+    title.textAlignment      = .Left
+    subtitle.textAlignment   = .Left
+    URL.textAlignment        = .Left
+    date.textAlignment       = .Right
+
+    title.textColor          = UIColor.primaryTextColor()
+    date.textColor           = UIColor.secondaryTextColor()
+    subtitle.textColor       = UIColor.primaryTextColor()
+    URL.textColor            = UIColor.secondaryTextColor()
+
+    disclosure.tintColor     = UIColor.tableViewAccent()
+    disclosure.image         = Icon.Disclosure.image
   }
   
   private func resetContent() {
@@ -99,13 +122,12 @@ class BookmarkTableViewCell: BLSTableViewCell {
 
     switch bookmark.readState {
     case .Read:
-      title.textColor = UIColor.tertiaryTextColor()
+      title.alpha    = 0.5
+      subtitle.alpha = 0.5
     case .Unread:
-      title.textColor = UIColor.primaryTextColor()
+      title.alpha    = 1.0
+      subtitle.alpha = 1.0
     }
-
-    let link = NSURL(string: bookmark.url.trim())!
-    let displayURL = link.host!
 
     let titleString = bookmark.title.trim()
     let description = bookmark.desc.condense().trim()
@@ -117,40 +139,14 @@ class BookmarkTableViewCell: BLSTableViewCell {
       tagStackView.addArrangedSubview(tagButton)
     }
     
-    URL.text      = displayURL
+    URL.text      = bookmark.displayURL
     date.text     = datetime
     title.text    = titleString
     subtitle.text = description
     tagStackView.addArrangedSubview(UIView())
     
-    refreshVerticalConstraints(hasTitle: titleString.characters.count > 0, hasDescription: description.characters.count > 0, hasTags: bookmark.tagsArray.count > 0)
-  }
-  
-  private func refreshVerticalConstraints(hasTitle hasTitle: Bool, hasDescription: Bool, hasTags: Bool) {
-    if let vConstraints = vConstraints {
-      NSLayoutConstraint.deactivateConstraints(vConstraints)
-    }
-    
-    let metrics = ["vSpace": 8.0, "interItem": 6.0]
-    let views = ["URL": URL, "title": title, "description": subtitle, "tags": tagStackView]
-    var constraints = "V:|-vSpace-[URL]"
-    
-    if hasTitle {
-      constraints += "-interItem-[title]"
-    }
-    
-    if hasDescription {
-      constraints += "-interItem-[description]"
-    }
-    
-    if hasTags {
-      constraints += "-interItem-[tags]"
-    }
-    
-    constraints += "-vSpace-|"
-    
-    vConstraints = NSLayoutConstraint.constraintsWithVisualFormat(constraints, options: [], metrics: metrics, views: views)
-    
-    NSLayoutConstraint.activateConstraints(vConstraints)
+    title.hidden        = titleString.characters.count == 0
+    subtitle.hidden     = description.characters.count == 0
+    tagStackView.hidden = bookmark.tagsArray.count == 0
   }
 }
