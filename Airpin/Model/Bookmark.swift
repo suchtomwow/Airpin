@@ -30,27 +30,27 @@ class Bookmark: Object {
     return "pbHash"
   }
   
-  dynamic var pbHash:   String = ""// API: "hash", unique identifier
-  dynamic var url:      String = ""// API: "href"
-  dynamic var title:    String = ""// API: "description", max 256 characters
-  dynamic var desc:     String = ""// API: "extended", max 65536 characters
-  dynamic var meta:     String = ""// API: "meta", if different than stored, update
-  dynamic var datetime: NSDate = NSDate(timeIntervalSince1970: 1)// API: "time"
-  dynamic var shared:   Bool   = false// API: "shared", private/public
-  dynamic var toRead:   Bool   = false// API: "toread"
-  dynamic var userTags: String = ""// API: "tags", space delimited list of words
+  dynamic var pbHash:    String = ""// API: "hash", unique identifier
+  dynamic var urlString: String = ""// API: "href"
+  dynamic var title:     String = ""// API: "description", max 256 characters
+  dynamic var desc:      String = ""// API: "extended", max 65536 characters
+  dynamic var meta:      String = ""// API: "meta", if different than stored, update
+  dynamic var datetime:  NSDate = NSDate(timeIntervalSince1970: 1)// API: "time"
+  dynamic var shared:    Bool   = false// API: "shared", private/public
+  dynamic var toRead:    Bool   = false// API: "toread"
+  dynamic var userTags:  String = ""// API: "tags", space delimited list of words
   
   class func fromJSON(json: JSON) -> Bookmark {
-    let bookmark      = Bookmark()
-    bookmark.pbHash   = json["hash"].stringValue
-    bookmark.url      = json["href"].stringValue
-    bookmark.title    = json["description"].stringValue
-    bookmark.desc     = json["extended"].stringValue
-    bookmark.meta     = json["meta"].stringValue
-    bookmark.datetime = Formatter.JSON.dateFromString(json["time"].stringValue)!
-    bookmark.shared   = Bool(string: json["shared"].stringValue)
-    bookmark.toRead   = Bool(string: json["toread"].stringValue)
-    bookmark.userTags = json["tags"].stringValue
+    let bookmark       = Bookmark()
+    bookmark.pbHash    = json["hash"].stringValue
+    bookmark.urlString = json["href"].stringValue
+    bookmark.title     = json["description"].stringValue
+    bookmark.desc      = json["extended"].stringValue
+    bookmark.meta      = json["meta"].stringValue
+    bookmark.datetime  = Formatter.JSON.dateFromString(json["time"].stringValue)!
+    bookmark.shared    = Bool(string: json["shared"].stringValue)
+    bookmark.toRead    = Bool(string: json["toread"].stringValue)
+    bookmark.userTags  = json["tags"].stringValue
     
     return bookmark
   }
@@ -65,6 +65,14 @@ class Bookmark: Object {
     } catch {
       print(error)
     }
+  }
+  
+  var URL: NSURL {
+    return NSURL(string: urlString.trim())!
+  }
+  
+  var displayURL: String {
+    return URL.host!
   }
 }
 
