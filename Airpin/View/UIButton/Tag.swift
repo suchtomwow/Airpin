@@ -29,8 +29,9 @@ class Tag: UIButton {
   }
   
   func configureView() {
-    contentEdgeInsets = UIEdgeInsetsMake(3.0, 9.0, 4.0, 9.0)
-    clipsToBounds = true
+    contentEdgeInsets  = UIEdgeInsets(top: 3.0, left: 7.0, bottom: 4.0, right: 7.0)
+    clipsToBounds      = true
+    layer.cornerRadius = 2
     
     setTitle(data, forState: .Normal)
   }
@@ -39,10 +40,5 @@ class Tag: UIButton {
     titleLabel?.textColor = UIColor.whiteColor()
     titleLabel?.font = UIFont.caption1
     backgroundColor = UIColor.tintColor()
-  }
-  
-  override func drawRect(rect: CGRect) {
-    layer.cornerRadius = bounds.size.height / 2
-
   }
 }
