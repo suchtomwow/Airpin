@@ -34,6 +34,6 @@ class CategoryViewModel: BaseViewModel {
   }
   
   var rightBarButtonText: String {
-    return isLoggedIn ? "Log Out" : "Sign In"
+    return isLoggedIn ? "Sign out" : "Sign in"
   }
 }
