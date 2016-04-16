@@ -14,9 +14,10 @@ import Crashlytics
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
+  
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
-    window?.tintColor = UIColor.tintColor()
+    window?.tintColor = UIColor.mintGreen()
     
     Fabric.with([Crashlytics.self])
     return true

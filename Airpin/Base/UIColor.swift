@@ -39,7 +39,7 @@ extension UIColor {
     return UIColor(hex: 0xEDF0F4)
   }
   
-  class func tintColor() -> UIColor {
+  class func mintGreen() -> UIColor {
     return UIColor(hex: 0x2FE0AC)
   }
   
