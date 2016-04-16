@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3221142C928C97F1DA7FE903 /* Pods_Airpin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9249171868CE225D54CA999 /* Pods_Airpin.framework */; };
 		9865E5041AD4E82100201BC5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9865E5031AD4E82100201BC5 /* AppDelegate.swift */; };
 		9865E5061AD4E82100201BC5 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9865E5051AD4E82100201BC5 /* CategoryViewController.swift */; };
 		9865E5091AD4E82100201BC5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9865E5071AD4E82100201BC5 /* Main.storyboard */; };
@@ -28,9 +29,6 @@
 		E90012401B22CB5F0067F023 /* BLSTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E900123F1B22CB5F0067F023 /* BLSTextField.swift */; };
 		E91A6A8E1BC8E23000401B54 /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91A6A8D1BC8E23000401B54 /* BookmarkViewController.swift */; };
 		E91A6A901BC8E35300401B54 /* BookmarkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91A6A8F1BC8E35300401B54 /* BookmarkViewModel.swift */; };
-		E91CF2941BCB7A4500ED5E1E /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E91CF2901BCB7A4500ED5E1E /* Realm.framework */; };
-		E91CF2951BCB7A4500ED5E1E /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E91CF2911BCB7A4500ED5E1E /* RealmSwift.framework */; };
-		E91CF2991BCB7CB700ED5E1E /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E91CF2921BCB7A4500ED5E1E /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E91FEDF91BE089C9004187F3 /* BookmarkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91FEDF81BE089C9004187F3 /* BookmarkTableViewCell.swift */; };
 		E91FEDFC1BE098BB004187F3 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91FEDFB1BE098BB004187F3 /* Tag.swift */; };
 		E96101D71B2D4A0900D36C0C /* Airpin_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96101D61B2D4A0900D36C0C /* Airpin_Tests.swift */; };
@@ -63,7 +61,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				E91CF2991BCB7CB700ED5E1E /* SwiftyJSON.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -71,7 +68,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		593FD805E061F80FFFEC5AFF /* Pods_Airpin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Airpin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D45EDDFD1A27D039C882980 /* Pods-Airpin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Airpin.release.xcconfig"; path = "Pods/Target Support Files/Pods-Airpin/Pods-Airpin.release.xcconfig"; sourceTree = "<group>"; };
+		65EB6B3F2F4CD1435F3DE064 /* Pods-Airpin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Airpin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Airpin/Pods-Airpin.debug.xcconfig"; sourceTree = "<group>"; };
 		9865E4FE1AD4E82100201BC5 /* Airpin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Airpin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9865E5021AD4E82100201BC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9865E5031AD4E82100201BC5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -96,11 +94,9 @@
 		E900123F1B22CB5F0067F023 /* BLSTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BLSTextField.swift; path = "View/Base Subclass/BLSTextField.swift"; sourceTree = "<group>"; };
 		E91A6A8D1BC8E23000401B54 /* BookmarkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BookmarkViewController.swift; path = "View Controller/BookmarkViewController.swift"; sourceTree = "<group>"; };
 		E91A6A8F1BC8E35300401B54 /* BookmarkViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BookmarkViewModel.swift; path = "View Model/BookmarkViewModel.swift"; sourceTree = "<group>"; };
-		E91CF2901BCB7A4500ED5E1E /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
-		E91CF2911BCB7A4500ED5E1E /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
-		E91CF2921BCB7A4500ED5E1E /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		E91FEDF81BE089C9004187F3 /* BookmarkTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BookmarkTableViewCell.swift; path = View/UITableViewCell/BookmarkTableViewCell.swift; sourceTree = "<group>"; };
 		E91FEDFB1BE098BB004187F3 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tag.swift; path = View/UIButton/Tag.swift; sourceTree = "<group>"; };
+		E9249171868CE225D54CA999 /* Pods_Airpin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Airpin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E96101D41B2D4A0900D36C0C /* Airpin Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Airpin Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E96101D61B2D4A0900D36C0C /* Airpin_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Airpin_Tests.swift; sourceTree = "<group>"; };
 		E96101D81B2D4A0900D36C0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -121,10 +117,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E91CF2941BCB7A4500ED5E1E /* Realm.framework in Frameworks */,
-				E91CF2951BCB7A4500ED5E1E /* RealmSwift.framework in Frameworks */,
 				E9F89A251BE020060047B214 /* Crashlytics.framework in Frameworks */,
 				E9F89A241BE020060047B214 /* Fabric.framework in Frameworks */,
+				3221142C928C97F1DA7FE903 /* Pods_Airpin.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,6 +220,8 @@
 		B650C2E03F589A1656C81971 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
+				65EB6B3F2F4CD1435F3DE064 /* Pods-Airpin.debug.xcconfig */,
+				1D45EDDFD1A27D039C882980 /* Pods-Airpin.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -270,10 +267,7 @@
 			children = (
 				E9F89A221BE020060047B214 /* Fabric.framework */,
 				E9F89A231BE020060047B214 /* Crashlytics.framework */,
-				E91CF2901BCB7A4500ED5E1E /* Realm.framework */,
-				E91CF2911BCB7A4500ED5E1E /* RealmSwift.framework */,
-				E91CF2921BCB7A4500ED5E1E /* SwiftyJSON.framework */,
-				593FD805E061F80FFFEC5AFF /* Pods_Airpin.framework */,
+				E9249171868CE225D54CA999 /* Pods_Airpin.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -306,12 +300,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9865E51D1AD4E82100201BC5 /* Build configuration list for PBXNativeTarget "Airpin" */;
 			buildPhases = (
+				D7205E0D4C96EE43ADEB2096 /* Check Pods Manifest.lock */,
 				9865E4FA1AD4E82100201BC5 /* Sources */,
 				9865E4FB1AD4E82100201BC5 /* Frameworks */,
 				9865E4FC1AD4E82100201BC5 /* Resources */,
 				E9F7AA6E1B68905600D742C1 /* Embed Frameworks */,
-				E91CF2871BC8F77100ED5E1E /* Realm */,
 				E9F89A211BE01FE30047B214 /* Crashlytics */,
+				C15C76383FD0038B23A9D06F /* Embed Pods Frameworks */,
+				630C7A2FA851731E42360451 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -399,21 +395,50 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		E91CF2871BC8F77100ED5E1E /* Realm */ = {
+		630C7A2FA851731E42360451 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/Realm.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/RealmSwift.framework",
 			);
-			name = Realm;
+			name = "Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Airpin/Pods-Airpin-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C15C76383FD0038B23A9D06F /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Airpin/Pods-Airpin-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D7205E0D4C96EE43ADEB2096 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
 		};
 		E9F89A211BE01FE30047B214 /* Crashlytics */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -587,6 +612,7 @@
 		};
 		9865E51E1AD4E82100201BC5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 65EB6B3F2F4CD1435F3DE064 /* Pods-Airpin.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -597,6 +623,11 @@
 				INFOPLIST_FILE = Airpin/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bls.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -604,6 +635,7 @@
 		};
 		9865E51F1AD4E82100201BC5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1D45EDDFD1A27D039C882980 /* Pods-Airpin.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -614,6 +646,11 @@
 				INFOPLIST_FILE = Airpin/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bls.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

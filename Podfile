@@ -5,6 +5,8 @@ use_frameworks!
 
 target 'Airpin' do
 
+pod 'RealmSwift'
+pod 'SwiftyJSON'
 
 end
 

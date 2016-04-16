@@ -3,8 +3,50 @@
 <plist version="1.0">
 <dict>
 	<key>SchemeUserState</key>
-	<dict/>
+	<dict>
+		<key>Pods-Airpin.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Realm.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>RealmSwift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SwiftyJSON.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+	</dict>
 	<key>SuppressBuildableAutocreation</key>
-	<dict/>
+	<dict>
+		<key>A058D8A1321E2FC8E0764D7673C38955</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BD1CFA0A57DA35CA04DC12E239059C7D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D6A929A59E9FFDFAACBC8399FDA0AF09</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D81B871ADA759229BB0A0E4D581D4A3C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
 </dict>
 </plist>
