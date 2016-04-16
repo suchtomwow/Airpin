@@ -56,7 +56,7 @@ class JTSSloppySwiping: NSObject {
     self.popRecognizer = UIPanGestureRecognizer()
     self.navigationController = navigationController
     super.init()
-    self.popRecognizer.addTarget(self, action: "popRecognizerPanned:")
+    self.popRecognizer.addTarget(self, action: #selector(JTSSloppySwiping.popRecognizerPanned(_:)))
     navigationController.view.addGestureRecognizer(self.popRecognizer)
   }
   

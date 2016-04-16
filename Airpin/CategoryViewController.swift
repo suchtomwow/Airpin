@@ -37,7 +37,7 @@ class CategoryViewController: BaseViewController {
     tableView.rowHeight          = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 60
     
-    navigationItem.rightBarButtonItem = UIBarButtonItem(title: viewModel.rightBarButtonText, style: .Plain, target: self, action: "rightBarButtonItemTapped:")
+    navigationItem.rightBarButtonItem = UIBarButtonItem(title: viewModel.rightBarButtonText, style: .Plain, target: self, action: #selector(CategoryViewController.rightBarButtonItemTapped(_:)))
   }
   
   
