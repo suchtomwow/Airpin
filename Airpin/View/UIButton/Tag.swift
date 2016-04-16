@@ -9,10 +9,10 @@
 import UIKit
 
 class Tag: UIButton {
-  let data: String
+  let label: String
   
-  init(data: String) {
-    self.data = data
+  init(label: String) {
+    self.label = label
     
     super.init(frame: CGRectZero)
     
@@ -33,12 +33,10 @@ class Tag: UIButton {
     clipsToBounds      = true
     layer.cornerRadius = 2
     
-    setTitle(data, forState: .Normal)
+    setAttributedTitle(label.tag(alignment: .Center), forState: .Normal)
   }
   
   func configureStyles() {
-    titleLabel?.textColor = UIColor.whiteColor()
-    titleLabel?.font = UIFont.caption1
-    backgroundColor = UIColor.tintColor()
+    backgroundColor = UIColor.mintGreen()
   }
 }

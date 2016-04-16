@@ -13,70 +13,70 @@ extension UIFont {
   /**
    size: 17.0
    */
-  class var headline: UIFont {
+  class func headline() -> UIFont {
     return UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
   }
   
   /**
    size: 15.0
    */
-  class var subheadline: UIFont {
+  class func subheadline() -> UIFont {
     return UIFont.preferredFontForTextStyle(UIFontTextStyleSubheadline)
   }
 
   /**
    size: 17.0
    */
-  class var body: UIFont {
+  class func body() -> UIFont {
     return UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
   }
   
   /**
    size: 16.0
    */
-  class var callout: UIFont {
+  class func callout() -> UIFont {
     return UIFont.preferredFontForTextStyle(UIFontTextStyleCallout)
   }
   
   /**
    size: 12.0
    */
-  class var caption1: UIFont {
+  class func caption1() -> UIFont {
     return UIFont.preferredFontForTextStyle(UIFontTextStyleCaption1)
   }
 
   /**
    size: 11.0
    */
-  class var caption2: UIFont {
+  class func caption2() -> UIFont {
     return UIFont.preferredFontForTextStyle(UIFontTextStyleCaption2)
   }
   
   /**
    size: 28.0
    */
-  class var title1: UIFont {
+  class func title1() -> UIFont {
     return UIFont.preferredFontForTextStyle(UIFontTextStyleTitle1)
   }
   
   /**
    size: 22.0
    */
-  class var title2: UIFont {
+  class func title2() -> UIFont {
     return UIFont.preferredFontForTextStyle(UIFontTextStyleTitle2)
   }
   
   /**
    size: 20.0
    */
-  class var title3: UIFont {
+  class func title3() -> UIFont {
     return UIFont.preferredFontForTextStyle(UIFontTextStyleTitle3)
   }
   
   /**
    size: 13.0
    */
-  class var footnote: UIFont {
+  class func footnote() -> UIFont {
     return UIFont.preferredFontForTextStyle(UIFontTextStyleFootnote)
   }
   

@@ -67,11 +67,13 @@ extension CategoryViewController: UITableViewDataSource {
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier(String(SingleLabelTableViewCell), forIndexPath: indexPath) as! SingleLabelTableViewCell
 
-    if !viewModel.isLoggedIn {
-      cell.headline.textColor = UIColor.secondaryTextColor()
+    if viewModel.isLoggedIn {
+      cell.headline.alpha = 1.0
+    } else {
+      cell.headline.alpha = 0.5
     }
     
-    cell.headline.text = CategoryViewModel.Category.allValues[indexPath.row].description
+    cell.headline.attributedText = CategoryViewModel.Category.allValues[indexPath.row].description.headline(alignment: .Left)
     
     return cell
   }

@@ -94,21 +94,6 @@ class BookmarkTableViewCell: BLSTableViewCell {
     date.numberOfLines       = 1
     subtitle.numberOfLines   = 3
 
-    title.font               = UIFont.headline.medium
-    date.font                = UIFont.caption1.light
-    subtitle.font            = UIFont.caption1
-    URL.font                 = UIFont.caption1.ultraLight
-
-    title.textAlignment      = .Left
-    subtitle.textAlignment   = .Left
-    URL.textAlignment        = .Left
-    date.textAlignment       = .Right
-
-    title.textColor          = UIColor.primaryTextColor()
-    date.textColor           = UIColor.secondaryTextColor()
-    subtitle.textColor       = UIColor.primaryTextColor()
-    URL.textColor            = UIColor.secondaryTextColor()
-
     disclosure.tintColor     = UIColor.tableViewAccent()
     disclosure.image         = Icon.Disclosure.image
   }
@@ -135,14 +120,14 @@ class BookmarkTableViewCell: BLSTableViewCell {
     let datetime  = Formatter.humanTime.stringFromDate(bookmark.datetime)
     
     for tag in bookmark.tagsArray {
-      let tagButton = Tag(data: tag)
+      let tagButton = Tag(label: tag)
       tagStackView.addArrangedSubview(tagButton)
     }
     
-    URL.text      = bookmark.displayURL
-    date.text     = datetime
-    title.text    = titleString
-    subtitle.text = description
+    URL.attributedText      = bookmark.displayURL.caption(alignment: .Left)
+    date.attributedText     = datetime.caption(alignment: .Right, color: UIColor.secondaryTextColor())
+    title.attributedText    = titleString.headline(alignment: .Left)
+    subtitle.attributedText = description.subheadline(alignment: .Left)
     tagStackView.addArrangedSubview(UIView())
     
     title.hidden        = titleString.characters.count == 0
