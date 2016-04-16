@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="MUE-bZ-beP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="MUE-bZ-beP">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -38,11 +38,88 @@
                     <connections>
                         <outlet property="tableView" destination="Dcv-rj-asf" id="1Ud-ga-FSG"/>
                         <segue destination="c1T-Wu-fxc" kind="show" identifier="BookmarkViewController" id="35T-j5-Cpv"/>
+                        <segue destination="M82-Yc-O75" kind="presentation" identifier="TokenEntryViewController" id="cxj-cp-Qeb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="81p-bw-aQR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1188" y="208"/>
+        </scene>
+        <!--Token Entry View Controller-->
+        <scene sceneID="hsc-Hd-6n5">
+            <objects>
+                <viewController id="M82-Yc-O75" customClass="TokenEntryViewController" customModule="Airpin" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eLk-K7-Srh"/>
+                        <viewControllerLayoutGuide type="bottom" id="8uk-6D-yxF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="A83-uc-A3H">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="xAc-vm-uEy">
+                                <rect key="frame" x="160" y="420" width="280" height="80"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enjoy all the great features of Airpin by entering your Pinboard token." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="494-dA-Q6T">
+                                        <rect key="frame" x="0.0" y="0.0" width="280" height="41"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="token" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="VP2-4o-Swn">
+                                        <rect key="frame" x="0.0" y="61" width="280" height="19"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="280" id="Nw9-KH-aJk"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="280" id="vAq-Np-bHR"/>
+                                </constraints>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1f4-yG-CNE">
+                                <rect key="frame" x="270" y="520" width="61" height="30"/>
+                                <state key="normal" title="Negative"/>
+                                <connections>
+                                    <action selector="negativeCTATapped:" destination="M82-Yc-O75" eventType="touchUpInside" id="JsR-JC-6iM"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3U4-j2-qPe">
+                                <rect key="frame" x="0.0" y="560" width="600" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Bhw-C1-PBd"/>
+                                </constraints>
+                                <state key="normal" title="Affirmative"/>
+                                <connections>
+                                    <action selector="affirmativeCTATapped:" destination="M82-Yc-O75" eventType="touchUpInside" id="wXw-jg-6Dh"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="xAc-vm-uEy" firstAttribute="centerX" secondItem="A83-uc-A3H" secondAttribute="centerX" id="2Q1-Dn-cca"/>
+                            <constraint firstItem="3U4-j2-qPe" firstAttribute="leading" secondItem="A83-uc-A3H" secondAttribute="leading" id="TFk-Wo-G1p"/>
+                            <constraint firstItem="1f4-yG-CNE" firstAttribute="centerX" secondItem="A83-uc-A3H" secondAttribute="centerX" id="XV3-wB-pzv"/>
+                            <constraint firstItem="xAc-vm-uEy" firstAttribute="top" relation="greaterThanOrEqual" secondItem="eLk-K7-Srh" secondAttribute="bottom" constant="10" id="XeP-nM-mTs"/>
+                            <constraint firstAttribute="trailing" secondItem="3U4-j2-qPe" secondAttribute="trailing" id="gTr-Wb-lCv"/>
+                            <constraint firstItem="3U4-j2-qPe" firstAttribute="top" secondItem="1f4-yG-CNE" secondAttribute="bottom" constant="10" id="len-kl-iSN"/>
+                            <constraint firstItem="1f4-yG-CNE" firstAttribute="top" secondItem="xAc-vm-uEy" secondAttribute="bottom" constant="40" id="ngf-C8-MXo"/>
+                            <constraint firstItem="8uk-6D-yxF" firstAttribute="top" secondItem="3U4-j2-qPe" secondAttribute="bottom" id="s3z-xK-NQ8"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="affirmativeCTA" destination="3U4-j2-qPe" id="Zk7-YA-SOA"/>
+                        <outlet property="affirmativeCTABottomConstraint" destination="s3z-xK-NQ8" id="whN-p8-m79"/>
+                        <outlet property="description1Label" destination="494-dA-Q6T" id="4gy-EO-Xdv"/>
+                        <outlet property="negativeCTA" destination="1f4-yG-CNE" id="Thu-pQ-94Y"/>
+                        <outlet property="textField" destination="VP2-4o-Swn" id="Gne-eF-4u9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NFE-a5-NED" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1982" y="-491"/>
         </scene>
         <!--Bookmark View Controller-->
         <scene sceneID="H1x-w8-n22">

@@ -16,12 +16,25 @@ class CategoryViewController: BaseViewController {
   let viewModel = CategoryViewModel()
   
   // MARK: - View lifecycle -
+
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if segue == Segue.BookmarkViewController {
       let indexPath = sender as! NSIndexPath
       let category = CategoryViewModel.Category(rawValue: indexPath.row)
       let controller = segue.destinationViewController as! BookmarkViewController
       controller.category = category
+    } else if segue == Segue.TokenEntryViewController {
+      if let controller = segue.destinationViewController as? TokenEntryViewController {
+        controller.delegate = self
+      }
+    }
+  }
+  
+  override func viewDidAppear(animated: Bool) {
+    super.viewDidAppear(animated)
+    
+    if !NSUserDefaults.standardUserDefaults().boolForKey(UserDefault.HasDismissedTokenPrompt.rawValue) {
+      performSegueWithIdentifier(Segue.TokenEntryViewController.rawValue, sender: nil)
     }
   }
   
@@ -85,5 +98,14 @@ extension CategoryViewController: UITableViewDataSource {
 extension CategoryViewController: UITableViewDelegate {
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     performSegueWithIdentifier(Segue.BookmarkViewController.rawValue, sender: indexPath)
+  }
+}
+
+
+// MARK: - TokenEntryDelegate -
+
+extension CategoryViewController: TokenEntryDelegate {
+  func didFinishTokenEntry(didEnterToken didEnterToken: Bool) {
+    dismissViewControllerAnimated(true, completion: nil)
   }
 }

@@ -9,15 +9,18 @@
 import UIKit
 
 enum UserDefault: String {
-  case UpdateTime = "update_time"
+  case UpdateTime = "com.bls.airpin.updateTime"
+  case HasDismissedTokenPrompt = "com.bls.airpin.hasDismissedTokenPrompt"
 }
 
+// TODO: Shouldn't need this
 enum CellIdentifier: String {
   case SingleLabel = "SingleLabelTableViewCell"
 }
 
 enum Segue: String {
   case BookmarkViewController
+  case TokenEntryViewController
 }
 
 var DefaultInset: Double {
