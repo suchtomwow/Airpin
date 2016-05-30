@@ -35,18 +35,17 @@ class TokenEntryViewController: BaseViewController {
   // MARK: - Configuration -
   var viewDetails: TokenEntryViewDetails! {
     didSet {
-      description1Label.attributedText = viewDetails.description1.body(alignment: .Center)
+      description1Label.attributedText = viewDetails.description1.title(alignment: .Center, color: UIColor.whiteColor())
       textField.placeholder            = viewDetails.tokenFieldPlaceholder
       
       affirmativeCTA.setAttributedTitle(viewDetails.affirmativeCTA.primaryButton(), forState: .Normal)
+      
       negativeCTA.setAttributedTitle(viewDetails.negativeCTA.secondaryButton(), forState: .Normal)
     }
   }
   
-  override func viewWillAppear(animated: Bool) {
-    super.viewWillAppear(animated)
-    
-    textField.becomeFirstResponder()
+  override func preferredStatusBarStyle() -> UIStatusBarStyle {
+    return .LightContent
   }
   
   override func viewWillDisappear(animated: Bool) {
@@ -58,6 +57,7 @@ class TokenEntryViewController: BaseViewController {
   override func configureView() {
     super.configureView()
     
+    textField.delegate = self
     configureTextFieldBottomBorder()
     
     viewDetails = viewModel.viewDetails
@@ -68,10 +68,13 @@ class TokenEntryViewController: BaseViewController {
   override func configureStyles() {
     super.configureStyles()
     
-    textField.font = UIFont.title1()
-    textField.textColor = UIColor.primaryTextColor()
+    view.backgroundColor = UIColor.primaryColor()
     
-    affirmativeCTA.backgroundColor = UIColor.mintGreen()
+    textField.font = UIFont.title1()
+    textField.textColor = UIColor.whiteColor()
+    textField.tintColor = UIColor.complementaryColor()
+    
+    affirmativeCTA.backgroundColor = UIColor.complementaryColor()
   }
   
   func configureTextFieldBottomBorder() {
@@ -81,13 +84,16 @@ class TokenEntryViewController: BaseViewController {
     view.addSubview(border)
     
     NSLayoutConstraint.activateConstraints([
-      border.leadingAnchor.constraintEqualToAnchor(textField.leadingAnchor, constant: 20),
-      border.trailingAnchor.constraintEqualToAnchor(textField.trailingAnchor, constant: -20),
+      border.leadingAnchor.constraintEqualToAnchor(textField.leadingAnchor, constant: 0),
+      border.trailingAnchor.constraintEqualToAnchor(textField.trailingAnchor, constant: 0),
       border.topAnchor.constraintEqualToAnchor(textField.bottomAnchor),
       border.heightAnchor.constraintEqualToConstant(1)
     ])
     
-    border.backgroundColor = UIColor.secondaryTextColor()
+    border.backgroundColor = UIColor.whiteColor()
+  }
+  
+  
   // MARK: - Internal -
   
   private func showErrorMessage() {

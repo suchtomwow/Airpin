@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="MUE-bZ-beP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="MUE-bZ-beP">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Category View Controller-->
@@ -57,55 +58,69 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="xAc-vm-uEy">
-                                <rect key="frame" x="160" y="420" width="280" height="80"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enjoy all the great features of Airpin by entering your Pinboard token." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="494-dA-Q6T">
-                                        <rect key="frame" x="0.0" y="0.0" width="280" height="41"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="token" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="VP2-4o-Swn">
-                                        <rect key="frame" x="0.0" y="61" width="280" height="19"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="280" id="Nw9-KH-aJk"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
-                                    </textField>
-                                </subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enjoy all the great features of Airpin by entering your Pinboard token." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="494-dA-Q6T">
+                                <rect key="frame" x="160" y="173" width="280" height="41"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="280" id="vAq-Np-bHR"/>
+                                    <constraint firstAttribute="width" constant="280" id="o8n-cd-Hf3"/>
                                 </constraints>
-                            </stackView>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1f4-yG-CNE">
-                                <rect key="frame" x="270" y="520" width="61" height="30"/>
+                                <rect key="frame" x="270" y="510" width="61" height="30"/>
                                 <state key="normal" title="Negative"/>
                                 <connections>
                                     <action selector="negativeCTATapped:" destination="M82-Yc-O75" eventType="touchUpInside" id="JsR-JC-6iM"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3U4-j2-qPe">
-                                <rect key="frame" x="0.0" y="560" width="600" height="40"/>
+                                <rect key="frame" x="0.0" y="550" width="600" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="Bhw-C1-PBd"/>
+                                    <constraint firstAttribute="height" constant="50" id="Bhw-C1-PBd"/>
                                 </constraints>
                                 <state key="normal" title="Affirmative"/>
                                 <connections>
                                     <action selector="affirmativeCTATapped:" destination="M82-Yc-O75" eventType="touchUpInside" id="wXw-jg-6Dh"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="207-X9-VVh" userLabel="Spacer1">
+                                <rect key="frame" x="300" y="20" width="0.0" height="153"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" id="NcK-rB-4kx"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7bz-ob-Vev" userLabel="Spacer2">
+                                <rect key="frame" x="300" y="273" width="0.0" height="229"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" id="clA-9A-anS"/>
+                                </constraints>
+                            </view>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="token" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="VP2-4o-Swn">
+                                <rect key="frame" x="20" y="254" width="560" height="19"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="go"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="xAc-vm-uEy" firstAttribute="centerX" secondItem="A83-uc-A3H" secondAttribute="centerX" id="2Q1-Dn-cca"/>
+                            <constraint firstItem="1f4-yG-CNE" firstAttribute="top" secondItem="7bz-ob-Vev" secondAttribute="bottom" constant="8" id="04n-D8-Wy8"/>
+                            <constraint firstItem="VP2-4o-Swn" firstAttribute="leading" secondItem="A83-uc-A3H" secondAttribute="leading" constant="20" id="38A-Bf-PO8"/>
+                            <constraint firstAttribute="trailing" secondItem="VP2-4o-Swn" secondAttribute="trailing" constant="20" id="6yE-No-8T5"/>
+                            <constraint firstItem="494-dA-Q6T" firstAttribute="top" secondItem="207-X9-VVh" secondAttribute="bottom" id="8kW-KK-VQe"/>
+                            <constraint firstItem="7bz-ob-Vev" firstAttribute="centerX" secondItem="A83-uc-A3H" secondAttribute="centerX" id="Cv1-Qm-E3r"/>
+                            <constraint firstItem="VP2-4o-Swn" firstAttribute="top" secondItem="494-dA-Q6T" secondAttribute="bottom" constant="40" id="Dvk-ya-LCa"/>
+                            <constraint firstItem="207-X9-VVh" firstAttribute="centerX" secondItem="A83-uc-A3H" secondAttribute="centerX" id="GrX-Ke-gxM"/>
+                            <constraint firstItem="494-dA-Q6T" firstAttribute="centerX" secondItem="A83-uc-A3H" secondAttribute="centerX" id="ICp-kw-tGg"/>
+                            <constraint firstItem="7bz-ob-Vev" firstAttribute="top" secondItem="VP2-4o-Swn" secondAttribute="bottom" id="IKc-BV-Af0"/>
+                            <constraint firstItem="207-X9-VVh" firstAttribute="top" secondItem="eLk-K7-Srh" secondAttribute="bottom" id="RUm-nJ-01D"/>
                             <constraint firstItem="3U4-j2-qPe" firstAttribute="leading" secondItem="A83-uc-A3H" secondAttribute="leading" id="TFk-Wo-G1p"/>
+                            <constraint firstItem="7bz-ob-Vev" firstAttribute="height" secondItem="207-X9-VVh" secondAttribute="height" multiplier="1.5" id="VUQ-JS-Tiz"/>
                             <constraint firstItem="1f4-yG-CNE" firstAttribute="centerX" secondItem="A83-uc-A3H" secondAttribute="centerX" id="XV3-wB-pzv"/>
-                            <constraint firstItem="xAc-vm-uEy" firstAttribute="top" relation="greaterThanOrEqual" secondItem="eLk-K7-Srh" secondAttribute="bottom" constant="10" id="XeP-nM-mTs"/>
                             <constraint firstAttribute="trailing" secondItem="3U4-j2-qPe" secondAttribute="trailing" id="gTr-Wb-lCv"/>
                             <constraint firstItem="3U4-j2-qPe" firstAttribute="top" secondItem="1f4-yG-CNE" secondAttribute="bottom" constant="10" id="len-kl-iSN"/>
-                            <constraint firstItem="1f4-yG-CNE" firstAttribute="top" secondItem="xAc-vm-uEy" secondAttribute="bottom" constant="40" id="ngf-C8-MXo"/>
                             <constraint firstItem="8uk-6D-yxF" firstAttribute="top" secondItem="3U4-j2-qPe" secondAttribute="bottom" id="s3z-xK-NQ8"/>
                         </constraints>
                     </view>

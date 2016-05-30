@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
-    window?.tintColor = UIColor.mintGreen()
+    window?.tintColor = UIColor.primaryColor()
     
     Fabric.with([Crashlytics.self])
     return true
