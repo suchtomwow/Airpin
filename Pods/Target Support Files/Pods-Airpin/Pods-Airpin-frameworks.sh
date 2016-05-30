@@ -84,11 +84,13 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "Pods-Airpin/Locksmith.framework"
   install_framework "Pods-Airpin/Realm.framework"
   install_framework "Pods-Airpin/RealmSwift.framework"
   install_framework "Pods-Airpin/SwiftyJSON.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "Pods-Airpin/Locksmith.framework"
   install_framework "Pods-Airpin/Realm.framework"
   install_framework "Pods-Airpin/RealmSwift.framework"
   install_framework "Pods-Airpin/SwiftyJSON.framework"

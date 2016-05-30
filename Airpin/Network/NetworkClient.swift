@@ -17,9 +17,28 @@ enum Result<T> {
 class NetworkClient {
   static let sharedInstance = NetworkClient()
   
-  let scheme               = "https"
-  let host                 = "api.pinboard.in"
-  let accessToken: String? = "thomasjcarey:2cff43a9ac56dd12fa89"
+  let scheme = "https"
+  let host   = "api.pinboard.in"
+
+  var accessToken: String? {
+    let token = pinboardAccount?.token
+    return token
+  }
+  
+  lazy var pinboardAccount: PinboardAccount? = {
+    let account = PinboardAccount.readFromKeychain()
+    return account
+  }()
+  
+  func signOut(completion: () -> ()) {
+    do {
+      try pinboardAccount?.deleteFromSecureStore()
+      pinboardAccount = nil
+      completion()
+    } catch {
+      print(error)
+    }
+  }
   
   lazy var components: NSURLComponents = {
     let components        = NSURLComponents()
@@ -42,7 +61,7 @@ class NetworkClient {
     return NSURLQueryItem(name: "auth_token", value: accessToken)
   }
   
-  let formatQueryItem    = NSURLQueryItem(name: "format", value: "json")
+  let formatQueryItem = NSURLQueryItem(name: "format", value: "json")
   
   func executeRequest(endpoint: Endpoint, parameters: [NSURLQueryItem]? = nil, completion: (Result<JSON> -> Void)?) {
     if let parameters = parameters {

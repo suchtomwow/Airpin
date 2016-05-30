@@ -1,4 +1,5 @@
 PODS:
+  - Locksmith (2.0.8)
   - Realm (0.98.8):
     - Realm/Headers (= 0.98.8)
   - Realm/Headers (0.98.8)
@@ -7,10 +8,12 @@ PODS:
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
+  - Locksmith
   - RealmSwift
   - SwiftyJSON
 
 SPEC CHECKSUMS:
+  Locksmith: a8ed41ac4c06506ea8cb199d8ec8a8d3d108eb2a
   Realm: 0e293bb62999730599efc3048896bbd4f2e43bcd
   RealmSwift: 064262d38113f23ff3508fb20a0a922e696bec01
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a

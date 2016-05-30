@@ -88,6 +88,25 @@ class TokenEntryViewController: BaseViewController {
     ])
     
     border.backgroundColor = UIColor.secondaryTextColor()
+  // MARK: - Internal -
+  
+  private func showErrorMessage() {
+    let actionAlert = UIAlertController(title: "Could not store token", message: "Try again later.", preferredStyle: .Alert)
+
+    actionAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { action in
+      self.dismissViewControllerAnimated(true, completion: nil)
+    }))
+    
+    presentViewController(actionAlert, animated: true, completion: nil)
+  }
+  
+  private var hasSeenModal: Bool {
+    get {
+      return NSUserDefaults.standardUserDefaults().boolForKey(UserDefault.HasDismissedTokenPrompt.rawValue)
+    }
+    set {
+      NSUserDefaults.standardUserDefaults().setBool(true, forKey: UserDefault.HasDismissedTokenPrompt.rawValue)
+    }
   }
   
   
@@ -115,16 +134,34 @@ class TokenEntryViewController: BaseViewController {
   // MARK: IBActions
   
   @IBAction func negativeCTATapped(sender: UIButton) {
-    NSUserDefaults.standardUserDefaults().setBool(true, forKey: UserDefault.HasDismissedTokenPrompt.rawValue)
+    hasSeenModal = true
     
     delegate?.didFinishTokenEntry(didEnterToken: false)
   }
   
   @IBAction func affirmativeCTATapped(sender: UIButton) {
+    hasSeenModal = true
+    
     // TODO: Verify token format
     
-    // TODO: If valid token, store in keychain
+    do {
+      try viewModel.storeToken(textField.text)
+      delegate?.didFinishTokenEntry(didEnterToken: true)
+    } catch {
+      print(error)
+      
+      delegate?.didFinishTokenEntry(didEnterToken: false)
+    }
+  }
+}
+
+
+// MARK: - UITextFieldDelegate -
+
+extension TokenEntryViewController: UITextFieldDelegate {
+  func textFieldShouldReturn(textField: UITextField) -> Bool {
+    affirmativeCTATapped(affirmativeCTA)
     
-    delegate?.didFinishTokenEntry(didEnterToken: true)
+    return true
   }
 }

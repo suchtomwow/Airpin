@@ -7,6 +7,7 @@ target 'Airpin' do
 
 pod 'RealmSwift'
 pod 'SwiftyJSON'
+pod 'Locksmith'
 
 end
 
