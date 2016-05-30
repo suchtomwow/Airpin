@@ -10,8 +10,9 @@ import UIKit
 
 enum Icon: String {
   case Disclosure = "disclosure"
+  case Arrow = "arrow-icon"
   
   var image: UIImage? {
-    return UIImage(named: self.rawValue)
+    return UIImage(named: self.rawValue)?.imageWithRenderingMode(.AlwaysTemplate)
   }
 }

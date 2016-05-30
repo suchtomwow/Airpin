@@ -24,16 +24,20 @@ extension String {
     return trimmed
   }
   
-  func headline(alignment alignment: NSTextAlignment) -> NSAttributedString {
-    return attributedStringWithAlignment(alignment, font: UIFont.headline().medium, color: UIColor.primaryTextColor())
+  func title(alignment alignment: NSTextAlignment, color: UIColor = UIColor.primaryTextColor()) -> NSAttributedString {
+    return attributedStringWithAlignment(alignment, font: UIFont.title1().bold, color: color)
+  }
+
+  func headline(alignment alignment: NSTextAlignment, color: UIColor = UIColor.primaryTextColor()) -> NSAttributedString {
+    return attributedStringWithAlignment(alignment, font: UIFont.headline().medium, color: color)
   }
   
   func subheadline(alignment alignment: NSTextAlignment) -> NSAttributedString {
     return attributedStringWithAlignment(alignment, font: UIFont.subheadline(), color: UIColor.secondaryTextColor())
   }
   
-  func body(alignment alignment: NSTextAlignment) -> NSAttributedString {
-    return attributedStringWithAlignment(alignment, font: UIFont.body(), color: UIColor.primaryTextColor())
+  func body(alignment alignment: NSTextAlignment, color: UIColor = UIColor.primaryTextColor()) -> NSAttributedString {
+    return attributedStringWithAlignment(alignment, font: UIFont.body(), color: color)
   }
   
   func footnote(alignment alignment: NSTextAlignment) -> NSAttributedString {
@@ -48,8 +52,8 @@ extension String {
     return attributedStringWithAlignment(alignment, font: UIFont.caption1(), color: UIColor.whiteColor())
   }
   
-  func primaryButton() -> NSAttributedString {
-    return attributedStringWithAlignment(.Center, font: UIFont.callout().heavy, color: UIColor.whiteColor())
+  func primaryButton(color color: UIColor = UIColor.whiteColor()) -> NSAttributedString {
+    return attributedStringWithAlignment(.Center, font: UIFont.callout().heavy, color: color)
   }
   
   func secondaryButton() -> NSAttributedString {

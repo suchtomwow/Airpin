@@ -39,8 +39,12 @@ extension UIColor {
     return UIColor(hex: 0xEDF0F4)
   }
   
-  class func mintGreen() -> UIColor {
+  class func primaryColor() -> UIColor {
     return UIColor(hex: 0x2FE0AC)
+  }
+  
+  class func complementaryColor() -> UIColor {
+    return UIColor(hex: 0xFF7C36)
   }
   
   class func lightGrey() -> UIColor {
