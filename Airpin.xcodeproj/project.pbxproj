@@ -41,10 +41,6 @@
 		E96101D71B2D4A0900D36C0C /* Airpin_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96101D61B2D4A0900D36C0C /* Airpin_Tests.swift */; };
 		E98D7E371B5F470200D65A10 /* PinboardNetworkOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98D7E361B5F470200D65A10 /* PinboardNetworkOperations.swift */; };
 		E99064CD1B6099C50054C503 /* PinboardDiskOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99064CC1B6099C50054C503 /* PinboardDiskOperations.swift */; };
-		E9E992071D38C65E00CDE752 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9E992051D38C65E00CDE752 /* Realm.framework */; };
-		E9E992081D38C65E00CDE752 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E9E992051D38C65E00CDE752 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E9E992091D38C65E00CDE752 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9E992061D38C65E00CDE752 /* RealmSwift.framework */; };
-		E9E9920A1D38C65E00CDE752 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E9E992061D38C65E00CDE752 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E9F451631CC1E9A5001AC1CB /* TokenEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F451621CC1E9A5001AC1CB /* TokenEntryViewController.swift */; };
 		E9F66FD11C8185A8003F17D3 /* JTSSloppyNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F66FD01C8185A8003F17D3 /* JTSSloppyNavigationController.swift */; };
 		E9F7AA701B6895AD00D742C1 /* Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B8038C1AE0E260006A1645 /* Bookmark.swift */; };
@@ -61,21 +57,6 @@
 			remoteInfo = Airpin;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		E9F7AA6E1B68905600D742C1 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				E9E9920A1D38C65E00CDE752 /* RealmSwift.framework in Embed Frameworks */,
-				E9E992081D38C65E00CDE752 /* Realm.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0C798048B61585BF34387C30 /* Pods_Airpin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Airpin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -122,8 +103,6 @@
 		E98D7E361B5F470200D65A10 /* PinboardNetworkOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PinboardNetworkOperations.swift; path = Network/Operations/PinboardNetworkOperations.swift; sourceTree = "<group>"; };
 		E99064CC1B6099C50054C503 /* PinboardDiskOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PinboardDiskOperations.swift; path = Network/Pinboard/PinboardDiskOperations.swift; sourceTree = "<group>"; };
 		E99EC7F91B2AAEB500A7BB19 /* Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Playground.playground; sourceTree = "<group>"; };
-		E9E992051D38C65E00CDE752 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = ../Frameworks/Realm.framework; sourceTree = "<group>"; };
-		E9E992061D38C65E00CDE752 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = ../Frameworks/RealmSwift.framework; sourceTree = "<group>"; };
 		E9F451621CC1E9A5001AC1CB /* TokenEntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TokenEntryViewController.swift; path = "Token Entry/TokenEntryViewController.swift"; sourceTree = "<group>"; };
 		E9F66FD01C8185A8003F17D3 /* JTSSloppyNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JTSSloppyNavigationController.swift; path = Base/JTSSloppyNavigationController.swift; sourceTree = "<group>"; };
 		E9F89A221BE020060047B214 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
@@ -135,8 +114,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E9E992071D38C65E00CDE752 /* Realm.framework in Frameworks */,
-				E9E992091D38C65E00CDE752 /* RealmSwift.framework in Frameworks */,
 				E9F89A251BE020060047B214 /* Crashlytics.framework in Frameworks */,
 				E9F89A241BE020060047B214 /* Fabric.framework in Frameworks */,
 				5CEED34AC3662E87270B4156 /* Pods_Airpin.framework in Frameworks */,
@@ -299,8 +276,6 @@
 		E9E992041D38C4D300CDE752 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E9E992051D38C65E00CDE752 /* Realm.framework */,
-				E9E992061D38C65E00CDE752 /* RealmSwift.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -357,7 +332,6 @@
 				9865E4FA1AD4E82100201BC5 /* Sources */,
 				9865E4FB1AD4E82100201BC5 /* Frameworks */,
 				9865E4FC1AD4E82100201BC5 /* Resources */,
-				E9F7AA6E1B68905600D742C1 /* Embed Frameworks */,
 				E9F89A211BE01FE30047B214 /* Crashlytics */,
 				28A9DADF4D0D2BB9FE92AD6F /* [CP] Embed Pods Frameworks */,
 				510DBE4B18C059556B24D75A /* [CP] Copy Pods Resources */,
@@ -723,12 +697,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D7EB01D385574C7C045C4174 /* Pods-Airpin.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Frameworks",
+					"$(PROJECT_DIR)",
 				);
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = Airpin/Info.plist;
@@ -749,13 +722,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7A3E749D206D0E59D6935693 /* Pods-Airpin.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Frameworks",
 				);
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = Airpin/Info.plist;
