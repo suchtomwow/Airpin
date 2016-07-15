@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "92943306EC8070DF9CD02ECD505D2CD5"
-               BuildableName = "Locksmith.framework"
-               BlueprintName = "Locksmith"
+               BlueprintIdentifier = "2E82A01ACDC9DBE89505DFEFEE6257F8"
+               BuildableName = "Pods_Airpin_Tests.framework"
+               BlueprintName = "Pods-Airpin Tests"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "92943306EC8070DF9CD02ECD505D2CD5"
-            BuildableName = "Locksmith.framework"
-            BlueprintName = "Locksmith"
+            BlueprintIdentifier = "2E82A01ACDC9DBE89505DFEFEE6257F8"
+            BuildableName = "Pods_Airpin_Tests.framework"
+            BlueprintName = "Pods-Airpin Tests"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
