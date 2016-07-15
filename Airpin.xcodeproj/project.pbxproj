@@ -697,6 +697,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D7EB01D385574C7C045C4174 /* Pods-Airpin.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -722,6 +723,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7A3E749D206D0E59D6935693 /* Pods-Airpin.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
