@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3221142C928C97F1DA7FE903 /* Pods_Airpin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9249171868CE225D54CA999 /* Pods_Airpin.framework */; };
+		1A82BC13669C90536869458F /* Pods_Airpin_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B302A9A729B51B8CBBC497DD /* Pods_Airpin_Tests.framework */; };
+		5CEED34AC3662E87270B4156 /* Pods_Airpin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C798048B61585BF34387C30 /* Pods_Airpin.framework */; };
 		9865E5041AD4E82100201BC5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9865E5031AD4E82100201BC5 /* AppDelegate.swift */; };
 		9865E5091AD4E82100201BC5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9865E5071AD4E82100201BC5 /* Main.storyboard */; };
 		9865E50B1AD4E82100201BC5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9865E50A1AD4E82100201BC5 /* Assets.xcassets */; };
@@ -72,8 +73,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1D45EDDFD1A27D039C882980 /* Pods-Airpin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Airpin.release.xcconfig"; path = "Pods/Target Support Files/Pods-Airpin/Pods-Airpin.release.xcconfig"; sourceTree = "<group>"; };
-		65EB6B3F2F4CD1435F3DE064 /* Pods-Airpin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Airpin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Airpin/Pods-Airpin.debug.xcconfig"; sourceTree = "<group>"; };
+		0C798048B61585BF34387C30 /* Pods_Airpin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Airpin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A3E749D206D0E59D6935693 /* Pods-Airpin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Airpin.release.xcconfig"; path = "Pods/Target Support Files/Pods-Airpin/Pods-Airpin.release.xcconfig"; sourceTree = "<group>"; };
 		9865E4FE1AD4E82100201BC5 /* Airpin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Airpin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9865E5021AD4E82100201BC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9865E5031AD4E82100201BC5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -91,12 +92,15 @@
 		98B8038F1AE0E3A9006A1645 /* PinboardDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PinboardDataProvider.swift; path = "Data Provider/PinboardDataProvider.swift"; sourceTree = "<group>"; };
 		98F0039B1AD4F8F300769486 /* Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Endpoint.swift; path = Network/Endpoint.swift; sourceTree = "<group>"; };
 		98F0039D1AD4FDF900769486 /* Resource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Resource.swift; path = Network/Resource.swift; sourceTree = "<group>"; };
+		B302A9A729B51B8CBBC497DD /* Pods_Airpin_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Airpin_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D069B2C4FBE7DD66163C0A8E /* Pods-Airpin Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Airpin Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Airpin Tests/Pods-Airpin Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		D7EB01D385574C7C045C4174 /* Pods-Airpin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Airpin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Airpin/Pods-Airpin.debug.xcconfig"; sourceTree = "<group>"; };
+		E8CA1BC3907319D904BCABD1 /* Pods-Airpin Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Airpin Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Airpin Tests/Pods-Airpin Tests.release.xcconfig"; sourceTree = "<group>"; };
 		E900123F1B22CB5F0067F023 /* BLSTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BLSTextField.swift; path = "View/Base Subclass/BLSTextField.swift"; sourceTree = "<group>"; };
 		E91A6A8D1BC8E23000401B54 /* BookmarkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BookmarkViewController.swift; path = "View Controller/BookmarkViewController.swift"; sourceTree = "<group>"; };
 		E91A6A8F1BC8E35300401B54 /* BookmarkViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BookmarkViewModel.swift; path = "View Model/BookmarkViewModel.swift"; sourceTree = "<group>"; };
 		E91FEDF81BE089C9004187F3 /* BookmarkTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BookmarkTableViewCell.swift; path = View/UITableViewCell/BookmarkTableViewCell.swift; sourceTree = "<group>"; };
 		E91FEDFB1BE098BB004187F3 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tag.swift; path = View/UIButton/Tag.swift; sourceTree = "<group>"; };
-		E9249171868CE225D54CA999 /* Pods_Airpin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Airpin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E93228CA1CC1FD3900121A97 /* TokenEntryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TokenEntryViewModel.swift; path = "Token Entry/TokenEntryViewModel.swift"; sourceTree = "<group>"; };
 		E93228CC1CC498AA00121A97 /* PinboardAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PinboardAccount.swift; path = Network/Pinboard/PinboardAccount.swift; sourceTree = "<group>"; };
 		E94C208E1CFCDAD500A1E620 /* Bool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Bool.swift; path = Extensions/Bool.swift; sourceTree = "<group>"; };
@@ -127,7 +131,7 @@
 			files = (
 				E9F89A251BE020060047B214 /* Crashlytics.framework in Frameworks */,
 				E9F89A241BE020060047B214 /* Fabric.framework in Frameworks */,
-				3221142C928C97F1DA7FE903 /* Pods_Airpin.framework in Frameworks */,
+				5CEED34AC3662E87270B4156 /* Pods_Airpin.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,12 +139,24 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A82BC13669C90536869458F /* Pods_Airpin_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		65272DB82B72755FB078401D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D7EB01D385574C7C045C4174 /* Pods-Airpin.debug.xcconfig */,
+				7A3E749D206D0E59D6935693 /* Pods-Airpin.release.xcconfig */,
+				D069B2C4FBE7DD66163C0A8E /* Pods-Airpin Tests.debug.xcconfig */,
+				E8CA1BC3907319D904BCABD1 /* Pods-Airpin Tests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		9865E4F51AD4E82100201BC5 = {
 			isa = PBXGroup;
 			children = (
@@ -148,7 +164,7 @@
 				E96101D51B2D4A0900D36C0C /* Airpin Tests */,
 				E9EADECF1B68756E007A2467 /* Frameworks */,
 				9865E4FF1AD4E82100201BC5 /* Products */,
-				B650C2E03F589A1656C81971 /* Pods */,
+				65272DB82B72755FB078401D /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -227,15 +243,6 @@
 			name = Extensions;
 			sourceTree = "<group>";
 		};
-		B650C2E03F589A1656C81971 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				65EB6B3F2F4CD1435F3DE064 /* Pods-Airpin.debug.xcconfig */,
-				1D45EDDFD1A27D039C882980 /* Pods-Airpin.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		E91FEDFA1BE098A5004187F3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -286,7 +293,8 @@
 			children = (
 				E9F89A221BE020060047B214 /* Fabric.framework */,
 				E9F89A231BE020060047B214 /* Crashlytics.framework */,
-				E9249171868CE225D54CA999 /* Pods_Airpin.framework */,
+				0C798048B61585BF34387C30 /* Pods_Airpin.framework */,
+				B302A9A729B51B8CBBC497DD /* Pods_Airpin_Tests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -328,14 +336,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9865E51D1AD4E82100201BC5 /* Build configuration list for PBXNativeTarget "Airpin" */;
 			buildPhases = (
-				D7205E0D4C96EE43ADEB2096 /* Check Pods Manifest.lock */,
+				4869348DD79C3EEEE83C3542 /* [CP] Check Pods Manifest.lock */,
 				9865E4FA1AD4E82100201BC5 /* Sources */,
 				9865E4FB1AD4E82100201BC5 /* Frameworks */,
 				9865E4FC1AD4E82100201BC5 /* Resources */,
 				E9F7AA6E1B68905600D742C1 /* Embed Frameworks */,
 				E9F89A211BE01FE30047B214 /* Crashlytics */,
-				C15C76383FD0038B23A9D06F /* Embed Pods Frameworks */,
-				630C7A2FA851731E42360451 /* Copy Pods Resources */,
+				28A9DADF4D0D2BB9FE92AD6F /* [CP] Embed Pods Frameworks */,
+				510DBE4B18C059556B24D75A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -350,9 +358,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E96101DB1B2D4A0900D36C0C /* Build configuration list for PBXNativeTarget "Airpin Tests" */;
 			buildPhases = (
+				37D2DA0CE5AEF4E0E04F4D76 /* [CP] Check Pods Manifest.lock */,
 				E96101D01B2D4A0900D36C0C /* Sources */,
 				E96101D11B2D4A0900D36C0C /* Frameworks */,
 				E96101D21B2D4A0900D36C0C /* Resources */,
+				0511A201273DCDB92AAA1577 /* [CP] Embed Pods Frameworks */,
+				ABE6F4E9ED203045D9BF8AEB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -426,29 +437,29 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		630C7A2FA851731E42360451 /* Copy Pods Resources */ = {
+		0511A201273DCDB92AAA1577 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Airpin/Pods-Airpin-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Airpin Tests/Pods-Airpin Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C15C76383FD0038B23A9D06F /* Embed Pods Frameworks */ = {
+		28A9DADF4D0D2BB9FE92AD6F /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -456,19 +467,64 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Airpin/Pods-Airpin-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D7205E0D4C96EE43ADEB2096 /* Check Pods Manifest.lock */ = {
+		37D2DA0CE5AEF4E0E04F4D76 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		4869348DD79C3EEEE83C3542 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		510DBE4B18C059556B24D75A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Airpin/Pods-Airpin-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ABE6F4E9ED203045D9BF8AEB /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Airpin Tests/Pods-Airpin Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E9F89A211BE01FE30047B214 /* Crashlytics */ = {
@@ -649,7 +705,7 @@
 		};
 		9865E51E1AD4E82100201BC5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 65EB6B3F2F4CD1435F3DE064 /* Pods-Airpin.debug.xcconfig */;
+			baseConfigurationReference = D7EB01D385574C7C045C4174 /* Pods-Airpin.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -675,7 +731,7 @@
 		};
 		9865E51F1AD4E82100201BC5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1D45EDDFD1A27D039C882980 /* Pods-Airpin.release.xcconfig */;
+			baseConfigurationReference = 7A3E749D206D0E59D6935693 /* Pods-Airpin.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -702,6 +758,7 @@
 		};
 		E96101DC1B2D4A0900D36C0C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D069B2C4FBE7DD66163C0A8E /* Pods-Airpin Tests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -718,6 +775,7 @@
 		};
 		E96101DD1B2D4A0900D36C0C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E8CA1BC3907319D904BCABD1 /* Pods-Airpin Tests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";

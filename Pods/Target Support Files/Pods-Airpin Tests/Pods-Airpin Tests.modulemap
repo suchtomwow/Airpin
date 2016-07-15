@@ -1,0 +1,6 @@
+framework module Pods_Airpin_Tests {
+  umbrella header "Pods-Airpin Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}
