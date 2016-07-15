@@ -13,6 +13,6 @@ enum Icon: String {
   case Arrow = "arrow-icon"
   
   var image: UIImage? {
-    return UIImage(named: self.rawValue)?.imageWithRenderingMode(.AlwaysTemplate)
+    return UIImage(named: self.rawValue)?.withRenderingMode(.alwaysTemplate)
   }
 }

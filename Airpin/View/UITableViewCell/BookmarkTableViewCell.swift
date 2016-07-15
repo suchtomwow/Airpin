@@ -18,10 +18,10 @@ class BookmarkTableViewCell: BLSTableViewCell {
     let stackView                                       = UIStackView()
 
     stackView.translatesAutoresizingMaskIntoConstraints = false
-    stackView.axis                                      = .Horizontal
+    stackView.axis                                      = .horizontal
     stackView.spacing                                   = 10.0
-    stackView.alignment                                 = .Fill
-    stackView.distribution                              = .Fill
+    stackView.alignment                                 = .fill
+    stackView.distribution                              = .fill
 
     return stackView
   }()
@@ -30,17 +30,17 @@ class BookmarkTableViewCell: BLSTableViewCell {
     let stackView                                       = UIStackView()
 
     stackView.translatesAutoresizingMaskIntoConstraints = false
-    stackView.axis                                      = .Vertical
+    stackView.axis                                      = .vertical
     stackView.spacing                                   = 10.0
-    stackView.alignment                                 = .Fill
-    stackView.distribution                              = .Fill
+    stackView.alignment                                 = .fill
+    stackView.distribution                              = .fill
 
     return stackView
   }()
   
   lazy var URLDateStackView: UIStackView = {
     let stackView  = UIStackView()
-    stackView.axis = .Horizontal
+    stackView.axis = .horizontal
     return stackView
   }()
 
@@ -70,25 +70,25 @@ class BookmarkTableViewCell: BLSTableViewCell {
   override func configureConstraints() {
     super.configureConstraints()
     
-    verticalStackView.topAnchor.constraintEqualToAnchor(contentView.topAnchor, constant: 20).active = true
-    verticalStackView.leadingAnchor.constraintEqualToAnchor(contentView.leadingAnchor, constant: 20).active = true
-    verticalStackView.trailingAnchor.constraintEqualToAnchor(disclosure.leadingAnchor, constant: -8).active = true
-    verticalStackView.bottomAnchor.constraintEqualToAnchor(contentView.bottomAnchor, constant: -20).active = true
+    verticalStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20).isActive = true
+    verticalStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
+    verticalStackView.trailingAnchor.constraint(equalTo: disclosure.leadingAnchor, constant: -8).isActive = true
+    verticalStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20).isActive = true
     
-    disclosure.trailingAnchor.constraintEqualToAnchor(contentView.trailingAnchor, constant: -12).active = true
-    disclosure.centerYAnchor.constraintEqualToAnchor(contentView.centerYAnchor).active = true
-    disclosure.widthAnchor.constraintEqualToConstant(8).active = true
-    disclosure.heightAnchor.constraintEqualToConstant(13).active = true
+    disclosure.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12).isActive = true
+    disclosure.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+    disclosure.widthAnchor.constraint(equalToConstant: 8).isActive = true
+    disclosure.heightAnchor.constraint(equalToConstant: 13).isActive = true
   }
   
   override func configureStyles() {
     super.configureStyles()
     
-    backgroundColor          = UIColor.whiteColor()
-    title.backgroundColor    = UIColor.whiteColor()
-    date.backgroundColor     = UIColor.whiteColor()
-    subtitle.backgroundColor = UIColor.whiteColor()
-    URL.backgroundColor      = UIColor.whiteColor()
+    backgroundColor          = UIColor.white()
+    title.backgroundColor    = UIColor.white()
+    date.backgroundColor     = UIColor.white()
+    subtitle.backgroundColor = UIColor.white()
+    URL.backgroundColor      = UIColor.white()
     
     title.numberOfLines      = 2
     date.numberOfLines       = 1
@@ -102,14 +102,14 @@ class BookmarkTableViewCell: BLSTableViewCell {
     tagStackView.subviews.forEach { $0.removeFromSuperview() }
   }
   
-  func configureWithBookmark(bookmark: Bookmark) {
+  func configureWithBookmark(_ bookmark: Bookmark) {
     resetContent() // According to docs, tableView(:cellForRowAtIndexPath:) should ALWAYS reset content. prepareForReuse() is not for this purpose.
 
     switch bookmark.readState {
-    case .Read:
+    case .read:
       title.alpha    = 0.5
       subtitle.alpha = 0.5
-    case .Unread:
+    case .unread:
       title.alpha    = 1.0
       subtitle.alpha = 1.0
     }
@@ -117,21 +117,21 @@ class BookmarkTableViewCell: BLSTableViewCell {
     let titleString = bookmark.title.trim()
     let description = bookmark.desc.condense().trim()
     
-    let datetime  = Formatter.humanTime.stringFromDate(bookmark.datetime)
+    let datetime  = Formatter.humanTime.string(from: bookmark.datetime)
     
     for tag in bookmark.tagsArray {
       let tagButton = Tag(label: tag)
       tagStackView.addArrangedSubview(tagButton)
     }
     
-    URL.attributedText      = bookmark.displayURL.caption(alignment: .Left)
-    date.attributedText     = datetime.caption(alignment: .Right, color: UIColor.secondaryTextColor())
-    title.attributedText    = titleString.headline(alignment: .Left)
-    subtitle.attributedText = description.subheadline(alignment: .Left)
+    URL.attributedText      = bookmark.displayURL.caption(alignment: .left)
+    date.attributedText     = datetime.caption(alignment: .right, color: UIColor.secondaryTextColor())
+    title.attributedText    = titleString.headline(alignment: .left)
+    subtitle.attributedText = description.subheadline(alignment: .left)
     tagStackView.addArrangedSubview(UIView())
     
-    title.hidden        = titleString.characters.count == 0
-    subtitle.hidden     = description.characters.count == 0
-    tagStackView.hidden = bookmark.tagsArray.count == 0
+    title.isHidden        = titleString.characters.count == 0
+    subtitle.isHidden     = description.characters.count == 0
+    tagStackView.isHidden = bookmark.tagsArray.count == 0
   }
 }

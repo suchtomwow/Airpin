@@ -16,7 +16,7 @@ class BLSTableView: UITableView {
   override func awakeFromNib() {
     super.awakeFromNib()
     
-    separatorStyle     = .None
+    separatorStyle     = .none
     rowHeight          = UITableViewAutomaticDimension
     estimatedRowHeight = 100.0
   }

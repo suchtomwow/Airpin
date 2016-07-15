@@ -47,14 +47,14 @@ class BLSTableViewCell: UITableViewCell {
   func configureConstraints() { }
   
   func configureCellSeparator() {
-    separator.bottomAnchor.constraintEqualToAnchor(contentView.bottomAnchor).active = true
-    separator.leadingAnchor.constraintEqualToAnchor(contentView.leadingAnchor).active = true
-    separator.trailingAnchor.constraintEqualToAnchor(contentView.trailingAnchor).active = true
-    separator.heightAnchor.constraintEqualToConstant(2.0).active = true
+    separator.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+    separator.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+    separator.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
+    separator.heightAnchor.constraint(equalToConstant: 2.0).isActive = true
   }
   
   func configureStyles() {
-    selectionStyle            = .None
+    selectionStyle            = .none
     separator.backgroundColor = UIColor.tableViewAccent()
   }
 }

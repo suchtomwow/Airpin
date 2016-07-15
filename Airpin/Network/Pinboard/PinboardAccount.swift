@@ -24,7 +24,7 @@ struct PinboardAccount: GenericPasswordSecureStorable, CreateableSecureStorable,
   }
   
   init(token: String) {
-    let components = token.componentsSeparatedByString(":")
+    let components = token.components(separatedBy: ":")
     self.init(account: components[0], password: components[1])
   }
   

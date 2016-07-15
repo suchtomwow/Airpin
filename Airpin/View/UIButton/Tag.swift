@@ -14,7 +14,7 @@ class Tag: UIButton {
   init(label: String) {
     self.label = label
     
-    super.init(frame: CGRectZero)
+    super.init(frame: CGRect.zero)
     
     commonInit()
   }
@@ -33,7 +33,7 @@ class Tag: UIButton {
     clipsToBounds      = true
     layer.cornerRadius = 2
     
-    setAttributedTitle(label.tag(alignment: .Center), forState: .Normal)
+    setAttributedTitle(label.tag(alignment: .center), for: .normal)
   }
   
   func configureStyles() {

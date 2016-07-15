@@ -9,17 +9,17 @@
 import Foundation
 
 class Formatter {
-   static var JSON: NSDateFormatter {
-    let formatter = NSDateFormatter()
+   static var JSON: DateFormatter {
+    let formatter = DateFormatter()
     formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
     
     return formatter
   }
   
-  static var humanTime: NSDateFormatter {
-    let formatter = NSDateFormatter()
-    formatter.timeStyle = .NoStyle
-    formatter.dateStyle = .MediumStyle
+  static var humanTime: DateFormatter {
+    let formatter = DateFormatter()
+    formatter.timeStyle = .noStyle
+    formatter.dateStyle = .mediumStyle
     formatter.doesRelativeDateFormatting = true
     
     return formatter

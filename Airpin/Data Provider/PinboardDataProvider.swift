@@ -12,7 +12,7 @@ struct PinboardDataProvider {
   private let networkOperations = PinboardNetworkOperations()
   private let diskOperations = PinboardDiskOperations()
   
-  func fetchAllBookmarks(completion completion: BookmarkCompletion) {
+  func fetchAllBookmarks(completion: BookmarkCompletion) {
     // Call the https://api.pinboard.in/v1/posts/update endpoint to get the last updated time
     do {
       try networkOperations.getLastUpdated { datetime in
@@ -41,7 +41,7 @@ struct PinboardDataProvider {
     }
   }
   
-  private func fetchAllBookmarksFromNetwork(completion completion: BookmarkCompletion) {
+  private func fetchAllBookmarksFromNetwork(completion: BookmarkCompletion) {
     do {
       try networkOperations.fetchAllBookmarks(completion: completion)
     } catch {
@@ -49,8 +49,8 @@ struct PinboardDataProvider {
     }
   }
   
-  func toggleBookmarkReadState(bookmark: Bookmark) {
-    networkOperations.markBookmarkAsRead(!bookmark.toRead, withURL: bookmark.URL, andTitle: bookmark.title)
+  func toggleReadState(bookmark: Bookmark) {
+    networkOperations.toggleReadState(to: !bookmark.toRead, withURL: bookmark.URL, andTitle: bookmark.title)
     
     do {
       try Realm().write {
@@ -61,7 +61,7 @@ struct PinboardDataProvider {
     }
   }
   
-  func deleteBookmark(bookmark: Bookmark) {
+  func delete(bookmark: Bookmark) {
     networkOperations.deleteBookmarkWithURL(bookmark.URL)
 
     do {

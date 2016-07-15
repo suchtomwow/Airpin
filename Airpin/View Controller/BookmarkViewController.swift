@@ -39,35 +39,35 @@ class BookmarkViewController: BaseViewController {
     activityIndicator.hidesWhenStopped = true
     activityIndicator.startAnimating()
 
-    tableView.registerClass(BookmarkTableViewCell.self, forCellReuseIdentifier: String(BookmarkTableViewCell))
+    tableView.register(BookmarkTableViewCell.self, forCellReuseIdentifier: String(BookmarkTableViewCell))
     tableView.rowHeight          = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 120.0
   }
   
-  func toggleBookmarkReadStateAtIndexPath(indexPath: NSIndexPath) {
+  func toggleReadState(at indexPath: IndexPath) {
     viewModel.toggleBookmarkReadStateAtIndex(indexPath.row)
     
     tableView.beginUpdates()
-    tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+    tableView.reloadRows(at: [indexPath], with: .automatic)
     tableView.endUpdates()
   }
   
-  func deleteBookmarkAtIndexPath(indexPath: NSIndexPath) {
+  func delete(at indexPath: IndexPath) {
     viewModel.deleteBookmarkAtIndex(indexPath.row)
 
     tableView.beginUpdates()
-    tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+    tableView.deleteRows(at: [indexPath], with: .automatic)
     tableView.endUpdates()
   }
 }
 
 extension BookmarkViewController: UITableViewDataSource {
-  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return viewModel.bookmarks?.count ?? 0
   }
   
-  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier(String(BookmarkTableViewCell), forIndexPath: indexPath) as! BookmarkTableViewCell
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: String(BookmarkTableViewCell), for: indexPath) as! BookmarkTableViewCell
     
     let bookmark = viewModel.bookmarks![indexPath.row]
     cell.configureWithBookmark(bookmark)
@@ -77,26 +77,26 @@ extension BookmarkViewController: UITableViewDataSource {
 }
 
 extension BookmarkViewController: UITableViewDelegate {
-  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let bookmark = viewModel.bookmarks![indexPath.row]
     
     if bookmark.toRead {
       toggleBookmarkReadStateAtIndexPath(indexPath)
     }
     
-    let svc = SFSafariViewController(URL: bookmark.URL)
+    let svc = SFSafariViewController(url: bookmark.URL)
     
-    presentViewController(svc, animated: true, completion: nil)
+    present(svc, animated: true, completion: nil)
   }
   
-  func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+  func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
     let bookmark = viewModel.bookmarks![indexPath.row]
     
-    let toggleReadState = UITableViewRowAction(style: .Default, title: bookmark.toRead ? "Mark as\nread" : "Mark as\nunread") { action, indexPath in
+    let toggleReadState = UITableViewRowAction(style: .default, title: bookmark.toRead ? "Mark as\nread" : "Mark as\nunread") { action, indexPath in
       self.toggleBookmarkReadStateAtIndexPath(indexPath)
     }
     
-    let deleteBookmark = UITableViewRowAction(style: .Destructive, title: "Delete") { action, indexPath in
+    let deleteBookmark = UITableViewRowAction(style: .destructive, title: "Delete") { action, indexPath in
       self.deleteBookmarkAtIndexPath(indexPath)
     }
     

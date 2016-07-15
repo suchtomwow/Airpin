@@ -31,15 +31,15 @@ class SingleLabelTableViewCell: BLSTableViewCell {
   override func configureConstraints() {
     super.configureConstraints()
     
-    headline.topAnchor.constraintEqualToAnchor(contentView.topAnchor, constant: 20).active = true
-    headline.bottomAnchor.constraintEqualToAnchor(contentView.bottomAnchor, constant: -20).active = true
-    headline.leadingAnchor.constraintEqualToAnchor(contentView.leadingAnchor, constant: 20).active = true
-    headline.trailingAnchor.constraintEqualToAnchor(contentView.trailingAnchor, constant: -20).active = true
+    headline.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20).isActive = true
+    headline.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20).isActive = true
+    headline.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
+    headline.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
     
-    disclosure.trailingAnchor.constraintEqualToAnchor(contentView.trailingAnchor, constant: -12).active = true
-    disclosure.centerYAnchor.constraintEqualToAnchor(headline.centerYAnchor).active = true
-    disclosure.widthAnchor.constraintEqualToConstant(8).active = true
-    disclosure.heightAnchor.constraintEqualToConstant(13).active = true
+    disclosure.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12).isActive = true
+    disclosure.centerYAnchor.constraint(equalTo: headline.centerYAnchor).isActive = true
+    disclosure.widthAnchor.constraint(equalToConstant: 8).isActive = true
+    disclosure.heightAnchor.constraint(equalToConstant: 13).isActive = true
   }
   
   override func configureStyles() {

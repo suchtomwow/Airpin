@@ -14,7 +14,7 @@ typealias BookmarkCompletion = () -> Void
 
 class PinboardNetworkOperations {
 
-  func fetchAllBookmarks(completion completion: BookmarkCompletion) throws {
+  func fetchAllBookmarks(completion: BookmarkCompletion) throws {
     let endpoint = Endpoint(resourceTypes: [.Posts, .All])
     
     try fetchBookmarksWithEndpoint(endpoint, parameters: nil, completion: completion)
@@ -25,7 +25,7 @@ class PinboardNetworkOperations {
     try fetchBookmarksWithEndpoint(endpoint, completion: completion)
   }
   
-  func fetchBookmarksWithEndpoint(endpoint: Endpoint, parameters: [NSURLQueryItem]? = nil, completion: BookmarkCompletion) throws {
+  func fetch(with endpoint: Endpoint, parameters: [URLQueryItem]? = nil, completion: BookmarkCompletion) throws {
     NetworkClient.sharedInstance.executeRequest(endpoint, parameters: parameters) { result in
       switch result {
       case .Success(let json):
@@ -46,7 +46,7 @@ class PinboardNetworkOperations {
     }
   }
   
-  func getLastUpdated(completion: (datetime: NSDate) -> Void) throws {
+  func getLastUpdated(completion: (datetime: Date) -> Void) throws {
     let endpoint = Endpoint(resourceTypes: [.Posts, .Update])
     NetworkClient.sharedInstance.executeRequest(endpoint) { (result: Result<JSON>) in
       switch result {
@@ -60,18 +60,18 @@ class PinboardNetworkOperations {
     }
   }
   
-  func markBookmarkAsRead(toRead: Bool, withURL URL: NSURL, andTitle title: String) {
+  func toggleReadState(toRead: Bool, withURL URL: Foundation.URL, andTitle title: String) {
     let endpoint = Endpoint(resourceTypes: [.Posts, .Add])
-    let urlQI = NSURLQueryItem(name: "url", value: URL.absoluteString)
-    let titleQI = NSURLQueryItem(name: "description", value: title)
-    let toReadQI = NSURLQueryItem(name: "toread", value: toRead ? "yes" : "no")
+    let urlQI = URLQueryItem(name: "url", value: URL.absoluteString)
+    let titleQI = URLQueryItem(name: "description", value: title)
+    let toReadQI = URLQueryItem(name: "toread", value: toRead ? "yes" : "no")
     
     NetworkClient.sharedInstance.executeRequest(endpoint, parameters: [urlQI, titleQI, toReadQI], completion: nil)
   }
   
-  func deleteBookmarkWithURL(URL: NSURL) {
+  func delete(with URL: Foundation.URL) {
     let endpoint = Endpoint(resourceTypes: [.Posts, .Delete])
-    let urlQI = NSURLQueryItem(name: "url", value: URL.absoluteString)
+    let urlQI = URLQueryItem(name: "url", value: URL.absoluteString)
     
     NetworkClient.sharedInstance.executeRequest(endpoint, parameters: [urlQI], completion: nil)
   }

@@ -13,7 +13,7 @@ class TokenEntryViewModel: BaseViewModel {
   
   let viewDetails = TokenEntryViewDetails()
   
-  func storeToken(token: String?) throws {
+  func store(token: String?) throws {
     if let token = token {
       let pinboardAccount = PinboardAccount(token: token)
       

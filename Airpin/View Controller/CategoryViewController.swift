@@ -17,9 +17,9 @@ class CategoryViewController: BaseViewController {
   
   // MARK: - View lifecycle -
 
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+  override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
     if segue == Segue.BookmarkViewController {
-      let indexPath = sender as! NSIndexPath
+      let indexPath = sender as! IndexPath
       let category = CategoryViewModel.Category(rawValue: indexPath.row)
       let controller = segue.destinationViewController as! BookmarkViewController
       controller.category = category
@@ -30,11 +30,11 @@ class CategoryViewController: BaseViewController {
     }
   }
   
-  override func viewDidAppear(animated: Bool) {
+  override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
 
-    if NetworkClient.sharedInstance.accessToken == nil && !NSUserDefaults.standardUserDefaults().boolForKey(UserDefault.HasDismissedTokenPrompt.rawValue) {
-      performSelector(#selector(CategoryViewController.showTokenEntry), withObject: nil, afterDelay: 1)
+    if NetworkClient.sharedInstance.accessToken == nil && !UserDefaults.standard().bool(forKey: UserDefault.HasDismissedTokenPrompt.rawValue) {
+      perform(#selector(CategoryViewController.showTokenEntry), with: nil, afterDelay: 1)
     }
   }
   
@@ -46,17 +46,17 @@ class CategoryViewController: BaseViewController {
     
     title = viewModel.title
     
-    tableView.registerClass(SingleLabelTableViewCell.self, forCellReuseIdentifier: String(SingleLabelTableViewCell))
+    tableView.register(SingleLabelTableViewCell.self, forCellReuseIdentifier: String(SingleLabelTableViewCell))
     tableView.rowHeight          = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 60
     
-    navigationItem.rightBarButtonItem = UIBarButtonItem(title: viewModel.rightBarButtonText, style: .Plain, target: self, action: #selector(CategoryViewController.rightBarButtonItemTapped(_:)))
+    navigationItem.rightBarButtonItem = UIBarButtonItem(title: viewModel.rightBarButtonText, style: .plain, target: self, action: #selector(CategoryViewController.rightBarButtonItemTapped(_:)))
     
     updateView()
   }
   
   func showTokenEntry() {
-    performSegueWithIdentifier(Segue.TokenEntryViewController.rawValue, sender: nil)
+    performSegue(withIdentifier: Segue.TokenEntryViewController.rawValue, sender: nil)
   }
   
   private func updateView() {
@@ -67,7 +67,7 @@ class CategoryViewController: BaseViewController {
   
   // MARK: - Responders -
   
-  func rightBarButtonItemTapped(sender: UIBarButtonItem) {
+  func rightBarButtonItemTapped(_ sender: UIBarButtonItem) {
     if let _ = NetworkClient.sharedInstance.accessToken {
       // perform logout
       NetworkClient.sharedInstance.signOut {
@@ -75,7 +75,7 @@ class CategoryViewController: BaseViewController {
       }
     } else {
       // perform sign in
-      performSegueWithIdentifier(Segue.TokenEntryViewController.rawValue, sender: nil)
+      performSegue(withIdentifier: Segue.TokenEntryViewController.rawValue, sender: nil)
     }
   }
 }
@@ -86,12 +86,12 @@ class CategoryViewController: BaseViewController {
 // MARK: - UITableViewDataSource -
 
 extension CategoryViewController: UITableViewDataSource {
-  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return CategoryViewModel.Category.allValues.count
   }
   
-  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier(String(SingleLabelTableViewCell), forIndexPath: indexPath) as! SingleLabelTableViewCell
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: String(SingleLabelTableViewCell), for: indexPath) as! SingleLabelTableViewCell
 
     if viewModel.isLoggedIn {
       cell.headline.alpha = 1.0
@@ -99,7 +99,7 @@ extension CategoryViewController: UITableViewDataSource {
       cell.headline.alpha = 0.5
     }
     
-    cell.headline.attributedText = CategoryViewModel.Category.allValues[indexPath.row].description.headline(alignment: .Left)
+    cell.headline.attributedText = CategoryViewModel.Category.allValues[indexPath.row].description.headline(alignment: .left)
     
     return cell
   }
@@ -109,8 +109,8 @@ extension CategoryViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate -
 
 extension CategoryViewController: UITableViewDelegate {
-  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    performSegueWithIdentifier(Segue.BookmarkViewController.rawValue, sender: indexPath)
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    performSegue(withIdentifier: Segue.BookmarkViewController.rawValue, sender: indexPath)
   }
 }
 
@@ -118,11 +118,11 @@ extension CategoryViewController: UITableViewDelegate {
 // MARK: - TokenEntryDelegate -
 
 extension CategoryViewController: TokenEntryDelegate {
-  func didFinishTokenEntry(didEnterToken didEnterToken: Bool) {
+  func didFinishTokenEntry(didEnterToken: Bool) {
     if didEnterToken {
       updateView()
     }
 
-    dismissViewControllerAnimated(true, completion: nil)
+    dismiss(animated: true, completion: nil)
   }
 }

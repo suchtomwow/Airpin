@@ -35,12 +35,12 @@ class Bookmark: Object {
   dynamic var title:     String = ""// API: "description", max 256 characters
   dynamic var desc:      String = ""// API: "extended", max 65536 characters
   dynamic var meta:      String = ""// API: "meta", if different than stored, update
-  dynamic var datetime:  NSDate = NSDate(timeIntervalSince1970: 1)// API: "time"
+  dynamic var datetime:  Date = Date(timeIntervalSince1970: 1)// API: "time"
   dynamic var shared:    Bool   = false// API: "shared", private/public
   dynamic var toRead:    Bool   = false// API: "toread"
   dynamic var userTags:  String = ""// API: "tags", space delimited list of words
   
-  class func fromJSON(json: JSON) -> Bookmark {
+  class func from(JSON: JSON) -> Bookmark {
     let bookmark       = Bookmark()
     bookmark.pbHash    = json["hash"].stringValue
     bookmark.urlString = json["href"].stringValue
@@ -67,8 +67,8 @@ class Bookmark: Object {
     }
   }
   
-  var URL: NSURL {
-    return NSURL(string: urlString.trim())!
+  var URL: Foundation.URL {
+    return Foundation.URL(string: urlString.trim())!
   }
   
   var displayURL: String {
@@ -79,15 +79,15 @@ class Bookmark: Object {
 // MARK: Convenience
 
 enum ReadState {
-  case Read, Unread
+  case read, unread
 }
 
 extension Bookmark {
   var readState: ReadState {
-    return toRead == true ? .Unread : .Read
+    return toRead == true ? .unread : .read
   }
   
   var tagsArray: [String] {
-    return userTags.characters.split(" ").map { String($0) }
+    return userTags.characters.split(separator: " ").map { String($0) }
   }
 }

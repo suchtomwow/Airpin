@@ -40,6 +40,7 @@
 		E96101D71B2D4A0900D36C0C /* Airpin_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96101D61B2D4A0900D36C0C /* Airpin_Tests.swift */; };
 		E98D7E371B5F470200D65A10 /* PinboardNetworkOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98D7E361B5F470200D65A10 /* PinboardNetworkOperations.swift */; };
 		E99064CD1B6099C50054C503 /* PinboardDiskOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99064CC1B6099C50054C503 /* PinboardDiskOperations.swift */; };
+		E9AB33751CFE066F0096B988 /* ModalPresentAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AB33741CFE066F0096B988 /* ModalPresentAnimationController.swift */; };
 		E9F451631CC1E9A5001AC1CB /* TokenEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F451621CC1E9A5001AC1CB /* TokenEntryViewController.swift */; };
 		E9F66FD11C8185A8003F17D3 /* JTSSloppyNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F66FD01C8185A8003F17D3 /* JTSSloppyNavigationController.swift */; };
 		E9F7AA701B6895AD00D742C1 /* Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B8038C1AE0E260006A1645 /* Bookmark.swift */; };
@@ -112,6 +113,7 @@
 		E98D7E361B5F470200D65A10 /* PinboardNetworkOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PinboardNetworkOperations.swift; path = Network/Operations/PinboardNetworkOperations.swift; sourceTree = "<group>"; };
 		E99064CC1B6099C50054C503 /* PinboardDiskOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PinboardDiskOperations.swift; path = Network/Pinboard/PinboardDiskOperations.swift; sourceTree = "<group>"; };
 		E99EC7F91B2AAEB500A7BB19 /* Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Playground.playground; sourceTree = "<group>"; };
+		E9AB33741CFE066F0096B988 /* ModalPresentAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModalPresentAnimationController.swift; path = Modal/ModalPresentAnimationController.swift; sourceTree = "<group>"; };
 		E9F451621CC1E9A5001AC1CB /* TokenEntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TokenEntryViewController.swift; path = "Token Entry/TokenEntryViewController.swift"; sourceTree = "<group>"; };
 		E9F66FD01C8185A8003F17D3 /* JTSSloppyNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JTSSloppyNavigationController.swift; path = Base/JTSSloppyNavigationController.swift; sourceTree = "<group>"; };
 		E9F89A221BE020060047B214 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 		9865E5001AD4E82100201BC5 /* Airpin */ = {
 			isa = PBXGroup;
 			children = (
+				E9AB33761CFE06750096B988 /* Modal */,
 				E9F451641CC1E9AB001AC1CB /* Token Entry */,
 				E9F66FCD1C81681B003F17D3 /* Categories */,
 				E9F66FCC1C816800003F17D3 /* Bookmarks */,
@@ -259,6 +262,14 @@
 				E99064CC1B6099C50054C503 /* PinboardDiskOperations.swift */,
 			);
 			name = Pinboard;
+			sourceTree = "<group>";
+		};
+		E9AB33761CFE06750096B988 /* Modal */ = {
+			isa = PBXGroup;
+			children = (
+				E9AB33741CFE066F0096B988 /* ModalPresentAnimationController.swift */,
+			);
+			name = Modal;
 			sourceTree = "<group>";
 		};
 		E9E4AADB1BC8DF1900BB1C73 /* Storyboard */ = {
@@ -360,15 +371,17 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Thomas Carey";
 				TargetAttributes = {
 					9865E4FD1AD4E82100201BC5 = {
 						CreatedOnToolsVersion = 6.2;
 						DevelopmentTeam = H8B2H49X66;
+						LastSwiftMigration = 0800;
 					};
 					E96101D31B2D4A0900D36C0C = {
 						CreatedOnToolsVersion = 7.0;
+						LastSwiftMigration = 0800;
 						TestTargetID = 9865E4FD1AD4E82100201BC5;
 					};
 				};
@@ -497,6 +510,7 @@
 				98B8037A1AE0C390006A1645 /* SingleLabelTableViewCell.swift in Sources */,
 				E9F66FD11C8185A8003F17D3 /* JTSSloppyNavigationController.swift in Sources */,
 				98F0039E1AD4FDF900769486 /* Resource.swift in Sources */,
+				E9AB33751CFE066F0096B988 /* ModalPresentAnimationController.swift in Sources */,
 				E94C209A1CFCDAD500A1E620 /* UIColor.swift in Sources */,
 				E94C209D1CFCDB5000A1E620 /* CategoryViewController.swift in Sources */,
 				E94C20971CFCDAD500A1E620 /* Icons.swift in Sources */,
@@ -642,6 +656,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
+				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = Airpin/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -652,6 +667,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bls.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -659,6 +675,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1D45EDDFD1A27D039C882980 /* Pods-Airpin.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -666,6 +683,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
+				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = Airpin/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -676,6 +694,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bls.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -690,6 +710,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bls.Airpin-Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Airpin.app/Airpin";
 			};
 			name = Debug;
@@ -705,6 +726,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bls.Airpin-Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Airpin.app/Airpin";
 			};
 			name = Release;

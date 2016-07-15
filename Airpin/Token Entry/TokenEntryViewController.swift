@@ -9,7 +9,7 @@
 import UIKit
 
 protocol TokenEntryDelegate: class {
-  func didFinishTokenEntry(didEnterToken didEnterToken: Bool)
+  func didFinishTokenEntry(didEnterToken: Bool)
 }
 
 struct TokenEntryViewDetails {
@@ -35,20 +35,20 @@ class TokenEntryViewController: BaseViewController {
   // MARK: - Configuration -
   var viewDetails: TokenEntryViewDetails! {
     didSet {
-      description1Label.attributedText = viewDetails.description1.title(alignment: .Center, color: UIColor.whiteColor())
+      description1Label.attributedText = viewDetails.description1.title(alignment: .center, color: UIColor.white())
       textField.placeholder            = viewDetails.tokenFieldPlaceholder
       
-      affirmativeCTA.setAttributedTitle(viewDetails.affirmativeCTA.primaryButton(), forState: .Normal)
+      affirmativeCTA.setAttributedTitle(viewDetails.affirmativeCTA.primaryButton(), for: .normal)
       
-      negativeCTA.setAttributedTitle(viewDetails.negativeCTA.secondaryButton(), forState: .Normal)
+      negativeCTA.setAttributedTitle(viewDetails.negativeCTA.secondaryButton(), for: .normal)
     }
   }
   
   override func preferredStatusBarStyle() -> UIStatusBarStyle {
-    return .LightContent
+    return .lightContent
   }
   
-  override func viewWillDisappear(animated: Bool) {
+  override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
     
     textField.resignFirstResponder()
@@ -62,7 +62,7 @@ class TokenEntryViewController: BaseViewController {
     
     viewDetails = viewModel.viewDetails
     
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(TokenEntryViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+    NotificationCenter.default().addObserver(self, selector: #selector(TokenEntryViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
   }
   
   override func configureStyles() {
@@ -71,7 +71,7 @@ class TokenEntryViewController: BaseViewController {
     view.backgroundColor = UIColor.primaryColor()
     
     textField.font = UIFont.title1()
-    textField.textColor = UIColor.whiteColor()
+    textField.textColor = UIColor.white()
     textField.tintColor = UIColor.complementaryColor()
     
     affirmativeCTA.backgroundColor = UIColor.complementaryColor()
@@ -83,54 +83,54 @@ class TokenEntryViewController: BaseViewController {
     
     view.addSubview(border)
     
-    NSLayoutConstraint.activateConstraints([
-      border.leadingAnchor.constraintEqualToAnchor(textField.leadingAnchor, constant: 0),
-      border.trailingAnchor.constraintEqualToAnchor(textField.trailingAnchor, constant: 0),
-      border.topAnchor.constraintEqualToAnchor(textField.bottomAnchor),
-      border.heightAnchor.constraintEqualToConstant(1)
+    NSLayoutConstraint.activate([
+      border.leadingAnchor.constraint(equalTo: textField.leadingAnchor, constant: 0),
+      border.trailingAnchor.constraint(equalTo: textField.trailingAnchor, constant: 0),
+      border.topAnchor.constraint(equalTo: textField.bottomAnchor),
+      border.heightAnchor.constraint(equalToConstant: 1)
     ])
     
-    border.backgroundColor = UIColor.whiteColor()
+    border.backgroundColor = UIColor.white()
   }
   
   
   // MARK: - Internal -
   
   private func showErrorMessage() {
-    let actionAlert = UIAlertController(title: "Could not store token", message: "Try again later.", preferredStyle: .Alert)
+    let actionAlert = UIAlertController(title: "Could not store token", message: "Try again later.", preferredStyle: .alert)
 
-    actionAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { action in
-      self.dismissViewControllerAnimated(true, completion: nil)
-    }))
+    actionAlert.addAction(UIAlertAction(title: "OK", style: .default) { action in
+      self.dismiss(animated: true, completion: nil)
+    })
     
-    presentViewController(actionAlert, animated: true, completion: nil)
+    present(actionAlert, animated: true, completion: nil)
   }
   
   private var hasSeenModal: Bool {
     get {
-      return NSUserDefaults.standardUserDefaults().boolForKey(UserDefault.HasDismissedTokenPrompt.rawValue)
+      return UserDefaults.standard().bool(forKey: UserDefault.HasDismissedTokenPrompt.rawValue)
     }
     set {
-      NSUserDefaults.standardUserDefaults().setBool(true, forKey: UserDefault.HasDismissedTokenPrompt.rawValue)
+      UserDefaults.standard().set(true, forKey: UserDefault.HasDismissedTokenPrompt.rawValue)
     }
   }
   
   
   // MARK: - Observers -
   
-  func keyboardWillShow(sender: NSNotification) {
+  func keyboardWillShow(_ sender: Notification) {
     if let userInfo = sender.userInfo,
        let animationCurve = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber,
        let animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? Double,
-       let endFrame = userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue  {
+       let endFrame = userInfo[UIKeyboardFrameEndUserInfoKey]?.cgRectValue  {
       
         let keyboardHeight = endFrame.height
       
       affirmativeCTABottomConstraint.constant = keyboardHeight
       
-      let curve = UIViewAnimationOptions(rawValue: UInt((animationCurve).integerValue << 16))
+      let curve = UIViewAnimationOptions(rawValue: UInt((animationCurve).intValue << 16))
       
-      UIView.animateWithDuration(animationDuration, delay: 0.0, options: [curve], animations: { 
+      UIView.animate(withDuration: animationDuration, delay: 0.0, options: [curve], animations: { 
         self.view.layoutIfNeeded()
         }, completion: nil)
     }
@@ -139,13 +139,13 @@ class TokenEntryViewController: BaseViewController {
   
   // MARK: IBActions
   
-  @IBAction func negativeCTATapped(sender: UIButton) {
+  @IBAction func negativeCTATapped(_ sender: UIButton) {
     hasSeenModal = true
     
     delegate?.didFinishTokenEntry(didEnterToken: false)
   }
   
-  @IBAction func affirmativeCTATapped(sender: UIButton) {
+  @IBAction func affirmativeCTATapped(_ sender: UIButton) {
     hasSeenModal = true
     
     // TODO: Verify token format
@@ -165,7 +165,7 @@ class TokenEntryViewController: BaseViewController {
 // MARK: - UITextFieldDelegate -
 
 extension TokenEntryViewController: UITextFieldDelegate {
-  func textFieldShouldReturn(textField: UITextField) -> Bool {
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     affirmativeCTATapped(affirmativeCTA)
     
     return true
