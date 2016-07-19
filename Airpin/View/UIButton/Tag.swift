@@ -33,7 +33,7 @@ class Tag: UIButton {
     clipsToBounds      = true
     layer.cornerRadius = 2
     
-    setAttributedTitle(label.tag(alignment: .center), for: .normal)
+    setAttributedTitle(label.tag(alignment: .center), for: [])
   }
   
   func configureStyles() {

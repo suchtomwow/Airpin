@@ -45,7 +45,7 @@ class BookmarkViewController: BaseViewController {
   }
   
   func toggleReadState(at indexPath: IndexPath) {
-    viewModel.toggleBookmarkReadStateAtIndex(indexPath.row)
+    viewModel.toggleReadState(at: indexPath.row)
     
     tableView.beginUpdates()
     tableView.reloadRows(at: [indexPath], with: .automatic)
@@ -53,7 +53,7 @@ class BookmarkViewController: BaseViewController {
   }
   
   func delete(at indexPath: IndexPath) {
-    viewModel.deleteBookmarkAtIndex(indexPath.row)
+    viewModel.delete(at: indexPath.row)
 
     tableView.beginUpdates()
     tableView.deleteRows(at: [indexPath], with: .automatic)
@@ -81,7 +81,7 @@ extension BookmarkViewController: UITableViewDelegate {
     let bookmark = viewModel.bookmarks![indexPath.row]
     
     if bookmark.toRead {
-      toggleBookmarkReadStateAtIndexPath(indexPath)
+      toggleReadState(at: indexPath)
     }
     
     let svc = SFSafariViewController(url: bookmark.URL)
@@ -93,11 +93,11 @@ extension BookmarkViewController: UITableViewDelegate {
     let bookmark = viewModel.bookmarks![indexPath.row]
     
     let toggleReadState = UITableViewRowAction(style: .default, title: bookmark.toRead ? "Mark as\nread" : "Mark as\nunread") { action, indexPath in
-      self.toggleBookmarkReadStateAtIndexPath(indexPath)
+      self.toggleReadState(at: indexPath)
     }
     
     let deleteBookmark = UITableViewRowAction(style: .destructive, title: "Delete") { action, indexPath in
-      self.deleteBookmarkAtIndexPath(indexPath)
+      self.delete(at: indexPath)
     }
     
     toggleReadState.backgroundColor = UIColor.blueRowAction()

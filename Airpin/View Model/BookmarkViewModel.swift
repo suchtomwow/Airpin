@@ -46,7 +46,7 @@ class BookmarkViewModel: BaseViewModel {
       DispatchQueue.main.async {
         // Need to map these to a regular [Bookmark] because the default value is Results<Bookmark>, which is auto-updating.
         // Because it is auto-updating, rows are removed from the tableView when I still want to be able to display them to the user.
-        var bookmarks = try! Realm().objects(Bookmark.self).map { $0 }
+        var bookmarks = try! Realm().allObjects(ofType: Bookmark.self).map { $0 }
         
         if let filter = filter {
           bookmarks = bookmarks.filter(filter)
@@ -79,10 +79,10 @@ class BookmarkViewModel: BaseViewModel {
   }
   
   func toggleReadState(at index: Int) {
-    dataProvider.toggleBookmarkReadState(bookmarks![index])
+    dataProvider.toggleReadState(bookmark: bookmarks![index])
   }
   
   func delete(at index: Int) {
-    dataProvider.deleteBookmark(bookmarks![index])
+    dataProvider.delete(bookmark: bookmarks![index])
   }
 }

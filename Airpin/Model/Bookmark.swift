@@ -40,14 +40,14 @@ class Bookmark: Object {
   dynamic var toRead:    Bool   = false// API: "toread"
   dynamic var userTags:  String = ""// API: "tags", space delimited list of words
   
-  class func from(JSON: JSON) -> Bookmark {
+  class func from(json: JSON) -> Bookmark {
     let bookmark       = Bookmark()
     bookmark.pbHash    = json["hash"].stringValue
     bookmark.urlString = json["href"].stringValue
     bookmark.title     = json["description"].stringValue
     bookmark.desc      = json["extended"].stringValue
     bookmark.meta      = json["meta"].stringValue
-    bookmark.datetime  = Formatter.JSON.dateFromString(json["time"].stringValue)!
+    bookmark.datetime  = Formatter.JSON.date(from: json["time"].stringValue)!
     bookmark.shared    = Bool(string: json["shared"].stringValue)
     bookmark.toRead    = Bool(string: json["toread"].stringValue)
     bookmark.userTags  = json["tags"].stringValue

@@ -17,30 +17,29 @@ class PinboardNetworkOperations {
   func fetchAllBookmarks(completion: BookmarkCompletion) throws {
     let endpoint = Endpoint(resourceTypes: [.Posts, .All])
     
-    try fetchBookmarksWithEndpoint(endpoint, parameters: nil, completion: completion)
+    try fetch(with: endpoint, parameters: nil, completion: completion)
   }
   
   func fetchRecentBookmarks(completion: BookmarkCompletion) throws {
     let endpoint = Endpoint(resourceTypes: [.Posts, .Recent])
-    try fetchBookmarksWithEndpoint(endpoint, completion: completion)
+    try fetch(with: endpoint, completion: completion)
   }
   
   func fetch(with endpoint: Endpoint, parameters: [URLQueryItem]? = nil, completion: BookmarkCompletion) throws {
-    NetworkClient.sharedInstance.executeRequest(endpoint, parameters: parameters) { result in
+    NetworkClient.sharedInstance.executeRequest(with: endpoint, parameters: parameters) { result in
       switch result {
-      case .Success(let json):
+      case .success(let json):
         let posts = json
         
-        let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
-        dispatch_async(queue) {
+        DispatchQueue.global(attributes: .qosDefault).async {
           for (_, subJson): (String, JSON) in posts {
-            Bookmark.fromJSON(subJson).persist()
+            Bookmark.from(json: subJson).persist()
           }
 
           completion()
         }
         
-      case .Failure(let error):
+      case .failure(let error):
         print(error.localizedDescription)
       }
     }
@@ -48,13 +47,13 @@ class PinboardNetworkOperations {
   
   func getLastUpdated(completion: (datetime: Date) -> Void) throws {
     let endpoint = Endpoint(resourceTypes: [.Posts, .Update])
-    NetworkClient.sharedInstance.executeRequest(endpoint) { (result: Result<JSON>) in
+    NetworkClient.sharedInstance.executeRequest(with: endpoint) { result in
       switch result {
-      case .Success(let json):
+      case .success(let json):
         let updateTime = json["update_time"].stringValue
-        let datetime = Formatter.JSON.dateFromString(updateTime)!        
+        let datetime = Formatter.JSON.date(from: updateTime)!        
         completion(datetime: datetime)
-      case .Failure(let error):
+      case .failure(let error):
         print(error.localizedDescription)
       }
     }
@@ -66,13 +65,13 @@ class PinboardNetworkOperations {
     let titleQI = URLQueryItem(name: "description", value: title)
     let toReadQI = URLQueryItem(name: "toread", value: toRead ? "yes" : "no")
     
-    NetworkClient.sharedInstance.executeRequest(endpoint, parameters: [urlQI, titleQI, toReadQI], completion: nil)
+    NetworkClient.sharedInstance.executeRequest(with: endpoint, parameters: [urlQI, titleQI, toReadQI], completion: nil)
   }
   
   func delete(with URL: Foundation.URL) {
     let endpoint = Endpoint(resourceTypes: [.Posts, .Delete])
     let urlQI = URLQueryItem(name: "url", value: URL.absoluteString)
     
-    NetworkClient.sharedInstance.executeRequest(endpoint, parameters: [urlQI], completion: nil)
+    NetworkClient.sharedInstance.executeRequest(with: endpoint, parameters: [urlQI], completion: nil)
   }
 }

@@ -50,7 +50,7 @@ struct PinboardDataProvider {
   }
   
   func toggleReadState(bookmark: Bookmark) {
-    networkOperations.toggleReadState(to: !bookmark.toRead, withURL: bookmark.URL, andTitle: bookmark.title)
+    networkOperations.toggleReadState(toRead: !bookmark.toRead, withURL: bookmark.URL, andTitle: bookmark.title)
     
     do {
       try Realm().write {
@@ -62,7 +62,7 @@ struct PinboardDataProvider {
   }
   
   func delete(bookmark: Bookmark) {
-    networkOperations.deleteBookmarkWithURL(bookmark.URL)
+    networkOperations.delete(with: bookmark.URL)
 
     do {
       let realm = try Realm()

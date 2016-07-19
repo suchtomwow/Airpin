@@ -79,7 +79,7 @@ class NetworkClient {
       } else if let data = data, response = response as? HTTPURLResponse {
         if response.statusCode == StatusCode.ok.rawValue {
           let json = JSON(data: data)          
-          completion?(Result.Success(json))
+          completion?(Result.success(json))
         }
       }
     }

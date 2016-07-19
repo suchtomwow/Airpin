@@ -29,7 +29,7 @@ struct PinboardAccount: GenericPasswordSecureStorable, CreateableSecureStorable,
   }
   
   // Required by GenericPasswordSecureStorable
-  let service = NSBundle.mainBundle().bundleIdentifier ?? "Airpin"
+  let service = Bundle.main().bundleIdentifier ?? "Airpin"
 
   var account: String {
     return username
@@ -46,16 +46,16 @@ struct PinboardAccount: GenericPasswordSecureStorable, CreateableSecureStorable,
   }
   
   private func storeUsernameInUserDefaults() {
-    let defaults = NSUserDefaults.standardUserDefaults()
+    let defaults = UserDefaults.standard()
     
     defaults.setValue(username, forKey: "pinboard_username")
     defaults.synchronize()
   }
   
   static func readFromKeychain() -> PinboardAccount? {
-    let defaults = NSUserDefaults.standardUserDefaults()
+    let defaults = UserDefaults.standard()
     
-    if let username = defaults.stringForKey("pinboard_username"), let data = Locksmith.loadDataForUserAccount(username), let password = data["password"] as? String {
+    if let username = defaults.string(forKey: "pinboard_username"), let data = Locksmith.loadDataForUserAccount(userAccount: username), let password = data["password"] as? String {
       let account = PinboardAccount(account: username, password: password)
 
       return account

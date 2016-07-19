@@ -38,9 +38,9 @@ class TokenEntryViewController: BaseViewController {
       description1Label.attributedText = viewDetails.description1.title(alignment: .center, color: UIColor.white())
       textField.placeholder            = viewDetails.tokenFieldPlaceholder
       
-      affirmativeCTA.setAttributedTitle(viewDetails.affirmativeCTA.primaryButton(), for: .normal)
+      affirmativeCTA.setAttributedTitle(viewDetails.affirmativeCTA.primaryButton(), for: [])
       
-      negativeCTA.setAttributedTitle(viewDetails.negativeCTA.secondaryButton(), for: .normal)
+      negativeCTA.setAttributedTitle(viewDetails.negativeCTA.secondaryButton(), for: [])
     }
   }
   
@@ -108,10 +108,12 @@ class TokenEntryViewController: BaseViewController {
   
   private var hasSeenModal: Bool {
     get {
-      return UserDefaults.standard().bool(forKey: UserDefault.HasDismissedTokenPrompt.rawValue)
+      let hasSeen = UserDefaults.standard().bool(forKey: UserDefault.HasDismissedTokenPrompt.rawValue)
+      return hasSeen
     }
     set {
       UserDefaults.standard().set(true, forKey: UserDefault.HasDismissedTokenPrompt.rawValue)
+      UserDefaults.standard().synchronize()
     }
   }
   
@@ -122,9 +124,9 @@ class TokenEntryViewController: BaseViewController {
     if let userInfo = sender.userInfo,
        let animationCurve = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber,
        let animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? Double,
-       let endFrame = userInfo[UIKeyboardFrameEndUserInfoKey]?.cgRectValue  {
+       let endFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue  {
       
-        let keyboardHeight = endFrame.height
+        let keyboardHeight = endFrame().height
       
       affirmativeCTABottomConstraint.constant = keyboardHeight
       
@@ -151,7 +153,7 @@ class TokenEntryViewController: BaseViewController {
     // TODO: Verify token format
     
     do {
-      try viewModel.storeToken(textField.text)
+      try viewModel.store(token: textField.text)
       delegate?.didFinishTokenEntry(didEnterToken: true)
     } catch {
       print(error)

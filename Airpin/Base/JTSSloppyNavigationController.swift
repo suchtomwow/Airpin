@@ -89,7 +89,7 @@ class JTSSloppySwiping: NSObject {
       if (!self.isAnimatingANonInteractiveTransition) {
         if (navigationController.viewControllers.count > 1) {
           self.isInteractivelyPopping = true
-          self.navigationController?.popViewController(animated: true)
+          let _ = self.navigationController?.popViewController(animated: true)
         }
       }
       
@@ -198,10 +198,9 @@ private class InteractivePopAnimator: NSObject, UIViewControllerAnimatedTransiti
   
   func prepForPop() {
     
-    guard let transitionContext = self.activeContext,
-      container = transitionContext.containerView(),
-      fromView = transitionContext.view(forKey: UITransitionContextFromViewKey),
-      toView = transitionContext.view(forKey: UITransitionContextToViewKey) else {
+    guard let container = self.activeContext?.containerView(),
+      fromView = self.activeContext?.view(forKey: UITransitionContextFromViewKey),
+      toView = self.activeContext?.view(forKey: UITransitionContextToViewKey) else {
         return
     }
     
@@ -227,9 +226,8 @@ private class InteractivePopAnimator: NSObject, UIViewControllerAnimatedTransiti
   
   func updateViewsWithTranslation(_ translation: CGPoint) {
     
-    guard let transitionContext = self.activeContext,
-      container = transitionContext.containerView(),
-      toView = transitionContext.view(forKey: UITransitionContextToViewKey) else {
+    guard let container = self.activeContext?.containerView(),
+      toView = self.activeContext?.view(forKey: UITransitionContextToViewKey) else {
         return
     }
     
@@ -251,8 +249,7 @@ private class InteractivePopAnimator: NSObject, UIViewControllerAnimatedTransiti
   
   func shouldCancelForGestureEndingWithTranslation(_ translation: CGPoint, velocity: CGPoint) -> Bool {
     
-    guard let transitionContext = self.activeContext,
-      container = transitionContext.containerView() else {
+    guard let container = self.activeContext?.containerView() else {
         return false
     }
     
@@ -263,10 +260,9 @@ private class InteractivePopAnimator: NSObject, UIViewControllerAnimatedTransiti
   
   func cancelWithTranslation(_ translation: CGPoint, velocity: CGPoint, completion: () -> Void) {
     
-    guard let transitionContext = self.activeContext,
-      container = transitionContext.containerView(),
-      fromView = transitionContext.view(forKey: UITransitionContextFromViewKey),
-      toView = transitionContext.view(forKey: UITransitionContextToViewKey) else {
+    guard let container = self.activeContext?.containerView(),
+      fromView = self.activeContext?.view(forKey: UITransitionContextFromViewKey),
+      toView = self.activeContext?.view(forKey: UITransitionContextToViewKey) else {
         return
     }
     
@@ -287,7 +283,7 @@ private class InteractivePopAnimator: NSObject, UIViewControllerAnimatedTransiti
       }
     }
     else {
-      options = .curveEaseInOut
+      options = [.curveEaseIn, .curveEaseOut]
       duration = defaultCancelPopDuration
     }
     
@@ -318,10 +314,9 @@ private class InteractivePopAnimator: NSObject, UIViewControllerAnimatedTransiti
   
   func finishWithTranslation(_ translation: CGPoint, velocity: CGPoint, completion: () -> Void) {
     
-    guard let transitionContext = self.activeContext,
-      container = transitionContext.containerView(),
-      fromView = transitionContext.view(forKey: UITransitionContextFromViewKey),
-      toView = transitionContext.view(forKey: UITransitionContextToViewKey) else {
+    guard let container = self.activeContext?.containerView(),
+      fromView = self.activeContext?.view(forKey: UITransitionContextFromViewKey),
+      toView = self.activeContext?.view(forKey: UITransitionContextToViewKey) else {
         return
     }
     
@@ -339,7 +334,7 @@ private class InteractivePopAnimator: NSObject, UIViewControllerAnimatedTransiti
       duration = self.durationForDistance(distance: maxDistance, velocity: abs(comfortVelocity.x))
     }
     else {
-      options = .curveEaseInOut
+      options = [.curveEaseIn, .curveEaseOut]
       duration = defaultCancelPopDuration
     }
     
