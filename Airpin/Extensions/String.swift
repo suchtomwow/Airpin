@@ -57,7 +57,7 @@ extension String {
   }
   
   func secondaryButton() -> AttributedString {
-    return attributedStringWithAlignment(.center, font: UIFont.callout().medium, color: UIColor.secondaryTextColor())
+    return attributedStringWithAlignment(.center, font: UIFont.callout().medium, color: UIColor.white())
   }
   
   private func attributedStringWithAlignment(_ alignment: NSTextAlignment, font: UIFont, color: UIColor) -> AttributedString {

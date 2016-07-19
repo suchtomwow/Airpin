@@ -33,8 +33,10 @@ class CategoryViewController: BaseViewController {
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
 
+    let loggedIn = viewModel.isLoggedIn
     let hasSeen = UserDefaults.standard().bool(forKey: UserDefault.HasDismissedTokenPrompt.rawValue)
-    if NetworkClient.sharedInstance.accessToken == nil && !hasSeen {
+    
+    if !loggedIn && !hasSeen {
       perform(#selector(CategoryViewController.showTokenEntry), with: nil, afterDelay: 1)
     }
   }

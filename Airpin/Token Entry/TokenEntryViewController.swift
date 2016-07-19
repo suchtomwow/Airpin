@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Locksmith
 
 protocol TokenEntryDelegate: class {
   func didFinishTokenEntry(didEnterToken: Bool)
@@ -32,7 +33,7 @@ class TokenEntryViewController: BaseViewController {
   let viewModel = TokenEntryViewModel()
   
   
-  // MARK: - Configuration -
+  // MARK: Configuration
   var viewDetails: TokenEntryViewDetails! {
     didSet {
       description1Label.attributedText = viewDetails.description1.title(alignment: .center, color: UIColor.white())
@@ -72,12 +73,12 @@ class TokenEntryViewController: BaseViewController {
     
     textField.font = UIFont.title1()
     textField.textColor = UIColor.white()
-    textField.tintColor = UIColor.complementaryColor()
+    textField.tintColor = UIColor.white()
     
     affirmativeCTA.backgroundColor = UIColor.complementaryColor()
   }
   
-  func configureTextFieldBottomBorder() {
+  private func configureTextFieldBottomBorder() {
     let border = UIView()
     border.translatesAutoresizingMaskIntoConstraints = false
     
@@ -93,8 +94,7 @@ class TokenEntryViewController: BaseViewController {
     border.backgroundColor = UIColor.white()
   }
   
-  
-  // MARK: - Internal -
+  // MARK: Internal
   
   private func showErrorMessage() {
     let actionAlert = UIAlertController(title: "Could not store token", message: "Try again later.", preferredStyle: .alert)
@@ -112,13 +112,21 @@ class TokenEntryViewController: BaseViewController {
       return hasSeen
     }
     set {
-      UserDefaults.standard().set(true, forKey: UserDefault.HasDismissedTokenPrompt.rawValue)
-      UserDefaults.standard().synchronize()
+      UserDefaults.standard().set(newValue, forKey: UserDefault.HasDismissedTokenPrompt.rawValue)
+    }
+  }
+
+  private func loadAccount() {
+    do {
+      try viewModel.loadAccount(token: textField.text)
+      delegate?.didFinishTokenEntry(didEnterToken: true)
+    } catch {
+      print(error)
+      delegate?.didFinishTokenEntry(didEnterToken: false)
     }
   }
   
-  
-  // MARK: - Observers -
+  // MARK: Observers
   
   func keyboardWillShow(_ sender: Notification) {
     if let userInfo = sender.userInfo,
@@ -155,16 +163,17 @@ class TokenEntryViewController: BaseViewController {
     do {
       try viewModel.store(token: textField.text)
       delegate?.didFinishTokenEntry(didEnterToken: true)
+    } catch LocksmithError.Duplicate {
+      loadAccount()
     } catch {
       print(error)
-      
       delegate?.didFinishTokenEntry(didEnterToken: false)
     }
   }
 }
 
 
-// MARK: - UITextFieldDelegate -
+// MARK: UITextFieldDelegate
 
 extension TokenEntryViewController: UITextFieldDelegate {
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {

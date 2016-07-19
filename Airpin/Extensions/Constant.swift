@@ -11,6 +11,7 @@ import UIKit
 enum UserDefault: String {
   case UpdateTime = "com.bls.airpin.updateTime"
   case HasDismissedTokenPrompt = "com.bls.airpin.hasDismissedTokenPrompt"
+  case PinboardUsername = "com.bls.pinboardUsername"
 }
 
 // TODO: Shouldn't need this

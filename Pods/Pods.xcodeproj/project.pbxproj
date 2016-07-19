@@ -955,6 +955,32 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0700;
+				TargetAttributes = {
+					2E82A01ACDC9DBE89505DFEFEE6257F8 = {
+						DevelopmentTeam = H8B2H49X66;
+						DevelopmentTeamName = "Thomas Carey (Personal Team)";
+					};
+					8ACA29DC5F6C29006A21CD85EAA63C6A = {
+						DevelopmentTeam = H8B2H49X66;
+						DevelopmentTeamName = "Thomas Carey (Personal Team)";
+					};
+					92943306EC8070DF9CD02ECD505D2CD5 = {
+						DevelopmentTeam = H8B2H49X66;
+						DevelopmentTeamName = "Thomas Carey (Personal Team)";
+					};
+					9C0CC3F575474A618F382AAD722FD431 = {
+						DevelopmentTeam = H8B2H49X66;
+						DevelopmentTeamName = "Thomas Carey (Personal Team)";
+					};
+					CB086443A23E0726E29C6F988DD9092C = {
+						DevelopmentTeam = H8B2H49X66;
+						DevelopmentTeamName = "Thomas Carey (Personal Team)";
+					};
+					FD547D720920C4C2540BB26B54B020BD = {
+						DevelopmentTeam = H8B2H49X66;
+						DevelopmentTeamName = "Thomas Carey (Personal Team)";
+					};
+				};
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";

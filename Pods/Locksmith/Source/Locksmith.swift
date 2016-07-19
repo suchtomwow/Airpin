@@ -81,6 +81,8 @@ public extension SecureStorable {
         let statusCode = Int(status)
         
         if let error = LocksmithError(fromStatusCode: statusCode) {
+            print(statusCode)
+            print(error)
             throw error
         }
         

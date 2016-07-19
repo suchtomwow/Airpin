@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     window?.tintColor = UIColor.primaryColor()
     
     Fabric.with([Crashlytics.self])
+    
     return true
   }
 

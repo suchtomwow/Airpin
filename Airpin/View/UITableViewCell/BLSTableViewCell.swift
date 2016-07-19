@@ -50,7 +50,7 @@ class BLSTableViewCell: UITableViewCell {
     separator.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
     separator.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
     separator.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
-    separator.heightAnchor.constraint(equalToConstant: 2.0).isActive = true
+    separator.heightAnchor.constraint(equalToConstant: 1.0).isActive = true
   }
   
   func configureStyles() {
