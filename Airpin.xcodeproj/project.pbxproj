@@ -151,7 +151,9 @@
 				9865E4FF1AD4E82100201BC5 /* Products */,
 				65272DB82B72755FB078401D /* Pods */,
 			);
+			indentWidth = 4;
 			sourceTree = "<group>";
+			tabWidth = 4;
 		};
 		9865E4FF1AD4E82100201BC5 /* Products */ = {
 			isa = PBXGroup;
