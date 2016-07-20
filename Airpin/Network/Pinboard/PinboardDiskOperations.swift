@@ -10,16 +10,16 @@ import Foundation
 import RealmSwift
 
 class PinboardDiskOperations {
-  var lastUpdated: Date? {
-    get {
-      return UserDefaults.standard().object(forKey: UserDefault.UpdateTime.rawValue) as? Date
+    var lastUpdated: Date? {
+        get {
+            return UserDefaults.standard().object(forKey: UserDefault.UpdateTime.rawValue) as? Date
+        }
+        set {
+            UserDefaults.standard().set(newValue, forKey: UserDefault.UpdateTime.rawValue)
+        }
     }
-    set {
-      UserDefaults.standard().set(newValue, forKey: UserDefault.UpdateTime.rawValue)
+    
+    func fetchAllBookmarks(completion: BookmarkCompletion) {
+        completion()
     }
-  }
-  
-  func fetchAllBookmarks(completion: BookmarkCompletion) {
-    completion()
-  }
 }

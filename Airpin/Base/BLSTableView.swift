@@ -9,15 +9,15 @@
 import UIKit
 
 protocol BLSTableViewDataSource {
-  var Identifier: String { get }
+    var Identifier: String { get }
 }
 
 class BLSTableView: UITableView {
-  override func awakeFromNib() {
-    super.awakeFromNib()
-    
-    separatorStyle     = .none
-    rowHeight          = UITableViewAutomaticDimension
-    estimatedRowHeight = 100.0
-  }
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        separatorStyle     = .none
+        rowHeight          = UITableViewAutomaticDimension
+        estimatedRowHeight = 100.0
+    }
 }

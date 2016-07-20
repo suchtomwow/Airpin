@@ -9,34 +9,34 @@
 import UIKit
 
 class Tag: UIButton {
-  let label: String
-  
-  init(label: String) {
-    self.label = label
+    let label: String
     
-    super.init(frame: CGRect.zero)
+    init(label: String) {
+        self.label = label
+        
+        super.init(frame: CGRect.zero)
+        
+        commonInit()
+    }
     
-    commonInit()
-  }
-
-  required init?(coder aDecoder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
-  
-  func commonInit() {
-    configureView()
-    configureStyles()
-  }
-  
-  func configureView() {
-    contentEdgeInsets  = UIEdgeInsets(top: 3.0, left: 7.0, bottom: 4.0, right: 7.0)
-    clipsToBounds      = true
-    layer.cornerRadius = 2
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
-    setAttributedTitle(label.tag(alignment: .center), for: [])
-  }
-  
-  func configureStyles() {
-    backgroundColor = UIColor.primaryColor()
-  }
+    func commonInit() {
+        configureView()
+        configureStyles()
+    }
+    
+    func configureView() {
+        contentEdgeInsets  = UIEdgeInsets(top: 3.0, left: 7.0, bottom: 4.0, right: 7.0)
+        clipsToBounds      = true
+        layer.cornerRadius = 2
+        
+        setAttributedTitle(label.tag(alignment: .center), for: [])
+    }
+    
+    func configureStyles() {
+        backgroundColor = UIColor.primaryColor()
+    }
 }

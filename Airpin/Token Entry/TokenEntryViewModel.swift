@@ -9,27 +9,27 @@
 import UIKit
 
 class TokenEntryViewModel: BaseViewModel {
-  var title: String {
-    return "Settings"
-  }
-  
-  let viewDetails = TokenEntryViewDetails()
-  
-  func store(token: String?) throws {
-    if let token = token {
-      let pinboardAccount = PinboardAccount(token: token)
+    var title: String {
+        return "Settings"
+    }
     
-      try pinboardAccount.storeInKeychain()
-      NetworkClient.sharedInstance.pinboardAccount = pinboardAccount
+    let viewDetails = TokenEntryViewDetails()
+    
+    func store(token: String?) throws {
+        if let token = token {
+            let pinboardAccount = PinboardAccount(token: token)
+            
+            try pinboardAccount.storeInKeychain()
+            NetworkClient.sharedInstance.pinboardAccount = pinboardAccount
+        }
     }
-  }
-  
-  func loadAccount(token: String?) throws {
-    if let token = token {
-      let pinboardAccount = PinboardAccount(token: token)
-      pinboardAccount.storeUsernameInUserDefaults()
-      
-      NetworkClient.sharedInstance.pinboardAccount = pinboardAccount
+    
+    func loadAccount(token: String?) throws {
+        if let token = token {
+            let pinboardAccount = PinboardAccount(token: token)
+            pinboardAccount.storeUsernameInUserDefaults()
+            
+            NetworkClient.sharedInstance.pinboardAccount = pinboardAccount
+        }
     }
-  }
 }

@@ -8,26 +8,28 @@
 
 import UIKit
 
+// TODO: Lowercase enums
+
 enum UserDefault: String {
-  case UpdateTime = "com.bls.airpin.updateTime"
-  case HasDismissedTokenPrompt = "com.bls.airpin.hasDismissedTokenPrompt"
-  case PinboardUsername = "com.bls.pinboardUsername"
+    case UpdateTime = "com.bls.airpin.updateTime"
+    case HasDismissedTokenPrompt = "com.bls.airpin.hasDismissedTokenPrompt"
+    case PinboardUsername = "com.bls.pinboardUsername"
 }
 
 // TODO: Shouldn't need this
 enum CellIdentifier: String {
-  case SingleLabel = "SingleLabelTableViewCell"
+    case SingleLabel = "SingleLabelTableViewCell"
 }
 
 enum Segue: String {
-  case BookmarkViewController
-  case TokenEntryViewController
+    case BookmarkViewController
+    case TokenEntryViewController
 }
 
 var DefaultInset: Double {
-  return 15.0
+    return 15.0
 }
 
 func ==(lhs: UIStoryboardSegue, rhs: Segue) -> Bool {
-  return lhs.identifier! == rhs.rawValue
+    return lhs.identifier! == rhs.rawValue
 }

@@ -57,8 +57,8 @@ struct PinboardAccount: GenericPasswordSecureStorable, CreateableSecureStorable,
         let defaults = UserDefaults.standard()
         
         if let username = defaults.string(forKey: UserDefault.PinboardUsername.rawValue),
-           let data = Locksmith.loadDataForUserAccount(userAccount: username, inService: KeychainServiceIdentifier),
-           let password = data[PasswordDefine] as? String {
+            let data = Locksmith.loadDataForUserAccount(userAccount: username, inService: KeychainServiceIdentifier),
+            let password = data[PasswordDefine] as? String {
             
             let account = PinboardAccount(account: username, password: password)
             
