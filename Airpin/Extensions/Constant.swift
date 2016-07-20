@@ -8,22 +8,15 @@
 
 import UIKit
 
-// TODO: Lowercase enums
-
 enum UserDefault: String {
-    case UpdateTime = "com.bls.airpin.updateTime"
-    case HasDismissedTokenPrompt = "com.bls.airpin.hasDismissedTokenPrompt"
-    case PinboardUsername = "com.bls.pinboardUsername"
-}
-
-// TODO: Shouldn't need this
-enum CellIdentifier: String {
-    case SingleLabel = "SingleLabelTableViewCell"
+    case updateTime = "com.bls.airpin.updateTime"
+    case hasDismissedTokenPrompt = "com.bls.airpin.hasDismissedTokenPrompt"
+    case pinboardUsername = "com.bls.pinboardUsername"
 }
 
 enum Segue: String {
-    case BookmarkViewController
-    case TokenEntryViewController
+    case bookmarkViewController
+    case tokenEntryViewController
 }
 
 var DefaultInset: Double {

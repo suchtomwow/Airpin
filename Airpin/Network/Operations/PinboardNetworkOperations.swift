@@ -15,13 +15,13 @@ typealias BookmarkCompletion = () -> Void
 class PinboardNetworkOperations {
     
     func fetchAllBookmarks(completion: BookmarkCompletion) throws {
-        let endpoint = Endpoint(resourceTypes: [.Posts, .All])
+        let endpoint = Endpoint(resourceTypes: [.posts, .all])
         
         try fetch(with: endpoint, parameters: nil, completion: completion)
     }
     
     func fetchRecentBookmarks(completion: BookmarkCompletion) throws {
-        let endpoint = Endpoint(resourceTypes: [.Posts, .Recent])
+        let endpoint = Endpoint(resourceTypes: [.posts, .recent])
         try fetch(with: endpoint, completion: completion)
     }
     
@@ -46,7 +46,7 @@ class PinboardNetworkOperations {
     }
     
     func getLastUpdated(completion: (datetime: Date) -> Void) throws {
-        let endpoint = Endpoint(resourceTypes: [.Posts, .Update])
+        let endpoint = Endpoint(resourceTypes: [.posts, .update])
         NetworkClient.sharedInstance.executeRequest(with: endpoint) { result in
             switch result {
             case .success(let json):
@@ -60,7 +60,7 @@ class PinboardNetworkOperations {
     }
     
     func toggleReadState(toRead: Bool, withURL URL: Foundation.URL, andTitle title: String) {
-        let endpoint = Endpoint(resourceTypes: [.Posts, .Add])
+        let endpoint = Endpoint(resourceTypes: [.posts, .add])
         let urlQI = URLQueryItem(name: "url", value: URL.absoluteString)
         let titleQI = URLQueryItem(name: "description", value: title)
         let toReadQI = URLQueryItem(name: "toread", value: toRead ? "yes" : "no")
@@ -69,7 +69,7 @@ class PinboardNetworkOperations {
     }
     
     func delete(with URL: Foundation.URL) {
-        let endpoint = Endpoint(resourceTypes: [.Posts, .Delete])
+        let endpoint = Endpoint(resourceTypes: [.posts, .delete])
         let urlQI = URLQueryItem(name: "url", value: URL.absoluteString)
         
         NetworkClient.sharedInstance.executeRequest(with: endpoint, parameters: [urlQI], completion: nil)

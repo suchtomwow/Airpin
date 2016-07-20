@@ -6,25 +6,23 @@
 //  Copyright © 2015 Thomas Carey. All rights reserved.
 //
 
-// TODO: Lowercase enums
-
 enum ResourceType: String {
     case APIToken = "api_token"
-    case Add      = "add"
-    case All      = "all"
-    case Dates    = "dates"
-    case Delete   = "delete"
-    case Get      = "get"
-    case List     = "list"
-    case Notes    = "notes"
-    case Posts    = "posts"
-    case Recent   = "recent"
-    case Rename   = "rename"
-    case Secret   = "secret"
-    case Suggest  = "suggest"
-    case Tags     = "tags"
-    case Update   = "update"
-    case User     = "user"
+    case add      = "add"
+    case all      = "all"
+    case dates    = "dates"
+    case delete   = "delete"
+    case get      = "get"
+    case list     = "list"
+    case notes    = "notes"
+    case posts    = "posts"
+    case recent   = "recent"
+    case rename   = "rename"
+    case secret   = "secret"
+    case suggest  = "suggest"
+    case tags     = "tags"
+    case update   = "update"
+    case user     = "user"
 }
 
 struct Resource {

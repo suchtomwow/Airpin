@@ -7,15 +7,14 @@
 //
 
 import Foundation
-import RealmSwift
 
 class PinboardDiskOperations {
     var lastUpdated: Date? {
         get {
-            return UserDefaults.standard().object(forKey: UserDefault.UpdateTime.rawValue) as? Date
+            return UserDefaults.standard().object(forKey: UserDefault.updateTime.rawValue) as? Date
         }
         set {
-            UserDefaults.standard().set(newValue, forKey: UserDefault.UpdateTime.rawValue)
+            UserDefaults.standard().set(newValue, forKey: UserDefault.updateTime.rawValue)
         }
     }
     

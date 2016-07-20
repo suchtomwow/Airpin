@@ -18,12 +18,12 @@ class CategoryViewController: BaseViewController {
     // MARK: - View lifecycle -
     
     override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue == Segue.BookmarkViewController {
+        if segue == Segue.bookmarkViewController {
             let indexPath = sender as! IndexPath
             let category = CategoryViewModel.Category(rawValue: indexPath.row)
             let controller = segue.destinationViewController as! BookmarkViewController
             controller.category = category
-        } else if segue == Segue.TokenEntryViewController {
+        } else if segue == Segue.tokenEntryViewController {
             if let controller = segue.destinationViewController as? TokenEntryViewController {
                 controller.delegate = self
             }
@@ -34,7 +34,7 @@ class CategoryViewController: BaseViewController {
         super.viewDidAppear(animated)
         
         let loggedIn = viewModel.isLoggedIn
-        let hasSeen = UserDefaults.standard().bool(forKey: UserDefault.HasDismissedTokenPrompt.rawValue)
+        let hasSeen = UserDefaults.standard().bool(forKey: UserDefault.hasDismissedTokenPrompt.rawValue)
         
         if !loggedIn && !hasSeen {
             perform(#selector(CategoryViewController.showTokenEntry), with: nil, afterDelay: 1)
@@ -59,7 +59,7 @@ class CategoryViewController: BaseViewController {
     }
     
     func showTokenEntry() {
-        performSegue(withIdentifier: Segue.TokenEntryViewController.rawValue, sender: nil)
+        performSegue(withIdentifier: Segue.tokenEntryViewController.rawValue, sender: nil)
     }
     
     private func updateView() {
@@ -78,7 +78,7 @@ class CategoryViewController: BaseViewController {
             }
         } else {
             // perform sign in
-            performSegue(withIdentifier: Segue.TokenEntryViewController.rawValue, sender: nil)
+            performSegue(withIdentifier: Segue.tokenEntryViewController.rawValue, sender: nil)
         }
     }
 }
@@ -113,7 +113,7 @@ extension CategoryViewController: UITableViewDataSource {
 
 extension CategoryViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: Segue.BookmarkViewController.rawValue, sender: indexPath)
+        performSegue(withIdentifier: Segue.bookmarkViewController.rawValue, sender: indexPath)
     }
 }
 
