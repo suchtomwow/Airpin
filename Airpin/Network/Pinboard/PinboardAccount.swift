@@ -31,14 +31,12 @@ struct PinboardAccount: GenericPasswordSecureStorable, CreateableSecureStorable,
         self.init(account: components[0], password: components[1])
     }
     
-    // Required by GenericPasswordSecureStorable
     let service = KeychainServiceIdentifier
     
     var account: String {
         return username
     }
     
-    // Required by CreateableSecureStorable
     var data: [String: AnyObject] {
         return [PasswordDefine: password]
     }
