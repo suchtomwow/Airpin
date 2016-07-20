@@ -274,7 +274,7 @@ private class InteractivePopAnimator: NSObject, UIViewControllerAnimatedTransiti
         
         if abs(velocity.x) > minimumThresholdVelocity {
             options = .curveEaseOut
-            let naiveDuration = self.durationForDistance(distance: maxDistance, velocity: abs(velocity.x))
+            let naiveDuration = defaultCancelPopDuration//self.durationForDistance(distance: maxDistance, velocity: abs(velocity.x))
             let isFlickingShutEarly = translation.x < maxDistance * minimumDismissalPercentage
             if (naiveDuration > defaultCancelPopDuration && isFlickingShutEarly) {
                 duration = defaultCancelPopDuration
@@ -283,7 +283,7 @@ private class InteractivePopAnimator: NSObject, UIViewControllerAnimatedTransiti
             }
         }
         else {
-            options = [.curveEaseIn, .curveEaseOut]
+            options = [.curveEaseOut, .curveEaseIn]
             duration = defaultCancelPopDuration
         }
         
@@ -291,24 +291,19 @@ private class InteractivePopAnimator: NSObject, UIViewControllerAnimatedTransiti
         
         self.activeContext?.cancelInteractiveTransition()
         
-        UIView.animate(withDuration: duration,
-                       delay: 0,
-                       options: options,
-                       animations: { () -> Void in
-                        self.frontContainerView.transform = CGAffineTransform.identity
-                        toView.transform = CGAffineTransform(translationX: resolvedToViewOffset, y: 0)
-                        self.backOverlayView.alpha = 1.0
-                        self.frontContainerView.dropShadowView.alpha = 1.0
-            },
-                       completion: { (completed) -> Void in
-                        toView.transform = CGAffineTransform.identity
-                        container.addSubview(fromView)
-                        self.backOverlayView.removeFromSuperview()
-                        self.frontContainerView.removeFromSuperview()
-                        self.activeContext?.completeTransition(false)
-                        completion()
-            }
-        )
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.125, options: options, animations: {
+            self.frontContainerView.transform = CGAffineTransform.identity
+            toView.transform = CGAffineTransform(translationX: resolvedToViewOffset, y: 0)
+            self.backOverlayView.alpha = 1.0
+            self.frontContainerView.dropShadowView.alpha = 1.0
+        }) { completed in
+            toView.transform = CGAffineTransform.identity
+            container.addSubview(fromView)
+            self.backOverlayView.removeFromSuperview()
+            self.frontContainerView.removeFromSuperview()
+            self.activeContext?.completeTransition(false)
+            completion()
+        }
         
     }
     
@@ -331,7 +326,7 @@ private class InteractivePopAnimator: NSObject, UIViewControllerAnimatedTransiti
         let options: UIViewAnimationOptions
         if abs(comfortVelocity.x) > 0 {
             options = .curveEaseOut
-            duration = self.durationForDistance(distance: maxDistance, velocity: abs(comfortVelocity.x))
+            duration = defaultCancelPopDuration //self.durationForDistance(distance: maxDistance, velocity: abs(comfortVelocity.x))
         }
         else {
             options = [.curveEaseIn, .curveEaseOut]
@@ -369,7 +364,7 @@ private class InteractivePopAnimator: NSObject, UIViewControllerAnimatedTransiti
     }
     
     func durationForDistance(distance d: CGFloat, velocity v: CGFloat) -> TimeInterval {
-        let minDuration: CGFloat = 0.08
+        let minDuration: CGFloat = 0.18
         let maxDuration: CGFloat = 0.4
         return (TimeInterval)(max(min(maxDuration, d / v), minDuration))
     }
