@@ -100,7 +100,7 @@ extension BookmarkViewController: UITableViewDelegate {
             self.delete(at: indexPath)
         }
         
-        toggleReadState.backgroundColor = UIColor.blueRowAction()
+        toggleReadState.backgroundColor = .blueRowAction()
         
         return [deleteBookmark, toggleReadState]
     }

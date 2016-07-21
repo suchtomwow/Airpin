@@ -395,14 +395,14 @@ private class FrontContainerView: UIView {
         self.dropShadowView.frame = dropShadowFrame
         self.addSubview(self.dropShadowView)
         self.clipsToBounds = false
-        self.backgroundColor = UIColor.clear()
+        self.backgroundColor = .clear()
     }
     
     static func newDropShadowView() -> UIView {
         let w: CGFloat = 10.0
         
         let stretchableShadow = UIImageView(frame: CGRect(x: 0, y: 0, width: w, height: 1))
-        stretchableShadow.backgroundColor = UIColor.clear()
+        stretchableShadow.backgroundColor = .clear()
         stretchableShadow.alpha = 1.0
         stretchableShadow.contentMode = .scaleToFill
         stretchableShadow.autoresizingMask = [.flexibleHeight, .flexibleRightMargin]

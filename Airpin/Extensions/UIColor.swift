@@ -23,15 +23,15 @@ extension UIColor {
     
     // MARK: - Text -
     
-    class func primaryTextColor() -> UIColor {
+    class func primaryText() -> UIColor {
         return UIColor(hex: 0x4F4F5A)
     }
     
-    class func secondaryTextColor() -> UIColor {
+    class func secondaryText() -> UIColor {
         return UIColor(hex: 0x929292)
     }
     
-    class func tertiaryTextColor() -> UIColor {
+    class func tertiaryText() -> UIColor {
         return UIColor(hex: 0x979797)
     }
     
@@ -39,11 +39,11 @@ extension UIColor {
         return UIColor(hex: 0xEDF0F4)
     }
     
-    class func primaryColor() -> UIColor {
+    class func primary() -> UIColor {
         return UIColor(hex: 0x2FE0AC)
     }
     
-    class func complementaryColor() -> UIColor {
+    class func complementary() -> UIColor {
         return UIColor(hex: 0xFF7C36)
     }
     

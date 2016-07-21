@@ -36,7 +36,7 @@ class TokenEntryViewController: BaseViewController {
     // MARK: Configuration
     var viewDetails: TokenEntryViewDetails! {
         didSet {
-            description1Label.attributedText = viewDetails.description1.title(alignment: .center, color: UIColor.white())
+            description1Label.attributedText = viewDetails.description1.title(alignment: .center, color: .white())
             textField.placeholder            = viewDetails.tokenFieldPlaceholder
             
             affirmativeCTA.setAttributedTitle(viewDetails.affirmativeCTA.primaryButton(), for: [])
@@ -69,13 +69,13 @@ class TokenEntryViewController: BaseViewController {
     override func configureStyles() {
         super.configureStyles()
         
-        view.backgroundColor = UIColor.primaryColor()
+        view.backgroundColor = .primary()
         
         textField.font = UIFont.title1()
-        textField.textColor = UIColor.white()
-        textField.tintColor = UIColor.white()
+        textField.textColor = .white()
+        textField.tintColor = .white()
         
-        affirmativeCTA.backgroundColor = UIColor.complementaryColor()
+        affirmativeCTA.backgroundColor = .complementary()
     }
     
     private func configureTextFieldBottomBorder() {
@@ -91,7 +91,7 @@ class TokenEntryViewController: BaseViewController {
             border.heightAnchor.constraint(equalToConstant: 1)
             ])
         
-        border.backgroundColor = UIColor.white()
+        border.backgroundColor = .white()
     }
     
     // MARK: Internal
