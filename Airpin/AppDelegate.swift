@@ -7,8 +7,8 @@
 //
 
 import UIKit
-import Fabric
-import Crashlytics
+//import Fabric
+//import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     window?.tintColor = UIColor.primaryColor()
     
-    Fabric.with([Crashlytics.self])
+//    Fabric.with([Crashlytics.self])
     
     return true
   }

@@ -176,14 +176,14 @@ private class InteractivePopAnimator: NSObject, UIViewControllerAnimatedTransiti
     
     // MARK: UIViewControllerAnimatedTransitioning
     
-    @objc func transitionDuration(_ transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+    @objc func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         if let duration = self.activeDuration {
             return duration
         }
         return 0
     }
     
-    @objc func animateTransition(_ transitionContext: UIViewControllerContextTransitioning) {
+    @objc func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         fatalError("this class should not be used for non-interactive transitions")
     }
     
@@ -199,8 +199,8 @@ private class InteractivePopAnimator: NSObject, UIViewControllerAnimatedTransiti
     func prepForPop() {
         
         guard let container = self.activeContext?.containerView(),
-            fromView = self.activeContext?.view(forKey: UITransitionContextFromViewKey),
-            toView = self.activeContext?.view(forKey: UITransitionContextToViewKey) else {
+            let fromView = self.activeContext?.view(forKey: UITransitionContextFromViewKey),
+            let toView = self.activeContext?.view(forKey: UITransitionContextToViewKey) else {
                 return
         }
         
@@ -227,7 +227,7 @@ private class InteractivePopAnimator: NSObject, UIViewControllerAnimatedTransiti
     func updateViewsWithTranslation(_ translation: CGPoint) {
         
         guard let container = self.activeContext?.containerView(),
-            toView = self.activeContext?.view(forKey: UITransitionContextToViewKey) else {
+            let toView = self.activeContext?.view(forKey: UITransitionContextToViewKey) else {
                 return
         }
         
@@ -261,8 +261,8 @@ private class InteractivePopAnimator: NSObject, UIViewControllerAnimatedTransiti
     func cancelWithTranslation(_ translation: CGPoint, velocity: CGPoint, completion: () -> Void) {
         
         guard let container = self.activeContext?.containerView(),
-            fromView = self.activeContext?.view(forKey: UITransitionContextFromViewKey),
-            toView = self.activeContext?.view(forKey: UITransitionContextToViewKey) else {
+            let fromView = self.activeContext?.view(forKey: UITransitionContextFromViewKey),
+            let toView = self.activeContext?.view(forKey: UITransitionContextToViewKey) else {
                 return
         }
         
@@ -310,8 +310,8 @@ private class InteractivePopAnimator: NSObject, UIViewControllerAnimatedTransiti
     func finishWithTranslation(_ translation: CGPoint, velocity: CGPoint, completion: () -> Void) {
         
         guard let container = self.activeContext?.containerView(),
-            fromView = self.activeContext?.view(forKey: UITransitionContextFromViewKey),
-            toView = self.activeContext?.view(forKey: UITransitionContextToViewKey) else {
+            let fromView = self.activeContext?.view(forKey: UITransitionContextFromViewKey),
+            let toView = self.activeContext?.view(forKey: UITransitionContextToViewKey) else {
                 return
         }
         

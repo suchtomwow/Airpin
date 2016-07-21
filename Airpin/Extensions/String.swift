@@ -19,7 +19,7 @@ extension String {
         let noNewLines = replacingOccurrences(of: "\n", with: " ")
         
         let pattern = "^\\s+|\\s+$|\\s+(?=\\s)"
-        let trimmed = noNewLines.replacingOccurrences(of: pattern, with: " ", options: .regularExpressionSearch)
+        let trimmed = noNewLines.replacingOccurrences(of: pattern, with: " ", options: .regularExpression)
         
         return trimmed
     }

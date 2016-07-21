@@ -44,8 +44,6 @@
 		E9F451631CC1E9A5001AC1CB /* TokenEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F451621CC1E9A5001AC1CB /* TokenEntryViewController.swift */; };
 		E9F66FD11C8185A8003F17D3 /* JTSSloppyNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F66FD01C8185A8003F17D3 /* JTSSloppyNavigationController.swift */; };
 		E9F7AA701B6895AD00D742C1 /* Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B8038C1AE0E260006A1645 /* Bookmark.swift */; };
-		E9F89A241BE020060047B214 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9F89A221BE020060047B214 /* Fabric.framework */; };
-		E9F89A251BE020060047B214 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9F89A231BE020060047B214 /* Crashlytics.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,8 +103,6 @@
 		E99EC7F91B2AAEB500A7BB19 /* Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Playground.playground; sourceTree = "<group>"; };
 		E9F451621CC1E9A5001AC1CB /* TokenEntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TokenEntryViewController.swift; path = "Token Entry/TokenEntryViewController.swift"; sourceTree = "<group>"; };
 		E9F66FD01C8185A8003F17D3 /* JTSSloppyNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JTSSloppyNavigationController.swift; path = Base/JTSSloppyNavigationController.swift; sourceTree = "<group>"; };
-		E9F89A221BE020060047B214 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
-		E9F89A231BE020060047B214 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,8 +110,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E9F89A251BE020060047B214 /* Crashlytics.framework in Frameworks */,
-				E9F89A241BE020060047B214 /* Fabric.framework in Frameworks */,
 				5CEED34AC3662E87270B4156 /* Pods_Airpin.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -285,8 +279,6 @@
 		E9EADECF1B68756E007A2467 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E9F89A221BE020060047B214 /* Fabric.framework */,
-				E9F89A231BE020060047B214 /* Crashlytics.framework */,
 				0C798048B61585BF34387C30 /* Pods_Airpin.framework */,
 				B302A9A729B51B8CBBC497DD /* Pods_Airpin_Tests.framework */,
 			);

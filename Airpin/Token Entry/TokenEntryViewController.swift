@@ -63,7 +63,7 @@ class TokenEntryViewController: BaseViewController {
         
         viewDetails = viewModel.viewDetails
         
-        NotificationCenter.default().addObserver(self, selector: #selector(TokenEntryViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(TokenEntryViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
     }
     
     override func configureStyles() {
@@ -108,11 +108,11 @@ class TokenEntryViewController: BaseViewController {
     
     private var hasSeenModal: Bool {
         get {
-            let hasSeen = UserDefaults.standard().bool(forKey: UserDefault.hasDismissedTokenPrompt.rawValue)
+            let hasSeen = UserDefaults.standard.bool(forKey: UserDefault.hasDismissedTokenPrompt.rawValue)
             return hasSeen
         }
         set {
-            UserDefaults.standard().set(newValue, forKey: UserDefault.hasDismissedTokenPrompt.rawValue)
+            UserDefaults.standard.set(newValue, forKey: UserDefault.hasDismissedTokenPrompt.rawValue)
         }
     }
     

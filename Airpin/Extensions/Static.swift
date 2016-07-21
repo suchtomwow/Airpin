@@ -18,8 +18,8 @@ class Formatter {
     
     static var humanTime: DateFormatter {
         let formatter = DateFormatter()
-        formatter.timeStyle = .noStyle
-        formatter.dateStyle = .mediumStyle
+        formatter.timeStyle = .none
+        formatter.dateStyle = .medium
         formatter.doesRelativeDateFormatting = true
         
         return formatter

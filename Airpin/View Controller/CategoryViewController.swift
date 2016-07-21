@@ -34,7 +34,7 @@ class CategoryViewController: BaseViewController {
         super.viewDidAppear(animated)
         
         let loggedIn = viewModel.isLoggedIn
-        let hasSeen = UserDefaults.standard().bool(forKey: UserDefault.hasDismissedTokenPrompt.rawValue)
+        let hasSeen = UserDefaults.standard.bool(forKey: UserDefault.hasDismissedTokenPrompt.rawValue)
         
         if !loggedIn && !hasSeen {
             perform(#selector(CategoryViewController.showTokenEntry), with: nil, afterDelay: 1)
@@ -49,7 +49,7 @@ class CategoryViewController: BaseViewController {
         
         title = viewModel.title
         
-        tableView.register(SingleLabelTableViewCell.self, forCellReuseIdentifier: String(SingleLabelTableViewCell))
+        tableView.register(SingleLabelTableViewCell.self, forCellReuseIdentifier: String(SingleLabelTableViewCell.self))
         tableView.rowHeight          = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 60
         
@@ -94,7 +94,7 @@ extension CategoryViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: String(SingleLabelTableViewCell), for: indexPath) as! SingleLabelTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: String(SingleLabelTableViewCell.self), for: indexPath) as! SingleLabelTableViewCell
         
         if viewModel.isLoggedIn {
             cell.headline.alpha = 1.0

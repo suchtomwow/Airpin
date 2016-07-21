@@ -50,7 +50,7 @@ class NetworkClient {
     }()
     
     lazy var sessionConfig: URLSessionConfiguration = {
-        let sessionConfig                       = URLSessionConfiguration.default()
+        let sessionConfig                       = URLSessionConfiguration.default
         sessionConfig.httpAdditionalHeaders     = ["Accept": "application/json"]
         sessionConfig.timeoutIntervalForRequest = 30.0
         
@@ -76,7 +76,7 @@ class NetworkClient {
         let dataTask = session.dataTask(with: request) { data, response, error in
             if let error = error {
                 print(error)
-            } else if let data = data, response = response as? HTTPURLResponse {
+            } else if let data = data, let response = response as? HTTPURLResponse {
                 if response.statusCode == StatusCode.ok.rawValue {
                     let json = JSON(data: data)
                     completion?(Result.success(json))

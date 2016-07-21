@@ -9,7 +9,7 @@
 import Locksmith
 
 let PasswordDefine = "password"
-let KeychainServiceIdentifier = Bundle.main().bundleIdentifier ?? "Airpin"
+let KeychainServiceIdentifier = Bundle.main.bundleIdentifier ?? "Airpin"
 
 struct PinboardAccount: GenericPasswordSecureStorable, CreateableSecureStorable, DeleteableSecureStorable {
     
@@ -47,14 +47,14 @@ struct PinboardAccount: GenericPasswordSecureStorable, CreateableSecureStorable,
     }
     
     func storeUsernameInUserDefaults() {
-        let defaults = UserDefaults.standard()
+        let defaults = UserDefaults.standard
         
         defaults.setValue(username, forKey: UserDefault.pinboardUsername.rawValue)
         defaults.synchronize()
     }
     
     static func readFromKeychain() -> PinboardAccount? {
-        let defaults = UserDefaults.standard()
+        let defaults = UserDefaults.standard
         
         if let username = defaults.string(forKey: UserDefault.pinboardUsername.rawValue),
             let data = Locksmith.loadDataForUserAccount(userAccount: username, inService: KeychainServiceIdentifier),

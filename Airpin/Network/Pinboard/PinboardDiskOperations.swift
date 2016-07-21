@@ -11,10 +11,10 @@ import Foundation
 class PinboardDiskOperations {
     var lastUpdated: Date? {
         get {
-            return UserDefaults.standard().object(forKey: UserDefault.updateTime.rawValue) as? Date
+            return UserDefaults.standard.object(forKey: UserDefault.updateTime.rawValue) as? Date
         }
         set {
-            UserDefaults.standard().set(newValue, forKey: UserDefault.updateTime.rawValue)
+            UserDefaults.standard.set(newValue, forKey: UserDefault.updateTime.rawValue)
         }
     }
     
