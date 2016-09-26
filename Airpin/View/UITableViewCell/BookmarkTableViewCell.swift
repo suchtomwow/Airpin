@@ -84,17 +84,17 @@ class BookmarkTableViewCell: BLSTableViewCell {
     override func configureStyles() {
         super.configureStyles()
         
-        backgroundColor          = .white()
-        title.backgroundColor    = .white()
-        date.backgroundColor     = .white()
-        subtitle.backgroundColor = .white()
-        URL.backgroundColor      = .white()
+        backgroundColor          = .white
+        title.backgroundColor    = .white
+        date.backgroundColor     = .white
+        subtitle.backgroundColor = .white
+        URL.backgroundColor      = .white
         
         title.numberOfLines      = 2
         date.numberOfLines       = 1
         subtitle.numberOfLines   = 3
         
-        disclosure.tintColor     = .tableViewAccent()
+        disclosure.tintColor     = .tableViewAccent
         disclosure.image         = Icon.Disclosure.image
     }
     
@@ -125,7 +125,7 @@ class BookmarkTableViewCell: BLSTableViewCell {
         }
         
         URL.attributedText      = bookmark.displayURL.caption(alignment: .left)
-        date.attributedText     = datetime.caption(alignment: .right, color: .secondaryText())
+        date.attributedText     = datetime.caption(alignment: .right, color: .secondaryText)
         title.attributedText    = titleString.headline(alignment: .left)
         subtitle.attributedText = description.subheadline(alignment: .left)
         tagStackView.addArrangedSubview(UIView())

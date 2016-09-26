@@ -36,7 +36,7 @@ class TokenEntryViewController: BaseViewController {
     // MARK: Configuration
     var viewDetails: TokenEntryViewDetails! {
         didSet {
-            description1Label.attributedText = viewDetails.description1.title(alignment: .center, color: .white())
+            description1Label.attributedText = viewDetails.description1.title(alignment: .center, color: .white)
             textField.placeholder            = viewDetails.tokenFieldPlaceholder
             
             affirmativeCTA.setAttributedTitle(viewDetails.affirmativeCTA.primaryButton(), for: [])
@@ -45,7 +45,7 @@ class TokenEntryViewController: BaseViewController {
         }
     }
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+    override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
     
@@ -69,13 +69,13 @@ class TokenEntryViewController: BaseViewController {
     override func configureStyles() {
         super.configureStyles()
         
-        view.backgroundColor = .primary()
+        view.backgroundColor = .primary
         
         textField.font = UIFont.title1()
-        textField.textColor = .white()
-        textField.tintColor = .white()
+        textField.textColor = .white
+        textField.tintColor = .white
         
-        affirmativeCTA.backgroundColor = .complementary()
+        affirmativeCTA.backgroundColor = .complementary
     }
     
     private func configureTextFieldBottomBorder() {
@@ -91,7 +91,7 @@ class TokenEntryViewController: BaseViewController {
             border.heightAnchor.constraint(equalToConstant: 1)
             ])
         
-        border.backgroundColor = .white()
+        border.backgroundColor = .white
     }
     
     // MARK: Internal
@@ -134,7 +134,7 @@ class TokenEntryViewController: BaseViewController {
             let animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? Double,
             let endFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue  {
             
-            let keyboardHeight = endFrame().height
+            let keyboardHeight = endFrame.height
             
             affirmativeCTABottomConstraint.constant = keyboardHeight
             

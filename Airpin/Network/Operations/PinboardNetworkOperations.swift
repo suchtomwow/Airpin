@@ -14,24 +14,24 @@ typealias BookmarkCompletion = () -> Void
 
 class PinboardNetworkOperations {
     
-    func fetchAllBookmarks(completion: BookmarkCompletion) throws {
+    func fetchAllBookmarks(completion: @escaping BookmarkCompletion) throws {
         let endpoint = Endpoint(resourceTypes: [.posts, .all])
         
         try fetch(with: endpoint, parameters: nil, completion: completion)
     }
     
-    func fetchRecentBookmarks(completion: BookmarkCompletion) throws {
+    func fetchRecentBookmarks(completion: @escaping BookmarkCompletion) throws {
         let endpoint = Endpoint(resourceTypes: [.posts, .recent])
         try fetch(with: endpoint, completion: completion)
     }
     
-    func fetch(with endpoint: Endpoint, parameters: [URLQueryItem]? = nil, completion: BookmarkCompletion) throws {
+    func fetch(with endpoint: Endpoint, parameters: [URLQueryItem]? = nil, completion: @escaping BookmarkCompletion) throws {
         NetworkClient.sharedInstance.executeRequest(with: endpoint, parameters: parameters) { result in
             switch result {
             case .success(let json):
                 let posts = json
                 
-                DispatchQueue.global(attributes: .qosDefault).async {
+                DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async {
                     for (_, subJson): (String, JSON) in posts {
                         Bookmark.from(json: subJson).persist()
                     }
@@ -45,14 +45,14 @@ class PinboardNetworkOperations {
         }
     }
     
-    func getLastUpdated(completion: (datetime: Date) -> Void) throws {
+    func getLastUpdated(completion: @escaping (_ datetime: Date) -> Void) throws {
         let endpoint = Endpoint(resourceTypes: [.posts, .update])
         NetworkClient.sharedInstance.executeRequest(with: endpoint) { result in
             switch result {
             case .success(let json):
                 let updateTime = json["update_time"].stringValue
                 let datetime = Formatter.JSON.date(from: updateTime)!
-                completion(datetime: datetime)
+                completion(datetime)
             case .failure(let error):
                 print(error.localizedDescription)
             }

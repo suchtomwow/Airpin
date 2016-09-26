@@ -45,7 +45,7 @@ class SingleLabelTableViewCell: BLSTableViewCell {
     override func configureStyles() {
         super.configureStyles()
         
-        disclosure.tintColor = .tableViewAccent()
+        disclosure.tintColor = .tableViewAccent
         disclosure.image = Icon.Disclosure.image
     }
 }

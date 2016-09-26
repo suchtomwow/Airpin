@@ -26,7 +26,7 @@ class BookmarkViewModel: BaseViewModel {
         self.category = category
     }
     
-    func fetchBookmarks(completion: () -> Void) {
+    func fetchBookmarks(completion: @escaping () -> Void) {
         switch category {
         case .all:
             fetchAllBookmarks(completion: completion)
@@ -41,14 +41,15 @@ class BookmarkViewModel: BaseViewModel {
         }
     }
     
-    private func fetchBookmarks(filter: ((bookmark: Bookmark) -> Bool)?, completion: () -> Void) {
+    private func fetchBookmarks(filter: ((_ bookmark: Bookmark) -> Bool)?, completion: @escaping () -> Void) {
         dataProvider.fetchAllBookmarks {
             DispatchQueue.main.async {
                 // Need to map these to a regular [Bookmark] because the default value is Results<Bookmark>, which is auto-updating.
                 // Because it is auto-updating, rows are removed from the tableView when I still want to be able to display them to the user.
-                var bookmarks = try! Realm().allObjects(ofType: Bookmark.self).map { $0 }
+                var bookmarks = try! Realm().objects(Bookmark.self).map { $0 } as [Bookmark]
                 
                 if let filter = filter {
+                    
                     bookmarks = bookmarks.filter(filter)
                 }
                 
@@ -58,23 +59,23 @@ class BookmarkViewModel: BaseViewModel {
         }
     }
     
-    private func fetchAllBookmarks(completion: () -> Void) {
+    private func fetchAllBookmarks(completion: @escaping () -> Void) {
         fetchBookmarks(filter: nil, completion: completion)
     }
     
-    private func fetchUnreadBookmarks(completion: () -> Void) {
+    private func fetchUnreadBookmarks(completion: @escaping () -> Void) {
         fetchBookmarks(filter: { $0.toRead }, completion: completion)
     }
     
-    private func fetchUntaggedBookmarks(completion: () -> Void) {
+    private func fetchUntaggedBookmarks(completion: @escaping () -> Void) {
         fetchBookmarks(filter: { $0.tagsArray.count == 0 }, completion: completion)
     }
     
-    private func fetchPublicBookmarks(completion: () -> Void) {
+    private func fetchPublicBookmarks(completion: @escaping () -> Void) {
         fetchBookmarks(filter: { $0.shared }, completion: completion)
     }
     
-    private func fetchPrivateBookmarks(completion: () -> Void) {
+    private func fetchPrivateBookmarks(completion: @escaping () -> Void) {
         fetchBookmarks(filter: { !$0.shared }, completion: completion)
     }
     

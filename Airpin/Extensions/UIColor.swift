@@ -23,35 +23,35 @@ extension UIColor {
     
     // MARK: - Text -
     
-    class func primaryText() -> UIColor {
+    class var primaryText: UIColor {
         return UIColor(hex: 0x4F4F5A)
     }
     
-    class func secondaryText() -> UIColor {
+    class var secondaryText: UIColor {
         return UIColor(hex: 0x929292)
     }
     
-    class func tertiaryText() -> UIColor {
+    class var tertiaryText: UIColor {
         return UIColor(hex: 0x979797)
     }
     
-    class func tableViewAccent() -> UIColor {
+    class var tableViewAccent: UIColor {
         return UIColor(hex: 0xEDF0F4)
     }
     
-    class func primary() -> UIColor {
+    class var primary: UIColor {
         return UIColor(hex: 0x2FE0AC)
     }
     
-    class func complementary() -> UIColor {
+    class var complementary: UIColor {
         return UIColor(hex: 0xFF7C36)
     }
     
-    class func lightGrey() -> UIColor {
+    class var lightGrey: UIColor {
         return UIColor(hex: 0xF6F6F7)
     }
     
-    class func blueRowAction() -> UIColor {
+    class var blueRowAction: UIColor {
         return UIColor(hex: 0x6283A6)
     }
 }

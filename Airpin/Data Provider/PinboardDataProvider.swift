@@ -12,7 +12,7 @@ struct PinboardDataProvider {
     private let networkOperations = PinboardNetworkOperations()
     private let diskOperations = PinboardDiskOperations()
     
-    func fetchAllBookmarks(completion: BookmarkCompletion) {
+    func fetchAllBookmarks(completion: @escaping BookmarkCompletion) {
         // Call the https://api.pinboard.in/v1/posts/update endpoint to get the last updated time
         do {
             try networkOperations.getLastUpdated { datetime in
@@ -41,7 +41,7 @@ struct PinboardDataProvider {
         }
     }
     
-    private func fetchAllBookmarksFromNetwork(completion: BookmarkCompletion) {
+    private func fetchAllBookmarksFromNetwork(completion: @escaping BookmarkCompletion) {
         do {
             try networkOperations.fetchAllBookmarks(completion: completion)
         } catch {

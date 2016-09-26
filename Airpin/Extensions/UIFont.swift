@@ -14,70 +14,70 @@ extension UIFont {
      size: 17.0
      */
     class func headline() -> UIFont {
-        return UIFont.preferredFont(forTextStyle: UIFontTextStyleBody)
+        return UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
     }
     
     /**
      size: 15.0
      */
     class func subheadline() -> UIFont {
-        return UIFont.preferredFont(forTextStyle: UIFontTextStyleSubheadline)
+        return UIFont.preferredFont(forTextStyle: UIFontTextStyle.subheadline)
     }
     
     /**
      size: 17.0
      */
     class func body() -> UIFont {
-        return UIFont.preferredFont(forTextStyle: UIFontTextStyleBody)
+        return UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
     }
     
     /**
      size: 16.0
      */
     class func callout() -> UIFont {
-        return UIFont.preferredFont(forTextStyle: UIFontTextStyleCallout)
+        return UIFont.preferredFont(forTextStyle: UIFontTextStyle.callout)
     }
     
     /**
      size: 12.0
      */
     class func caption1() -> UIFont {
-        return UIFont.preferredFont(forTextStyle: UIFontTextStyleCaption1)
+        return UIFont.preferredFont(forTextStyle: UIFontTextStyle.caption1)
     }
     
     /**
      size: 11.0
      */
     class func caption2() -> UIFont {
-        return UIFont.preferredFont(forTextStyle: UIFontTextStyleCaption2)
+        return UIFont.preferredFont(forTextStyle: UIFontTextStyle.caption2)
     }
     
     /**
      size: 28.0
      */
     class func title1() -> UIFont {
-        return UIFont.preferredFont(forTextStyle: UIFontTextStyleTitle1)
+        return UIFont.preferredFont(forTextStyle: UIFontTextStyle.title1)
     }
     
     /**
      size: 22.0
      */
     class func title2() -> UIFont {
-        return UIFont.preferredFont(forTextStyle: UIFontTextStyleTitle2)
+        return UIFont.preferredFont(forTextStyle: UIFontTextStyle.title2)
     }
     
     /**
      size: 20.0
      */
     class func title3() -> UIFont {
-        return UIFont.preferredFont(forTextStyle: UIFontTextStyleTitle3)
+        return UIFont.preferredFont(forTextStyle: UIFontTextStyle.title3)
     }
     
     /**
      size: 13.0
      */
     class func footnote() -> UIFont {
-        return UIFont.preferredFont(forTextStyle: UIFontTextStyleFootnote)
+        return UIFont.preferredFont(forTextStyle: UIFontTextStyle.footnote)
     }
     
     var thin: UIFont {

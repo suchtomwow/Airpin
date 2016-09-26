@@ -63,8 +63,8 @@ class JTSSloppySwiping: NSObject {
     // MARK: Private
     
     private weak var navigationController: UINavigationController?
-    private var isInteractivelyPopping: Bool = false
-    private var interactivePopAnimator: InteractivePopAnimator
+    fileprivate var isInteractivelyPopping: Bool = false
+    fileprivate var interactivePopAnimator: InteractivePopAnimator
     private let popRecognizer: UIPanGestureRecognizer
     
     private var isAnimatingANonInteractiveTransition: Bool = false {
@@ -198,9 +198,9 @@ private class InteractivePopAnimator: NSObject, UIViewControllerAnimatedTransiti
     
     func prepForPop() {
         
-        guard let container = self.activeContext?.containerView(),
-            let fromView = self.activeContext?.view(forKey: UITransitionContextFromViewKey),
-            let toView = self.activeContext?.view(forKey: UITransitionContextToViewKey) else {
+        guard let container = self.activeContext?.containerView,
+            let fromView = self.activeContext?.view(forKey: UITransitionContextViewKey.from),
+            let toView = self.activeContext?.view(forKey: UITransitionContextViewKey.to) else {
                 return
         }
         
@@ -226,8 +226,8 @@ private class InteractivePopAnimator: NSObject, UIViewControllerAnimatedTransiti
     
     func updateViewsWithTranslation(_ translation: CGPoint) {
         
-        guard let container = self.activeContext?.containerView(),
-            let toView = self.activeContext?.view(forKey: UITransitionContextToViewKey) else {
+        guard let container = self.activeContext?.containerView,
+            let toView = self.activeContext?.view(forKey: UITransitionContextViewKey.to) else {
                 return
         }
         
@@ -249,7 +249,7 @@ private class InteractivePopAnimator: NSObject, UIViewControllerAnimatedTransiti
     
     func shouldCancelForGestureEndingWithTranslation(_ translation: CGPoint, velocity: CGPoint) -> Bool {
         
-        guard let container = self.activeContext?.containerView() else {
+        guard let container = self.activeContext?.containerView else {
             return false
         }
         
@@ -258,11 +258,11 @@ private class InteractivePopAnimator: NSObject, UIViewControllerAnimatedTransiti
         return ((percent < minimumDismissalPercentage && velocity.x < 100.0) || velocity.x < 0)
     }
     
-    func cancelWithTranslation(_ translation: CGPoint, velocity: CGPoint, completion: () -> Void) {
+    func cancelWithTranslation(_ translation: CGPoint, velocity: CGPoint, completion: @escaping () -> Void) {
         
-        guard let container = self.activeContext?.containerView(),
-            let fromView = self.activeContext?.view(forKey: UITransitionContextFromViewKey),
-            let toView = self.activeContext?.view(forKey: UITransitionContextToViewKey) else {
+        guard let container = self.activeContext?.containerView,
+            let fromView = self.activeContext?.view(forKey: UITransitionContextViewKey.from),
+            let toView = self.activeContext?.view(forKey: UITransitionContextViewKey.to) else {
                 return
         }
         
@@ -307,11 +307,11 @@ private class InteractivePopAnimator: NSObject, UIViewControllerAnimatedTransiti
         
     }
     
-    func finishWithTranslation(_ translation: CGPoint, velocity: CGPoint, completion: () -> Void) {
+    func finishWithTranslation(_ translation: CGPoint, velocity: CGPoint, completion: @escaping () -> Void) {
         
-        guard let container = self.activeContext?.containerView(),
-            let fromView = self.activeContext?.view(forKey: UITransitionContextFromViewKey),
-            let toView = self.activeContext?.view(forKey: UITransitionContextToViewKey) else {
+        guard let container = self.activeContext?.containerView,
+            let fromView = self.activeContext?.view(forKey: UITransitionContextViewKey.from),
+            let toView = self.activeContext?.view(forKey: UITransitionContextViewKey.to) else {
                 return
         }
         
@@ -373,7 +373,7 @@ private class InteractivePopAnimator: NSObject, UIViewControllerAnimatedTransiti
 
 private class FrontContainerView: UIView {
     
-    private let dropShadowView: UIView
+    fileprivate let dropShadowView: UIView
     
     override init(frame: CGRect) {
         self.dropShadowView = FrontContainerView.newDropShadowView()
@@ -395,14 +395,14 @@ private class FrontContainerView: UIView {
         self.dropShadowView.frame = dropShadowFrame
         self.addSubview(self.dropShadowView)
         self.clipsToBounds = false
-        self.backgroundColor = .clear()
+        self.backgroundColor = .clear
     }
     
     static func newDropShadowView() -> UIView {
         let w: CGFloat = 10.0
         
         let stretchableShadow = UIImageView(frame: CGRect(x: 0, y: 0, width: w, height: 1))
-        stretchableShadow.backgroundColor = .clear()
+        stretchableShadow.backgroundColor = .clear
         stretchableShadow.alpha = 1.0
         stretchableShadow.contentMode = .scaleToFill
         stretchableShadow.autoresizingMask = [.flexibleHeight, .flexibleRightMargin]
@@ -411,7 +411,7 @@ private class FrontContainerView: UIView {
         UIGraphicsBeginImageContextWithOptions(contextSize, false, 0)
         let context = UIGraphicsGetCurrentContext()
         let colorSpace = CGColorSpaceCreateDeviceRGB()
-        let colors: CFArray = [
+        let colors = [
             UIColor(white: 0.0, alpha: 0.000).cgColor,
             UIColor(white: 0.0, alpha: 0.045).cgColor,
             UIColor(white: 0.0, alpha: 0.090).cgColor,
@@ -420,7 +420,7 @@ private class FrontContainerView: UIView {
             ]
         let locations: [CGFloat] = [0.0, 0.34, 0.60, 0.80, 1.0]
         let options = CGGradientDrawingOptions()
-        if let gradient = CGGradient(colorsSpace: colorSpace, colors: colors, locations: locations) {
+        if let gradient = CGGradient(colorsSpace: colorSpace, colors: colors as CFArray, locations: locations) {
             context?.drawLinearGradient(gradient, start: CGPoint(x: 0, y: 0), end: CGPoint(x: w, y: 0), options: options)
             stretchableShadow.image = UIGraphicsGetImageFromCurrentImageContext()
         }

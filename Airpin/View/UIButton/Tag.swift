@@ -37,6 +37,6 @@ class Tag: UIButton {
     }
     
     func configureStyles() {
-        backgroundColor = .primary()
+        backgroundColor = .primary
     }
 }

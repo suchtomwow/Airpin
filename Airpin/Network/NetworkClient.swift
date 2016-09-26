@@ -68,7 +68,7 @@ class NetworkClient {
             components.queryItems?.append(contentsOf: parameters)
         }
         
-        let url     = try! components.url?.appendingPathComponent(endpoint.path)
+        let url     = components.url?.appendingPathComponent(endpoint.path)
         let request = URLRequest(url: url!)
         
         let session = URLSession(configuration: sessionConfig)

@@ -38,7 +38,7 @@ struct PinboardAccount: GenericPasswordSecureStorable, CreateableSecureStorable,
     }
     
     var data: [String: AnyObject] {
-        return [PasswordDefine: password]
+        return [PasswordDefine: password as AnyObject]
     }
     
     func storeInKeychain() throws {

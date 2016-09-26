@@ -6,10 +6,10 @@ use_frameworks!
 
 target 'Airpin' do
   
-  pod 'Realm', git: 'https://github.com/realm/realm-cocoa.git', branch: 'master'
-  pod 'RealmSwift', git: 'https://github.com/realm/realm-cocoa.git', branch: 'master'
-  pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git', :branch => 'swift3'
-  pod 'Locksmith', :git => 'https://github.com/matthewpalmer/Locksmith.git', :branch => 'swift-3.0'
+  pod 'Realm', git: 'https://github.com/realm/realm-cocoa.git', branch: 'master', submodules: true
+  pod 'RealmSwift', git: 'https://github.com/realm/realm-cocoa.git', branch: 'master', submodules: true
+  pod 'SwiftyJSON', :git => 'https://github.com/acegreen/SwiftyJSON.git', '3.1.0'
+  pod 'Locksmith', :git => 'https://github.com/jerometan1997/Locksmith.git', '3.0.0'
   
 end
 

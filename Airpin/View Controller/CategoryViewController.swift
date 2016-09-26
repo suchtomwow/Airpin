@@ -17,19 +17,20 @@ class CategoryViewController: BaseViewController {
     
     // MARK: - View lifecycle -
     
-    override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue == Segue.bookmarkViewController {
             let indexPath = sender as! IndexPath
             let category = CategoryViewModel.Category(rawValue: indexPath.row)
-            let controller = segue.destinationViewController as! BookmarkViewController
+            let controller = segue.destination as! BookmarkViewController
             controller.category = category
         } else if segue == Segue.tokenEntryViewController {
-            if let controller = segue.destinationViewController as? TokenEntryViewController {
+            if let controller = segue.destination as? TokenEntryViewController {
                 controller.delegate = self
             }
         }
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -49,7 +50,7 @@ class CategoryViewController: BaseViewController {
         
         title = viewModel.title
         
-        tableView.register(SingleLabelTableViewCell.self, forCellReuseIdentifier: String(SingleLabelTableViewCell.self))
+        tableView.register(SingleLabelTableViewCell.self, forCellReuseIdentifier: String(describing: SingleLabelTableViewCell.self))
         tableView.rowHeight          = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 60
         
@@ -62,7 +63,7 @@ class CategoryViewController: BaseViewController {
         performSegue(withIdentifier: Segue.tokenEntryViewController.rawValue, sender: nil)
     }
     
-    private func updateView() {
+    fileprivate func updateView() {
         navigationItem.rightBarButtonItem?.title = viewModel.rightBarButtonText
         tableView.reloadData()
     }
@@ -94,7 +95,7 @@ extension CategoryViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: String(SingleLabelTableViewCell.self), for: indexPath) as! SingleLabelTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SingleLabelTableViewCell.self), for: indexPath) as! SingleLabelTableViewCell
         
         if viewModel.isLoggedIn {
             cell.headline.alpha = 1.0
@@ -127,5 +128,18 @@ extension CategoryViewController: TokenEntryDelegate {
         }
         
         dismiss(animated: true, completion: nil)
+    }
+}
+
+
+// MARK: - UIViewControllerTransitioningDelegate -
+
+extension CategoryViewController: UIViewControllerTransitioningDelegate {
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return ModalTransitionPresentAnimation()
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return ModalTransitionDismissAnimation()
     }
 }

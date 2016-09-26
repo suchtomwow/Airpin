@@ -24,43 +24,43 @@ extension String {
         return trimmed
     }
     
-    func title(alignment: NSTextAlignment, color: UIColor = .primaryText()) -> AttributedString {
+    func title(alignment: NSTextAlignment, color: UIColor = .primaryText) -> NSAttributedString {
         return attributedStringWithAlignment(alignment, font: UIFont.title1().bold, color: color)
     }
     
-    func headline(alignment: NSTextAlignment, color: UIColor = .primaryText()) -> AttributedString {
+    func headline(alignment: NSTextAlignment, color: UIColor = .primaryText) -> NSAttributedString {
         return attributedStringWithAlignment(alignment, font: UIFont.headline().medium, color: color)
     }
     
-    func subheadline(alignment: NSTextAlignment) -> AttributedString {
-        return attributedStringWithAlignment(alignment, font: UIFont.subheadline(), color: .secondaryText())
+    func subheadline(alignment: NSTextAlignment) -> NSAttributedString {
+        return attributedStringWithAlignment(alignment, font: UIFont.subheadline(), color: .secondaryText)
     }
     
-    func body(alignment: NSTextAlignment, color: UIColor = .primaryText()) -> AttributedString {
+    func body(alignment: NSTextAlignment, color: UIColor = .primaryText) -> NSAttributedString {
         return attributedStringWithAlignment(alignment, font: UIFont.body(), color: color)
     }
     
-    func footnote(alignment: NSTextAlignment) -> AttributedString {
-        return attributedStringWithAlignment(alignment, font: UIFont.footnote(), color: .primaryText())
+    func footnote(alignment: NSTextAlignment) -> NSAttributedString {
+        return attributedStringWithAlignment(alignment, font: UIFont.footnote(), color: .primaryText)
     }
     
-    func caption(alignment: NSTextAlignment, color: UIColor = .primaryText()) -> AttributedString {
-        return attributedStringWithAlignment(alignment, font: UIFont.caption1().ultraLight, color: .secondaryText())
+    func caption(alignment: NSTextAlignment, color: UIColor = .primaryText) -> NSAttributedString {
+        return attributedStringWithAlignment(alignment, font: UIFont.caption1().ultraLight, color: .secondaryText)
     }
     
-    func tag(alignment: NSTextAlignment) -> AttributedString {
-        return attributedStringWithAlignment(alignment, font: UIFont.caption1(), color: .white())
+    func tag(alignment: NSTextAlignment) -> NSAttributedString {
+        return attributedStringWithAlignment(alignment, font: UIFont.caption1(), color: .white)
     }
     
-    func primaryButton(color: UIColor = .white()) -> AttributedString {
+    func primaryButton(color: UIColor = .white) -> NSAttributedString {
         return attributedStringWithAlignment(.center, font: UIFont.callout().heavy, color: color)
     }
     
-    func secondaryButton() -> AttributedString {
-        return attributedStringWithAlignment(.center, font: UIFont.callout().medium, color: .white())
+    func secondaryButton() -> NSAttributedString {
+        return attributedStringWithAlignment(.center, font: UIFont.callout().medium, color: .white)
     }
     
-    private func attributedStringWithAlignment(_ alignment: NSTextAlignment, font: UIFont, color: UIColor) -> AttributedString {
+    private func attributedStringWithAlignment(_ alignment: NSTextAlignment, font: UIFont, color: UIColor) -> NSAttributedString {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 2
         paragraphStyle.alignment = alignment
@@ -69,7 +69,7 @@ extension String {
                           NSFontAttributeName: font,
                           NSForegroundColorAttributeName: color]
         
-        let attributedString = AttributedString(string: self, attributes: attributes)
+        let attributedString = NSAttributedString(string: self, attributes: attributes)
         
         return attributedString
     }
