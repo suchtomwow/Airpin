@@ -12,7 +12,6 @@ let PasswordDefine = "password"
 let KeychainServiceIdentifier = Bundle.main.bundleIdentifier ?? "Airpin"
 
 struct PinboardAccount: GenericPasswordSecureStorable, CreateableSecureStorable, DeleteableSecureStorable {
-    
     let username: String
     let password: String
     
@@ -37,7 +36,7 @@ struct PinboardAccount: GenericPasswordSecureStorable, CreateableSecureStorable,
         return username
     }
     
-    var data: [String: AnyObject] {
+    var data: [String: Any] {
         return [PasswordDefine: password as AnyObject]
     }
     

@@ -163,7 +163,7 @@ class TokenEntryViewController: BaseViewController {
         do {
             try viewModel.store(token: textField.text)
             delegate?.didFinishTokenEntry(didEnterToken: true)
-        } catch LocksmithError.Duplicate {
+        } catch LocksmithError.duplicate {
             loadAccount()
         } catch {
             print(error)
