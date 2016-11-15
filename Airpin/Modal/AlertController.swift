@@ -18,14 +18,14 @@ class AlertController: BaseViewController {
     
     let buttonTappedHandler: ((_: UIButton?) -> Void)?
     
-    init(headline: String?, body: String?, button: String?, buttonTappedHandler: ((_: UIButton?) -> Void)?) {
+    init(headline: String?, body: String?, buttonTitle: String?, buttonTappedHandler: ((_: UIButton?) -> Void)?) {
         self.buttonTappedHandler = buttonTappedHandler
 
         super.init(nibName: nil, bundle: nil)
         
         self.headline.attributedText = headline?.headline(alignment: .center)
         self.body.attributedText     = body?.body(alignment: .center)
-        self.button.setAttributedTitle(button?.primaryButton(), for: [])
+        self.button.setAttributedTitle(buttonTitle?.primaryButton(), for: [])
         
         modalPresentationStyle = .custom
         transitioningDelegate = strongTransitioningDelegate
