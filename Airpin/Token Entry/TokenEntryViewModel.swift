@@ -9,9 +9,7 @@
 import UIKit
 
 class TokenEntryViewModel: BaseViewModel {
-    var title: String {
-        return "Settings"
-    }
+    var title = "Settings"
     
     let viewDetails = TokenEntryViewDetails()
     

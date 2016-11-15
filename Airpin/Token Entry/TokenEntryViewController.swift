@@ -170,9 +170,9 @@ class TokenEntryViewController: BaseViewController {
     
     func keyboardWillShow(_ sender: Notification) {
         if let userInfo = sender.userInfo,
-            let animationCurve = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber,
-            let animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? Double,
-            let endFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue  {
+           let animationCurve = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber,
+           let animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? Double,
+           let endFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue  {
             
             let keyboardHeight = endFrame.height
             
@@ -182,7 +182,7 @@ class TokenEntryViewController: BaseViewController {
             
             UIView.animate(withDuration: animationDuration, delay: 0.0, options: [curve], animations: {
                 self.view.layoutIfNeeded()
-                }, completion: nil)
+            }, completion: nil)
         }
     }
     

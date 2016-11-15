@@ -17,17 +17,12 @@ class CategoryViewController: BaseViewController {
     
     // MARK: - View lifecycle -
     
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue == Segue.bookmarkViewController {
-            let indexPath = sender as! IndexPath
+        if segue == Segue.bookmarkViewController, let controller = segue.destination as? BookmarkViewController, let indexPath = sender as? IndexPath {
             let category = CategoryViewModel.Category(rawValue: indexPath.row)
-            let controller = segue.destination as! BookmarkViewController
             controller.category = category
-        } else if segue == Segue.tokenEntryViewController {
-            if let controller = segue.destination as? TokenEntryViewController {
-                controller.delegate = self
-            }
+        } else if segue == Segue.tokenEntryViewController, let controller = segue.destination as? TokenEntryViewController {
+            controller.delegate = self
         }
     }
 
