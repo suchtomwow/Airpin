@@ -8,6 +8,7 @@
 
 import UIKit
 import Locksmith
+import SafariServices
 
 protocol TokenEntryDelegate: class {
     func didFinishTokenEntry(didEnterToken: Bool)
@@ -18,13 +19,17 @@ struct TokenEntryViewDetails {
     let tokenFieldPlaceholder = "token"
     let affirmativeCTA = "Let's go"
     let negativeCTA = "No, thanks"
+    let helpButton = "?"
 }
 
 class TokenEntryViewController: BaseViewController {
+    
     @IBOutlet weak var description1Label: UILabel!
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var affirmativeCTA: UIButton!
     @IBOutlet weak var negativeCTA: UIButton!
+
+    private var helpButton = UIButton()
     
     @IBOutlet weak var affirmativeCTABottomConstraint: NSLayoutConstraint!
     
@@ -32,12 +37,14 @@ class TokenEntryViewController: BaseViewController {
     
     let viewModel = TokenEntryViewModel()
     
-    
     // MARK: Configuration
+    
     var viewDetails: TokenEntryViewDetails! {
         didSet {
             description1Label.attributedText = viewDetails.description1.title(alignment: .center, color: .white)
             textField.placeholder            = viewDetails.tokenFieldPlaceholder
+            
+            helpButton.setTitle(viewDetails.helpButton, for: .normal)
             
             affirmativeCTA.setAttributedTitle(viewDetails.affirmativeCTA.primaryButton(), for: [])
             
@@ -60,8 +67,13 @@ class TokenEntryViewController: BaseViewController {
         
         textField.delegate = self
         configureTextFieldBottomBorder()
+        configureHelpButton()
         
         viewDetails = viewModel.viewDetails
+        
+        textField.rightView = helpButton
+        textField.rightViewMode = .unlessEditing
+        textField.clearButtonMode = .whileEditing
         
         NotificationCenter.default.addObserver(self, selector: #selector(TokenEntryViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
     }
@@ -75,6 +87,11 @@ class TokenEntryViewController: BaseViewController {
         textField.textColor = .white
         textField.tintColor = .white
         
+        helpButton.layer.cornerRadius = 8
+        helpButton.backgroundColor = UIColor.white
+        helpButton.setTitleColor(.tertiaryText, for: .normal)
+        helpButton.alpha = 0.5
+        
         affirmativeCTA.backgroundColor = .complementary
     }
     
@@ -85,13 +102,24 @@ class TokenEntryViewController: BaseViewController {
         view.addSubview(border)
         
         NSLayoutConstraint.activate([
-            border.leadingAnchor.constraint(equalTo: textField.leadingAnchor, constant: 0),
-            border.trailingAnchor.constraint(equalTo: textField.trailingAnchor, constant: 0),
+            border.leadingAnchor.constraint(equalTo: textField.leadingAnchor),
+            border.trailingAnchor.constraint(equalTo: textField.trailingAnchor),
             border.topAnchor.constraint(equalTo: textField.bottomAnchor),
             border.heightAnchor.constraint(equalToConstant: 1)
-            ])
+        ])
         
         border.backgroundColor = .white
+    }
+    
+    final private func configureHelpButton() {
+        helpButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            helpButton.widthAnchor.constraint(equalToConstant: 30),
+            helpButton.heightAnchor.constraint(equalTo: helpButton.widthAnchor)
+        ])
+        
+        helpButton.addTarget(self, action: #selector(TokenEntryViewController.helpButtonTapped(_:)), for: .touchUpInside)
     }
     
     // MARK: Internal
@@ -99,9 +127,11 @@ class TokenEntryViewController: BaseViewController {
     private func showErrorMessage() {
         let actionAlert = UIAlertController(title: "Could not store token", message: "Try again later.", preferredStyle: .alert)
         
-        actionAlert.addAction(UIAlertAction(title: "OK", style: .default) { action in
+        let action = UIAlertAction(title: "OK", style: .default) { action in
             self.dismiss(animated: true, completion: nil)
-            })
+        }
+        
+        actionAlert.addAction(action)
         
         present(actionAlert, animated: true, completion: nil)
     }
@@ -126,6 +156,16 @@ class TokenEntryViewController: BaseViewController {
         }
     }
     
+    final private func goToPinboardWebsiteSettings() {
+        guard let url = URL(string: "https://pinboard.in/settings/password") else {
+            return
+        }
+        
+        let svc = SFSafariViewController(url: url)
+        present(svc, animated: true, completion: nil)
+    }
+    
+    
     // MARK: Observers
     
     func keyboardWillShow(_ sender: Notification) {
@@ -148,6 +188,18 @@ class TokenEntryViewController: BaseViewController {
     
     
     // MARK: IBActions
+    
+    func helpButtonTapped(_ sender: Any) {
+        let headline = "What's my token?"
+        let body = "Your token is what gives you access to your bookmarks. Enter it on this screen to create, read, and share your bookmarks. You can find your token in your settings on the Pinboard website.\n\nAirpin stores your token securely in your device's keychain. It cannot be accessed by or shared with anyone other than you."
+        let buttonTitle = "Go to Pinboard settings"
+        
+        let alert = AlertController(headline: headline, body: body, buttonTitle: buttonTitle) { [unowned self] sender in
+            self.goToPinboardWebsiteSettings()
+        }
+        
+        present(alert, animated: true, completion: nil)
+    }
     
     @IBAction func negativeCTATapped(_ sender: UIButton) {
         hasSeenModal = true
