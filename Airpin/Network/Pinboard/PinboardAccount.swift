@@ -9,7 +9,7 @@
 import Locksmith
 
 let PasswordDefine = "password"
-let KeychainServiceIdentifier = Bundle.main.bundleIdentifier ?? "Airpin"
+let KeychainServiceIdentifier = Bundle.main.bundleIdentifier!
 
 struct PinboardAccount: GenericPasswordSecureStorable, CreateableSecureStorable, DeleteableSecureStorable {
     let username: String
