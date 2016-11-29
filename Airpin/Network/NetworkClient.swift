@@ -15,7 +15,7 @@ enum Result<T> {
 }
 
 class NetworkClient {
-    static let sharedInstance = NetworkClient()
+    static let shared = NetworkClient()
     
     let scheme = "https"
     let host   = "api.pinboard.in"

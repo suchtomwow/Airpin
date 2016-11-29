@@ -30,7 +30,7 @@ class CategoryViewModel: BaseViewModel {
     }
     
     var isLoggedIn: Bool {
-        let isLoggedIn = NetworkClient.sharedInstance.accessToken != nil
+        let isLoggedIn = NetworkClient.shared.accessToken != nil
         return isLoggedIn
     }
     

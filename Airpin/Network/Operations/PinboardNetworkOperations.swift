@@ -26,7 +26,7 @@ class PinboardNetworkOperations {
     }
     
     func fetch(with endpoint: Endpoint, parameters: [URLQueryItem]? = nil, completion: @escaping BookmarkCompletion) throws {
-        NetworkClient.sharedInstance.executeRequest(with: endpoint, parameters: parameters) { result in
+        NetworkClient.shared.executeRequest(with: endpoint, parameters: parameters) { result in
             switch result {
             case .success(let json):
                 let posts = json
@@ -47,7 +47,7 @@ class PinboardNetworkOperations {
     
     func getLastUpdated(completion: @escaping (_ datetime: Date) -> Void) throws {
         let endpoint = Endpoint(resourceTypes: [.posts, .update])
-        NetworkClient.sharedInstance.executeRequest(with: endpoint) { result in
+        NetworkClient.shared.executeRequest(with: endpoint) { result in
             switch result {
             case .success(let json):
                 let updateTime = json["update_time"].stringValue
@@ -65,13 +65,13 @@ class PinboardNetworkOperations {
         let titleQI = URLQueryItem(name: "description", value: title)
         let toReadQI = URLQueryItem(name: "toread", value: toRead ? "yes" : "no")
         
-        NetworkClient.sharedInstance.executeRequest(with: endpoint, parameters: [urlQI, titleQI, toReadQI], completion: nil)
+        NetworkClient.shared.executeRequest(with: endpoint, parameters: [urlQI, titleQI, toReadQI], completion: nil)
     }
     
     func delete(with URL: Foundation.URL) {
         let endpoint = Endpoint(resourceTypes: [.posts, .delete])
         let urlQI = URLQueryItem(name: "url", value: URL.absoluteString)
         
-        NetworkClient.sharedInstance.executeRequest(with: endpoint, parameters: [urlQI], completion: nil)
+        NetworkClient.shared.executeRequest(with: endpoint, parameters: [urlQI], completion: nil)
     }
 }

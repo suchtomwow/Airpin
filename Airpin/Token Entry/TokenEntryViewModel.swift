@@ -18,7 +18,7 @@ class TokenEntryViewModel: BaseViewModel {
             let pinboardAccount = PinboardAccount(token: token)
             
             try pinboardAccount.storeInKeychain()
-            NetworkClient.sharedInstance.pinboardAccount = pinboardAccount
+            NetworkClient.shared.pinboardAccount = pinboardAccount
         }
     }
     
@@ -27,7 +27,7 @@ class TokenEntryViewModel: BaseViewModel {
             let pinboardAccount = PinboardAccount(token: token)
             pinboardAccount.storeUsernameInUserDefaults()
             
-            NetworkClient.sharedInstance.pinboardAccount = pinboardAccount
+            NetworkClient.shared.pinboardAccount = pinboardAccount
         }
     }
 }
