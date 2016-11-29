@@ -11,12 +11,12 @@ PODS:
   - SwiftyJSON (3.1.1)
 
 DEPENDENCIES:
-  - Crashlytics
-  - Fabric
-  - Locksmith
-  - Realm
-  - RealmSwift
-  - SwiftyJSON
+  - Crashlytics (= 3.8.3)
+  - Fabric (= 1.6.11)
+  - Locksmith (= 3.0.0)
+  - Realm (= 2.0.3)
+  - RealmSwift (= 2.0.3)
+  - SwiftyJSON (= 3.1.1)
 
 SPEC CHECKSUMS:
   Crashlytics: 2b6dbe138a42395577cfa73dfa1aa7248cadf39e
@@ -26,6 +26,6 @@ SPEC CHECKSUMS:
   RealmSwift: 5afb451f65b682242f272dbb52d5c6f6e343c980
   SwiftyJSON: f0be2e604f83e8405a624e9f891898bf6ed4e019
 
-PODFILE CHECKSUM: 61782b3e102921f1fcfd9a39795956e31e5ef947
+PODFILE CHECKSUM: dcfadfab3a546d8d778a2f4572493bf0a351f718
 
 COCOAPODS: 1.1.1
