@@ -125,15 +125,8 @@ class TokenEntryViewController: BaseViewController {
     // MARK: Internal
     
     private func showErrorMessage() {
-        let actionAlert = UIAlertController(title: "Could not store token", message: "Try again later.", preferredStyle: .alert)
-        
-        let action = UIAlertAction(title: "OK", style: .default) { action in
-            self.dismiss(animated: true, completion: nil)
-        }
-        
-        actionAlert.addAction(action)
-        
-        present(actionAlert, animated: true, completion: nil)
+        let alert = AlertController(headline: "Could not store token", body: "Try again later", buttonTitle: "OK", buttonTappedHandler: nil)
+        present(alert, animated: true, completion: nil)
     }
     
     private var hasSeenModal: Bool {
