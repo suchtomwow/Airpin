@@ -10,92 +10,92 @@ import Foundation
 import SwiftyJSON
 
 enum Result<T> {
-  case Success(T)
-  case Failure(NSError)
+    case success(T)
+    case failure(NSError)
 }
 
 class NetworkClient {
-  static let sharedInstance = NetworkClient()
-  
-  let scheme = "https"
-  let host   = "api.pinboard.in"
-
-  var accessToken: String? {
-    let token = pinboardAccount?.token
-    return token
-  }
-  
-  lazy var pinboardAccount: PinboardAccount? = {
-    let account = PinboardAccount.readFromKeychain()
-    return account
-  }()
-  
-  func signOut(completion: () -> ()) {
-    do {
-      try pinboardAccount?.deleteFromSecureStore()
-      pinboardAccount = nil
-      completion()
-    } catch {
-      print(error)
-    }
-  }
-  
-  lazy var components: NSURLComponents = {
-    let components        = NSURLComponents()
-    components.scheme     = self.scheme
-    components.host       = self.host
-    components.queryItems = [self.authTokenQueryItem, self.formatQueryItem]
+    static let sharedInstance = NetworkClient()
     
-    return components
-  }()
-  
-  lazy var sessionConfig: NSURLSessionConfiguration = {
-    let sessionConfig                       = NSURLSessionConfiguration.defaultSessionConfiguration()
-    sessionConfig.HTTPAdditionalHeaders     = ["Accept": "application/json"]
-    sessionConfig.timeoutIntervalForRequest = 30.0
+    let scheme = "https"
+    let host   = "api.pinboard.in"
     
-    return sessionConfig
-  }()
-  
-  var authTokenQueryItem: NSURLQueryItem {
-    return NSURLQueryItem(name: "auth_token", value: accessToken)
-  }
-  
-  let formatQueryItem = NSURLQueryItem(name: "format", value: "json")
-  
-  func executeRequest(endpoint: Endpoint, parameters: [NSURLQueryItem]? = nil, completion: (Result<JSON> -> Void)?) {
-    if let parameters = parameters {
-      components.queryItems?.appendContentsOf(parameters)
+    var accessToken: String? {
+        let token = pinboardAccount?.token
+        return token
     }
     
-    let url     = components.URL?.URLByAppendingPathComponent(endpoint.path)
-    let request = NSURLRequest(URL: url!)
+    lazy var pinboardAccount: PinboardAccount? = {
+        let account = PinboardAccount.readFromKeychain()
+        return account
+    }()
     
-    let session = NSURLSession(configuration: sessionConfig)
-
-    let dataTask = session.dataTaskWithRequest(request) { data, response, error in
-      if let error = error {
-        print(error)
-      } else if let data = data, response = response as? NSHTTPURLResponse {
-        if response.statusCode == StatusCode.OK.rawValue {
-          let json = JSON(data: data)          
-          completion?(Result.Success(json))
+    func signOut(completion: () -> ()) {
+        do {
+            try pinboardAccount?.deleteFromSecureStore()
+            pinboardAccount = nil
+            completion()
+        } catch {
+            print(error)
         }
-      }
     }
     
-    dataTask.resume()
-  }
+    lazy var components: URLComponents = {
+        var components        = URLComponents()
+        components.scheme     = self.scheme
+        components.host       = self.host
+        components.queryItems = [self.authTokenQueryItem, self.formatQueryItem]
+        
+        return components
+    }()
+    
+    lazy var sessionConfig: URLSessionConfiguration = {
+        let sessionConfig                       = URLSessionConfiguration.default
+        sessionConfig.httpAdditionalHeaders     = ["Accept": "application/json"]
+        sessionConfig.timeoutIntervalForRequest = 30.0
+        
+        return sessionConfig
+    }()
+    
+    var authTokenQueryItem: URLQueryItem {
+        return URLQueryItem(name: "auth_token", value: accessToken)
+    }
+    
+    let formatQueryItem = URLQueryItem(name: "format", value: "json")
+    
+    func executeRequest(with endpoint: Endpoint, parameters: [URLQueryItem]? = nil, completion: ((Result<JSON>) -> Void)?) {
+        if let parameters = parameters {
+            components.queryItems?.append(contentsOf: parameters)
+        }
+        
+        let url     = components.url?.appendingPathComponent(endpoint.path)
+        let request = URLRequest(url: url!)
+        
+        let session = URLSession(configuration: sessionConfig)
+        
+        let dataTask = session.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print(error)
+            } else if let data = data, let response = response as? HTTPURLResponse {
+                if response.statusCode == StatusCode.ok.rawValue {
+                    let json = JSON(data: data)
+                    completion?(Result.success(json))
+                }
+            }
+        }
+        
+        dataTask.resume()
+    }
 }
 
 enum StatusCode: Int {
-  case OK           = 200
-  case Created      = 201
-  case Accepted     = 202
-  case BadRequest   = 400
-  case Unauthorized = 401
-  case Forbidden    = 403
-  case NotFound     = 404
-  case ServerError  = 500
-  case BadGateway   = 502
+    case ok           = 200
+    case created      = 201
+    case accepted     = 202
+    case badRequest   = 400
+    case unauthorized = 401
+    case forbidden    = 403
+    case notFound     = 404
+    case serverError  = 500
+    case badGateway   = 502
 }

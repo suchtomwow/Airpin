@@ -9,18 +9,18 @@
 import UIKit
 
 class BaseViewController: UIViewController {
-  override func viewDidLoad() {
-    super.viewDidLoad()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        configureView()
+        configureStyles()
+    }
     
-    configureView()
-    configureStyles()
-  }
-  
-  func configureView() {
+    func configureView() {
+        
+    }
     
-  }
-  
-  func configureStyles() {
-    
-  }  
+    func configureStyles() {
+        
+    }  
 }

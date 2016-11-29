@@ -9,43 +9,43 @@
 import UIKit
 
 class SingleLabelTableViewCell: BLSTableViewCell {
-  
-  lazy var headline: UILabel = {
-    let label = UILabel()
     
-    label.translatesAutoresizingMaskIntoConstraints = false
-    self.contentView.addSubview(label)
+    lazy var headline: UILabel = {
+        let label = UILabel()
+        
+        label.translatesAutoresizingMaskIntoConstraints = false
+        self.contentView.addSubview(label)
+        
+        return label
+    }()
     
-    return label
-  }()
-  
-  lazy var disclosure: UIImageView = {
-    let imageView = UIImageView()
+    lazy var disclosure: UIImageView = {
+        let imageView = UIImageView()
+        
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        self.contentView.addSubview(imageView)
+        
+        return imageView
+    }()
     
-    imageView.translatesAutoresizingMaskIntoConstraints = false
-    self.contentView.addSubview(imageView)
+    override func configureConstraints() {
+        super.configureConstraints()
+        
+        headline.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20).isActive = true
+        headline.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20).isActive = true
+        headline.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
+        headline.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
+        
+        disclosure.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12).isActive = true
+        disclosure.centerYAnchor.constraint(equalTo: headline.centerYAnchor).isActive = true
+        disclosure.widthAnchor.constraint(equalToConstant: 8).isActive = true
+        disclosure.heightAnchor.constraint(equalToConstant: 13).isActive = true
+    }
     
-    return imageView
-  }()
-  
-  override func configureConstraints() {
-    super.configureConstraints()
-    
-    headline.topAnchor.constraintEqualToAnchor(contentView.topAnchor, constant: 20).active = true
-    headline.bottomAnchor.constraintEqualToAnchor(contentView.bottomAnchor, constant: -20).active = true
-    headline.leadingAnchor.constraintEqualToAnchor(contentView.leadingAnchor, constant: 20).active = true
-    headline.trailingAnchor.constraintEqualToAnchor(contentView.trailingAnchor, constant: -20).active = true
-    
-    disclosure.trailingAnchor.constraintEqualToAnchor(contentView.trailingAnchor, constant: -12).active = true
-    disclosure.centerYAnchor.constraintEqualToAnchor(headline.centerYAnchor).active = true
-    disclosure.widthAnchor.constraintEqualToConstant(8).active = true
-    disclosure.heightAnchor.constraintEqualToConstant(13).active = true
-  }
-  
-  override func configureStyles() {
-    super.configureStyles()
-    
-    disclosure.tintColor = UIColor.tableViewAccent()
-    disclosure.image = Icon.Disclosure.image
-  }
+    override func configureStyles() {
+        super.configureStyles()
+        
+        disclosure.tintColor = .tableViewAccent
+        disclosure.image = Icon.Disclosure.image
+    }
 }

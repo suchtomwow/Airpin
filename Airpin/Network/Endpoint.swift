@@ -7,14 +7,14 @@
 //
 
 struct Endpoint {
-  let apiVersion = "v1"
-  let path: String
-  
-  init(resourceTypes: [ResourceType]) {
-
-    var resources: [Resource] = []
-    resourceTypes.forEach { resources.append(Resource(resource: $0)) }
+    let apiVersion = "v1"
+    let path: String
     
-    path = resources.reduce("/" + apiVersion) { $0 + "/" + $1.resourcePath }
-  }
+    init(resourceTypes: [ResourceType]) {
+        
+        var resources: [Resource] = []
+        resourceTypes.forEach { resources.append(Resource(resource: $0)) }
+        
+        path = resources.reduce("/" + apiVersion) { $0 + "/" + $1.resourcePath }
+    }
 }

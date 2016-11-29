@@ -9,31 +9,32 @@
 import UIKit
 
 class CategoryViewModel: BaseViewModel {
-  enum Category: Int, CustomStringConvertible {
-    case All, Unread, Untagged, Public, Private
-    
-    static let allValues = [All, Unread, Untagged, Public, Private]
-    
-    var description: String {
-      switch self {
-      case .All:      return "All"
-      case .Unread:   return "Unread"
-      case .Untagged: return "Untagged"
-      case .Public:   return "Public"
-      case .Private:  return "Private"
-      }
+    enum Category: Int, CustomStringConvertible {
+        case all, unread, untagged, `public`, `private`
+        
+        static let allValues = [all, unread, untagged, `public`, `private`]
+        
+        var description: String {
+            switch self {
+            case .all:      return "All"
+            case .unread:   return "Unread"
+            case .untagged: return "Untagged"
+            case .public:   return "Public"
+            case .private:  return "Private"
+            }
+        }
     }
-  }
-  
-  var title: String {
-    return "Bookmarks"
-  }
-  
-  var isLoggedIn: Bool {
-    return NetworkClient.sharedInstance.accessToken != nil
-  }
-  
-  var rightBarButtonText: String {
-    return isLoggedIn ? "Sign out" : "Sign in"
-  }
+    
+    var title: String {
+        return "Bookmarks"
+    }
+    
+    var isLoggedIn: Bool {
+        let isLoggedIn = NetworkClient.sharedInstance.accessToken != nil
+        return isLoggedIn
+    }
+    
+    var leftBarButtonText: String {
+        return isLoggedIn ? "Sign out" : "Sign in"
+    }
 }

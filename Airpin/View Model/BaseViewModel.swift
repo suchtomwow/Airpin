@@ -7,5 +7,5 @@
 //
 
 protocol BaseViewModel {
-  var title: String { get }
+    var title: String { get }
 }

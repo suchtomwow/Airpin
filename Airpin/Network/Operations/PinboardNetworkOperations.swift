@@ -13,66 +13,65 @@ import SwiftyJSON
 typealias BookmarkCompletion = () -> Void
 
 class PinboardNetworkOperations {
-
-  func fetchAllBookmarks(completion completion: BookmarkCompletion) throws {
-    let endpoint = Endpoint(resourceTypes: [.Posts, .All])
     
-    try fetchBookmarksWithEndpoint(endpoint, parameters: nil, completion: completion)
-  }
-  
-  func fetchRecentBookmarks(completion: BookmarkCompletion) throws {
-    let endpoint = Endpoint(resourceTypes: [.Posts, .Recent])
-    try fetchBookmarksWithEndpoint(endpoint, completion: completion)
-  }
-  
-  func fetchBookmarksWithEndpoint(endpoint: Endpoint, parameters: [NSURLQueryItem]? = nil, completion: BookmarkCompletion) throws {
-    NetworkClient.sharedInstance.executeRequest(endpoint, parameters: parameters) { result in
-      switch result {
-      case .Success(let json):
-        let posts = json
+    func fetchAllBookmarks(completion: @escaping BookmarkCompletion) throws {
+        let endpoint = Endpoint(resourceTypes: [.posts, .all])
         
-        let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
-        dispatch_async(queue) {
-          for (_, subJson): (String, JSON) in posts {
-            Bookmark.fromJSON(subJson).persist()
-          }
-
-          completion()
+        try fetch(with: endpoint, parameters: nil, completion: completion)
+    }
+    
+    func fetchRecentBookmarks(completion: @escaping BookmarkCompletion) throws {
+        let endpoint = Endpoint(resourceTypes: [.posts, .recent])
+        try fetch(with: endpoint, completion: completion)
+    }
+    
+    func fetch(with endpoint: Endpoint, parameters: [URLQueryItem]? = nil, completion: @escaping BookmarkCompletion) throws {
+        NetworkClient.sharedInstance.executeRequest(with: endpoint, parameters: parameters) { result in
+            switch result {
+            case .success(let json):
+                let posts = json
+                
+                DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async {
+                    for (_, subJson): (String, JSON) in posts {
+                        Bookmark.from(json: subJson).persist()
+                    }
+                    
+                    completion()
+                }
+                
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
         }
+    }
+    
+    func getLastUpdated(completion: @escaping (_ datetime: Date) -> Void) throws {
+        let endpoint = Endpoint(resourceTypes: [.posts, .update])
+        NetworkClient.sharedInstance.executeRequest(with: endpoint) { result in
+            switch result {
+            case .success(let json):
+                let updateTime = json["update_time"].stringValue
+                let datetime = Formatter.JSON.date(from: updateTime)!
+                completion(datetime)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func toggleReadState(toRead: Bool, withURL URL: Foundation.URL, andTitle title: String) {
+        let endpoint = Endpoint(resourceTypes: [.posts, .add])
+        let urlQI = URLQueryItem(name: "url", value: URL.absoluteString)
+        let titleQI = URLQueryItem(name: "description", value: title)
+        let toReadQI = URLQueryItem(name: "toread", value: toRead ? "yes" : "no")
         
-      case .Failure(let error):
-        print(error.localizedDescription)
-      }
+        NetworkClient.sharedInstance.executeRequest(with: endpoint, parameters: [urlQI, titleQI, toReadQI], completion: nil)
     }
-  }
-  
-  func getLastUpdated(completion: (datetime: NSDate) -> Void) throws {
-    let endpoint = Endpoint(resourceTypes: [.Posts, .Update])
-    NetworkClient.sharedInstance.executeRequest(endpoint) { (result: Result<JSON>) in
-      switch result {
-      case .Success(let json):
-        let updateTime = json["update_time"].stringValue
-        let datetime = Formatter.JSON.dateFromString(updateTime)!        
-        completion(datetime: datetime)
-      case .Failure(let error):
-        print(error.localizedDescription)
-      }
+    
+    func delete(with URL: Foundation.URL) {
+        let endpoint = Endpoint(resourceTypes: [.posts, .delete])
+        let urlQI = URLQueryItem(name: "url", value: URL.absoluteString)
+        
+        NetworkClient.sharedInstance.executeRequest(with: endpoint, parameters: [urlQI], completion: nil)
     }
-  }
-  
-  func markBookmarkAsRead(toRead: Bool, withURL URL: NSURL, andTitle title: String) {
-    let endpoint = Endpoint(resourceTypes: [.Posts, .Add])
-    let urlQI = NSURLQueryItem(name: "url", value: URL.absoluteString)
-    let titleQI = NSURLQueryItem(name: "description", value: title)
-    let toReadQI = NSURLQueryItem(name: "toread", value: toRead ? "yes" : "no")
-    
-    NetworkClient.sharedInstance.executeRequest(endpoint, parameters: [urlQI, titleQI, toReadQI], completion: nil)
-  }
-  
-  func deleteBookmarkWithURL(URL: NSURL) {
-    let endpoint = Endpoint(resourceTypes: [.Posts, .Delete])
-    let urlQI = NSURLQueryItem(name: "url", value: URL.absoluteString)
-    
-    NetworkClient.sharedInstance.executeRequest(endpoint, parameters: [urlQI], completion: nil)
-  }
 }

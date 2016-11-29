@@ -9,14 +9,14 @@
 import UIKit
 
 class BLSTextField: UITextField {
-  
-  override func awakeFromNib() {
-    super.awakeFromNib()
     
-    configureView()
-  }
-  
-  func configureView() {
-
-  }
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        configureView()
+    }
+    
+    func configureView() {
+        
+    }
 }

@@ -9,19 +9,19 @@
 import Foundation
 
 class Formatter {
-   static var JSON: NSDateFormatter {
-    let formatter = NSDateFormatter()
-    formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+    static var JSON: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        
+        return formatter
+    }
     
-    return formatter
-  }
-  
-  static var humanTime: NSDateFormatter {
-    let formatter = NSDateFormatter()
-    formatter.timeStyle = .NoStyle
-    formatter.dateStyle = .MediumStyle
-    formatter.doesRelativeDateFormatting = true
-    
-    return formatter
-  }
+    static var humanTime: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.timeStyle = .none
+        formatter.dateStyle = .medium
+        formatter.doesRelativeDateFormatting = true
+        
+        return formatter
+    }
 }

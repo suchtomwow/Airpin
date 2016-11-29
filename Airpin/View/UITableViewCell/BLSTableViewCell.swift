@@ -9,52 +9,52 @@
 import UIKit
 
 class BLSTableViewCell: UITableViewCell {
-  
-  lazy var separator: UIView = {
-    let separator = UIView()
-    separator.translatesAutoresizingMaskIntoConstraints = false
-    self.contentView.addSubview(separator)
-    return separator
-  }()
-  
-  override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-    super.init(style: style, reuseIdentifier: reuseIdentifier)
     
-    commonInit()
-  }
-
-  required init?(coder aDecoder: NSCoder) {
-    super.init(coder: aDecoder)
+    lazy var separator: UIView = {
+        let separator = UIView()
+        separator.translatesAutoresizingMaskIntoConstraints = false
+        self.contentView.addSubview(separator)
+        return separator
+    }()
     
-    commonInit()
-  }
-  
-  override func awakeFromNib() {
-    super.awakeFromNib()
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        commonInit()
+    }
     
-    commonInit()
-  }
-  
-  func commonInit() {
-    configureView()
-    configureConstraints()
-    configureCellSeparator()
-    configureStyles()
-  }
-  
-  func configureView() { }
-  
-  func configureConstraints() { }
-  
-  func configureCellSeparator() {
-    separator.bottomAnchor.constraintEqualToAnchor(contentView.bottomAnchor).active = true
-    separator.leadingAnchor.constraintEqualToAnchor(contentView.leadingAnchor).active = true
-    separator.trailingAnchor.constraintEqualToAnchor(contentView.trailingAnchor).active = true
-    separator.heightAnchor.constraintEqualToConstant(2.0).active = true
-  }
-  
-  func configureStyles() {
-    selectionStyle            = .None
-    separator.backgroundColor = UIColor.tableViewAccent()
-  }
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        commonInit()
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        commonInit()
+    }
+    
+    func commonInit() {
+        configureView()
+        configureConstraints()
+        configureCellSeparator()
+        configureStyles()
+    }
+    
+    func configureView() { }
+    
+    func configureConstraints() { }
+    
+    func configureCellSeparator() {
+        separator.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+        separator.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+        separator.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
+        separator.heightAnchor.constraint(equalToConstant: 1.0).isActive = true
+    }
+    
+    func configureStyles() {
+        selectionStyle            = .none
+        separator.backgroundColor = .tableViewAccent
+    }
 }
