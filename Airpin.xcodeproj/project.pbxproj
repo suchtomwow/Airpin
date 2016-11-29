@@ -107,6 +107,7 @@
 		E99EC7F91B2AAEB500A7BB19 /* Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Playground.playground; sourceTree = "<group>"; };
 		E9A2A95C1D408EA600B82006 /* ModalTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModalTransition.swift; path = Modal/ModalTransition.swift; sourceTree = "<group>"; };
 		E9A36E7D1D407BD80001A50A /* AlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlertController.swift; path = Modal/AlertController.swift; sourceTree = "<group>"; };
+		E9BA7AC61DED2CDE009433C3 /* Airpin.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Airpin.entitlements; sourceTree = "<group>"; };
 		E9BC04DB1D9972490076D399 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		E9BC04DC1D9972490076D399 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		E9F451621CC1E9A5001AC1CB /* TokenEntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TokenEntryViewController.swift; path = "Token Entry/TokenEntryViewController.swift"; sourceTree = "<group>"; };
@@ -171,6 +172,7 @@
 		9865E5001AD4E82100201BC5 /* Airpin */ = {
 			isa = PBXGroup;
 			children = (
+				E9BA7AC61DED2CDE009433C3 /* Airpin.entitlements */,
 				E9AB33761CFE06750096B988 /* Modal */,
 				E9F451641CC1E9AB001AC1CB /* Token Entry */,
 				E9F66FCD1C81681B003F17D3 /* Categories */,
@@ -388,6 +390,11 @@
 						CreatedOnToolsVersion = 6.2;
 						DevelopmentTeam = H8B2H49X66;
 						LastSwiftMigration = 0800;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					E96101D31B2D4A0900D36C0C = {
 						CreatedOnToolsVersion = 7.0;
@@ -715,6 +722,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Airpin/Airpin.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -742,6 +750,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Airpin/Airpin.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
