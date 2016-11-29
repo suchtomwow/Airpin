@@ -8,10 +8,10 @@
 
 import UIKit
 
-enum UserDefault: String {
-    case updateTime = "com.bls.airpin.updateTime"
-    case hasDismissedTokenPrompt = "com.bls.airpin.hasDismissedTokenPrompt"
-    case pinboardUsername = "com.bls.pinboardUsername"
+enum UserDefault {
+    static let updateTime = "com.bls.airpin.updateTime"
+    static let hasDismissedTokenPrompt = "com.bls.airpin.hasDismissedTokenPrompt"
+    static let pinboardUsername = "com.bls.pinboardUsername"
 }
 
 enum Segue: String {

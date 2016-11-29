@@ -30,7 +30,7 @@ class CategoryViewController: BaseViewController {
         super.viewDidAppear(animated)
         
         let loggedIn = viewModel.isLoggedIn
-        let hasSeen = UserDefaults.standard.bool(forKey: UserDefault.hasDismissedTokenPrompt.rawValue)
+        let hasSeen = UserDefaults.standard.bool(forKey: UserDefault.hasDismissedTokenPrompt)
         
         if !loggedIn && !hasSeen {
             perform(#selector(CategoryViewController.showTokenEntry), with: nil, afterDelay: 1)

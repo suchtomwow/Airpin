@@ -48,15 +48,15 @@ struct PinboardAccount: GenericPasswordSecureStorable, CreateableSecureStorable,
     func storeUsernameInUserDefaults() {
         let defaults = UserDefaults.standard
         
-        defaults.setValue(username, forKey: UserDefault.pinboardUsername.rawValue)
+        defaults.setValue(username, forKey: UserDefault.pinboardUsername)
         defaults.synchronize()
     }
     
     static func readFromKeychain() -> PinboardAccount? {
         let defaults = UserDefaults.standard
         
-        if let username = defaults.string(forKey: UserDefault.pinboardUsername.rawValue),
-            let data = Locksmith.loadDataForUserAccount(userAccount: username, inService: KeychainServiceIdentifier),
+        if let username = defaults.string(forKey: UserDefault.pinboardUsername),
+            let data = try Locksmith.loadDataForUserAccount(userAccount: username, inService: KeychainServiceIdentifier),
             let password = data[PasswordDefine] as? String {
             
             let account = PinboardAccount(account: username, password: password)
