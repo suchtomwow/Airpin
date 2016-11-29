@@ -18,7 +18,7 @@ class CategoryViewController: BaseViewController {
     // MARK: - View lifecycle -
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue == Segue.bookmarkViewController, let controller = segue.destination as? BookmarkViewController, let indexPath = sender as? IndexPath {
+        if segue == Segue.bookmarkListViewController, let controller = segue.destination as? BookmarkListViewController, let indexPath = sender as? IndexPath {
             let category = CategoryViewModel.Category(rawValue: indexPath.row)
             controller.category = category
         } else if segue == Segue.tokenEntryViewController, let controller = segue.destination as? TokenEntryViewController {
@@ -109,7 +109,7 @@ extension CategoryViewController: UITableViewDataSource {
 
 extension CategoryViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: Segue.bookmarkViewController.rawValue, sender: indexPath)
+        performSegue(withIdentifier: Segue.bookmarkListViewController.rawValue, sender: indexPath)
     }
 }
 

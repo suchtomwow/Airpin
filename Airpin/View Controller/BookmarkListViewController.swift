@@ -9,16 +9,16 @@
 import UIKit
 import SafariServices
 
-class BookmarkViewController: BaseViewController {
+class BookmarkListViewController: BaseViewController {
     
     @IBOutlet weak var tableView: BLSTableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    var viewModel: BookmarkViewModel!
+    var viewModel: BookmarkListViewModel!
     
     var category: CategoryViewModel.Category! {
         didSet {
-            viewModel = BookmarkViewModel(category: category)
+            viewModel = BookmarkListViewModel(category: category)
         }
     }
     
@@ -39,7 +39,7 @@ class BookmarkViewController: BaseViewController {
         activityIndicator.hidesWhenStopped = true
         activityIndicator.startAnimating()
         
-        tableView.register(BookmarkTableViewCell.self, forCellReuseIdentifier: String(describing: BookmarkTableViewCell.self))
+        tableView.register(BookmarkListTableViewCell.self, forCellReuseIdentifier: String(describing: BookmarkListTableViewCell.self))
         tableView.rowHeight          = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 120.0
     }
@@ -61,13 +61,13 @@ class BookmarkViewController: BaseViewController {
     }
 }
 
-extension BookmarkViewController: UITableViewDataSource {
+extension BookmarkListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.bookmarks?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: BookmarkTableViewCell.self), for: indexPath) as! BookmarkTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: BookmarkListTableViewCell.self), for: indexPath) as! BookmarkListTableViewCell
         
         let bookmark = viewModel.bookmarks![indexPath.row]
         cell.configureWithBookmark(bookmark)
@@ -76,7 +76,7 @@ extension BookmarkViewController: UITableViewDataSource {
     }
 }
 
-extension BookmarkViewController: UITableViewDelegate {
+extension BookmarkListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let bookmark = viewModel.bookmarks![indexPath.row]
         

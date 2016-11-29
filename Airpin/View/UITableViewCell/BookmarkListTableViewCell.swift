@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BookmarkTableViewCell: BLSTableViewCell {
+class BookmarkListTableViewCell: BLSTableViewCell {
     let title    = UILabel()
     let date     = UILabel()
     let subtitle = UILabel()

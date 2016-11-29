@@ -15,7 +15,7 @@ enum UserDefault: String {
 }
 
 enum Segue: String {
-    case bookmarkViewController
+    case bookmarkListViewController
     case tokenEntryViewController
 }
 

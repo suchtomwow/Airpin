@@ -34,7 +34,7 @@ class CategoryViewModel: BaseViewModel {
         return isLoggedIn
     }
     
-    var rightBarButtonText: String {
+    var leftBarButtonText: String {
         return isLoggedIn ? "Sign out" : "Sign in"
     }
 }

@@ -24,9 +24,9 @@
 		98F0039C1AD4F8F300769486 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F0039B1AD4F8F300769486 /* Endpoint.swift */; };
 		98F0039E1AD4FDF900769486 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F0039D1AD4FDF900769486 /* Resource.swift */; };
 		E90012401B22CB5F0067F023 /* BLSTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E900123F1B22CB5F0067F023 /* BLSTextField.swift */; };
-		E91A6A8E1BC8E23000401B54 /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91A6A8D1BC8E23000401B54 /* BookmarkViewController.swift */; };
-		E91A6A901BC8E35300401B54 /* BookmarkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91A6A8F1BC8E35300401B54 /* BookmarkViewModel.swift */; };
-		E91FEDF91BE089C9004187F3 /* BookmarkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91FEDF81BE089C9004187F3 /* BookmarkTableViewCell.swift */; };
+		E91A6A8E1BC8E23000401B54 /* BookmarkListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91A6A8D1BC8E23000401B54 /* BookmarkListViewController.swift */; };
+		E91A6A901BC8E35300401B54 /* BookmarkListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91A6A8F1BC8E35300401B54 /* BookmarkListViewModel.swift */; };
+		E91FEDF91BE089C9004187F3 /* BookmarkListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91FEDF81BE089C9004187F3 /* BookmarkListTableViewCell.swift */; };
 		E91FEDFC1BE098BB004187F3 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91FEDFB1BE098BB004187F3 /* Tag.swift */; };
 		E93228CB1CC1FD3900121A97 /* TokenEntryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93228CA1CC1FD3900121A97 /* TokenEntryViewModel.swift */; };
 		E93228CD1CC498AA00121A97 /* PinboardAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93228CC1CC498AA00121A97 /* PinboardAccount.swift */; };
@@ -85,9 +85,9 @@
 		D7EB01D385574C7C045C4174 /* Pods-Airpin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Airpin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Airpin/Pods-Airpin.debug.xcconfig"; sourceTree = "<group>"; };
 		E8CA1BC3907319D904BCABD1 /* Pods-Airpin Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Airpin Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Airpin Tests/Pods-Airpin Tests.release.xcconfig"; sourceTree = "<group>"; };
 		E900123F1B22CB5F0067F023 /* BLSTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BLSTextField.swift; path = "View/Base Subclass/BLSTextField.swift"; sourceTree = "<group>"; };
-		E91A6A8D1BC8E23000401B54 /* BookmarkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BookmarkViewController.swift; path = "View Controller/BookmarkViewController.swift"; sourceTree = "<group>"; };
-		E91A6A8F1BC8E35300401B54 /* BookmarkViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BookmarkViewModel.swift; path = "View Model/BookmarkViewModel.swift"; sourceTree = "<group>"; };
-		E91FEDF81BE089C9004187F3 /* BookmarkTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BookmarkTableViewCell.swift; path = View/UITableViewCell/BookmarkTableViewCell.swift; sourceTree = "<group>"; };
+		E91A6A8D1BC8E23000401B54 /* BookmarkListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BookmarkListViewController.swift; path = "View Controller/BookmarkListViewController.swift"; sourceTree = "<group>"; };
+		E91A6A8F1BC8E35300401B54 /* BookmarkListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BookmarkListViewModel.swift; path = "View Model/BookmarkListViewModel.swift"; sourceTree = "<group>"; };
+		E91FEDF81BE089C9004187F3 /* BookmarkListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BookmarkListTableViewCell.swift; path = View/UITableViewCell/BookmarkListTableViewCell.swift; sourceTree = "<group>"; };
 		E91FEDFB1BE098BB004187F3 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tag.swift; path = View/UIButton/Tag.swift; sourceTree = "<group>"; };
 		E93228CA1CC1FD3900121A97 /* TokenEntryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TokenEntryViewModel.swift; path = "Token Entry/TokenEntryViewModel.swift"; sourceTree = "<group>"; };
 		E93228CC1CC498AA00121A97 /* PinboardAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PinboardAccount.swift; path = Network/Pinboard/PinboardAccount.swift; sourceTree = "<group>"; };
@@ -174,7 +174,7 @@
 				E9AB33761CFE06750096B988 /* Modal */,
 				E9F451641CC1E9AB001AC1CB /* Token Entry */,
 				E9F66FCD1C81681B003F17D3 /* Categories */,
-				E9F66FCC1C816800003F17D3 /* Bookmarks */,
+				E9F66FCC1C816800003F17D3 /* Bookmark list */,
 				98B803751AE0C2CB006A1645 /* Extensions */,
 				9865E5281AD4F3B100201BC5 /* Base */,
 				E91FEDFA1BE098A5004187F3 /* Views */,
@@ -308,15 +308,15 @@
 			name = "Token Entry";
 			sourceTree = "<group>";
 		};
-		E9F66FCC1C816800003F17D3 /* Bookmarks */ = {
+		E9F66FCC1C816800003F17D3 /* Bookmark list */ = {
 			isa = PBXGroup;
 			children = (
-				E91A6A8D1BC8E23000401B54 /* BookmarkViewController.swift */,
-				E91A6A8F1BC8E35300401B54 /* BookmarkViewModel.swift */,
-				E91FEDF81BE089C9004187F3 /* BookmarkTableViewCell.swift */,
+				E91A6A8D1BC8E23000401B54 /* BookmarkListViewController.swift */,
+				E91A6A8F1BC8E35300401B54 /* BookmarkListViewModel.swift */,
+				E91FEDF81BE089C9004187F3 /* BookmarkListTableViewCell.swift */,
 				98B8038C1AE0E260006A1645 /* Bookmark.swift */,
 			);
-			name = Bookmarks;
+			name = "Bookmark list";
 			sourceTree = "<group>";
 		};
 		E9F66FCD1C81681B003F17D3 /* Categories */ = {
@@ -547,7 +547,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E91A6A8E1BC8E23000401B54 /* BookmarkViewController.swift in Sources */,
+				E91A6A8E1BC8E23000401B54 /* BookmarkListViewController.swift in Sources */,
 				98B8038A1AE0D4D7006A1645 /* BLSTableView.swift in Sources */,
 				E9F7AA701B6895AD00D742C1 /* Bookmark.swift in Sources */,
 				E98D7E371B5F470200D65A10 /* PinboardNetworkOperations.swift in Sources */,
@@ -561,7 +561,7 @@
 				E99064CD1B6099C50054C503 /* PinboardDiskOperations.swift in Sources */,
 				E9A36E7E1D407BD80001A50A /* AlertController.swift in Sources */,
 				98B803901AE0E3A9006A1645 /* PinboardDataProvider.swift in Sources */,
-				E91A6A901BC8E35300401B54 /* BookmarkViewModel.swift in Sources */,
+				E91A6A901BC8E35300401B54 /* BookmarkListViewModel.swift in Sources */,
 				E94C20951CFCDAD500A1E620 /* Bool.swift in Sources */,
 				98B8037A1AE0C390006A1645 /* SingleLabelTableViewCell.swift in Sources */,
 				E9F66FD11C8185A8003F17D3 /* JTSSloppyNavigationController.swift in Sources */,
@@ -578,7 +578,7 @@
 				E94C20991CFCDAD500A1E620 /* String.swift in Sources */,
 				E93228CD1CC498AA00121A97 /* PinboardAccount.swift in Sources */,
 				E93228CB1CC1FD3900121A97 /* TokenEntryViewModel.swift in Sources */,
-				E91FEDF91BE089C9004187F3 /* BookmarkTableViewCell.swift in Sources */,
+				E91FEDF91BE089C9004187F3 /* BookmarkListTableViewCell.swift in Sources */,
 				E94C20981CFCDAD500A1E620 /* Static.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

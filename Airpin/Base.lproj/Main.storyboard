@@ -43,7 +43,7 @@
                     <navigationItem key="navigationItem" id="u3e-yO-o12"/>
                     <connections>
                         <outlet property="tableView" destination="Dcv-rj-asf" id="1Ud-ga-FSG"/>
-                        <segue destination="c1T-Wu-fxc" kind="show" identifier="bookmarkViewController" id="35T-j5-Cpv"/>
+                        <segue destination="c1T-Wu-fxc" kind="show" identifier="bookmarkListViewController" id="35T-j5-Cpv"/>
                         <segue destination="M82-Yc-O75" kind="presentation" identifier="tokenEntryViewController" id="cxj-cp-Qeb"/>
                     </connections>
                 </viewController>
@@ -141,10 +141,10 @@
             </objects>
             <point key="canvasLocation" x="1982" y="-491"/>
         </scene>
-        <!--Bookmark View Controller-->
+        <!--Bookmark List View Controller-->
         <scene sceneID="H1x-w8-n22">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="c1T-Wu-fxc" customClass="BookmarkViewController" customModule="Airpin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="c1T-Wu-fxc" customClass="BookmarkListViewController" customModule="Airpin" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jEk-5H-weT"/>
                         <viewControllerLayoutGuide type="bottom" id="s17-1y-isb"/>
