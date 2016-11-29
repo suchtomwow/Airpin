@@ -49,7 +49,7 @@ class CategoryViewController: BaseViewController {
         tableView.rowHeight          = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 60
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: viewModel.rightBarButtonText, style: .plain, target: self, action: #selector(CategoryViewController.rightBarButtonItemTapped(_:)))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: viewModel.leftBarButtonText, style: .plain, target: self, action: #selector(CategoryViewController.leftBarButtonItemTapped(_:)))
         
         updateView()
     }
@@ -59,14 +59,14 @@ class CategoryViewController: BaseViewController {
     }
     
     fileprivate func updateView() {
-        navigationItem.rightBarButtonItem?.title = viewModel.rightBarButtonText
+        navigationItem.leftBarButtonItem?.title = viewModel.leftBarButtonText
         tableView.reloadData()
     }
     
     
     // MARK: - Responders -
     
-    func rightBarButtonItemTapped(_ sender: UIBarButtonItem) {
+    func leftBarButtonItemTapped(_ sender: UIBarButtonItem) {
         if let _ = NetworkClient.sharedInstance.accessToken {
             // perform logout
             NetworkClient.sharedInstance.signOut {
