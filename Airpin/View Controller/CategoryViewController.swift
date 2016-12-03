@@ -69,7 +69,7 @@ class CategoryViewController: BaseViewController {
     func leftBarButtonItemTapped(_ sender: UIBarButtonItem) {
         if let _ = NetworkClient.sharedInstance.accessToken {
             // perform logout
-            NetworkClient.sharedInstance.signOut {
+            NetworkClient.shared.signOut {
                 self.updateView()
             }
         } else {
