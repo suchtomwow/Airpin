@@ -10,6 +10,8 @@ import UIKit
 
 enum Icon: String {
     case disclosure = "disclosure"
+    case x = "x"
+
     var image: UIImage? {
         return UIImage(named: self.rawValue)?.withRenderingMode(.alwaysTemplate)
     }

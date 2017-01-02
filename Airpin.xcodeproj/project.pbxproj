@@ -39,6 +39,7 @@
 		E94C209B1CFCDAD500A1E620 /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94C20941CFCDAD500A1E620 /* UIFont.swift */; };
 		E94C209D1CFCDB5000A1E620 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94C209C1CFCDB5000A1E620 /* CategoryViewController.swift */; };
 		E96101D71B2D4A0900D36C0C /* Airpin_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96101D61B2D4A0900D36C0C /* Airpin_Tests.swift */; };
+		E96F044F1E19E464001FB2FF /* HideableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96F044E1E19E464001FB2FF /* HideableButton.swift */; };
 		E98D7E371B5F470200D65A10 /* PinboardNetworkOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98D7E361B5F470200D65A10 /* PinboardNetworkOperations.swift */; };
 		E99064CD1B6099C50054C503 /* PinboardDiskOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99064CC1B6099C50054C503 /* PinboardDiskOperations.swift */; };
 		E9A2A95D1D408EA600B82006 /* ModalTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A2A95C1D408EA600B82006 /* ModalTransition.swift */; };
@@ -102,6 +103,7 @@
 		E96101D41B2D4A0900D36C0C /* Airpin Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Airpin Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E96101D61B2D4A0900D36C0C /* Airpin_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Airpin_Tests.swift; sourceTree = "<group>"; };
 		E96101D81B2D4A0900D36C0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E96F044E1E19E464001FB2FF /* HideableButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HideableButton.swift; path = Buttons/HideableButton.swift; sourceTree = "<group>"; };
 		E98D7E361B5F470200D65A10 /* PinboardNetworkOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PinboardNetworkOperations.swift; path = Network/Operations/PinboardNetworkOperations.swift; sourceTree = "<group>"; };
 		E99064CC1B6099C50054C503 /* PinboardDiskOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PinboardDiskOperations.swift; path = Network/Pinboard/PinboardDiskOperations.swift; sourceTree = "<group>"; };
 		E99EC7F91B2AAEB500A7BB19 /* Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Playground.playground; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 				98B803751AE0C2CB006A1645 /* Extensions */,
 				9865E5281AD4F3B100201BC5 /* Base */,
 				E91FEDFA1BE098A5004187F3 /* Views */,
+				E9FE00031DF37E5D00961131 /* Buttons */,
 				9865E5251AD4F37200201BC5 /* Network */,
 				E9E4AADB1BC8DF1900BB1C73 /* Storyboard */,
 				9865E5031AD4E82100201BC5 /* AppDelegate.swift */,
@@ -329,6 +332,14 @@
 				98B803791AE0C390006A1645 /* SingleLabelTableViewCell.swift */,
 			);
 			name = Categories;
+			sourceTree = "<group>";
+		};
+		E9FE00031DF37E5D00961131 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				E96F044E1E19E464001FB2FF /* HideableButton.swift */,
+			);
+			name = Buttons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -556,6 +567,7 @@
 			files = (
 				E91A6A8E1BC8E23000401B54 /* BookmarkListViewController.swift in Sources */,
 				98B8038A1AE0D4D7006A1645 /* BLSTableView.swift in Sources */,
+				E96F044F1E19E464001FB2FF /* HideableButton.swift in Sources */,
 				E9F7AA701B6895AD00D742C1 /* Bookmark.swift in Sources */,
 				E98D7E371B5F470200D65A10 /* PinboardNetworkOperations.swift in Sources */,
 				9870DA171AE0B4A60088A50C /* BaseViewController.swift in Sources */,
