@@ -95,7 +95,7 @@ class BookmarkListTableViewCell: BLSTableViewCell {
         subtitle.numberOfLines   = 3
         
         disclosure.tintColor     = .tableViewAccent
-        disclosure.image         = Icon.Disclosure.image
+        disclosure.image         = Icon.disclosure.image
     }
     
     private func resetContent() {

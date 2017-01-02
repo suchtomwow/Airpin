@@ -9,7 +9,7 @@
 import UIKit
 
 enum Icon: String {
-    case Disclosure = "disclosure"
+    case disclosure = "disclosure"
     case Arrow = "arrow-icon"
     
     var image: UIImage? {

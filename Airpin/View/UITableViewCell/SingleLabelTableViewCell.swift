@@ -46,6 +46,6 @@ class SingleLabelTableViewCell: BLSTableViewCell {
         super.configureStyles()
         
         disclosure.tintColor = .tableViewAccent
-        disclosure.image = Icon.Disclosure.image
+        disclosure.image = Icon.disclosure.image
     }
 }
