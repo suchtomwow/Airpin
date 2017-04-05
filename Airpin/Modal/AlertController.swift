@@ -35,6 +35,11 @@ class AlertController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    convenience init(error: NSError) {
+        let description = error.localizedDescription
+        self.init(headline: "Hmm...", body: "Hey, try that again!\n\n\(description)", buttonTitle: "Ok", buttonTappedHandler: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
