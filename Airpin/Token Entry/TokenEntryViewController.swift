@@ -26,12 +26,10 @@ class TokenEntryViewController: BaseViewController {
     
     @IBOutlet weak var description1Label: UILabel!
     @IBOutlet weak var textField: UITextField!
-    @IBOutlet weak var affirmativeCTA: UIButton!
+    @IBOutlet weak var affirmativeCTA: CTAButton!
     @IBOutlet weak var negativeCTA: UIButton!
 
     private var helpButton = UIButton()
-    
-    @IBOutlet weak var affirmativeCTABottomConstraint: NSLayoutConstraint!
     
     weak var delegate: TokenEntryDelegate?
     
@@ -46,7 +44,7 @@ class TokenEntryViewController: BaseViewController {
             
             helpButton.setTitle(viewDetails.helpButton, for: .normal)
             
-            affirmativeCTA.setAttributedTitle(viewDetails.affirmativeCTA.primaryButton(), for: [])
+            affirmativeCTA.title = viewDetails.affirmativeCTA
             
             negativeCTA.setAttributedTitle(viewDetails.negativeCTA.secondaryButton(), for: [])
         }
@@ -74,8 +72,6 @@ class TokenEntryViewController: BaseViewController {
         textField.rightView = helpButton
         textField.rightViewMode = .unlessEditing
         textField.clearButtonMode = .whileEditing
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(TokenEntryViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
     }
     
     override func configureStyles() {
@@ -91,8 +87,6 @@ class TokenEntryViewController: BaseViewController {
         helpButton.backgroundColor = UIColor.white
         helpButton.setTitleColor(.tertiaryText, for: .normal)
         helpButton.alpha = 0.5
-        
-        affirmativeCTA.backgroundColor = .complementary
     }
     
     private func configureTextFieldBottomBorder() {
@@ -156,27 +150,6 @@ class TokenEntryViewController: BaseViewController {
         
         let svc = SFSafariViewController(url: url)
         present(svc, animated: true, completion: nil)
-    }
-    
-    
-    // MARK: Observers
-    
-    func keyboardWillShow(_ sender: Notification) {
-        if let userInfo = sender.userInfo,
-           let animationCurve = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber,
-           let animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? Double,
-           let endFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue  {
-            
-            let keyboardHeight = endFrame.height
-            
-            affirmativeCTABottomConstraint.constant = keyboardHeight
-            
-            let curve = UIViewAnimationOptions(rawValue: UInt((animationCurve).intValue << 16))
-            
-            UIView.animate(withDuration: animationDuration, delay: 0.0, options: [curve], animations: {
-                self.view.layoutIfNeeded()
-            }, completion: nil)
-        }
     }
     
     
