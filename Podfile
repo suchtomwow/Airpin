@@ -12,6 +12,7 @@ target 'Airpin' do
   pod 'Locksmith', '3.0.0'
   pod 'Crashlytics', '3.8.3'
   pod 'Fabric', '1.6.11'
+  pod 'Eureka', '~> 2.0.0-beta.1'
   
 end
 

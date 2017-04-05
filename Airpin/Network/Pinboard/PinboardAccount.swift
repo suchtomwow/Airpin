@@ -8,12 +8,13 @@
 
 import Locksmith
 
-let PasswordDefine = "password"
 let KeychainServiceIdentifier = Bundle.main.bundleIdentifier!
 
 struct PinboardAccount: GenericPasswordSecureStorable, CreateableSecureStorable, DeleteableSecureStorable {
     let username: String
     let password: String
+    
+    static let PasswordKey = "password"
     
     var token: String {
         let token = "\(username):\(password)"
@@ -37,7 +38,7 @@ struct PinboardAccount: GenericPasswordSecureStorable, CreateableSecureStorable,
     }
     
     var data: [String: Any] {
-        return [PasswordDefine: password as AnyObject]
+        return [PinboardAccount.PasswordKey: password]
     }
     
     func storeInKeychain() throws {
@@ -56,8 +57,8 @@ struct PinboardAccount: GenericPasswordSecureStorable, CreateableSecureStorable,
         let defaults = UserDefaults.standard
         
         if let username = defaults.string(forKey: UserDefault.pinboardUsername),
-            let data = try Locksmith.loadDataForUserAccount(userAccount: username, inService: KeychainServiceIdentifier),
-            let password = data[PasswordDefine] as? String {
+            let data = Locksmith.loadDataForUserAccount(userAccount: username, inService: KeychainServiceIdentifier),
+            let password = data[PasswordKey] as? String {
             
             let account = PinboardAccount(account: username, password: password)
             

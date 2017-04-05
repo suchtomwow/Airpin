@@ -59,13 +59,8 @@ class PinboardNetworkOperations {
         }
     }
     
-    func toggleReadState(toRead: Bool, withURL URL: Foundation.URL, andTitle title: String) {
-        let endpoint = Endpoint(resourceTypes: [.posts, .add])
-        let urlQI = URLQueryItem(name: "url", value: URL.absoluteString)
-        let titleQI = URLQueryItem(name: "description", value: title)
-        let toReadQI = URLQueryItem(name: "toread", value: toRead ? "yes" : "no")
-        
-        NetworkClient.shared.executeRequest(with: endpoint, parameters: [urlQI, titleQI, toReadQI], completion: nil)
+    func toggleReadState(toRead: Bool, for bookmark: Bookmark, completion: ((Result<Bool>) -> ())?) {
+        addBookmark(with: bookmark.url, title: bookmark.title, description: bookmark.description, isPrivate: !bookmark.shared, toRead: toRead, tags: bookmark.userTags, completion: completion)
     }
     
     func delete(with URL: Foundation.URL) {
@@ -73,5 +68,24 @@ class PinboardNetworkOperations {
         let urlQI = URLQueryItem(name: "url", value: URL.absoluteString)
         
         NetworkClient.shared.executeRequest(with: endpoint, parameters: [urlQI], completion: nil)
+    }
+    
+    func addBookmark(with url: URL, title: String, description: String?, isPrivate: Bool, toRead: Bool, tags: String, completion: ((Result<Bool>) -> ())?) {
+        let endpoint = Endpoint(resourceTypes: [.posts, .add])
+        let urlQI = URLQueryItem(name: "url", value: url.absoluteString)
+        let titleQI = URLQueryItem(name: "description", value: title)
+        let descriptionQI = URLQueryItem(name: "extended", value: description)
+        let toReadQI = URLQueryItem(name: "toread", value: toRead ? "yes" : "no")
+        let privacyQI = URLQueryItem(name: "isshared", value: isPrivate ? "no" : "yes")
+        let tagsQI = URLQueryItem(name: "tags", value: tags)
+
+        NetworkClient.shared.executeRequest(with: endpoint, parameters: [urlQI, titleQI, descriptionQI, toReadQI, privacyQI, tagsQI]) { result in
+            switch result {
+            case .success:
+                completion?(Result.success(true))
+            case .failure(let error):
+                completion?(Result.failure(error))
+            }
+        }
     }
 }

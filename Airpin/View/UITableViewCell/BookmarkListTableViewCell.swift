@@ -119,8 +119,8 @@ class BookmarkListTableViewCell: BLSTableViewCell {
         
         let datetime  = Formatter.humanTime.string(from: bookmark.datetime)
         
-        for tag in bookmark.tagsArray {
-            let tagButton = Tag(label: tag)
+        for tag in bookmark.tags {
+            let tagButton = TagButton(bookmarkTag: tag)
             tagStackView.addArrangedSubview(tagButton)
         }
         
@@ -132,6 +132,6 @@ class BookmarkListTableViewCell: BLSTableViewCell {
         
         title.isHidden        = titleString.characters.count == 0
         subtitle.isHidden     = description.characters.count == 0
-        tagStackView.isHidden = bookmark.tagsArray.count == 0
+        tagStackView.isHidden = bookmark.tags.count == 0
     }
 }

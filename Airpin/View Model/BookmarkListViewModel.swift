@@ -68,7 +68,7 @@ class BookmarkListViewModel: BaseViewModel {
     }
     
     private func fetchUntaggedBookmarks(completion: @escaping () -> Void) {
-        fetchBookmarks(filter: { $0.tagsArray.count == 0 }, completion: completion)
+        fetchBookmarks(filter: { $0.tags.count == 0 }, completion: completion)
     }
     
     private func fetchPublicBookmarks(completion: @escaping () -> Void) {

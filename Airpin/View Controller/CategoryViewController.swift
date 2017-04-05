@@ -51,6 +51,8 @@ class CategoryViewController: BaseViewController {
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: viewModel.leftBarButtonText, style: .plain, target: self, action: #selector(CategoryViewController.leftBarButtonItemTapped(_:)))
         
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "New", style: .plain, target: self, action: #selector(CategoryViewController.rightBarButtonItemTapped(_:)))
+        
         updateView()
     }
     
@@ -63,18 +65,31 @@ class CategoryViewController: BaseViewController {
         tableView.reloadData()
     }
     
+    fileprivate func segueToTokenEntry() {
+        performSegue(withIdentifier: Segue.tokenEntryViewController.rawValue, sender: nil)
+    }
+    
     
     // MARK: - Responders -
     
     func leftBarButtonItemTapped(_ sender: UIBarButtonItem) {
-        if let _ = NetworkClient.sharedInstance.accessToken {
+        if viewModel.isLoggedIn {
             // perform logout
             NetworkClient.shared.signOut {
                 self.updateView()
             }
         } else {
             // perform sign in
-            performSegue(withIdentifier: Segue.tokenEntryViewController.rawValue, sender: nil)
+            segueToTokenEntry()
+        }
+    }
+    
+    func rightBarButtonItemTapped(_ sender: UIBarButtonItem) {
+        if viewModel.isLoggedIn {
+            let detailsController = BookmarkDetailsViewController.presentable(mode: .create, delegate: self)
+            present(detailsController, animated: true)
+        } else {
+            segueToTokenEntry()
         }
     }
 }
@@ -122,6 +137,15 @@ extension CategoryViewController: TokenEntryDelegate {
             updateView()
         }
         
+        dismiss(animated: true, completion: nil)
+    }
+}
+
+
+// MARK: - BookmarkDetailsViewControllerDelegate -
+
+extension CategoryViewController: BookmarkDetailsViewControllerDelegate {
+    func didAdd(_ bookmark: Bookmark) {
         dismiss(animated: true, completion: nil)
     }
 }

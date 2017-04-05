@@ -8,12 +8,12 @@
 
 import UIKit
 
-class Tag: UIButton {
-    let label: String
+class TagButton: UIButton {
+    let bookmarkTag: BookmarkTag
     
-    init(label: String) {
-        self.label = label
-        
+    init(bookmarkTag: BookmarkTag) {
+        self.bookmarkTag = bookmarkTag
+
         super.init(frame: CGRect.zero)
         
         commonInit()
@@ -33,7 +33,7 @@ class Tag: UIButton {
         clipsToBounds      = true
         layer.cornerRadius = 2
         
-        setAttributedTitle(label.tag(alignment: .center), for: [])
+        setAttributedTitle(bookmarkTag.tag(alignment: .center), for: [])
     }
     
     func configureStyles() {

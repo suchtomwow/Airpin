@@ -79,7 +79,7 @@
                                     <action selector="negativeCTATapped:" destination="M82-Yc-O75" eventType="touchUpInside" id="JsR-JC-6iM"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3U4-j2-qPe">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3U4-j2-qPe" customClass="CTAButton" customModule="Airpin" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="617" width="375" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Bhw-C1-PBd"/>
@@ -130,8 +130,8 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="affirmativeCTA" destination="3U4-j2-qPe" id="Zk7-YA-SOA"/>
-                        <outlet property="affirmativeCTABottomConstraint" destination="s3z-xK-NQ8" id="whN-p8-m79"/>
+                        <outlet property="adjustableConstraintForKeyboardAppearance" destination="s3z-xK-NQ8" id="3SK-vc-ZxM"/>
+                        <outlet property="affirmativeCTA" destination="3U4-j2-qPe" id="fXi-LA-14V"/>
                         <outlet property="description1Label" destination="494-dA-Q6T" id="4gy-EO-Xdv"/>
                         <outlet property="negativeCTA" destination="1f4-yG-CNE" id="Thu-pQ-94Y"/>
                         <outlet property="textField" destination="VP2-4o-Swn" id="Gne-eF-4u9"/>

@@ -35,11 +35,12 @@ class Bookmark: Object {
     dynamic var title:     String = ""// API: "description", max 256 characters
     dynamic var desc:      String = ""// API: "extended", max 65536 characters
     dynamic var meta:      String = ""// API: "meta", if different than stored, update
-    dynamic var datetime:  Date = Date(timeIntervalSince1970: 1)// API: "time"
+    dynamic var datetime:  Date   = Date()// API: "time"
     dynamic var shared:    Bool   = false// API: "shared", private/public
     dynamic var toRead:    Bool   = false// API: "toread"
     dynamic var userTags:  String = ""// API: "tags", space delimited list of words
-    
+
+    /// This is less dumb than it looks. If you implement an intializer to do the same thing, then you have to override a normal init as well as an init with Realm, which if you have time to figure out how to do, go for it.
     class func from(json: JSON) -> Bookmark {
         let bookmark       = Bookmark()
         bookmark.pbHash    = json["hash"].stringValue
@@ -55,6 +56,10 @@ class Bookmark: Object {
         return bookmark
     }
     
+    override static func ignoredProperties() -> [String] {
+        return ["url", "displayURL", "readState", "tags"]
+    }
+    
     func persist() {
         do {
             let realm = try Realm()
@@ -67,12 +72,17 @@ class Bookmark: Object {
         }
     }
     
-    var URL: Foundation.URL {
-        return Foundation.URL(string: urlString.trim())!
+    var url: Foundation.URL {
+        set {
+            urlString = newValue.absoluteString
+        }
+        get {
+            return URL(string: urlString.trim())!
+        }
     }
     
     var displayURL: String {
-        return URL.host!
+        return url.host!
     }
 }
 
@@ -87,7 +97,7 @@ extension Bookmark {
         return toRead == true ? .unread : .read
     }
     
-    var tagsArray: [String] {
+    var tags: [BookmarkTag] {
         return userTags.characters.split(separator: " ").map { String($0) }
     }
 }

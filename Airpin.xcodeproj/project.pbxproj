@@ -27,7 +27,7 @@
 		E91A6A8E1BC8E23000401B54 /* BookmarkListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91A6A8D1BC8E23000401B54 /* BookmarkListViewController.swift */; };
 		E91A6A901BC8E35300401B54 /* BookmarkListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91A6A8F1BC8E35300401B54 /* BookmarkListViewModel.swift */; };
 		E91FEDF91BE089C9004187F3 /* BookmarkListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91FEDF81BE089C9004187F3 /* BookmarkListTableViewCell.swift */; };
-		E91FEDFC1BE098BB004187F3 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91FEDFB1BE098BB004187F3 /* Tag.swift */; };
+		E91FEDFC1BE098BB004187F3 /* TagButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91FEDFB1BE098BB004187F3 /* TagButton.swift */; };
 		E93228CB1CC1FD3900121A97 /* TokenEntryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93228CA1CC1FD3900121A97 /* TokenEntryViewModel.swift */; };
 		E93228CD1CC498AA00121A97 /* PinboardAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93228CC1CC498AA00121A97 /* PinboardAccount.swift */; };
 		E94C20951CFCDAD500A1E620 /* Bool.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94C208E1CFCDAD500A1E620 /* Bool.swift */; };
@@ -40,15 +40,20 @@
 		E94C209D1CFCDB5000A1E620 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94C209C1CFCDB5000A1E620 /* CategoryViewController.swift */; };
 		E96101D71B2D4A0900D36C0C /* Airpin_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96101D61B2D4A0900D36C0C /* Airpin_Tests.swift */; };
 		E96F044F1E19E464001FB2FF /* HideableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96F044E1E19E464001FB2FF /* HideableButton.swift */; };
+		E96F04521E19F398001FB2FF /* PasteableURLRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96F04511E19F398001FB2FF /* PasteableURLRow.swift */; };
 		E98D7E371B5F470200D65A10 /* PinboardNetworkOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98D7E361B5F470200D65A10 /* PinboardNetworkOperations.swift */; };
 		E99064CD1B6099C50054C503 /* PinboardDiskOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99064CC1B6099C50054C503 /* PinboardDiskOperations.swift */; };
 		E9A2A95D1D408EA600B82006 /* ModalTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A2A95C1D408EA600B82006 /* ModalTransition.swift */; };
 		E9A36E7E1D407BD80001A50A /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A36E7D1D407BD80001A50A /* AlertController.swift */; };
 		E9BC04DD1D9972490076D399 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9BC04DB1D9972490076D399 /* Fabric.framework */; };
 		E9BC04DE1D9972490076D399 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9BC04DC1D9972490076D399 /* Crashlytics.framework */; };
+		E9CF69601E38588B00BDE099 /* Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CF695F1E38588B00BDE099 /* Bookmark.swift */; };
+		E9DBB8251DED1A6D00CA8A41 /* BookmarkDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DBB8241DED1A6D00CA8A41 /* BookmarkDetailsViewController.swift */; };
+		E9DBB8271DED1A9400CA8A41 /* BookmarkDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DBB8261DED1A9400CA8A41 /* BookmarkDetailsViewModel.swift */; };
 		E9F451631CC1E9A5001AC1CB /* TokenEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F451621CC1E9A5001AC1CB /* TokenEntryViewController.swift */; };
+		E9F5CE151E20ACB600F9EC1A /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F5CE141E20ACB600F9EC1A /* URL.swift */; };
 		E9F66FD11C8185A8003F17D3 /* JTSSloppyNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F66FD01C8185A8003F17D3 /* JTSSloppyNavigationController.swift */; };
-		E9F7AA701B6895AD00D742C1 /* Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B8038C1AE0E260006A1645 /* Bookmark.swift */; };
+		E9FE00051DF37E7500961131 /* CTAButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE00041DF37E7500961131 /* CTAButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,7 +82,6 @@
 		98B803791AE0C390006A1645 /* SingleLabelTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SingleLabelTableViewCell.swift; path = View/UITableViewCell/SingleLabelTableViewCell.swift; sourceTree = "<group>"; };
 		98B8037B1AE0C3D2006A1645 /* BLSTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BLSTableViewCell.swift; path = View/UITableViewCell/BLSTableViewCell.swift; sourceTree = "<group>"; };
 		98B803891AE0D4D7006A1645 /* BLSTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BLSTableView.swift; path = Base/BLSTableView.swift; sourceTree = "<group>"; };
-		98B8038C1AE0E260006A1645 /* Bookmark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Bookmark.swift; path = Model/Bookmark.swift; sourceTree = "<group>"; };
 		98B8038F1AE0E3A9006A1645 /* PinboardDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PinboardDataProvider.swift; path = "Data Provider/PinboardDataProvider.swift"; sourceTree = "<group>"; };
 		98F0039B1AD4F8F300769486 /* Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Endpoint.swift; path = Network/Endpoint.swift; sourceTree = "<group>"; };
 		98F0039D1AD4FDF900769486 /* Resource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Resource.swift; path = Network/Resource.swift; sourceTree = "<group>"; };
@@ -89,7 +93,7 @@
 		E91A6A8D1BC8E23000401B54 /* BookmarkListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BookmarkListViewController.swift; path = "View Controller/BookmarkListViewController.swift"; sourceTree = "<group>"; };
 		E91A6A8F1BC8E35300401B54 /* BookmarkListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BookmarkListViewModel.swift; path = "View Model/BookmarkListViewModel.swift"; sourceTree = "<group>"; };
 		E91FEDF81BE089C9004187F3 /* BookmarkListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BookmarkListTableViewCell.swift; path = View/UITableViewCell/BookmarkListTableViewCell.swift; sourceTree = "<group>"; };
-		E91FEDFB1BE098BB004187F3 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tag.swift; path = View/UIButton/Tag.swift; sourceTree = "<group>"; };
+		E91FEDFB1BE098BB004187F3 /* TagButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TagButton.swift; path = View/UIButton/TagButton.swift; sourceTree = "<group>"; };
 		E93228CA1CC1FD3900121A97 /* TokenEntryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TokenEntryViewModel.swift; path = "Token Entry/TokenEntryViewModel.swift"; sourceTree = "<group>"; };
 		E93228CC1CC498AA00121A97 /* PinboardAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PinboardAccount.swift; path = Network/Pinboard/PinboardAccount.swift; sourceTree = "<group>"; };
 		E94C208E1CFCDAD500A1E620 /* Bool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Bool.swift; path = Extensions/Bool.swift; sourceTree = "<group>"; };
@@ -104,16 +108,23 @@
 		E96101D61B2D4A0900D36C0C /* Airpin_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Airpin_Tests.swift; sourceTree = "<group>"; };
 		E96101D81B2D4A0900D36C0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E96F044E1E19E464001FB2FF /* HideableButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HideableButton.swift; path = Buttons/HideableButton.swift; sourceTree = "<group>"; };
+		E96F04511E19F398001FB2FF /* PasteableURLRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PasteableURLRow.swift; path = Eureka/PasteableURLRow.swift; sourceTree = "<group>"; };
 		E98D7E361B5F470200D65A10 /* PinboardNetworkOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PinboardNetworkOperations.swift; path = Network/Operations/PinboardNetworkOperations.swift; sourceTree = "<group>"; };
 		E99064CC1B6099C50054C503 /* PinboardDiskOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PinboardDiskOperations.swift; path = Network/Pinboard/PinboardDiskOperations.swift; sourceTree = "<group>"; };
-		E99EC7F91B2AAEB500A7BB19 /* Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Playground.playground; sourceTree = "<group>"; };
 		E9A2A95C1D408EA600B82006 /* ModalTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModalTransition.swift; path = Modal/ModalTransition.swift; sourceTree = "<group>"; };
 		E9A36E7D1D407BD80001A50A /* AlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlertController.swift; path = Modal/AlertController.swift; sourceTree = "<group>"; };
 		E9BA7AC61DED2CDE009433C3 /* Airpin.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Airpin.entitlements; sourceTree = "<group>"; };
 		E9BC04DB1D9972490076D399 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		E9BC04DC1D9972490076D399 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		E9CF695F1E38588B00BDE099 /* Bookmark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Bookmark.swift; path = Models/Bookmark.swift; sourceTree = "<group>"; };
+		E9CF69641E385A4A00BDE099 /* TagButton.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = TagButton.playground; path = Playgrounds/TagButton.playground; sourceTree = "<group>"; };
+		E9CF69651E385A5D00BDE099 /* TagCollectionView.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = TagCollectionView.playground; path = Playgrounds/TagCollectionView.playground; sourceTree = "<group>"; };
+		E9DBB8241DED1A6D00CA8A41 /* BookmarkDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BookmarkDetailsViewController.swift; path = "Bookmark details/BookmarkDetailsViewController.swift"; sourceTree = "<group>"; };
+		E9DBB8261DED1A9400CA8A41 /* BookmarkDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BookmarkDetailsViewModel.swift; path = "Bookmark details/BookmarkDetailsViewModel.swift"; sourceTree = "<group>"; };
 		E9F451621CC1E9A5001AC1CB /* TokenEntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TokenEntryViewController.swift; path = "Token Entry/TokenEntryViewController.swift"; sourceTree = "<group>"; };
+		E9F5CE141E20ACB600F9EC1A /* URL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = URL.swift; path = Extensions/URL.swift; sourceTree = "<group>"; };
 		E9F66FD01C8185A8003F17D3 /* JTSSloppyNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JTSSloppyNavigationController.swift; path = Base/JTSSloppyNavigationController.swift; sourceTree = "<group>"; };
+		E9FE00041DF37E7500961131 /* CTAButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CTAButton.swift; path = Buttons/CTAButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,9 +186,13 @@
 			isa = PBXGroup;
 			children = (
 				E9BA7AC61DED2CDE009433C3 /* Airpin.entitlements */,
+				E9CF69631E385A2200BDE099 /* Playgrounds */,
+				E9CF695E1E38587400BDE099 /* Models */,
+				E96F04501E19F37E001FB2FF /* Eureka */,
 				E9AB33761CFE06750096B988 /* Modal */,
 				E9F451641CC1E9AB001AC1CB /* Token Entry */,
 				E9F66FCD1C81681B003F17D3 /* Categories */,
+				E9DBB8231DED1A4200CA8A41 /* Bookmark details */,
 				E9F66FCC1C816800003F17D3 /* Bookmark list */,
 				98B803751AE0C2CB006A1645 /* Extensions */,
 				9865E5281AD4F3B100201BC5 /* Base */,
@@ -189,7 +204,6 @@
 				9865E50A1AD4E82100201BC5 /* Assets.xcassets */,
 				E9E992041D38C4D300CDE752 /* Frameworks */,
 				9865E5011AD4E82100201BC5 /* Supporting Files */,
-				E99EC7F91B2AAEB500A7BB19 /* Playground.playground */,
 			);
 			path = Airpin;
 			sourceTree = "<group>";
@@ -236,6 +250,7 @@
 				E94C20921CFCDAD500A1E620 /* String.swift */,
 				E94C20931CFCDAD500A1E620 /* UIColor.swift */,
 				E94C20941CFCDAD500A1E620 /* UIFont.swift */,
+				E9F5CE141E20ACB600F9EC1A /* URL.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -243,7 +258,7 @@
 		E91FEDFA1BE098A5004187F3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				E91FEDFB1BE098BB004187F3 /* Tag.swift */,
+				E91FEDFB1BE098BB004187F3 /* TagButton.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -255,6 +270,14 @@
 				E96101D81B2D4A0900D36C0C /* Info.plist */,
 			);
 			path = "Airpin Tests";
+			sourceTree = "<group>";
+		};
+		E96F04501E19F37E001FB2FF /* Eureka */ = {
+			isa = PBXGroup;
+			children = (
+				E96F04511E19F398001FB2FF /* PasteableURLRow.swift */,
+			);
+			name = Eureka;
 			sourceTree = "<group>";
 		};
 		E98D7E351B5F46E700D65A10 /* Pinboard */ = {
@@ -275,6 +298,32 @@
 				E9A2A95C1D408EA600B82006 /* ModalTransition.swift */,
 			);
 			name = Modal;
+			sourceTree = "<group>";
+		};
+		E9CF695E1E38587400BDE099 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E9CF695F1E38588B00BDE099 /* Bookmark.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		E9CF69631E385A2200BDE099 /* Playgrounds */ = {
+			isa = PBXGroup;
+			children = (
+				E9CF69641E385A4A00BDE099 /* TagButton.playground */,
+				E9CF69651E385A5D00BDE099 /* TagCollectionView.playground */,
+			);
+			name = Playgrounds;
+			sourceTree = "<group>";
+		};
+		E9DBB8231DED1A4200CA8A41 /* Bookmark details */ = {
+			isa = PBXGroup;
+			children = (
+				E9DBB8241DED1A6D00CA8A41 /* BookmarkDetailsViewController.swift */,
+				E9DBB8261DED1A9400CA8A41 /* BookmarkDetailsViewModel.swift */,
+			);
+			name = "Bookmark details";
 			sourceTree = "<group>";
 		};
 		E9E4AADB1BC8DF1900BB1C73 /* Storyboard */ = {
@@ -319,7 +368,6 @@
 				E91A6A8D1BC8E23000401B54 /* BookmarkListViewController.swift */,
 				E91A6A8F1BC8E35300401B54 /* BookmarkListViewModel.swift */,
 				E91FEDF81BE089C9004187F3 /* BookmarkListTableViewCell.swift */,
-				98B8038C1AE0E260006A1645 /* Bookmark.swift */,
 			);
 			name = "Bookmark list";
 			sourceTree = "<group>";
@@ -337,6 +385,7 @@
 		E9FE00031DF37E5D00961131 /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				E9FE00041DF37E7500961131 /* CTAButton.swift */,
 				E96F044E1E19E464001FB2FF /* HideableButton.swift */,
 			);
 			name = Buttons;
@@ -394,7 +443,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Thomas Carey";
 				TargetAttributes = {
 					9865E4FD1AD4E82100201BC5 = {
@@ -567,15 +616,18 @@
 			files = (
 				E91A6A8E1BC8E23000401B54 /* BookmarkListViewController.swift in Sources */,
 				98B8038A1AE0D4D7006A1645 /* BLSTableView.swift in Sources */,
+				E9FE00051DF37E7500961131 /* CTAButton.swift in Sources */,
 				E96F044F1E19E464001FB2FF /* HideableButton.swift in Sources */,
-				E9F7AA701B6895AD00D742C1 /* Bookmark.swift in Sources */,
+				E9F5CE151E20ACB600F9EC1A /* URL.swift in Sources */,
 				E98D7E371B5F470200D65A10 /* PinboardNetworkOperations.swift in Sources */,
 				9870DA171AE0B4A60088A50C /* BaseViewController.swift in Sources */,
-				E91FEDFC1BE098BB004187F3 /* Tag.swift in Sources */,
+				E91FEDFC1BE098BB004187F3 /* TagButton.swift in Sources */,
+				E9CF69601E38588B00BDE099 /* Bookmark.swift in Sources */,
 				E94C20961CFCDAD500A1E620 /* Constant.swift in Sources */,
 				E94C209B1CFCDAD500A1E620 /* UIFont.swift in Sources */,
 				98F0039C1AD4F8F300769486 /* Endpoint.swift in Sources */,
 				9865E5041AD4E82100201BC5 /* AppDelegate.swift in Sources */,
+				E9DBB8271DED1A9400CA8A41 /* BookmarkDetailsViewModel.swift in Sources */,
 				98B8037C1AE0C3D2006A1645 /* BLSTableViewCell.swift in Sources */,
 				E99064CD1B6099C50054C503 /* PinboardDiskOperations.swift in Sources */,
 				E9A36E7E1D407BD80001A50A /* AlertController.swift in Sources */,
@@ -583,6 +635,7 @@
 				E91A6A901BC8E35300401B54 /* BookmarkListViewModel.swift in Sources */,
 				E94C20951CFCDAD500A1E620 /* Bool.swift in Sources */,
 				98B8037A1AE0C390006A1645 /* SingleLabelTableViewCell.swift in Sources */,
+				E9DBB8251DED1A6D00CA8A41 /* BookmarkDetailsViewController.swift in Sources */,
 				E9F66FD11C8185A8003F17D3 /* JTSSloppyNavigationController.swift in Sources */,
 				98F0039E1AD4FDF900769486 /* Resource.swift in Sources */,
 				E9A2A95D1D408EA600B82006 /* ModalTransition.swift in Sources */,
@@ -598,6 +651,7 @@
 				E93228CD1CC498AA00121A97 /* PinboardAccount.swift in Sources */,
 				E93228CB1CC1FD3900121A97 /* TokenEntryViewModel.swift in Sources */,
 				E91FEDF91BE089C9004187F3 /* BookmarkListTableViewCell.swift in Sources */,
+				E96F04521E19F398001FB2FF /* PasteableURLRow.swift in Sources */,
 				E94C20981CFCDAD500A1E620 /* Static.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -679,7 +733,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -720,7 +774,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

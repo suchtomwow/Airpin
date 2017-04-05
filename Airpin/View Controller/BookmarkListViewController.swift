@@ -84,7 +84,7 @@ extension BookmarkListViewController: UITableViewDelegate {
             toggleReadState(at: indexPath)
         }
         
-        let svc = SFSafariViewController(url: bookmark.URL)
+        let svc = SFSafariViewController(url: bookmark.url)
         
         present(svc, animated: true, completion: nil)
     }
