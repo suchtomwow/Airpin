@@ -97,11 +97,11 @@ class HideableButton: UIView {
         ])
     }
 
-    func leftButtonTapped(sender: UIButton) {
+    @objc func leftButtonTapped(sender: UIButton) {
         delegate?.buttonTapped?(button: self)
     }
 
-    func hideButtonTapped(sender: UIButton) {
+    @objc func hideButtonTapped(sender: UIButton) {
         UIView.animate(withDuration: 0.33, animations: { 
             self.alpha = 0.0
         }) { completed in

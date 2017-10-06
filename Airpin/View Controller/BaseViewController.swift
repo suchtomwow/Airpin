@@ -37,7 +37,7 @@ class BaseViewController: UIViewController {
 // MARK: - Keyboard observers -
 
 extension BaseViewController {
-    func keyboardWillChangeAppearance(notification: Notification) {
+    @objc func keyboardWillChangeAppearance(notification: Notification) {
         guard let constraint = adjustableConstraintForKeyboardAppearance else { return }
         
         if let userInfo = notification.userInfo,

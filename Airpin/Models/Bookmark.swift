@@ -30,15 +30,15 @@ class Bookmark: Object {
         return "pbHash"
     }
     
-    dynamic var pbHash:    String = ""// API: "hash", unique identifier
-    dynamic var urlString: String = ""// API: "href"
-    dynamic var title:     String = ""// API: "description", max 256 characters
-    dynamic var desc:      String = ""// API: "extended", max 65536 characters
-    dynamic var meta:      String = ""// API: "meta", if different than stored, update
-    dynamic var datetime:  Date   = Date()// API: "time"
-    dynamic var shared:    Bool   = false// API: "shared", private/public
-    dynamic var toRead:    Bool   = false// API: "toread"
-    dynamic var userTags:  String = ""// API: "tags", space delimited list of words
+    @objc dynamic var pbHash:    String = ""// API: "hash", unique identifier
+    @objc dynamic var urlString: String = ""// API: "href"
+    @objc dynamic var title:     String = ""// API: "description", max 256 characters
+    @objc dynamic var desc:      String = ""// API: "extended", max 65536 characters
+    @objc dynamic var meta:      String = ""// API: "meta", if different than stored, update
+    @objc dynamic var datetime:  Date   = Date()// API: "time"
+    @objc dynamic var shared:    Bool   = false// API: "shared", private/public
+    @objc dynamic var toRead:    Bool   = false// API: "toread"
+    @objc dynamic var userTags:  String = ""// API: "tags", space delimited list of words
 
     /// This is less dumb than it looks. If you implement an intializer to do the same thing, then you have to override a normal init as well as an init with Realm, which if you have time to figure out how to do, go for it.
     class func from(json: JSON) -> Bookmark {

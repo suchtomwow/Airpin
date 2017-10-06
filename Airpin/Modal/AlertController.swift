@@ -49,8 +49,8 @@ class AlertController: BaseViewController {
     override func configureView() {
         super.configureView()
         
-        headline.setContentHuggingPriority(1000, for: .vertical)
-        body.setContentHuggingPriority(1000, for: .vertical)
+        headline.setContentHuggingPriority(UILayoutPriority(rawValue: 1000), for: .vertical)
+        body.setContentHuggingPriority(UILayoutPriority(rawValue: 1000), for: .vertical)
         
         headline.translatesAutoresizingMaskIntoConstraints = false
         body.translatesAutoresizingMaskIntoConstraints = false
@@ -97,11 +97,11 @@ class AlertController: BaseViewController {
         ])
     }
     
-    func dismissAlert() {
+    @objc func dismissAlert() {
         presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
-    func buttonTapped(sender: UIButton?) {
+    @objc func buttonTapped(sender: UIButton?) {
         presentingViewController?.dismiss(animated: true) {
             self.buttonTappedHandler?(sender)
         }

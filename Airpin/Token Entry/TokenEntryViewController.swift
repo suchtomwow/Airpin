@@ -155,7 +155,7 @@ class TokenEntryViewController: BaseViewController {
     
     // MARK: IBActions
     
-    func helpButtonTapped(_ sender: Any) {
+    @objc func helpButtonTapped(_ sender: Any) {
         let headline = "What's my token?"
         let body = "Your token is what gives you access to your bookmarks. Enter it on this screen to create, read, and share your bookmarks. You can find your token in your settings on the Pinboard website.\n\nAirpin stores your token securely in your device's keychain. It cannot be accessed by or shared with anyone other than you."
         let buttonTitle = "Go to Pinboard settings"

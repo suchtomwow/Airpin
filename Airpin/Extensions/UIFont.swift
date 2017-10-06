@@ -82,49 +82,49 @@ extension UIFont {
     
     var thin: UIFont {
         let size = self.pointSize
-        let font = UIFont.systemFont(ofSize: size, weight: UIFontWeightThin)
+        let font = UIFont.systemFont(ofSize: size, weight: .thin)
         return font
     }
     
     var ultraLight: UIFont {
         let size = self.pointSize
-        let font = UIFont.systemFont(ofSize: size, weight: UIFontWeightUltraLight)
+        let font = UIFont.systemFont(ofSize: size, weight: .ultraLight)
         return font
     }
     
     var light: UIFont {
         let size = self.pointSize
-        let font = UIFont.systemFont(ofSize: size, weight: UIFontWeightLight)
+        let font = UIFont.systemFont(ofSize: size, weight: .light)
         return font
     }
     
     var medium: UIFont {
         let size = self.pointSize
-        let font = UIFont.systemFont(ofSize: size, weight: UIFontWeightMedium)
+        let font = UIFont.systemFont(ofSize: size, weight: .medium)
         return font
     }
     
     var semibold: UIFont {
         let size = self.pointSize
-        let font = UIFont.systemFont(ofSize: size, weight: UIFontWeightSemibold)
+        let font = UIFont.systemFont(ofSize: size, weight: .semibold)
         return font
     }
     
     var bold: UIFont {
         let size = self.pointSize
-        let font = UIFont.systemFont(ofSize: size, weight: UIFontWeightBold)
+        let font = UIFont.systemFont(ofSize: size, weight: .bold)
         return font
     }
     
     var heavy: UIFont {
         let size = self.pointSize
-        let font = UIFont.systemFont(ofSize: size, weight: UIFontWeightHeavy)
+        let font = UIFont.systemFont(ofSize: size, weight: .heavy)
         return font
     }
     
     var black: UIFont {
         let size = self.pointSize
-        let font = UIFont.systemFont(ofSize: size, weight: UIFontWeightBlack)
+        let font = UIFont.systemFont(ofSize: size, weight: .black)
         return font
     }
 }

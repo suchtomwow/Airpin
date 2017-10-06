@@ -136,7 +136,7 @@ class BookmarkDetailsViewController: FormViewController {
         ])
     }
     
-    func addButtonTapped(sender: UIButton) {
+    @objc func addButtonTapped(sender: UIButton) {
         viewModel.addBookmark { [weak self] result in
             guard let strongSelf = self else { return }
 
@@ -149,7 +149,7 @@ class BookmarkDetailsViewController: FormViewController {
         }
     }
     
-    func cancelTapped(sender: UIBarButtonItem) {
+    @objc func cancelTapped(sender: UIBarButtonItem) {
         presentingViewController?.dismiss(animated: true, completion: nil)
     }
     

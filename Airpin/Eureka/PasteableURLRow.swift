@@ -48,7 +48,7 @@ class PasteableURLCell: URLCell, HideableButtonDelegate {
         ])
     }
 
-    func pasteboardDidChange(sender: Notification?) {
+    @objc func pasteboardDidChange(sender: Notification?) {
         guard let pasteboardString = UIPasteboard.general.string else {
             showHideableButton = false
             return

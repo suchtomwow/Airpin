@@ -75,9 +75,9 @@ extension String {
         paragraphStyle.lineSpacing = 2
         paragraphStyle.alignment = alignment
         
-        let attributes = [NSParagraphStyleAttributeName: paragraphStyle,
-                          NSFontAttributeName: font,
-                          NSForegroundColorAttributeName: color]
+        let attributes: [NSAttributedStringKey: AnyObject] = [.paragraphStyle: paragraphStyle,
+                                                              .font: font,
+                                                              .foregroundColor: color]
         
         let attributedString = NSAttributedString(string: self, attributes: attributes)
         

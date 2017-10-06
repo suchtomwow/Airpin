@@ -56,7 +56,7 @@ class CategoryViewController: BaseViewController {
         updateView()
     }
     
-    func showTokenEntry() {
+    @objc func showTokenEntry() {
         performSegue(withIdentifier: Segue.tokenEntryViewController.rawValue, sender: nil)
     }
     
@@ -72,7 +72,7 @@ class CategoryViewController: BaseViewController {
     
     // MARK: - Responders -
     
-    func leftBarButtonItemTapped(_ sender: UIBarButtonItem) {
+    @objc func leftBarButtonItemTapped(_ sender: UIBarButtonItem) {
         if viewModel.isLoggedIn {
             // perform logout
             NetworkClient.shared.signOut {
@@ -84,7 +84,7 @@ class CategoryViewController: BaseViewController {
         }
     }
     
-    func rightBarButtonItemTapped(_ sender: UIBarButtonItem) {
+    @objc func rightBarButtonItemTapped(_ sender: UIBarButtonItem) {
         if viewModel.isLoggedIn {
             let detailsController = BookmarkDetailsViewController.presentable(mode: .create, delegate: self)
             present(detailsController, animated: true)
