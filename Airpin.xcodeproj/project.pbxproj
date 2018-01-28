@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1A82BC13669C90536869458F /* Pods_Airpin_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B302A9A729B51B8CBBC497DD /* Pods_Airpin_Tests.framework */; };
+		2F9B7BFD201E78BA0072D09F /* Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9B7BFC201E78B90072D09F /* Bookmark.swift */; };
 		5CEED34AC3662E87270B4156 /* Pods_Airpin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C798048B61585BF34387C30 /* Pods_Airpin.framework */; };
 		9865E5041AD4E82100201BC5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9865E5031AD4E82100201BC5 /* AppDelegate.swift */; };
 		9865E5091AD4E82100201BC5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9865E5071AD4E82100201BC5 /* Main.storyboard */; };
@@ -47,7 +48,6 @@
 		E9A36E7E1D407BD80001A50A /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A36E7D1D407BD80001A50A /* AlertController.swift */; };
 		E9BC04DD1D9972490076D399 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9BC04DB1D9972490076D399 /* Fabric.framework */; };
 		E9BC04DE1D9972490076D399 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9BC04DC1D9972490076D399 /* Crashlytics.framework */; };
-		E9CF69601E38588B00BDE099 /* Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CF695F1E38588B00BDE099 /* Bookmark.swift */; };
 		E9DBB8251DED1A6D00CA8A41 /* BookmarkDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DBB8241DED1A6D00CA8A41 /* BookmarkDetailsViewController.swift */; };
 		E9DBB8271DED1A9400CA8A41 /* BookmarkDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DBB8261DED1A9400CA8A41 /* BookmarkDetailsViewModel.swift */; };
 		E9F451631CC1E9A5001AC1CB /* TokenEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F451621CC1E9A5001AC1CB /* TokenEntryViewController.swift */; };
@@ -68,6 +68,7 @@
 
 /* Begin PBXFileReference section */
 		0C798048B61585BF34387C30 /* Pods_Airpin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Airpin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2F9B7BFC201E78B90072D09F /* Bookmark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bookmark.swift; sourceTree = "<group>"; };
 		7A3E749D206D0E59D6935693 /* Pods-Airpin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Airpin.release.xcconfig"; path = "Pods/Target Support Files/Pods-Airpin/Pods-Airpin.release.xcconfig"; sourceTree = "<group>"; };
 		9865E4FE1AD4E82100201BC5 /* Airpin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Airpin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9865E5021AD4E82100201BC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -75,56 +76,55 @@
 		9865E5081AD4E82100201BC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9865E50A1AD4E82100201BC5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9865E50D1AD4E82100201BC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		9865E5231AD4F36D00201BC5 /* NetworkClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkClient.swift; path = Network/NetworkClient.swift; sourceTree = "<group>"; };
-		9870DA161AE0B4A60088A50C /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseViewController.swift; path = "View Controller/BaseViewController.swift"; sourceTree = "<group>"; };
-		9870DA181AE0B5E10088A50C /* CategoryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryViewModel.swift; path = "View Model/CategoryViewModel.swift"; sourceTree = "<group>"; };
-		9870DA1A1AE0B5F40088A50C /* BaseViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseViewModel.swift; path = "View Model/BaseViewModel.swift"; sourceTree = "<group>"; };
-		98B803791AE0C390006A1645 /* SingleLabelTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SingleLabelTableViewCell.swift; path = View/UITableViewCell/SingleLabelTableViewCell.swift; sourceTree = "<group>"; };
-		98B8037B1AE0C3D2006A1645 /* BLSTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BLSTableViewCell.swift; path = View/UITableViewCell/BLSTableViewCell.swift; sourceTree = "<group>"; };
-		98B803891AE0D4D7006A1645 /* BLSTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BLSTableView.swift; path = Base/BLSTableView.swift; sourceTree = "<group>"; };
-		98B8038F1AE0E3A9006A1645 /* PinboardDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PinboardDataProvider.swift; path = "Data Provider/PinboardDataProvider.swift"; sourceTree = "<group>"; };
-		98F0039B1AD4F8F300769486 /* Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Endpoint.swift; path = Network/Endpoint.swift; sourceTree = "<group>"; };
-		98F0039D1AD4FDF900769486 /* Resource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Resource.swift; path = Network/Resource.swift; sourceTree = "<group>"; };
+		9865E5231AD4F36D00201BC5 /* NetworkClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
+		9870DA161AE0B4A60088A50C /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		9870DA181AE0B5E10088A50C /* CategoryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
+		9870DA1A1AE0B5F40088A50C /* BaseViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
+		98B803791AE0C390006A1645 /* SingleLabelTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleLabelTableViewCell.swift; sourceTree = "<group>"; };
+		98B8037B1AE0C3D2006A1645 /* BLSTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLSTableViewCell.swift; sourceTree = "<group>"; };
+		98B803891AE0D4D7006A1645 /* BLSTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLSTableView.swift; sourceTree = "<group>"; };
+		98B8038F1AE0E3A9006A1645 /* PinboardDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinboardDataProvider.swift; sourceTree = "<group>"; };
+		98F0039B1AD4F8F300769486 /* Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		98F0039D1AD4FDF900769486 /* Resource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 		B302A9A729B51B8CBBC497DD /* Pods_Airpin_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Airpin_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D069B2C4FBE7DD66163C0A8E /* Pods-Airpin Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Airpin Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Airpin Tests/Pods-Airpin Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		D7EB01D385574C7C045C4174 /* Pods-Airpin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Airpin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Airpin/Pods-Airpin.debug.xcconfig"; sourceTree = "<group>"; };
 		E8CA1BC3907319D904BCABD1 /* Pods-Airpin Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Airpin Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Airpin Tests/Pods-Airpin Tests.release.xcconfig"; sourceTree = "<group>"; };
-		E900123F1B22CB5F0067F023 /* BLSTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BLSTextField.swift; path = "View/Base Subclass/BLSTextField.swift"; sourceTree = "<group>"; };
-		E91A6A8D1BC8E23000401B54 /* BookmarkListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BookmarkListViewController.swift; path = "View Controller/BookmarkListViewController.swift"; sourceTree = "<group>"; };
-		E91A6A8F1BC8E35300401B54 /* BookmarkListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BookmarkListViewModel.swift; path = "View Model/BookmarkListViewModel.swift"; sourceTree = "<group>"; };
-		E91FEDF81BE089C9004187F3 /* BookmarkListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BookmarkListTableViewCell.swift; path = View/UITableViewCell/BookmarkListTableViewCell.swift; sourceTree = "<group>"; };
-		E91FEDFB1BE098BB004187F3 /* TagButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TagButton.swift; path = View/UIButton/TagButton.swift; sourceTree = "<group>"; };
-		E93228CA1CC1FD3900121A97 /* TokenEntryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TokenEntryViewModel.swift; path = "Token Entry/TokenEntryViewModel.swift"; sourceTree = "<group>"; };
-		E93228CC1CC498AA00121A97 /* PinboardAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PinboardAccount.swift; path = Network/Pinboard/PinboardAccount.swift; sourceTree = "<group>"; };
-		E94C208E1CFCDAD500A1E620 /* Bool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Bool.swift; path = Extensions/Bool.swift; sourceTree = "<group>"; };
-		E94C208F1CFCDAD500A1E620 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constant.swift; path = Extensions/Constant.swift; sourceTree = "<group>"; };
-		E94C20901CFCDAD500A1E620 /* Icons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Icons.swift; path = Extensions/Icons.swift; sourceTree = "<group>"; };
-		E94C20911CFCDAD500A1E620 /* Static.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Static.swift; path = Extensions/Static.swift; sourceTree = "<group>"; };
-		E94C20921CFCDAD500A1E620 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = String.swift; path = Extensions/String.swift; sourceTree = "<group>"; };
-		E94C20931CFCDAD500A1E620 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIColor.swift; path = Extensions/UIColor.swift; sourceTree = "<group>"; };
-		E94C20941CFCDAD500A1E620 /* UIFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIFont.swift; path = Extensions/UIFont.swift; sourceTree = "<group>"; };
-		E94C209C1CFCDB5000A1E620 /* CategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryViewController.swift; path = "View Controller/CategoryViewController.swift"; sourceTree = "<group>"; };
+		E900123F1B22CB5F0067F023 /* BLSTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLSTextField.swift; sourceTree = "<group>"; };
+		E91A6A8D1BC8E23000401B54 /* BookmarkListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookmarkListViewController.swift; sourceTree = "<group>"; };
+		E91A6A8F1BC8E35300401B54 /* BookmarkListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookmarkListViewModel.swift; sourceTree = "<group>"; };
+		E91FEDF81BE089C9004187F3 /* BookmarkListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookmarkListTableViewCell.swift; sourceTree = "<group>"; };
+		E91FEDFB1BE098BB004187F3 /* TagButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagButton.swift; sourceTree = "<group>"; };
+		E93228CA1CC1FD3900121A97 /* TokenEntryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenEntryViewModel.swift; sourceTree = "<group>"; };
+		E93228CC1CC498AA00121A97 /* PinboardAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinboardAccount.swift; sourceTree = "<group>"; };
+		E94C208E1CFCDAD500A1E620 /* Bool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bool.swift; sourceTree = "<group>"; };
+		E94C208F1CFCDAD500A1E620 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		E94C20901CFCDAD500A1E620 /* Icons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Icons.swift; sourceTree = "<group>"; };
+		E94C20911CFCDAD500A1E620 /* Static.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Static.swift; sourceTree = "<group>"; };
+		E94C20921CFCDAD500A1E620 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		E94C20931CFCDAD500A1E620 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		E94C20941CFCDAD500A1E620 /* UIFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
+		E94C209C1CFCDB5000A1E620 /* CategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		E96101D41B2D4A0900D36C0C /* Airpin Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Airpin Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E96101D61B2D4A0900D36C0C /* Airpin_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Airpin_Tests.swift; sourceTree = "<group>"; };
 		E96101D81B2D4A0900D36C0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E96F044E1E19E464001FB2FF /* HideableButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HideableButton.swift; path = Buttons/HideableButton.swift; sourceTree = "<group>"; };
-		E96F04511E19F398001FB2FF /* PasteableURLRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PasteableURLRow.swift; path = Eureka/PasteableURLRow.swift; sourceTree = "<group>"; };
-		E98D7E361B5F470200D65A10 /* PinboardNetworkOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PinboardNetworkOperations.swift; path = Network/Operations/PinboardNetworkOperations.swift; sourceTree = "<group>"; };
-		E99064CC1B6099C50054C503 /* PinboardDiskOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PinboardDiskOperations.swift; path = Network/Pinboard/PinboardDiskOperations.swift; sourceTree = "<group>"; };
-		E9A2A95C1D408EA600B82006 /* ModalTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModalTransition.swift; path = Modal/ModalTransition.swift; sourceTree = "<group>"; };
-		E9A36E7D1D407BD80001A50A /* AlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlertController.swift; path = Modal/AlertController.swift; sourceTree = "<group>"; };
+		E96F044E1E19E464001FB2FF /* HideableButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HideableButton.swift; sourceTree = "<group>"; };
+		E96F04511E19F398001FB2FF /* PasteableURLRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasteableURLRow.swift; sourceTree = "<group>"; };
+		E98D7E361B5F470200D65A10 /* PinboardNetworkOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinboardNetworkOperations.swift; sourceTree = "<group>"; };
+		E99064CC1B6099C50054C503 /* PinboardDiskOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinboardDiskOperations.swift; sourceTree = "<group>"; };
+		E9A2A95C1D408EA600B82006 /* ModalTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalTransition.swift; sourceTree = "<group>"; };
+		E9A36E7D1D407BD80001A50A /* AlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		E9BA7AC61DED2CDE009433C3 /* Airpin.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Airpin.entitlements; sourceTree = "<group>"; };
 		E9BC04DB1D9972490076D399 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		E9BC04DC1D9972490076D399 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
-		E9CF695F1E38588B00BDE099 /* Bookmark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Bookmark.swift; path = Models/Bookmark.swift; sourceTree = "<group>"; };
-		E9CF69641E385A4A00BDE099 /* TagButton.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = TagButton.playground; path = Playgrounds/TagButton.playground; sourceTree = "<group>"; };
-		E9CF69651E385A5D00BDE099 /* TagCollectionView.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = TagCollectionView.playground; path = Playgrounds/TagCollectionView.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		E9DBB8241DED1A6D00CA8A41 /* BookmarkDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BookmarkDetailsViewController.swift; path = "Bookmark details/BookmarkDetailsViewController.swift"; sourceTree = "<group>"; };
-		E9DBB8261DED1A9400CA8A41 /* BookmarkDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BookmarkDetailsViewModel.swift; path = "Bookmark details/BookmarkDetailsViewModel.swift"; sourceTree = "<group>"; };
-		E9F451621CC1E9A5001AC1CB /* TokenEntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TokenEntryViewController.swift; path = "Token Entry/TokenEntryViewController.swift"; sourceTree = "<group>"; };
-		E9F5CE141E20ACB600F9EC1A /* URL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = URL.swift; path = Extensions/URL.swift; sourceTree = "<group>"; };
-		E9F66FD01C8185A8003F17D3 /* JTSSloppyNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JTSSloppyNavigationController.swift; path = Base/JTSSloppyNavigationController.swift; sourceTree = "<group>"; };
-		E9FE00041DF37E7500961131 /* CTAButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CTAButton.swift; path = Buttons/CTAButton.swift; sourceTree = "<group>"; };
+		E9CF69641E385A4A00BDE099 /* TagButton.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = TagButton.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		E9CF69651E385A5D00BDE099 /* TagCollectionView.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = TagCollectionView.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		E9DBB8241DED1A6D00CA8A41 /* BookmarkDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookmarkDetailsViewController.swift; sourceTree = "<group>"; };
+		E9DBB8261DED1A9400CA8A41 /* BookmarkDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookmarkDetailsViewModel.swift; sourceTree = "<group>"; };
+		E9F451621CC1E9A5001AC1CB /* TokenEntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenEntryViewController.swift; sourceTree = "<group>"; };
+		E9F5CE141E20ACB600F9EC1A /* URL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
+		E9F66FD01C8185A8003F17D3 /* JTSSloppyNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JTSSloppyNavigationController.swift; sourceTree = "<group>"; };
+		E9FE00041DF37E7500961131 /* CTAButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CTAButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -224,7 +224,7 @@
 				98F0039B1AD4F8F300769486 /* Endpoint.swift */,
 				98F0039D1AD4FDF900769486 /* Resource.swift */,
 			);
-			name = Network;
+			path = Network;
 			sourceTree = "<group>";
 		};
 		9865E5281AD4F3B100201BC5 /* Base */ = {
@@ -237,7 +237,7 @@
 				9870DA1A1AE0B5F40088A50C /* BaseViewModel.swift */,
 				E9F66FD01C8185A8003F17D3 /* JTSSloppyNavigationController.swift */,
 			);
-			name = Base;
+			path = Base;
 			sourceTree = "<group>";
 		};
 		98B803751AE0C2CB006A1645 /* Extensions */ = {
@@ -252,15 +252,14 @@
 				E94C20941CFCDAD500A1E620 /* UIFont.swift */,
 				E9F5CE141E20ACB600F9EC1A /* URL.swift */,
 			);
-			name = Extensions;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		E91FEDFA1BE098A5004187F3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				E91FEDFB1BE098BB004187F3 /* TagButton.swift */,
 			);
-			name = Views;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		E96101D51B2D4A0900D36C0C /* Airpin Tests */ = {
@@ -277,7 +276,7 @@
 			children = (
 				E96F04511E19F398001FB2FF /* PasteableURLRow.swift */,
 			);
-			name = Eureka;
+			path = Eureka;
 			sourceTree = "<group>";
 		};
 		E98D7E351B5F46E700D65A10 /* Pinboard */ = {
@@ -288,7 +287,7 @@
 				E98D7E361B5F470200D65A10 /* PinboardNetworkOperations.swift */,
 				E99064CC1B6099C50054C503 /* PinboardDiskOperations.swift */,
 			);
-			name = Pinboard;
+			path = Pinboard;
 			sourceTree = "<group>";
 		};
 		E9AB33761CFE06750096B988 /* Modal */ = {
@@ -297,15 +296,15 @@
 				E9A36E7D1D407BD80001A50A /* AlertController.swift */,
 				E9A2A95C1D408EA600B82006 /* ModalTransition.swift */,
 			);
-			name = Modal;
+			path = Modal;
 			sourceTree = "<group>";
 		};
 		E9CF695E1E38587400BDE099 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				E9CF695F1E38588B00BDE099 /* Bookmark.swift */,
+				2F9B7BFC201E78B90072D09F /* Bookmark.swift */,
 			);
-			name = Models;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		E9CF69631E385A2200BDE099 /* Playgrounds */ = {
@@ -314,7 +313,7 @@
 				E9CF69641E385A4A00BDE099 /* TagButton.playground */,
 				E9CF69651E385A5D00BDE099 /* TagCollectionView.playground */,
 			);
-			name = Playgrounds;
+			path = Playgrounds;
 			sourceTree = "<group>";
 		};
 		E9DBB8231DED1A4200CA8A41 /* Bookmark details */ = {
@@ -323,7 +322,7 @@
 				E9DBB8241DED1A6D00CA8A41 /* BookmarkDetailsViewController.swift */,
 				E9DBB8261DED1A9400CA8A41 /* BookmarkDetailsViewModel.swift */,
 			);
-			name = "Bookmark details";
+			path = "Bookmark details";
 			sourceTree = "<group>";
 		};
 		E9E4AADB1BC8DF1900BB1C73 /* Storyboard */ = {
@@ -359,7 +358,7 @@
 				E9F451621CC1E9A5001AC1CB /* TokenEntryViewController.swift */,
 				E93228CA1CC1FD3900121A97 /* TokenEntryViewModel.swift */,
 			);
-			name = "Token Entry";
+			path = "Token Entry";
 			sourceTree = "<group>";
 		};
 		E9F66FCC1C816800003F17D3 /* Bookmark list */ = {
@@ -369,7 +368,7 @@
 				E91A6A8F1BC8E35300401B54 /* BookmarkListViewModel.swift */,
 				E91FEDF81BE089C9004187F3 /* BookmarkListTableViewCell.swift */,
 			);
-			name = "Bookmark list";
+			path = "Bookmark list";
 			sourceTree = "<group>";
 		};
 		E9F66FCD1C81681B003F17D3 /* Categories */ = {
@@ -379,16 +378,17 @@
 				9870DA181AE0B5E10088A50C /* CategoryViewModel.swift */,
 				98B803791AE0C390006A1645 /* SingleLabelTableViewCell.swift */,
 			);
-			name = Categories;
+			path = Categories;
 			sourceTree = "<group>";
 		};
 		E9FE00031DF37E5D00961131 /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				E91FEDFB1BE098BB004187F3 /* TagButton.swift */,
 				E9FE00041DF37E7500961131 /* CTAButton.swift */,
 				E96F044E1E19E464001FB2FF /* HideableButton.swift */,
 			);
-			name = Buttons;
+			path = Buttons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -528,6 +528,7 @@
 				"${BUILT_PRODUCTS_DIR}/Locksmith/Locksmith.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftSoup/SwiftSoup.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -536,6 +537,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Locksmith.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSoup.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -624,13 +626,13 @@
 				E98D7E371B5F470200D65A10 /* PinboardNetworkOperations.swift in Sources */,
 				9870DA171AE0B4A60088A50C /* BaseViewController.swift in Sources */,
 				E91FEDFC1BE098BB004187F3 /* TagButton.swift in Sources */,
-				E9CF69601E38588B00BDE099 /* Bookmark.swift in Sources */,
 				E94C20961CFCDAD500A1E620 /* Constant.swift in Sources */,
 				E94C209B1CFCDAD500A1E620 /* UIFont.swift in Sources */,
 				98F0039C1AD4F8F300769486 /* Endpoint.swift in Sources */,
 				9865E5041AD4E82100201BC5 /* AppDelegate.swift in Sources */,
 				E9DBB8271DED1A9400CA8A41 /* BookmarkDetailsViewModel.swift in Sources */,
 				98B8037C1AE0C3D2006A1645 /* BLSTableViewCell.swift in Sources */,
+				2F9B7BFD201E78BA0072D09F /* Bookmark.swift in Sources */,
 				E99064CD1B6099C50054C503 /* PinboardDiskOperations.swift in Sources */,
 				E9A36E7E1D407BD80001A50A /* AlertController.swift in Sources */,
 				98B803901AE0E3A9006A1645 /* PinboardDataProvider.swift in Sources */,
