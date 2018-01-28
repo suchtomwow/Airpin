@@ -12,7 +12,7 @@ extension URL {
     var isLink: Bool {
         do {
             let string = absoluteString
-            let checkingRange = NSRange(location: 0, length: string.characters.count)
+            let checkingRange = NSRange(location: 0, length: string.count)
 
             let detector = try NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
             let rangeOfFirstMatch = detector.rangeOfFirstMatch(in: string, options: [], range: checkingRange)

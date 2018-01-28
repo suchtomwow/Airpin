@@ -75,7 +75,7 @@ final class PasteableURLRow: FieldRow<PasteableURLCell>, RowType, HideableButton
         do {
             let detector = try NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
 
-            let matches = detector.matches(in: pasteboardString, options: [], range: NSRange(location: 0, length: pasteboardString.characters.count))
+            let matches = detector.matches(in: pasteboardString, options: [], range: NSRange(location: 0, length: pasteboardString.count))
 
             if let firstMatch = matches.first?.url {
                 value = firstMatch

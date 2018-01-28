@@ -130,8 +130,8 @@ class BookmarkListTableViewCell: BLSTableViewCell {
         subtitle.attributedText = description.subheadline(alignment: .left)
         tagStackView.addArrangedSubview(UIView())
         
-        title.isHidden        = titleString.characters.count == 0
-        subtitle.isHidden     = description.characters.count == 0
+        title.isHidden        = titleString.count == 0
+        subtitle.isHidden     = description.count == 0
         tagStackView.isHidden = bookmark.tags.count == 0
     }
 }

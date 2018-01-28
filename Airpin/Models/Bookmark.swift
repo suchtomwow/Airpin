@@ -98,6 +98,6 @@ extension Bookmark {
     }
     
     var tags: [BookmarkTag] {
-        return userTags.characters.split(separator: " ").map { String($0) }
+        return userTags.split(separator: " ").map { String($0) }
     }
 }

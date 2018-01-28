@@ -14,7 +14,7 @@ extension String {
     var hasLink: Bool {
         do {
             let detector = try NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
-            return detector.numberOfMatches(in: self, options: [], range: NSRange(location: 0, length: self.characters.count)) > 0
+            return detector.numberOfMatches(in: self, options: [], range: NSRange(location: 0, length: self.count)) > 0
         } catch {
             return false
         }
