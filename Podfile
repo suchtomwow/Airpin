@@ -12,14 +12,15 @@ target 'Airpin' do
   pod 'Crashlytics'
   pod 'Fabric'
   pod 'Eureka'
+  pod 'SwiftSoup'
 
   post_install do |installer|
       installer.pods_project.targets.each do |target|
         if target.name == "Eureka"
-	  target.build_configurations.each do |config|
-	      config.build_settings['SWIFT_VERSION'] = '4.0'
-            end
-	  end
+          target.build_configurations.each do |config|
+            config.build_settings['SWIFT_VERSION'] = '4.0'
+          end
+        end
       end
   end
 end
