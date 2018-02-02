@@ -36,22 +36,25 @@ class BookmarkDetailsViewController: FormViewController {
     var viewModel: BookmarkDetailsViewModel
     unowned let delegate: BookmarkDetailsViewControllerDelegate
 
-    let urlRow: PasteableURLRow
-    let titleRow: TextRow
-    let descriptionRow: TextAreaRow
-    let privacyRow: SwitchRow
-    let readLaterRow: SwitchRow
-    let tagsRow: TextRow
+    var urlRow: PasteableURLRow!
+    var titleRow: TextRow!
+    var descriptionRow: TextAreaRow!
+    var privacyRow: SwitchRow!
+    var readLaterRow: SwitchRow!
+    var tagsRow: TextRow!
     
     init(viewModel: BookmarkDetailsViewModel, delegate: BookmarkDetailsViewControllerDelegate) {
         self.viewModel = viewModel
         self.delegate = delegate
         
+        super.init(nibName: nil, bundle: nil)
+
         urlRow = PasteableURLRow { row in
             row.placeholder = "URL"
             row.value = viewModel.url
-        }.onChange { row in
+        }.onChange { [unowned self] row in
             viewModel.url = row.value
+            self.getMetadata(for: row.value)
         }
         
         titleRow = TextRow { row in
@@ -91,8 +94,6 @@ class BookmarkDetailsViewController: FormViewController {
                 viewModel.tags = value.components(separatedBy: " ")
             }
         }
-        
-        super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -106,20 +107,20 @@ class BookmarkDetailsViewController: FormViewController {
         configureForm()
     }
     
-    final fileprivate func configureView() {
+    final private func configureView() {
         title = viewModel.title
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(self.cancelTapped(sender:)))
         
         configureAddButton()
     }
     
-    final fileprivate func configureForm() {
+    final private func configureForm() {
         var section = Section()
         section += [urlRow, titleRow, descriptionRow, privacyRow, readLaterRow, tagsRow]
         form +++ section
     }
 
-    final fileprivate func configureAddButton() {
+    final private func configureAddButton() {
         let button = CTAButton()
         
         button.title = viewModel.addButtonTitle
@@ -136,7 +137,7 @@ class BookmarkDetailsViewController: FormViewController {
         ])
     }
     
-    @objc func addButtonTapped(sender: UIButton) {
+    @objc private func addButtonTapped(sender: UIButton) {
         viewModel.addBookmark { [weak self] result in
             guard let strongSelf = self else { return }
 
@@ -149,19 +150,27 @@ class BookmarkDetailsViewController: FormViewController {
         }
     }
     
-    @objc func cancelTapped(sender: UIBarButtonItem) {
+    @objc private func cancelTapped(sender: UIBarButtonItem) {
         presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
-    final fileprivate func show(_ error: NSError) {
+    final private func show(_ error: NSError) {
         let alert = AlertController(error: error)
         present(alert, animated: true)
     }
-}
 
-extension BookmarkDetailsViewController: URLSessionDataDelegate {
-    func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
-        let string = String(data: data, encoding: .utf8)
-        print(string ?? "")
+    private func getMetadata(for url: URL?) {
+        guard let url = url else { return }
+
+        let metadata = MetaDataGetter(url: url) { [weak self] title, description in
+            DispatchQueue.main.async { [weak self] in
+                self?.titleRow.value = title
+                self?.descriptionRow.value = description
+                self?.titleRow.updateCell()
+                self?.descriptionRow.updateCell()
+            }
+        }
+
+        metadata.resume()
     }
 }
