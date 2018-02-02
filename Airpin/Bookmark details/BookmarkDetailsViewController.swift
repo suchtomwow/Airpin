@@ -43,15 +43,13 @@ class BookmarkDetailsViewController: FormViewController {
     private var readLaterRow: SwitchRow!
     private var tagsRow: TextRow!
 
-    private var detailsSection = Section()
-    
     init(viewModel: BookmarkDetailsViewModel, delegate: BookmarkDetailsViewControllerDelegate) {
         self.viewModel = viewModel
         self.delegate = delegate
         
         super.init(nibName: nil, bundle: nil)
 
-        urlRow = PasteableURLRow { row in
+        urlRow = PasteableURLRow(String(describing: PasteableURLRow.self)) { row in
             row.placeholder = "URL"
             row.value = viewModel.url
         }.onChange { [unowned self] row in
@@ -117,9 +115,25 @@ class BookmarkDetailsViewController: FormViewController {
     }
     
     final private func configureForm() {
-        var section = Section()
-        section += [urlRow, titleRow, descriptionRow, privacyRow, readLaterRow, tagsRow]
-        form +++ section
+        var detailsSection = Section()
+        detailsSection += [titleRow, descriptionRow, privacyRow, readLaterRow, tagsRow]
+
+        detailsSection.hidden = true
+        detailsSection.hidden = Condition.function([String(describing: PasteableURLRow.self)]) { form -> Bool in
+            let row = form.rowBy(tag: String(describing: PasteableURLRow.self)) as? PasteableURLRow
+            return row?.value == nil
+        }
+
+        form +++ urlRow
+             +++ detailsSection
+    }
+    
+    override func insertAnimation(forSections sections: [Section]) -> UITableViewRowAnimation {
+        return .fade
+    }
+
+    override func deleteAnimation(forSections sections: [Section]) -> UITableViewRowAnimation {
+        return .fade
     }
 
     final private func configureAddButton() {
