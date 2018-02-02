@@ -76,7 +76,7 @@ class PinboardNetworkOperations {
         let titleQI = URLQueryItem(name: "description", value: title)
         let descriptionQI = URLQueryItem(name: "extended", value: description)
         let toReadQI = URLQueryItem(name: "toread", value: toRead ? "yes" : "no")
-        let privacyQI = URLQueryItem(name: "isshared", value: isPrivate ? "no" : "yes")
+        let privacyQI = URLQueryItem(name: "shared", value: isPrivate ? "no" : "yes")
         let tagsQI = URLQueryItem(name: "tags", value: tags)
 
         NetworkClient.shared.executeRequest(with: endpoint, parameters: [urlQI, titleQI, descriptionQI, toReadQI, privacyQI, tagsQI]) { result in
