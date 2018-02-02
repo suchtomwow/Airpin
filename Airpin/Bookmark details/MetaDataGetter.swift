@@ -62,6 +62,8 @@ class MetaDataGetter: NSObject, URLSessionDataDelegate {
         }
     }
 
+    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {}
+
     private func getTitleByTraditionalMeans(_ head: Element) throws -> String? {
         return try head.getElementsByAttributeValue("name", "title").array().first?.attr("content")
     }
