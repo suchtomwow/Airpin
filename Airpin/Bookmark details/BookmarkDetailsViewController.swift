@@ -33,15 +33,17 @@ class BookmarkDetailsViewController: FormViewController {
         return nav
     }
     
-    var viewModel: BookmarkDetailsViewModel
-    unowned let delegate: BookmarkDetailsViewControllerDelegate
+    private let viewModel: BookmarkDetailsViewModel
+    private unowned let delegate: BookmarkDetailsViewControllerDelegate
 
-    var urlRow: PasteableURLRow!
-    var titleRow: TextRow!
-    var descriptionRow: TextAreaRow!
-    var privacyRow: SwitchRow!
-    var readLaterRow: SwitchRow!
-    var tagsRow: TextRow!
+    private var urlRow: PasteableURLRow!
+    private var titleRow: TextRow!
+    private var descriptionRow: TextAreaRow!
+    private var privacyRow: SwitchRow!
+    private var readLaterRow: SwitchRow!
+    private var tagsRow: TextRow!
+
+    private var detailsSection = Section()
     
     init(viewModel: BookmarkDetailsViewModel, delegate: BookmarkDetailsViewControllerDelegate) {
         self.viewModel = viewModel
