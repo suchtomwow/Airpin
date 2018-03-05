@@ -53,6 +53,24 @@ class CategoryViewController: BaseViewController {
     }
     
     private func showBookmarkList(for row: Int) {
+        guard let category = CategoryViewModel.Category(rawValue: row) else { return }
+
+        let viewModel: BookmarkListViewModel
+        switch category {
+        case .all:
+            viewModel = AllBookmarksListViewModel()
+        case .unread:
+            viewModel = UnreadBookmarksListViewModel()
+        case .untagged:
+            viewModel = UntaggedBookmarksListViewModel()
+        case .public:
+            viewModel = PublicBookmarksListViewModel()
+        case .private:
+            viewModel = PrivateBookmarksListViewModel()
+        }
+
+        let vc = BookmarkListViewController(viewModel: viewModel)
+        show(vc, sender: nil)
     }
 
     @objc private func showTokenEntry() {

@@ -8,7 +8,13 @@
 
 import RealmSwift
 
-struct PinboardDataProvider {
+protocol BookmarkDataProviding: class {
+    func fetchAllBookmarks(completion: @escaping BookmarkCompletion)
+    func toggleReadState(bookmark: Bookmark)
+    func delete(bookmark: Bookmark)
+}
+
+class PinboardDataProvider: BookmarkDataProviding {
     private let networkOperations = PinboardNetworkOperations()
     private let diskOperations = PinboardDiskOperations()
     
