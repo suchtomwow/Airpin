@@ -11,23 +11,26 @@ import SafariServices
 
 class BookmarkListViewController: BaseViewController {
     
-    @IBOutlet weak var tableView: BLSTableView!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    private let tableView = BLSTableView()
+    private let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
     
-    var viewModel: BookmarkListViewModel!
-    
-    var category: CategoryViewModel.Category! {
-        didSet {
-            viewModel = BookmarkListViewModel(category: category)
-        }
+    private let viewModel: BookmarkListViewModel
+
+    init(viewModel: BookmarkListViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
     }
-    
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel.fetchBookmarks {
-            self.tableView.reloadData()
-            self.activityIndicator.stopAnimating()
+        viewModel.fetchBookmarks { [weak self] in
+            self?.tableView.reloadData()
+            self?.activityIndicator.stopAnimating()
         }
     }
     
@@ -38,23 +41,41 @@ class BookmarkListViewController: BaseViewController {
         
         activityIndicator.hidesWhenStopped = true
         activityIndicator.startAnimating()
-        
+
+        tableView.dataSource = self
+        tableView.delegate = self
         tableView.register(BookmarkListTableViewCell.self, forCellReuseIdentifier: String(describing: BookmarkListTableViewCell.self))
-        tableView.rowHeight          = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 120.0
+
+        configureConstraints()
+    }
+
+    private func configureConstraints() {
+        for subview in [tableView, activityIndicator] {
+            view.addSubview(subview)
+            subview.translatesAutoresizingMaskIntoConstraints = false
+
+            NSLayoutConstraint.activate([
+                subview.topAnchor.constraint(equalTo: view.topAnchor),
+                subview.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+                subview.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+                subview.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
+            ])
+        }
     }
     
-    func toggleReadState(at indexPath: IndexPath) {
+    private func toggleReadState(at indexPath: IndexPath) {
         viewModel.toggleReadState(at: indexPath.row)
-        
+
         tableView.beginUpdates()
         tableView.reloadRows(at: [indexPath], with: .automatic)
         tableView.endUpdates()
     }
     
-    func delete(at indexPath: IndexPath) {
+    private func delete(at indexPath: IndexPath) {
         viewModel.delete(at: indexPath.row)
-        
+
         tableView.beginUpdates()
         tableView.deleteRows(at: [indexPath], with: .automatic)
         tableView.endUpdates()
@@ -85,7 +106,6 @@ extension BookmarkListViewController: UITableViewDelegate {
         }
         
         let svc = SFSafariViewController(url: bookmark.url)
-        
         present(svc, animated: true, completion: nil)
     }
     

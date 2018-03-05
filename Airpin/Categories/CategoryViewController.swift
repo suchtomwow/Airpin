@@ -18,10 +18,7 @@ class CategoryViewController: BaseViewController {
     // MARK: - View lifecycle -
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue == Segue.bookmarkListViewController, let controller = segue.destination as? BookmarkListViewController, let indexPath = sender as? IndexPath {
-            let category = CategoryViewModel.Category(rawValue: indexPath.row)
-            controller.category = category
-        } else if segue == Segue.tokenEntryViewController, let controller = segue.destination as? TokenEntryViewController {
+        if segue == Segue.tokenEntryViewController, let controller = segue.destination as? TokenEntryViewController {
             controller.delegate = self
         }
     }
@@ -46,36 +43,38 @@ class CategoryViewController: BaseViewController {
         title = viewModel.title
         
         tableView.register(SingleLabelTableViewCell.self, forCellReuseIdentifier: String(describing: SingleLabelTableViewCell.self))
-        tableView.rowHeight          = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 60
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: viewModel.leftBarButtonText, style: .plain, target: self, action: #selector(CategoryViewController.leftBarButtonItemTapped(_:)))
-        
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "New", style: .plain, target: self, action: #selector(CategoryViewController.rightBarButtonItemTapped(_:)))
         
         updateView()
     }
     
-    @objc func showTokenEntry() {
+    private func showBookmarkList(for row: Int) {
+    }
+
+    @objc private func showTokenEntry() {
         performSegue(withIdentifier: Segue.tokenEntryViewController.rawValue, sender: nil)
     }
     
-    fileprivate func updateView() {
+    private func updateView() {
         navigationItem.leftBarButtonItem?.title = viewModel.leftBarButtonText
         tableView.reloadData()
     }
     
-    fileprivate func segueToTokenEntry() {
+    private func segueToTokenEntry() {
         performSegue(withIdentifier: Segue.tokenEntryViewController.rawValue, sender: nil)
     }
     
     
     // MARK: - Responders -
     
-    @objc func leftBarButtonItemTapped(_ sender: UIBarButtonItem) {
+    @objc private func leftBarButtonItemTapped(_ sender: UIBarButtonItem) {
         if viewModel.isLoggedIn {
             // perform logout
-            NetworkClient.shared.signOut {
+            NetworkClient.shared.signOut { [unowned self] in
                 self.updateView()
             }
         } else {
@@ -84,7 +83,7 @@ class CategoryViewController: BaseViewController {
         }
     }
     
-    @objc func rightBarButtonItemTapped(_ sender: UIBarButtonItem) {
+    @objc private func rightBarButtonItemTapped(_ sender: UIBarButtonItem) {
         if viewModel.isLoggedIn {
             let detailsController = BookmarkDetailsViewController.presentable(mode: .create, delegate: self)
             present(detailsController, animated: true)
@@ -124,7 +123,7 @@ extension CategoryViewController: UITableViewDataSource {
 
 extension CategoryViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: Segue.bookmarkListViewController.rawValue, sender: indexPath)
+        showBookmarkList(for: indexPath.row)
     }
 }
 
