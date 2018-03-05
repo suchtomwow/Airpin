@@ -28,7 +28,7 @@ class BookmarkListViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel.fetchBookmarks { [weak self] in
+        viewModel.fetchBookmarks(dataProvider: PinboardDataProvider()) { [weak self] in
             self?.tableView.reloadData()
             self?.activityIndicator.stopAnimating()
         }
@@ -66,16 +66,16 @@ class BookmarkListViewController: BaseViewController {
     }
     
     private func toggleReadState(at indexPath: IndexPath) {
-        viewModel.toggleReadState(at: indexPath.row)
-
+        viewModel.toggleReadState(at: indexPath.row, dataProvider: PinboardDataProvider())
+        
         tableView.beginUpdates()
         tableView.reloadRows(at: [indexPath], with: .automatic)
         tableView.endUpdates()
     }
     
     private func delete(at indexPath: IndexPath) {
-        viewModel.delete(at: indexPath.row)
-
+        viewModel.delete(at: indexPath.row, dataProvider: PinboardDataProvider())
+        
         tableView.beginUpdates()
         tableView.deleteRows(at: [indexPath], with: .automatic)
         tableView.endUpdates()
@@ -84,13 +84,13 @@ class BookmarkListViewController: BaseViewController {
 
 extension BookmarkListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.bookmarks?.count ?? 0
+        return viewModel.bookmarks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: BookmarkListTableViewCell.self), for: indexPath) as! BookmarkListTableViewCell
         
-        let bookmark = viewModel.bookmarks![indexPath.row]
+        let bookmark = viewModel.bookmarks[indexPath.row]
         cell.configureWithBookmark(bookmark)
         
         return cell
@@ -99,7 +99,7 @@ extension BookmarkListViewController: UITableViewDataSource {
 
 extension BookmarkListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let bookmark = viewModel.bookmarks![indexPath.row]
+        let bookmark = viewModel.bookmarks[indexPath.row]
         
         if bookmark.toRead {
             toggleReadState(at: indexPath)
@@ -110,7 +110,7 @@ extension BookmarkListViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let bookmark = viewModel.bookmarks![indexPath.row]
+        let bookmark = viewModel.bookmarks[indexPath.row]
         
         let toggleReadState = UITableViewRowAction(style: .default, title: bookmark.toRead ? "Mark as\nread" : "Mark as\nunread") { action, indexPath in
             self.toggleReadState(at: indexPath)
