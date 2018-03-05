@@ -10,13 +10,6 @@ import UIKit
 
 class BLSTableViewCell: UITableViewCell {
     
-    lazy var separator: UIView = {
-        let separator = UIView()
-        separator.translatesAutoresizingMaskIntoConstraints = false
-        self.contentView.addSubview(separator)
-        return separator
-    }()
-    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -38,7 +31,6 @@ class BLSTableViewCell: UITableViewCell {
     func commonInit() {
         configureView()
         configureConstraints()
-        configureCellSeparator()
         configureStyles()
     }
     
@@ -46,15 +38,7 @@ class BLSTableViewCell: UITableViewCell {
     
     func configureConstraints() { }
     
-    func configureCellSeparator() {
-        separator.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
-        separator.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
-        separator.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
-        separator.heightAnchor.constraint(equalToConstant: 1.0).isActive = true
-    }
-    
     func configureStyles() {
-        selectionStyle            = .none
-        separator.backgroundColor = .tableViewAccent
+        selectionStyle = .none
     }
 }
