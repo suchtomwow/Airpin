@@ -13,11 +13,18 @@ protocol BLSTableViewDataSource {
 }
 
 class BLSTableView: UITableView {
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        separatorStyle     = .none
-        rowHeight          = UITableViewAutomaticDimension
+    override init(frame: CGRect, style: UITableViewStyle) {
+        super.init(frame: frame, style: style)
+        common()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        common()
+    }
+
+    private func common() {
+        rowHeight = UITableViewAutomaticDimension
         estimatedRowHeight = 100.0
     }
 }
