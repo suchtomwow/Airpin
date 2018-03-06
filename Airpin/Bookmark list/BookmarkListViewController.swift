@@ -29,8 +29,10 @@ class BookmarkListViewController: BaseViewController {
         super.viewDidLoad()
         
         viewModel.fetchBookmarks(dataProvider: PinboardDataProvider()) { [weak self] in
-            self?.tableView.reloadData()
-            self?.activityIndicator.stopAnimating()
+            guard let strongSelf = self else { return }
+            strongSelf.tableView.isHidden = strongSelf.viewModel.bookmarks.isEmpty
+            strongSelf.tableView.reloadData()
+            strongSelf.activityIndicator.stopAnimating()
         }
     }
     
@@ -38,10 +40,13 @@ class BookmarkListViewController: BaseViewController {
         super.configureView()
         
         title = viewModel.title
-        
+
+        view.backgroundColor = .white
+
         activityIndicator.hidesWhenStopped = true
         activityIndicator.startAnimating()
 
+        tableView.isHidden = true
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(BookmarkListTableViewCell.self, forCellReuseIdentifier: String(describing: BookmarkListTableViewCell.self))
