@@ -49,7 +49,7 @@ class JTSSloppyNavigationController: UINavigationController {
  use a different class for that purpose. Just forward the relevant delegate
  methods to your sloppy swiping instance.
  */
-class JTSSloppySwiping: NSObject {
+class JTSSloppySwiping: NSObject, UIGestureRecognizerDelegate {
     
     init(navigationController: UINavigationController) {
         self.interactivePopAnimator = InteractivePopAnimator()
@@ -57,6 +57,7 @@ class JTSSloppySwiping: NSObject {
         self.navigationController = navigationController
         super.init()
         self.popRecognizer.addTarget(self, action: #selector(JTSSloppySwiping.popRecognizerPanned(_:)))
+        popRecognizer.delegate = self
         navigationController.view.addGestureRecognizer(self.popRecognizer)
     }
     
@@ -71,6 +72,18 @@ class JTSSloppySwiping: NSObject {
         didSet {
             self.popRecognizer.isEnabled = !self.isAnimatingANonInteractiveTransition
         }
+    }
+
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        guard let navView = navigationController?.view else {
+            return true
+        }
+
+        guard let pan = gestureRecognizer as? UIPanGestureRecognizer else {
+            return true
+        }
+
+        return pan.translation(in: navView).x > 0
     }
     
     @objc private func popRecognizerPanned(_ recognizer: UIPanGestureRecognizer) {
