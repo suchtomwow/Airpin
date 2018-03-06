@@ -80,6 +80,12 @@ class BookmarkListViewController: BaseViewController {
         tableView.deleteRows(at: [indexPath], with: .automatic)
         tableView.endUpdates()
     }
+
+    private func showBookmarkList(for tag: String) {
+        let viewModel = TagBookmarksViewModel(bookmarkTag: tag)
+        let controller = BookmarkListViewController(viewModel: viewModel)
+        show(controller, sender: nil)
+    }
 }
 
 extension BookmarkListViewController: UITableViewDataSource {
@@ -92,6 +98,9 @@ extension BookmarkListViewController: UITableViewDataSource {
         
         let bookmark = viewModel.bookmarks[indexPath.row]
         cell.configureWithBookmark(bookmark)
+        cell.tagTapped = { [unowned self] tag in
+            self.showBookmarkList(for: tag)
+        }
         
         return cell
     }

@@ -15,6 +15,7 @@
 		2F23A730204D0F0400559D0B /* PrivateBookmarksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F23A72F204D0F0400559D0B /* PrivateBookmarksViewModel.swift */; };
 		2F9B7BFD201E78BA0072D09F /* Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9B7BFC201E78B90072D09F /* Bookmark.swift */; };
 		2F9B7BFF201E7BC90072D09F /* MetaDataGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9B7BFE201E7BC90072D09F /* MetaDataGetter.swift */; };
+		2FBB71FC204E69EA001F0CFC /* TagBookmarkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBB71FB204E69EA001F0CFC /* TagBookmarkViewModel.swift */; };
 		5CEED34AC3662E87270B4156 /* Pods_Airpin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C798048B61585BF34387C30 /* Pods_Airpin.framework */; };
 		9865E5041AD4E82100201BC5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9865E5031AD4E82100201BC5 /* AppDelegate.swift */; };
 		9865E5091AD4E82100201BC5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9865E5071AD4E82100201BC5 /* Main.storyboard */; };
@@ -81,6 +82,7 @@
 		2F23A72F204D0F0400559D0B /* PrivateBookmarksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateBookmarksViewModel.swift; sourceTree = "<group>"; };
 		2F9B7BFC201E78B90072D09F /* Bookmark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bookmark.swift; sourceTree = "<group>"; };
 		2F9B7BFE201E7BC90072D09F /* MetaDataGetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaDataGetter.swift; sourceTree = "<group>"; };
+		2FBB71FB204E69EA001F0CFC /* TagBookmarkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagBookmarkViewModel.swift; sourceTree = "<group>"; };
 		7A3E749D206D0E59D6935693 /* Pods-Airpin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Airpin.release.xcconfig"; path = "Pods/Target Support Files/Pods-Airpin/Pods-Airpin.release.xcconfig"; sourceTree = "<group>"; };
 		9865E4FE1AD4E82100201BC5 /* Airpin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Airpin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9865E5021AD4E82100201BC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 				2F23A72B204D0E5F00559D0B /* UntaggedBookmarksViewModel.swift */,
 				2F23A72D204D0EA400559D0B /* PublicBookmarksViewModel.swift */,
 				2F23A72F204D0F0400559D0B /* PrivateBookmarksViewModel.swift */,
+				2FBB71FB204E69EA001F0CFC /* TagBookmarkViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -653,6 +656,7 @@
 				98B8037C1AE0C3D2006A1645 /* BLSTableViewCell.swift in Sources */,
 				2F9B7BFD201E78BA0072D09F /* Bookmark.swift in Sources */,
 				E99064CD1B6099C50054C503 /* PinboardDiskOperations.swift in Sources */,
+				2FBB71FC204E69EA001F0CFC /* TagBookmarkViewModel.swift in Sources */,
 				E9A36E7E1D407BD80001A50A /* AlertController.swift in Sources */,
 				98B803901AE0E3A9006A1645 /* PinboardDataProvider.swift in Sources */,
 				E91A6A901BC8E35300401B54 /* BookmarkListViewModel.swift in Sources */,
