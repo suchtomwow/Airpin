@@ -9,6 +9,8 @@
 import UIKit
 
 class BookmarkListTableViewCell: BLSTableViewCell {
+    var tagTapped: ((_ tag: String) -> Void)?
+
     let title    = UILabel()
     let date     = UILabel()
     let subtitle = UILabel()
@@ -121,6 +123,7 @@ class BookmarkListTableViewCell: BLSTableViewCell {
         
         for tag in bookmark.tags {
             let tagButton = TagButton(bookmarkTag: tag)
+            tagButton.addTarget(self, action: #selector(tagTapped(_:)), for: .touchUpInside)
             tagStackView.addArrangedSubview(tagButton)
         }
         
@@ -133,5 +136,9 @@ class BookmarkListTableViewCell: BLSTableViewCell {
         title.isHidden        = titleString.count == 0
         subtitle.isHidden     = description.count == 0
         tagStackView.isHidden = bookmark.tags.count == 0
+    }
+
+    @objc private func tagTapped(_ sender: TagButton) {
+        tagTapped?(sender.bookmarkTag)
     }
 }

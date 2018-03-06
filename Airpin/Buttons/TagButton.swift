@@ -14,7 +14,7 @@ class TagButton: UIButton {
     init(bookmarkTag: BookmarkTag) {
         self.bookmarkTag = bookmarkTag
 
-        super.init(frame: CGRect.zero)
+        super.init(frame: .zero)
         
         commonInit()
     }
