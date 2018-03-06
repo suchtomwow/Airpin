@@ -117,20 +117,22 @@ extension BookmarkListViewController: UITableViewDelegate {
         let svc = SFSafariViewController(url: bookmark.url)
         present(svc, animated: true, completion: nil)
     }
-    
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let bookmark = viewModel.bookmarks[indexPath.row]
-        
-        let toggleReadState = UITableViewRowAction(style: .default, title: bookmark.toRead ? "Mark as\nread" : "Mark as\nunread") { action, indexPath in
-            self.toggleReadState(at: indexPath)
-        }
-        
-        let deleteBookmark = UITableViewRowAction(style: .destructive, title: "Delete") { action, indexPath in
+
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delete = UIContextualAction(style: .destructive, title: "Delete") { [unowned self] action, view, completion in
             self.delete(at: indexPath)
-        }
-        
-        toggleReadState.backgroundColor = .blueRowAction
-        
-        return [deleteBookmark, toggleReadState]
+            completion(true)
+        } // Trash can icon
+
+        let toggleRead = UIContextualAction(style: .normal, title: "Mark as \(viewModel.bookmarks[indexPath.row].toRead ? "" : "un")read") { [unowned self] action, view, completion in
+            self.toggleReadState(at: indexPath)
+            completion(true)
+        } // Filled icon if read, unfilled if not
+
+        toggleRead.backgroundColor = .blueRowAction
+
+        let actions = UISwipeActionsConfiguration(actions: [delete, toggleRead])
+        actions.performsFirstActionWithFullSwipe = false
+        return actions
     }
 }
