@@ -6,7 +6,6 @@
 //  Copyright © 2018 Thomas Carey. All rights reserved.
 //
 
-import Foundation
 import RealmSwift
 
 class PrivateBookmarksListViewModel: BaseViewModel, BookmarkListViewModel {

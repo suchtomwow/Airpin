@@ -50,8 +50,7 @@ class BookmarkListViewController: BaseViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(BookmarkListTableViewCell.self, forCellReuseIdentifier: String(describing: BookmarkListTableViewCell.self))
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 120.0
+        tableView.estimatedRowHeight = 120
 
         configureConstraints()
     }

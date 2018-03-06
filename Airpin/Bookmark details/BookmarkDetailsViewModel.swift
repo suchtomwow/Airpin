@@ -63,7 +63,7 @@ class BookmarkDetailsViewModel: BaseViewModel {
         dp.add(bookmark) { result in
             switch result {
             case .success:
-                DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async {
+                DispatchQueue.global(qos: .default).async {
                     bookmark.persist()
                     
                     DispatchQueue.main.async {
