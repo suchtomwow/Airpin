@@ -174,12 +174,14 @@ class TokenEntryViewController: BaseViewController {
     }
     
     @IBAction func affirmativeCTATapped(_ sender: UIButton) {
+        guard let text = textField.text, !text.isEmpty else { return }
+
         hasSeenModal = true
         
         // TODO: Verify token format
         
         do {
-            try viewModel.store(token: textField.text)
+            try viewModel.store(token: text)
             delegate?.didFinishTokenEntry(didEnterToken: true)
         } catch LocksmithError.duplicate {
             loadAccount()
