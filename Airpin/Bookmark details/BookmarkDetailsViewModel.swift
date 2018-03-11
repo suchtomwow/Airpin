@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RealmSwift
 
 typealias BookmarkTag = String
 
@@ -26,7 +27,7 @@ class BookmarkDetailsViewModel: BaseViewModel {
     var description: String?
     var makePrivate = true
     var readLater = true
-    var tags: [BookmarkTag] = []
+    var tags = List<Tag>()
     
     var title: String {
         if case .create = mode {
@@ -56,8 +57,8 @@ class BookmarkDetailsViewModel: BaseViewModel {
         bookmark.desc = description ?? ""
         bookmark.shared = !makePrivate
         bookmark.toRead = readLater
-        bookmark.userTags = tags.joined(separator: " ")
-        
+        tags.forEach { bookmark.tags.append($0) }
+
         let dp = PinboardDataProvider()
         
         dp.add(bookmark) { result in

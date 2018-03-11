@@ -38,7 +38,7 @@ class Bookmark: Object {
     @objc dynamic var datetime:  Date   = Date()// API: "time"
     @objc dynamic var shared:    Bool   = false// API: "shared", private/public
     @objc dynamic var toRead:    Bool   = false// API: "toread"
-    @objc dynamic var userTags:  String = ""// API: "tags", space delimited list of words
+    let tags = List<Tag>() // API: "tags", space delimited list of words
 
     /// This is less dumb than it looks. If you implement an intializer to do the same thing, then you have to override a normal init as well as an init with Realm, which if you have time to figure out how to do, go for it.
     class func from(json: JSON) -> Bookmark {
@@ -51,13 +51,16 @@ class Bookmark: Object {
         bookmark.datetime  = Formatter.JSON.date(from: json["time"].stringValue)!
         bookmark.shared    = Bool(string: json["shared"].stringValue)
         bookmark.toRead    = Bool(string: json["toread"].stringValue)
-        bookmark.userTags  = json["tags"].stringValue
+        json["tags"].stringValue.split(separator: " ").forEach {
+            let tag = Tag(value: [$0])
+            bookmark.tags.append(tag)
+        }
         
         return bookmark
     }
     
     override static func ignoredProperties() -> [String] {
-        return ["url", "displayURL", "readState", "tags"]
+        return ["url", "displayURL", "readState"]
     }
     
     func persist() {
@@ -95,9 +98,5 @@ enum ReadState {
 extension Bookmark {
     var readState: ReadState {
         return toRead == true ? .unread : .read
-    }
-    
-    var tags: [BookmarkTag] {
-        return userTags.split(separator: " ").map { String($0) }
     }
 }

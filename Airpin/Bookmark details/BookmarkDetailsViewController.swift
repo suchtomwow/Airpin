@@ -17,6 +17,7 @@
 import UIKit
 import Eureka
 import SwiftyJSON
+import RealmSwift
 
 protocol BookmarkDetailsViewControllerDelegate: class {
     func didAdd(_ bookmark: Bookmark)
@@ -88,10 +89,11 @@ class BookmarkDetailsViewController: FormViewController {
         tagsRow = TextRow { row in
             row.placeholder = "Tags (separated by spaces)"
             row.cell.textField.autocapitalizationType = .none
-            row.value = viewModel.tags.joined(separator: " ")
+            row.value = viewModel.tags.reduce("") { $0 + " " + $1.name }
         }.onChange { row in
             if let value = row.value {
-                viewModel.tags = value.components(separatedBy: " ")
+                viewModel.tags = List<Tag>()
+                value.components(separatedBy: " ").forEach { viewModel.tags.append(Tag(value: [$0])) }
             }
         }
     }

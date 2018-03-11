@@ -122,7 +122,7 @@ class BookmarkListTableViewCell: BLSTableViewCell {
         let datetime  = Formatter.humanTime.string(from: bookmark.datetime)
         
         for tag in bookmark.tags {
-            let tagButton = TagButton(bookmarkTag: tag)
+            let tagButton = TagButton(bookmarkTag: tag.name)
             tagButton.addTarget(self, action: #selector(tagTapped(_:)), for: .touchUpInside)
             tagStackView.addArrangedSubview(tagButton)
         }

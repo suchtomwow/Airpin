@@ -87,8 +87,8 @@ class PinboardDataProvider: BookmarkDataProviding {
         let description = bookmark.desc
         let isPrivate = !bookmark.shared
         let toRead = bookmark.toRead
-        let tags = bookmark.userTags.replacingOccurrences(of: " ", with: "+")
-        
+        let tags = bookmark.tags.reduce("") { $0 + "+" + $1.name }
+
         networkOperations.addBookmark(with: url, title: title, description: description, isPrivate: isPrivate, toRead: toRead, tags: tags, completion: completion)
     }
 }
