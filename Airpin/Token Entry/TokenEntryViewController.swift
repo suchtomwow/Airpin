@@ -117,9 +117,13 @@ class TokenEntryViewController: BaseViewController {
     }
     
     // MARK: Internal
+
+    private func showTokenFormatError() {
+        showErrorMessage(headline: "Token format", body: "Your token format is a little off. It should be in the form of username:token.", buttonTitle: "OK", buttonTappedHandler: nil)
+    }
     
-    private func showErrorMessage() {
-        let alert = AlertController(headline: "Could not store token", body: "Try again later", buttonTitle: "OK", buttonTappedHandler: nil)
+    private func showErrorMessage(headline: String, body: String, buttonTitle: String, buttonTappedHandler: ((_: UIButton?) -> Void)?) {
+        let alert = AlertController(headline: headline, body: body, buttonTitle: buttonTitle, buttonTappedHandler: buttonTappedHandler)
         present(alert, animated: true, completion: nil)
     }
     
@@ -137,6 +141,8 @@ class TokenEntryViewController: BaseViewController {
         do {
             try viewModel.loadAccount(token: textField.text)
             delegate?.didFinishTokenEntry(didEnterToken: true)
+        } catch TokenEntry.incorrectFormat {
+            showTokenFormatError()
         } catch {
             print(error)
             delegate?.didFinishTokenEntry(didEnterToken: false)
@@ -156,15 +162,9 @@ class TokenEntryViewController: BaseViewController {
     // MARK: IBActions
     
     @objc func helpButtonTapped(_ sender: Any) {
-        let headline = "What's my token?"
-        let body = "Your token is what gives you access to your bookmarks. Enter it on this screen to create, read, and share your bookmarks. You can find your token in your settings on the Pinboard website.\n\nAirpin stores your token securely in your device's keychain. It cannot be accessed by or shared with anyone other than you."
-        let buttonTitle = "Go to Pinboard settings"
-        
-        let alert = AlertController(headline: headline, body: body, buttonTitle: buttonTitle) { [unowned self] sender in
+        showErrorMessage(headline: "What's my token?", body: "Your token is what gives you access to your bookmarks. Enter it on this screen to create, read, and share your bookmarks. You can find your token in your settings on the Pinboard website.\n\nAirpin stores your token securely in your device's keychain. It cannot be accessed by or shared with anyone other than you.", buttonTitle: "Go to Pinboard settings") { [unowned self] sender in
             self.goToPinboardWebsiteSettings()
         }
-        
-        present(alert, animated: true, completion: nil)
     }
     
     @IBAction func negativeCTATapped(_ sender: UIButton) {
@@ -178,16 +178,15 @@ class TokenEntryViewController: BaseViewController {
 
         hasSeenModal = true
         
-        // TODO: Verify token format
-        
         do {
             try viewModel.store(token: text)
             delegate?.didFinishTokenEntry(didEnterToken: true)
         } catch LocksmithError.duplicate {
             loadAccount()
+        } catch TokenEntry.incorrectFormat {
+            showTokenFormatError()
         } catch {
             print(error)
-            delegate?.didFinishTokenEntry(didEnterToken: false)
         }
     }
 }

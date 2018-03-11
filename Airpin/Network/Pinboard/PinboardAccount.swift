@@ -26,11 +26,6 @@ struct PinboardAccount: GenericPasswordSecureStorable, CreateableSecureStorable,
         self.password = password
     }
     
-    init(token: String) {
-        let components = token.components(separatedBy: ":")
-        self.init(account: components[0], password: components[1])
-    }
-    
     let service = KeychainServiceIdentifier
     
     var account: String {
