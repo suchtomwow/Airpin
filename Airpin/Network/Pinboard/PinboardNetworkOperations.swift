@@ -10,32 +10,27 @@ import Foundation
 import RealmSwift
 import SwiftyJSON
 
-typealias BookmarkCompletion = () -> Void
+typealias BookmarkCompletion = (Results<Bookmark>) -> Void
 
 class PinboardNetworkOperations {
-    
-    func fetchAllBookmarks(completion: @escaping BookmarkCompletion) throws {
+
+    func fetchAllBookmarks(completion: @escaping () -> Void) {
         let endpoint = Endpoint(resourceTypes: [.posts, .all])
         
-        try fetch(with: endpoint, parameters: nil, completion: completion)
+        fetch(with: endpoint, parameters: nil, completion: completion)
     }
     
-    func fetchRecentBookmarks(completion: @escaping BookmarkCompletion) throws {
-        let endpoint = Endpoint(resourceTypes: [.posts, .recent])
-        try fetch(with: endpoint, completion: completion)
-    }
-    
-    func fetch(with endpoint: Endpoint, parameters: [URLQueryItem]? = nil, completion: @escaping BookmarkCompletion) throws {
+    func fetch(with endpoint: Endpoint, parameters: [URLQueryItem]? = nil, completion: @escaping () -> Void) {
         NetworkClient.shared.executeRequest(with: endpoint, parameters: parameters) { result in
             switch result {
             case .success(let json):
                 let posts = json
                 
-                DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async {
-                    for (_, subJson): (String, JSON) in posts {
-                        Bookmark.from(json: subJson).persist()
+                DispatchQueue.global(qos: .default).async {
+                    posts.forEach {
+                        Bookmark.from(json: $1).persist()
                     }
-                    
+
                     completion()
                 }
                 
@@ -45,7 +40,7 @@ class PinboardNetworkOperations {
         }
     }
     
-    func getLastUpdated(completion: @escaping (_ datetime: Date) -> Void) throws {
+    func getLastUpdated(completion: @escaping (_ datetime: Date) -> Void) {
         let endpoint = Endpoint(resourceTypes: [.posts, .update])
         NetworkClient.shared.executeRequest(with: endpoint) { result in
             switch result {
@@ -60,7 +55,10 @@ class PinboardNetworkOperations {
     }
     
     func toggleReadState(toRead: Bool, for bookmark: Bookmark, completion: ((Result<Bool>) -> ())?) {
-        addBookmark(with: bookmark.url, title: bookmark.title, description: bookmark.description, isPrivate: !bookmark.shared, toRead: toRead, tags: bookmark.userTags, completion: completion)
+        let combinedTags = bookmark.tags.reduce("") { result, tag in
+            result + "+" + tag.name
+        }
+        addBookmark(with: bookmark.url, title: bookmark.title, description: bookmark.description, isPrivate: !bookmark.shared, toRead: toRead, tags: combinedTags, completion: completion)
     }
     
     func delete(with URL: Foundation.URL) {

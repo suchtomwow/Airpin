@@ -41,9 +41,9 @@ class BookmarkDetailsViewModel: BaseViewModel {
         self.mode = mode
 
         if case .edit(let bookmark) = mode {
-            self.url = bookmark.url// bookmark.url
-            self.bookmarkTitle = bookmark.title //bookmark.title
-            self.description = bookmark.desc //bookmark.desc
+            self.url = bookmark.url
+            self.bookmarkTitle = bookmark.title
+            self.description = bookmark.desc
             self.tags = bookmark.tags
         }
     }

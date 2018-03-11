@@ -10,7 +10,6 @@ import Foundation
 import RealmSwift
 
 class UntaggedBookmarksListViewModel: BaseViewModel, BookmarkListViewModel {
-    var bookmarks: [Bookmark] = []
+    var bookmarks: Results<Bookmark> = try! Realm().objects(Bookmark.self).filter(NSPredicate(format: "tags.@count == 0")).sorted(byKeyPath: "datetime", ascending: false)
     let title: String = "Untagged"
-    var filter: ((Bookmark) -> Bool)? = { bookmark in bookmark.tags.count == 0 }
 }

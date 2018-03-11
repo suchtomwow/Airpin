@@ -12,15 +12,11 @@ import Foundation
 class TagBookmarksViewModel: BaseViewModel, BookmarkListViewModel {
     let bookmarkTag: String
     let title: String
-    var bookmarks: [Bookmark] = []
-    let filter: ((Bookmark) -> Bool)?
+    var bookmarks: Results<Bookmark>
 
     init(bookmarkTag: String) {
         self.bookmarkTag = bookmarkTag
         self.title = bookmarkTag
-
-        filter = { bookmark in
-            bookmark.tags.contains(bookmarkTag)
-        }
+        self.bookmarks = try! Realm().objects(Bookmark.self).filter(NSPredicate(format: "tags CONTAINS %@", bookmarkTag)).sorted(byKeyPath: "datetime", ascending: false)
     }
 }

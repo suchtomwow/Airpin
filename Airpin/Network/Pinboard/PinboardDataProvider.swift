@@ -9,7 +9,7 @@
 import RealmSwift
 
 protocol BookmarkDataProviding: class {
-    func fetchAllBookmarks(completion: @escaping BookmarkCompletion)
+    func updateFromNetworkIfNecessary()
     func toggleReadState(bookmark: Bookmark)
     func delete(bookmark: Bookmark)
 }
@@ -18,40 +18,22 @@ class PinboardDataProvider: BookmarkDataProviding {
     private let networkOperations = PinboardNetworkOperations()
     private let diskOperations = PinboardDiskOperations()
     
-    func fetchAllBookmarks(completion: @escaping BookmarkCompletion) {
-        // Call the https://api.pinboard.in/v1/posts/update endpoint to get the last updated time
-        do {
-            try networkOperations.getLastUpdated { datetime in
-                if let lastUpdated = self.diskOperations.lastUpdated {
-                    
-                    // Compare against the stored last updated time
-                    if  datetime != lastUpdated {
-                        
-                        // If they differ, fetch all bookmarks from server
-                        self.diskOperations.lastUpdated = datetime
-                        self.fetchAllBookmarksFromNetwork(completion: completion)
-                    } else {
-                        
-                        // If they are the same, fetch from data store
-                        self.diskOperations.fetchAllBookmarks(completion: completion)
-                        
-                        // If nothing is returned from disk, it means they don't have any bookmarks. We know this because the stored update date matches the network update date.
-                    }
-                } else {
-                    self.diskOperations.lastUpdated = datetime
-                    self.fetchAllBookmarksFromNetwork(completion: completion)
-                }
+    func updateFromNetworkIfNecessary() {
+        networkOperations.getLastUpdated { [weak self] lastUpdatedNetwork in
+            guard let lastUpdatedDisk = self?.diskOperations.lastUpdated else {
+                self?.fetchAllBookmarksFromNetwork(andStore: lastUpdatedNetwork)
+                return
             }
-        } catch {
-            print(error)
+
+            if lastUpdatedDisk != lastUpdatedNetwork {
+                self?.fetchAllBookmarksFromNetwork(andStore: lastUpdatedNetwork)
+            }
         }
     }
     
-    private func fetchAllBookmarksFromNetwork(completion: @escaping BookmarkCompletion) {
-        do {
-            try networkOperations.fetchAllBookmarks(completion: completion)
-        } catch {
-            print(error)
+    private func fetchAllBookmarksFromNetwork(andStore lastUpdatedTime: Date) {
+        networkOperations.fetchAllBookmarks { [weak self] in
+            self?.diskOperations.lastUpdated = lastUpdatedTime
         }
     }
     

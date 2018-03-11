@@ -25,32 +25,32 @@ import SwiftyJSON
  */
 
 class Bookmark: Object {
-    
+
     override static func primaryKey() -> String? {
         return "pbHash"
     }
     
-    @objc dynamic var pbHash:    String = ""// API: "hash", unique identifier
-    @objc dynamic var urlString: String = ""// API: "href"
-    @objc dynamic var title:     String = ""// API: "description", max 256 characters
-    @objc dynamic var desc:      String = ""// API: "extended", max 65536 characters
-    @objc dynamic var meta:      String = ""// API: "meta", if different than stored, update
-    @objc dynamic var datetime:  Date   = Date()// API: "time"
-    @objc dynamic var shared:    Bool   = false// API: "shared", private/public
-    @objc dynamic var toRead:    Bool   = false// API: "toread"
+    @objc dynamic var pbHash: String = "" // API: "hash", unique identifier
+    @objc dynamic var urlString: String = "" // API: "href"
+    @objc dynamic var title: String = "" // API: "description", max 256 characters
+    @objc dynamic var desc: String = "" // API: "extended", max 65536 characters
+    @objc dynamic var meta: String = "" // API: "meta", if different than stored, update
+    @objc dynamic var datetime: Date = Date() // API: "time"
+    @objc dynamic var shared: Bool = false // API: "shared", private/public
+    @objc dynamic var toRead: Bool = false // API: "toread"
     let tags = List<Tag>() // API: "tags", space delimited list of words
 
     /// This is less dumb than it looks. If you implement an intializer to do the same thing, then you have to override a normal init as well as an init with Realm, which if you have time to figure out how to do, go for it.
     class func from(json: JSON) -> Bookmark {
-        let bookmark       = Bookmark()
-        bookmark.pbHash    = json["hash"].stringValue
+        let bookmark = Bookmark()
+        bookmark.pbHash = json["hash"].stringValue
         bookmark.urlString = json["href"].stringValue
-        bookmark.title     = json["description"].stringValue
-        bookmark.desc      = json["extended"].stringValue
-        bookmark.meta      = json["meta"].stringValue
-        bookmark.datetime  = Formatter.JSON.date(from: json["time"].stringValue)!
-        bookmark.shared    = Bool(string: json["shared"].stringValue)
-        bookmark.toRead    = Bool(string: json["toread"].stringValue)
+        bookmark.title = json["description"].stringValue
+        bookmark.desc = json["extended"].stringValue
+        bookmark.meta = json["meta"].stringValue
+        bookmark.datetime = Formatter.JSON.date(from: json["time"].stringValue)!
+        bookmark.shared = Bool(string: json["shared"].stringValue)
+        bookmark.toRead = Bool(string: json["toread"].stringValue)
         json["tags"].stringValue.split(separator: " ").forEach {
             let tag = Tag(value: [$0])
             bookmark.tags.append(tag)

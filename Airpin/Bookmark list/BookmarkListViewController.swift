@@ -8,6 +8,7 @@
 
 import UIKit
 import SafariServices
+import RealmSwift
 
 class BookmarkListViewController: BaseViewController {
     
@@ -15,10 +16,38 @@ class BookmarkListViewController: BaseViewController {
     private let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
     
     private let viewModel: BookmarkListViewModel
+    private let dataProvider: BookmarkDataProviding = PinboardDataProvider()
+    private var observerToken: NotificationToken?
 
     init(viewModel: BookmarkListViewModel) {
         self.viewModel = viewModel
+
         super.init(nibName: nil, bundle: nil)
+
+        observerToken = viewModel.bookmarks.addNotificationBlock { [weak self] changes in
+            guard let tableView = self?.tableView, let activityIndicator = self?.activityIndicator else { return }
+
+            switch changes {
+            case .initial(let bookmarks):
+                tableView.isHidden = bookmarks.isEmpty
+                tableView.reloadData()
+                activityIndicator.stopAnimating()
+            case .update(let bookmarks, let deletions, let insertions, let modifications):
+                tableView.isHidden = bookmarks.isEmpty
+                activityIndicator.stopAnimating()
+
+                tableView.beginUpdates()
+                tableView.insertRows(at: insertions.map { IndexPath(row: $0, section: 0) },
+                                     with: .automatic)
+                tableView.deleteRows(at: deletions.map { IndexPath(row: $0, section: 0) },
+                                     with: .automatic)
+                tableView.reloadRows(at: modifications.map { IndexPath(row: $0, section: 0) },
+                                     with: .automatic)
+                tableView.endUpdates()
+            case .error(let error):
+                fatalError("\(error)")
+            }
+        }
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -28,12 +57,7 @@ class BookmarkListViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel.fetchBookmarks(dataProvider: PinboardDataProvider()) { [weak self] in
-            guard let strongSelf = self else { return }
-            strongSelf.tableView.isHidden = strongSelf.viewModel.bookmarks.isEmpty
-            strongSelf.tableView.reloadData()
-            strongSelf.activityIndicator.stopAnimating()
-        }
+        viewModel.fetchBookmarks(dataProvider: dataProvider)
     }
     
     override func configureView() {
@@ -70,19 +94,11 @@ class BookmarkListViewController: BaseViewController {
     }
     
     private func toggleReadState(at indexPath: IndexPath) {
-        viewModel.toggleReadState(at: indexPath.row, dataProvider: PinboardDataProvider())
-        
-        tableView.beginUpdates()
-        tableView.reloadRows(at: [indexPath], with: .automatic)
-        tableView.endUpdates()
+        viewModel.toggleReadState(at: indexPath.row, dataProvider: dataProvider)
     }
     
     private func delete(at indexPath: IndexPath) {
-        viewModel.delete(at: indexPath.row, dataProvider: PinboardDataProvider())
-        
-        tableView.beginUpdates()
-        tableView.deleteRows(at: [indexPath], with: .automatic)
-        tableView.endUpdates()
+        viewModel.delete(at: indexPath.row, dataProvider: dataProvider)
     }
 
     private func showBookmarkList(for tag: String) {
@@ -113,7 +129,7 @@ extension BookmarkListViewController: UITableViewDataSource {
 extension BookmarkListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let bookmark = viewModel.bookmarks[indexPath.row]
-        
+
         if bookmark.toRead {
             toggleReadState(at: indexPath)
         }
@@ -123,12 +139,15 @@ extension BookmarkListViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let bookmark = viewModel.bookmarks[indexPath.row]
+
         let delete = UIContextualAction(style: .destructive, title: "Delete") { [unowned self] action, view, completion in
             self.delete(at: indexPath)
             completion(true)
         } // Trash can icon
 
-        let toggleRead = UIContextualAction(style: .normal, title: "Mark as \(viewModel.bookmarks[indexPath.row].toRead ? "" : "un")read") { [unowned self] action, view, completion in
+        let un = bookmark.toRead ? "" : "un"
+        let toggleRead = UIContextualAction(style: .normal, title: "Mark as \(un)read") { [unowned self] action, view, completion in
             self.toggleReadState(at: indexPath)
             completion(true)
         } // Filled icon if read, unfilled if not

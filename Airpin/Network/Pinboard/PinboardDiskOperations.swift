@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RealmSwift
 
 class PinboardDiskOperations {
     var lastUpdated: Date? {
@@ -16,9 +17,5 @@ class PinboardDiskOperations {
         set {
             UserDefaults.standard.set(newValue, forKey: UserDefault.updateTime)
         }
-    }
-    
-    func fetchAllBookmarks(completion: BookmarkCompletion) {
-        completion()
     }
 }

@@ -10,8 +10,7 @@ import Foundation
 import RealmSwift
 
 class PublicBookmarksListViewModel: BaseViewModel, BookmarkListViewModel {
-    var bookmarks: [Bookmark] = []
+    var bookmarks: Results<Bookmark> = try! Realm().objects(Bookmark.self).filter(NSPredicate(format: "shared == true")).sorted(byKeyPath: "datetime", ascending: false)
     let title: String = "Public"
-    let filter: ((Bookmark) -> Bool)? = { bookmark in bookmark.shared }
 }
 

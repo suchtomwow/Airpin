@@ -6,8 +6,9 @@
 //  Copyright © 2018 Thomas Carey. All rights reserved.
 //
 
+import RealmSwift
+
 class UnreadBookmarksListViewModel: BaseViewModel, BookmarkListViewModel {
-    var bookmarks: [Bookmark] = []
+    var bookmarks: Results<Bookmark> = try! Realm().objects(Bookmark.self).filter(NSPredicate(format: "toRead == true")).sorted(byKeyPath: "datetime", ascending: false)
     let title: String = "Unread"
-    let filter: ((Bookmark) -> Bool)? = { bookmark in bookmark.toRead }
 }
