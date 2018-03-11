@@ -14,7 +14,6 @@ class CTAButton: UIButton {
         set {
             setAttributedTitle(newValue?.primaryButton(), for: [])
         }
-        
         get {
             return attributedTitle(for: [])?.string
         }
@@ -31,6 +30,6 @@ class CTAButton: UIButton {
     }
     
     final fileprivate func commonInit() {
-        backgroundColor = .complementary
+        backgroundColor = .primary
     }
 }

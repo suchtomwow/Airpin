@@ -87,7 +87,7 @@ class HideableButton: UIView {
 
         hideButton.backgroundColor = .clear
         hideButton.setImage(Icon.x.image, for: .normal)
-        hideButton.tintColor = .white
+        hideButton.tintColor = .primary
 
         NSLayoutConstraint.activate([
             hideButton.topAnchor.constraint(equalTo: leftButton.topAnchor),

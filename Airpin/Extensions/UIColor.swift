@@ -40,7 +40,7 @@ extension UIColor {
     }
     
     class var primary: UIColor {
-        return UIColor(hex: 0x2FE0AC)
+        return UIColor(hex: 0x444444)
     }
     
     class var complementary: UIColor {

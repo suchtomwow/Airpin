@@ -39,7 +39,7 @@ extension String {
     }
     
     func headline(alignment: NSTextAlignment, color: UIColor = .primaryText) -> NSAttributedString {
-        return attributedStringWithAlignment(alignment, font: UIFont.headline().medium, color: color)
+        return attributedStringWithAlignment(alignment, font: UIFont.headline().bold, color: color)
     }
     
     func subheadline(alignment: NSTextAlignment) -> NSAttributedString {
@@ -67,7 +67,7 @@ extension String {
     }
     
     func secondaryButton() -> NSAttributedString {
-        return attributedStringWithAlignment(.center, font: UIFont.callout().medium, color: .white)
+        return attributedStringWithAlignment(.center, font: UIFont.callout().medium, color: .primary)
     }
     
     private func attributedStringWithAlignment(_ alignment: NSTextAlignment, font: UIFont, color: UIColor) -> NSAttributedString {

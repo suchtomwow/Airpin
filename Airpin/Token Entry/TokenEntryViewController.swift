@@ -39,7 +39,7 @@ class TokenEntryViewController: BaseViewController {
     
     var viewDetails: TokenEntryViewDetails! {
         didSet {
-            description1Label.attributedText = viewDetails.description1.title(alignment: .center, color: .white)
+            description1Label.attributedText = viewDetails.description1.title(alignment: .center, color: .primary)
             textField.placeholder            = viewDetails.tokenFieldPlaceholder
             
             helpButton.setTitle(viewDetails.helpButton, for: .normal)
@@ -64,7 +64,6 @@ class TokenEntryViewController: BaseViewController {
         super.configureView()
         
         textField.delegate = self
-        configureTextFieldBottomBorder()
         configureHelpButton()
         
         viewDetails = viewModel.viewDetails
@@ -77,32 +76,16 @@ class TokenEntryViewController: BaseViewController {
     override func configureStyles() {
         super.configureStyles()
         
-        view.backgroundColor = .primary
+        view.backgroundColor = .white
         
         textField.font = UIFont.title1()
-        textField.textColor = .white
-        textField.tintColor = .white
+        textField.textColor = .primary
+        textField.tintColor = .primary
         
         helpButton.layer.cornerRadius = 8
-        helpButton.backgroundColor = UIColor.white
-        helpButton.setTitleColor(.tertiaryText, for: .normal)
+        helpButton.backgroundColor = .primary
+        helpButton.setTitleColor(.white, for: .normal)
         helpButton.alpha = 0.5
-    }
-    
-    private func configureTextFieldBottomBorder() {
-        let border = UIView()
-        border.translatesAutoresizingMaskIntoConstraints = false
-        
-        view.addSubview(border)
-        
-        NSLayoutConstraint.activate([
-            border.leadingAnchor.constraint(equalTo: textField.leadingAnchor),
-            border.trailingAnchor.constraint(equalTo: textField.trailingAnchor),
-            border.topAnchor.constraint(equalTo: textField.bottomAnchor),
-            border.heightAnchor.constraint(equalToConstant: 1)
-        ])
-        
-        border.backgroundColor = .white
     }
     
     final private func configureHelpButton() {
