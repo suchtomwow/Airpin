@@ -139,19 +139,18 @@ extension BookmarkListViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let bookmark = viewModel.bookmarks[indexPath.row]
-
-        let delete = UIContextualAction(style: .destructive, title: "Delete") { [unowned self] action, view, completion in
+        let delete = UIContextualAction(style: .destructive, title: nil) { [unowned self] action, view, completion in
             self.delete(at: indexPath)
             completion(true)
-        } // Trash can icon
+        }
 
-        let un = bookmark.toRead ? "" : "un"
-        let toggleRead = UIContextualAction(style: .normal, title: "Mark as \(un)read") { [unowned self] action, view, completion in
+        let toggleRead = UIContextualAction(style: .normal, title: nil) { [unowned self] action, view, completion in
             self.toggleReadState(at: indexPath)
             completion(true)
-        } // Filled icon if read, unfilled if not
+        }
 
+        delete.image = Icon.garbage.image
+        toggleRead.image = Icon.markAsRead.image
         toggleRead.backgroundColor = .blueRowAction
 
         let actions = UISwipeActionsConfiguration(actions: [delete, toggleRead])

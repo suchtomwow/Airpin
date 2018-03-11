@@ -10,6 +10,8 @@ import UIKit
 
 enum Icon: String {
     case disclosure = "disclosure"
+    case garbage = "garbage"
+    case markAsRead = "mark-as-read"
     case x = "x"
 
     var image: UIImage? {
