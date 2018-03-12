@@ -34,17 +34,7 @@ class BookmarkListViewController: BaseViewController {
                 tableView.reloadData()
                 activityIndicator.stopAnimating()
             case .update(let bookmarks, let deletions, let insertions, let modifications):
-                tableView.isHidden = bookmarks.isEmpty
-                activityIndicator.stopAnimating()
-
-                tableView.beginUpdates()
-                tableView.insertRows(at: insertions.map { IndexPath(row: $0, section: 0) },
-                                     with: .automatic)
-                tableView.deleteRows(at: deletions.map { IndexPath(row: $0, section: 0) },
-                                     with: .automatic)
-                tableView.reloadRows(at: modifications.map { IndexPath(row: $0, section: 0) },
-                                     with: .automatic)
-                tableView.endUpdates()
+                self?.updateTableView(with: bookmarks, deletions: deletions, insertions: insertions, modifications: modifications)
             case .error(let error):
                 fatalError("\(error)")
             }
@@ -109,6 +99,20 @@ class BookmarkListViewController: BaseViewController {
         let viewModel = TagBookmarksViewModel(bookmarkTag: tag)
         let controller = BookmarkListViewController(viewModel: viewModel)
         show(controller, sender: nil)
+    }
+
+    private func updateTableView(with bookmarks: Results<Bookmark>, deletions: [Int], insertions: [Int], modifications: [Int]) {
+        tableView.isHidden = bookmarks.isEmpty
+        activityIndicator.stopAnimating()
+
+        tableView.beginUpdates()
+        tableView.insertRows(at: insertions.map { IndexPath(row: $0, section: 0) },
+                             with: .automatic)
+        tableView.deleteRows(at: deletions.map { IndexPath(row: $0, section: 0) },
+                             with: .automatic)
+        tableView.reloadRows(at: modifications.map { IndexPath(row: $0, section: 0) },
+                             with: .automatic)
+        tableView.endUpdates()
     }
 
     @objc private func refreshFromNetwork() {
