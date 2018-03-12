@@ -15,8 +15,8 @@ protocol BookmarkListViewModel: class {
 }
 
 extension BookmarkListViewModel {
-    func fetchBookmarks(dataProvider: BookmarkDataProviding) {
-        dataProvider.updateFromNetworkIfNecessary()
+    func fetchBookmarks(dataProvider: BookmarkDataProviding, completion: (() -> Void)?) {
+        dataProvider.updateFromNetworkIfNecessary(completion: completion)
     }
 
     func toggleReadState(at index: Int, dataProvider: BookmarkDataProviding) {

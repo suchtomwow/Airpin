@@ -9,7 +9,7 @@
 import RealmSwift
 
 protocol BookmarkDataProviding: class {
-    func updateFromNetworkIfNecessary()
+    func updateFromNetworkIfNecessary(completion: (() -> Void)?)
     func toggleReadState(bookmark: Bookmark)
     func delete(bookmark: Bookmark)
 }
@@ -18,22 +18,23 @@ class PinboardDataProvider: BookmarkDataProviding {
     private let networkOperations = PinboardNetworkOperations()
     private let diskOperations = PinboardDiskOperations()
     
-    func updateFromNetworkIfNecessary() {
+    func updateFromNetworkIfNecessary(completion: (() -> Void)?) {
         networkOperations.getLastUpdated { [weak self] lastUpdatedNetwork in
             guard let lastUpdatedDisk = self?.diskOperations.lastUpdated else {
-                self?.fetchAllBookmarksFromNetwork(andStore: lastUpdatedNetwork)
+                self?.fetchAllBookmarksFromNetwork(andStore: lastUpdatedNetwork, completion: completion)
                 return
             }
 
             if lastUpdatedDisk != lastUpdatedNetwork {
-                self?.fetchAllBookmarksFromNetwork(andStore: lastUpdatedNetwork)
+                self?.fetchAllBookmarksFromNetwork(andStore: lastUpdatedNetwork, completion: completion)
             }
         }
     }
     
-    private func fetchAllBookmarksFromNetwork(andStore lastUpdatedTime: Date) {
+    private func fetchAllBookmarksFromNetwork(andStore lastUpdatedTime: Date, completion: (() -> Void)?) {
         networkOperations.fetchAllBookmarks { [weak self] in
             self?.diskOperations.lastUpdated = lastUpdatedTime
+            completion?()
         }
     }
     

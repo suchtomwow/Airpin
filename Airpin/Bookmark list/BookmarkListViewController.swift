@@ -14,6 +14,7 @@ class BookmarkListViewController: BaseViewController {
     
     private let tableView = BLSTableView()
     private let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+    private let refreshControl = UIRefreshControl()
     
     private let viewModel: BookmarkListViewModel
     private let dataProvider: BookmarkDataProviding = PinboardDataProvider()
@@ -57,7 +58,7 @@ class BookmarkListViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel.fetchBookmarks(dataProvider: dataProvider)
+        viewModel.fetchBookmarks(dataProvider: dataProvider, completion: nil)
     }
     
     override func configureView() {
@@ -75,6 +76,9 @@ class BookmarkListViewController: BaseViewController {
         tableView.delegate = self
         tableView.register(BookmarkListTableViewCell.self, forCellReuseIdentifier: String(describing: BookmarkListTableViewCell.self))
         tableView.estimatedRowHeight = 120
+
+        refreshControl.addTarget(self, action: #selector(refreshFromNetwork), for: .valueChanged)
+        tableView.refreshControl = refreshControl
 
         configureConstraints()
     }
@@ -105,6 +109,14 @@ class BookmarkListViewController: BaseViewController {
         let viewModel = TagBookmarksViewModel(bookmarkTag: tag)
         let controller = BookmarkListViewController(viewModel: viewModel)
         show(controller, sender: nil)
+    }
+
+    @objc private func refreshFromNetwork() {
+        viewModel.fetchBookmarks(dataProvider: dataProvider) { [weak self] in
+            DispatchQueue.main.async {
+                self?.refreshControl.endRefreshing()
+            }
+        }
     }
 }
 
