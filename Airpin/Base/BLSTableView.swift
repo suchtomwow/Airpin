@@ -26,5 +26,6 @@ class BLSTableView: UITableView {
     private func common() {
         rowHeight = UITableViewAutomaticDimension
         estimatedRowHeight = 100.0
+        separatorColor = .clear
     }
 }
