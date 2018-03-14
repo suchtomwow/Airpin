@@ -122,6 +122,13 @@ class BookmarkListViewController: BaseViewController {
             }
         }
     }
+
+    private func editBookmark(_ bookmark: Bookmark) {
+        let viewModel = BookmarkDetailsViewModel(mode: .edit(bookmark))
+        let controller = BookmarkDetailsViewController(viewModel: viewModel, delegate: self)
+        let nav = UINavigationController(rootViewController: controller)
+        present(nav, animated: true, completion: nil)
+    }
 }
 
 extension BookmarkListViewController: UITableViewDataSource {
@@ -165,12 +172,26 @@ extension BookmarkListViewController: UITableViewDelegate {
             completion(true)
         }
 
-        delete.image = Icon.garbage.image
-        toggleRead.image = Icon.markAsRead.image
-        toggleRead.backgroundColor = .blueRowAction
+        let edit = UIContextualAction(style: .normal, title: nil) { [unowned self] action, view, completion in
+            self.editBookmark(self.viewModel.bookmarks[indexPath.row])
+            completion(true)
+        }
 
-        let actions = UISwipeActionsConfiguration(actions: [delete, toggleRead])
+        delete.image = Icon.garbage.image
+        delete.backgroundColor = UIColor.primary.withAlphaComponent(0.8)
+        toggleRead.image = Icon.markAsRead.image
+        toggleRead.backgroundColor = UIColor.primary.withAlphaComponent(0.6)
+        edit.image = Icon.edit.image
+        edit.backgroundColor = UIColor.primary.withAlphaComponent(0.4)
+
+        let actions = UISwipeActionsConfiguration(actions: [delete, toggleRead, edit])
         actions.performsFirstActionWithFullSwipe = false
         return actions
+    }
+}
+
+extension BookmarkListViewController: BookmarkDetailsViewControllerDelegate {
+    func didAdd(_ bookmark: Bookmark) {
+        dismiss(animated: true, completion: nil)
     }
 }

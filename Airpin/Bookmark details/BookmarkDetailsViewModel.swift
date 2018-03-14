@@ -14,10 +14,17 @@ typealias BookmarkTag = String
 class BookmarkDetailsViewModel: BaseViewModel {
     
     enum Mode {
-        case create, edit(bookmark: Bookmark)
+        case create, edit(Bookmark)
     }
     
-    let addButtonTitle = "Add"
+    var addButtonTitle: String {
+        switch mode {
+        case .edit:
+            return "Edit"
+        case .create:
+            return "Add"
+        }
+    }
     let tagsDirections = "Separate tags with spaces"
     
     let mode: Mode
@@ -44,6 +51,8 @@ class BookmarkDetailsViewModel: BaseViewModel {
             self.url = bookmark.url
             self.bookmarkTitle = bookmark.title
             self.extended = bookmark.extended
+            self.makePrivate = !bookmark.shared
+            self.readLater = bookmark.toRead
             self.tags = bookmark.tags
         }
     }
