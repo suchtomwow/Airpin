@@ -24,7 +24,7 @@ class BookmarkDetailsViewModel: BaseViewModel {
     
     var url: URL?
     var bookmarkTitle: String?
-    var description: String?
+    var extended: String?
     var makePrivate = true
     var readLater = true
     var tags = List<Tag>()
@@ -43,7 +43,7 @@ class BookmarkDetailsViewModel: BaseViewModel {
         if case .edit(let bookmark) = mode {
             self.url = bookmark.url
             self.bookmarkTitle = bookmark.title
-            self.description = bookmark.desc
+            self.extended = bookmark.extended
             self.tags = bookmark.tags
         }
     }
@@ -54,7 +54,7 @@ class BookmarkDetailsViewModel: BaseViewModel {
         let bookmark = Bookmark()
         bookmark.url = url
         bookmark.title = bookmarkTitle ?? url.absoluteString
-        bookmark.desc = description ?? ""
+        bookmark.extended = extended ?? ""
         bookmark.shared = !makePrivate
         bookmark.toRead = readLater
         tags.forEach { bookmark.tags.append($0) }

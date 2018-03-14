@@ -33,7 +33,7 @@ class Bookmark: Object {
     @objc dynamic var pbHash: String = "" // API: "hash", unique identifier
     @objc dynamic var urlString: String = "" // API: "href"
     @objc dynamic var title: String = "" // API: "description", max 256 characters
-    @objc dynamic var desc: String = "" // API: "extended", max 65536 characters
+    @objc dynamic var extended: String = "" // API: "extended", max 65536 characters
     @objc dynamic var meta: String = "" // API: "meta", if different than stored, update
     @objc dynamic var datetime: Date = Date() // API: "time"
     @objc dynamic var shared: Bool = false // API: "shared", private/public
@@ -46,7 +46,7 @@ class Bookmark: Object {
         bookmark.pbHash = json["hash"].stringValue
         bookmark.urlString = json["href"].stringValue
         bookmark.title = json["description"].stringValue
-        bookmark.desc = json["extended"].stringValue
+        bookmark.extended = json["extended"].stringValue
         bookmark.meta = json["meta"].stringValue
         bookmark.datetime = Formatter.JSON.date(from: json["time"].stringValue)!
         bookmark.shared = Bool(string: json["shared"].stringValue)

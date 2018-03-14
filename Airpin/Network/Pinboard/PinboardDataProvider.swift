@@ -67,11 +67,11 @@ class PinboardDataProvider: BookmarkDataProviding {
     func add(_ bookmark: Bookmark, completion: @escaping (Result<Bool>) -> ()) {
         let url = bookmark.url
         let title = bookmark.title
-        let description = bookmark.desc
+        let extended = bookmark.extended
         let isPrivate = !bookmark.shared
         let toRead = bookmark.toRead
         let tags = bookmark.tags.reduce("") { $0 + "+" + $1.name }
 
-        networkOperations.addBookmark(with: url, title: title, description: description, isPrivate: isPrivate, toRead: toRead, tags: tags, completion: completion)
+        networkOperations.addBookmark(with: url, title: title, extended: extended, isPrivate: isPrivate, toRead: toRead, tags: tags, completion: completion)
     }
 }

@@ -117,7 +117,7 @@ class BookmarkListTableViewCell: BLSTableViewCell {
         }
         
         let titleString = bookmark.title.trim()
-        let description = bookmark.desc.condense().trim()
+        let extended = bookmark.extended.condense().trim()
         
         let datetime  = Formatter.humanTime.string(from: bookmark.datetime)
         
@@ -130,11 +130,11 @@ class BookmarkListTableViewCell: BLSTableViewCell {
         URL.attributedText      = bookmark.displayURL.caption(alignment: .left)
         date.attributedText     = datetime.caption(alignment: .right, color: .secondaryText)
         title.attributedText    = titleString.headline(alignment: .left)
-        subtitle.attributedText = description.subheadline(alignment: .left)
+        subtitle.attributedText = extended.subheadline(alignment: .left)
         tagStackView.addArrangedSubview(UIView())
         
         title.isHidden        = titleString.count == 0
-        subtitle.isHidden     = description.count == 0
+        subtitle.isHidden     = extended.count == 0
         tagStackView.isHidden = bookmark.tags.count == 0
     }
 

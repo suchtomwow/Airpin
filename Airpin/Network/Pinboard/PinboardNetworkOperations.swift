@@ -58,7 +58,7 @@ class PinboardNetworkOperations {
         let combinedTags = bookmark.tags.reduce("") { result, tag in
             result + "+" + tag.name
         }
-        addBookmark(with: bookmark.url, title: bookmark.title, description: bookmark.description, isPrivate: !bookmark.shared, toRead: toRead, tags: combinedTags, completion: completion)
+        addBookmark(with: bookmark.url, title: bookmark.title, extended: bookmark.extended, isPrivate: !bookmark.shared, toRead: toRead, tags: combinedTags, completion: completion)
     }
     
     func delete(with URL: Foundation.URL) {
@@ -68,11 +68,11 @@ class PinboardNetworkOperations {
         NetworkClient.shared.executeRequest(with: endpoint, parameters: [urlQI], completion: nil)
     }
     
-    func addBookmark(with url: URL, title: String, description: String?, isPrivate: Bool, toRead: Bool, tags: String, completion: ((Result<Bool>) -> ())?) {
+    func addBookmark(with url: URL, title: String, extended: String?, isPrivate: Bool, toRead: Bool, tags: String, completion: ((Result<Bool>) -> ())?) {
         let endpoint = Endpoint(resourceTypes: [.posts, .add])
         let urlQI = URLQueryItem(name: "url", value: url.absoluteString)
         let titleQI = URLQueryItem(name: "description", value: title)
-        let descriptionQI = URLQueryItem(name: "extended", value: description)
+        let descriptionQI = URLQueryItem(name: "extended", value: extended)
         let toReadQI = URLQueryItem(name: "toread", value: toRead ? "yes" : "no")
         let privacyQI = URLQueryItem(name: "shared", value: isPrivate ? "no" : "yes")
         let tagsQI = URLQueryItem(name: "tags", value: tags)

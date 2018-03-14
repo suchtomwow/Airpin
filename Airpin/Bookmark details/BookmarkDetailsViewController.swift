@@ -67,9 +67,9 @@ class BookmarkDetailsViewController: FormViewController {
         
         descriptionRow = TextAreaRow { row in
             row.placeholder = "Description"
-            row.value = viewModel.description
+            row.value = viewModel.extended
         }.onChange { row in
-            viewModel.description = row.value
+            viewModel.extended = row.value
         }
         
         privacyRow = SwitchRow { row in
