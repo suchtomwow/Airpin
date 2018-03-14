@@ -47,8 +47,8 @@ class CategoryViewController: BaseViewController {
         tableView.estimatedRowHeight = 60
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: viewModel.leftBarButtonText, style: .plain, target: self, action: #selector(CategoryViewController.leftBarButtonItemTapped(_:)))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "New", style: .plain, target: self, action: #selector(CategoryViewController.rightBarButtonItemTapped(_:)))
-        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(rightBarButtonItemTapped(_:)))
+
         updateView()
 
         navigationController?.navigationBar.prefersLargeTitles = true
