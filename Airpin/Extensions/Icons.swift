@@ -10,6 +10,7 @@ import UIKit
 
 enum Icon: String {
     case disclosure = "disclosure"
+    case edit = "edit"
     case garbage = "garbage"
     case markAsRead = "mark-as-read"
     case x = "x"
