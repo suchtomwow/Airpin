@@ -27,7 +27,7 @@ import SwiftyJSON
 class Bookmark: Object {
 
     override static func primaryKey() -> String? {
-        return "pbHash"
+        return "urlString"
     }
     
     @objc dynamic var pbHash: String = "" // API: "hash", unique identifier
