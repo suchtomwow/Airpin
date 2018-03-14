@@ -8,7 +8,7 @@
 
 // To do...
 // ✅ Paste link from clipboard
-// 🚫 Unfurl URL details
+// ✅ Unfurl URL details
 // 🚫 Tag suggestions
 // ✅ Tags
 // 🚫 Lowercase tags
