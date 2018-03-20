@@ -26,15 +26,14 @@ class BookmarkListViewController: BaseViewController {
         super.init(nibName: nil, bundle: nil)
 
         observerToken = viewModel.bookmarks.addNotificationBlock { [weak self] changes in
-            guard let tableView = self?.tableView, let activityIndicator = self?.activityIndicator else { return }
+            guard let `self` = self else { return }
 
             switch changes {
             case .initial(let bookmarks):
-                tableView.isHidden = bookmarks.isEmpty
-                tableView.reloadData()
-                activityIndicator.stopAnimating()
+                self.updateLoadingState(bookmarkCount: bookmarks.count)
+                self.tableView.reloadData()
             case .update(let bookmarks, let deletions, let insertions, let modifications):
-                self?.updateTableView(with: bookmarks, deletions: deletions, insertions: insertions, modifications: modifications)
+                self.updateTableView(with: bookmarks, deletions: deletions, insertions: insertions, modifications: modifications)
             case .error(let error):
                 fatalError("\(error)")
             }
@@ -101,9 +100,14 @@ class BookmarkListViewController: BaseViewController {
         show(controller, sender: nil)
     }
 
-    private func updateTableView(with bookmarks: Results<Bookmark>, deletions: [Int], insertions: [Int], modifications: [Int]) {
-        tableView.isHidden = bookmarks.isEmpty
+    private func updateLoadingState(bookmarkCount: Int) {
+        tableView.isHidden = bookmarkCount < 1
         activityIndicator.stopAnimating()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "\(bookmarkCount)", style: .plain, target: nil, action: nil)
+    }
+
+    private func updateTableView(with bookmarks: Results<Bookmark>, deletions: [Int], insertions: [Int], modifications: [Int]) {
+        updateLoadingState(bookmarkCount: bookmarks.count)
 
         tableView.beginUpdates()
         tableView.insertRows(at: insertions.map { IndexPath(row: $0, section: 0) },
