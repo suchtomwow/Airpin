@@ -50,8 +50,6 @@ class CategoryViewController: BaseViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(rightBarButtonItemTapped(_:)))
 
         updateView()
-
-        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     private func showBookmarkList(for row: Int) {
