@@ -23,6 +23,11 @@ class BLSTableView: UITableView {
         common()
     }
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        common()
+    }
+
     private func common() {
         rowHeight = UITableViewAutomaticDimension
         estimatedRowHeight = 100.0
