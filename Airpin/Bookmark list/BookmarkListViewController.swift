@@ -25,10 +25,10 @@ class BookmarkListViewController: BaseViewController {
 
         super.init(nibName: nil, bundle: nil)
 
-        observerToken = viewModel.bookmarks.addNotificationBlock { [weak self] changes in
+        observerToken = viewModel.bookmarks.observe { [weak self] change in
             guard let `self` = self else { return }
 
-            switch changes {
+            switch change {
             case .initial(let bookmarks):
                 self.updateLoadingState(bookmarkCount: bookmarks.count)
                 self.tableView.reloadData()

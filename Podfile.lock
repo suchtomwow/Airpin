@@ -1,16 +1,16 @@
 PODS:
-  - Crashlytics (3.8.6):
-    - Fabric (~> 1.6.3)
-  - Eureka (4.0.0)
-  - Fabric (1.6.13)
+  - Crashlytics (3.10.1):
+    - Fabric (~> 1.7.5)
+  - Eureka (4.1.1)
+  - Fabric (1.7.6)
   - Locksmith (4.0.0)
-  - Realm (2.10.2):
-    - Realm/Headers (= 2.10.2)
-  - Realm/Headers (2.10.2)
-  - RealmSwift (2.10.2):
-    - Realm (= 2.10.2)
-  - SwiftSoup (1.6.0)
-  - SwiftyJSON (3.1.4)
+  - Realm (3.3.2):
+    - Realm/Headers (= 3.3.2)
+  - Realm/Headers (3.3.2)
+  - RealmSwift (3.3.2):
+    - Realm (= 3.3.2)
+  - SwiftSoup (1.7.1)
+  - SwiftyJSON (4.0.0)
 
 DEPENDENCIES:
   - Crashlytics
@@ -23,15 +23,15 @@ DEPENDENCIES:
   - SwiftyJSON
 
 SPEC CHECKSUMS:
-  Crashlytics: 95d05f4e4c19a771250c4bd9ce344d996de32bbf
-  Eureka: c0b55d2aec82050c1400c7d65960b700be8d10ef
-  Fabric: 2fb5676bc811af011a04513451f463dac6803206
+  Crashlytics: aee1a064cbbf99b32efa3f056a5f458d846bc8ff
+  Eureka: b88fb930e42c79f8c03c373d0fcdc28c1d6c50ed
+  Fabric: f8d42c893bb187326a7968b62abe55c36a987a46
   Locksmith: e9bebbaaa4cee3c511bc358a44f843c3fe00e21f
-  Realm: 0ef72b837fb67e9f4b098bac771ddd72c7fdbb69
-  RealmSwift: 07a9ae0505091eda6b2ee7c190c3786d6e90a7b0
-  SwiftSoup: db0634b1571304cfef38eb0ee6505eb7d06765f1
-  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+  Realm: d927fbf66df5532cfafc08afb5f7e53ded37b894
+  RealmSwift: 4e903a494e05d866581d69ad6f7e7b879d446baf
+  SwiftSoup: 277f7ef548826e0ca7603a06b30d4a5df3ee0587
+  SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: 3dfb6f9365da5789ad72b11a04aaf428b8672314
+PODFILE CHECKSUM: c44513c5268790093f3683718769b9c428d7bd08
 
-COCOAPODS: 1.4.0.beta.2
+COCOAPODS: 1.4.0

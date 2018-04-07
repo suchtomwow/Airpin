@@ -77,8 +77,7 @@ class NetworkClient {
             if let error = error {
                 print(error)
             } else if let data = data, let response = response as? HTTPURLResponse {
-                if response.statusCode == StatusCode.ok.rawValue {
-                    let json = JSON(data: data)
+                if response.statusCode == StatusCode.ok.rawValue, let json = try? JSON(data: data) {
                     completion?(Result.success(json))
                 }
             }
