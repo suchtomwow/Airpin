@@ -133,7 +133,7 @@ class TokenEntryViewController: BaseViewController {
     }
     
     final private func goToPinboardWebsiteSettings() {
-        guard let url = URL(string: "https://pinboard.in/settings/password") else {
+        guard let url = URL(string: "https://m.pinboard.in/settings/password") else {
             return
         }
         
