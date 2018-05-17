@@ -25,6 +25,7 @@
 		2F9B7BFD201E78BA0072D09F /* Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9B7BFC201E78B90072D09F /* Bookmark.swift */; };
 		2F9B7BFF201E7BC90072D09F /* MetaDataGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9B7BFE201E7BC90072D09F /* MetaDataGetter.swift */; };
 		2FAF7F4E20ACE77B00F98460 /* Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FAF7F4D20ACE77B00F98460 /* Realm.swift */; };
+		2FAF7F5020AD079300F98460 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2FAF7F4F20AD079300F98460 /* Settings.bundle */; };
 		2FBB71FC204E69EA001F0CFC /* TagBookmarksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBB71FB204E69EA001F0CFC /* TagBookmarksViewModel.swift */; };
 		2FFB4251209E65DC0076A806 /* PopularBookmarkListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFB4250209E65DC0076A806 /* PopularBookmarkListViewModel.swift */; };
 		5CEED34AC3662E87270B4156 /* Pods_Airpin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C798048B61585BF34387C30 /* Pods_Airpin.framework */; };
@@ -103,6 +104,7 @@
 		2F9B7BFC201E78B90072D09F /* Bookmark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bookmark.swift; sourceTree = "<group>"; };
 		2F9B7BFE201E7BC90072D09F /* MetaDataGetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaDataGetter.swift; sourceTree = "<group>"; };
 		2FAF7F4D20ACE77B00F98460 /* Realm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Realm.swift; sourceTree = "<group>"; };
+		2FAF7F4F20AD079300F98460 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		2FBB71FB204E69EA001F0CFC /* TagBookmarksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagBookmarksViewModel.swift; sourceTree = "<group>"; };
 		2FFB4250209E65DC0076A806 /* PopularBookmarkListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularBookmarkListViewModel.swift; sourceTree = "<group>"; };
 		7A3E749D206D0E59D6935693 /* Pods-Airpin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Airpin.release.xcconfig"; path = "Pods/Target Support Files/Pods-Airpin/Pods-Airpin.release.xcconfig"; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 		2F99B377209D52EF0006D2CF /* App start */ = {
 			isa = PBXGroup;
 			children = (
+				9865E5031AD4E82100201BC5 /* AppDelegate.swift */,
 				2F99B378209D52FD0006D2CF /* RootControllerFactory.swift */,
 				2F99B37C209D54D10006D2CF /* MainTabBarController.swift */,
 				2F99B385209D5A3E0006D2CF /* MainTabBarCoordinator.swift */,
@@ -266,7 +269,6 @@
 				2F99B389209D5E990006D2CF /* Flow */,
 				2F99B377209D52EF0006D2CF /* App start */,
 				2F99B37E209D58E10006D2CF /* Settings */,
-				E9BA7AC61DED2CDE009433C3 /* Airpin.entitlements */,
 				E9CF69631E385A2200BDE099 /* Playgrounds */,
 				E9CF695E1E38587400BDE099 /* Models */,
 				E96F04501E19F37E001FB2FF /* Eureka */,
@@ -280,7 +282,6 @@
 				E9FE00031DF37E5D00961131 /* Buttons */,
 				9865E5251AD4F37200201BC5 /* Network */,
 				E9E4AADB1BC8DF1900BB1C73 /* Storyboard */,
-				9865E5031AD4E82100201BC5 /* AppDelegate.swift */,
 				9865E50A1AD4E82100201BC5 /* Assets.xcassets */,
 				E9E992041D38C4D300CDE752 /* Frameworks */,
 				9865E5011AD4E82100201BC5 /* Supporting Files */,
@@ -291,9 +292,11 @@
 		9865E5011AD4E82100201BC5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E9BA7AC61DED2CDE009433C3 /* Airpin.entitlements */,
 				9865E5021AD4E82100201BC5 /* Info.plist */,
+				2FAF7F4F20AD079300F98460 /* Settings.bundle */,
 			);
-			name = "Supporting Files";
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		9865E5251AD4F37200201BC5 /* Network */ = {
@@ -417,7 +420,7 @@
 				E9BC04DB1D9972490076D399 /* Fabric.framework */,
 				E9BC04DC1D9972490076D399 /* Crashlytics.framework */,
 			);
-			name = Frameworks;
+			path = Frameworks;
 			sourceTree = "<group>";
 		};
 		E9EADECF1B68756E007A2467 /* Frameworks */ = {
@@ -564,6 +567,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2FAF7F5020AD079300F98460 /* Settings.bundle in Resources */,
 				9865E5091AD4E82100201BC5 /* Main.storyboard in Resources */,
 				9865E50E1AD4E82100201BC5 /* LaunchScreen.xib in Resources */,
 				9865E50B1AD4E82100201BC5 /* Assets.xcassets in Resources */,
@@ -904,7 +908,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Airpin/Airpin.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "Airpin/Supporting Files/Airpin.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = H8B2H49X66;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -913,7 +917,7 @@
 					"$(PROJECT_DIR)/Airpin",
 				);
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = Airpin/Info.plist;
+				INFOPLIST_FILE = "Airpin/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_CFLAGS = "$(inherited)";
@@ -934,7 +938,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Airpin/Airpin.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "Airpin/Supporting Files/Airpin.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = H8B2H49X66;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -943,7 +947,7 @@
 					"$(PROJECT_DIR)/Airpin",
 				);
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = Airpin/Info.plist;
+				INFOPLIST_FILE = "Airpin/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_CFLAGS = "$(inherited)";
