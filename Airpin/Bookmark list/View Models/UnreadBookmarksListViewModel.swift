@@ -1,5 +1,5 @@
 //
-//  UnreadBookmarksViewModel.swift
+//  UnreadBookmarksListViewModel.swift
 //  Airpin
 //
 //  Created by Thomas Carey on 3/4/18.

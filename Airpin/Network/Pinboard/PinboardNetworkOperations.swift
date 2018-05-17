@@ -16,33 +16,44 @@ class PinboardNetworkOperations {
 
     func fetchAllBookmarks(completion: @escaping () -> Void) {
         let endpoint = Endpoint(resourceTypes: [.posts, .all])
-        
-        fetch(with: endpoint, parameters: nil, completion: completion)
+        fetch(with: Endpoint.DefaultBaseURL, endpoint: endpoint, parameters: nil, completion: completion)
+    }
+
+    func fetchPopularBookmarks(completion: (() -> Void)?) {
+        let endpoint = Endpoint(resourceTypes: [.json, .popular])
+        fetch(with: Endpoint.RSSBaseURL, endpoint: endpoint, completion: completion)
     }
     
-    func fetch(with endpoint: Endpoint, parameters: [URLQueryItem]? = nil, completion: @escaping () -> Void) {
-        NetworkClient.shared.executeRequest(with: endpoint, parameters: parameters) { result in
+    func fetch(with baseURL: String,
+               endpoint: Endpoint,
+               parameters: [URLQueryItem]? = nil,
+               completion: (() -> Void)?) {
+        NetworkClient.shared.executeRequest(with: baseURL, endpoint: endpoint, parameters: parameters) { result, username in
             switch result {
             case .success(let json):
                 let posts = json
-                
-                DispatchQueue.global(qos: .default).async {
+
+                DispatchQueue.realmQueue.async {
                     posts.forEach {
-                        Bookmark.from(json: $1).persist()
+                        if baseURL == Endpoint.RSSBaseURL {
+                            Bookmark.fromRSS(json: $1).persist(in: .inMemoryRealmConfiguration)
+                        } else {
+                            Bookmark.fromAPI(json: $1, username: username).persist(in: .defaultConfiguration)
+                        }
                     }
 
-                    completion()
+                    completion?()
                 }
                 
             case .failure(let error):
-                print(error.localizedDescription)
+                NSLog(error.localizedDescription)
             }
         }
     }
     
     func getLastUpdated(completion: @escaping (_ datetime: Date) -> Void) {
         let endpoint = Endpoint(resourceTypes: [.posts, .update])
-        NetworkClient.shared.executeRequest(with: endpoint) { result in
+        NetworkClient.shared.executeRequest(with: Endpoint.DefaultBaseURL, endpoint: endpoint) { result, _ in
             switch result {
             case .success(let json):
                 let updateTime = json["update_time"].stringValue
@@ -54,7 +65,7 @@ class PinboardNetworkOperations {
         }
     }
     
-    func toggleReadState(toRead: Bool, for bookmark: Bookmark, completion: ((Result<Bool>) -> ())?) {
+    func toggleReadState(toRead: Bool, for bookmark: Bookmark, completion: ((Result<Bool>, _ username: String?) -> ())?) {
         let combinedTags = bookmark.tags.reduce("") { result, tag in
             result + "+" + tag.name
         }
@@ -65,10 +76,10 @@ class PinboardNetworkOperations {
         let endpoint = Endpoint(resourceTypes: [.posts, .delete])
         let urlQI = URLQueryItem(name: "url", value: URL.absoluteString)
         
-        NetworkClient.shared.executeRequest(with: endpoint, parameters: [urlQI], completion: nil)
+        NetworkClient.shared.executeRequest(with: Endpoint.DefaultBaseURL, endpoint: endpoint, parameters: [urlQI], completion: nil)
     }
     
-    func addBookmark(with url: URL, title: String, extended: String?, isPrivate: Bool, toRead: Bool, tags: String, completion: ((Result<Bool>) -> ())?) {
+    func addBookmark(with url: URL, title: String, extended: String?, isPrivate: Bool, toRead: Bool, tags: String, completion: ((Result<Bool>, _ username: String?) -> ())?) {
         let endpoint = Endpoint(resourceTypes: [.posts, .add])
         let urlQI = URLQueryItem(name: "url", value: url.absoluteString)
         let titleQI = URLQueryItem(name: "description", value: title)
@@ -77,12 +88,12 @@ class PinboardNetworkOperations {
         let privacyQI = URLQueryItem(name: "shared", value: isPrivate ? "no" : "yes")
         let tagsQI = URLQueryItem(name: "tags", value: tags)
 
-        NetworkClient.shared.executeRequest(with: endpoint, parameters: [urlQI, titleQI, descriptionQI, toReadQI, privacyQI, tagsQI]) { result in
+        NetworkClient.shared.executeRequest(with: Endpoint.DefaultBaseURL, endpoint: endpoint, parameters: [urlQI, titleQI, descriptionQI, toReadQI, privacyQI, tagsQI]) { result, username in
             switch result {
             case .success:
-                completion?(Result.success(true))
+                completion?(Result.success(true), username)
             case .failure(let error):
-                completion?(Result.failure(error))
+                completion?(Result.failure(error), nil)
             }
         }
     }

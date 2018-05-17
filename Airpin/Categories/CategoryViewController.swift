@@ -64,7 +64,7 @@ class CategoryViewController: BaseViewController {
         case .untagged:
             viewModel = UntaggedBookmarksListViewModel()
         case .public:
-            viewModel = PublicBookmarksListViewModel()
+            viewModel = PublicBookmarkListViewModel()
         case .private:
             viewModel = PrivateBookmarksListViewModel()
         }
@@ -103,8 +103,7 @@ class CategoryViewController: BaseViewController {
     
     @objc private func rightBarButtonItemTapped(_ sender: UIBarButtonItem) {
         if viewModel.isLoggedIn {
-            let detailsController = BookmarkDetailsViewController.presentable(mode: .create, delegate: self)
-            present(detailsController, animated: true)
+            // TODO: Hook up output in MainTabBarCoordinator
         } else {
             segueToTokenEntry()
         }
@@ -154,15 +153,6 @@ extension CategoryViewController: TokenEntryDelegate {
             updateView()
         }
         
-        dismiss(animated: true, completion: nil)
-    }
-}
-
-
-// MARK: - BookmarkDetailsViewControllerDelegate -
-
-extension CategoryViewController: BookmarkDetailsViewControllerDelegate {
-    func didAdd(_ bookmark: Bookmark) {
         dismiss(animated: true, completion: nil)
     }
 }

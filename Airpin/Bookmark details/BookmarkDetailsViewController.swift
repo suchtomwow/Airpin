@@ -19,23 +19,19 @@ import Eureka
 import SwiftyJSON
 import RealmSwift
 
-protocol BookmarkDetailsViewControllerDelegate: class {
-    func didAdd(_ bookmark: Bookmark)
+enum BookmarkDetailsPresentableOutput {
+    case bookmarkAdded
+}
+
+protocol BookmarkDetailsPresentable {
+    var output: ((BookmarkDetailsPresentableOutput) -> Void)? { get set }
 }
 
 class BookmarkDetailsViewController: FormViewController {
     
-    class func presentable(mode: BookmarkDetailsViewModel.Mode, delegate: BookmarkDetailsViewControllerDelegate) -> UINavigationController {
-        let viewModel = BookmarkDetailsViewModel(mode: mode)
-        let controller = BookmarkDetailsViewController(viewModel: viewModel, delegate: delegate)
-        
-        let nav = UINavigationController(rootViewController: controller)
-        
-        return nav
-    }
-    
+    var output: ((BookmarkDetailsPresentableOutput) -> Void)?
+
     private let viewModel: BookmarkDetailsViewModel
-    private unowned let delegate: BookmarkDetailsViewControllerDelegate
 
     private var urlRow: PasteableURLRow!
     private var titleRow: TextRow!
@@ -44,9 +40,8 @@ class BookmarkDetailsViewController: FormViewController {
     private var readLaterRow: SwitchRow!
     private var tagsRow: TextRow!
 
-    init(viewModel: BookmarkDetailsViewModel, delegate: BookmarkDetailsViewControllerDelegate) {
+    init(viewModel: BookmarkDetailsViewModel) {
         self.viewModel = viewModel
-        self.delegate = delegate
         
         super.init(nibName: nil, bundle: nil)
 
@@ -150,7 +145,7 @@ class BookmarkDetailsViewController: FormViewController {
         NSLayoutConstraint.activate([
             button.heightAnchor.constraint(equalToConstant: 50),
             button.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            button.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor),
+            button.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             button.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
     }
@@ -160,8 +155,8 @@ class BookmarkDetailsViewController: FormViewController {
             guard let strongSelf = self else { return }
 
             switch result {
-            case .success(let bookmark):
-                strongSelf.delegate.didAdd(bookmark)
+            case .success:
+                strongSelf.output?(.bookmarkAdded)
             case .failure(let error):
                 strongSelf.show(error)
             }

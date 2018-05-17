@@ -18,8 +18,7 @@ class NetworkClient {
     static let shared = NetworkClient()
     
     let scheme = "https"
-    let host   = "api.pinboard.in"
-    
+
     var accessToken: String? {
         let token = pinboardAccount?.token
         return token
@@ -40,14 +39,14 @@ class NetworkClient {
         }
     }
     
-    lazy var components: URLComponents = {
+    private func urlComponents(with baseURL: String) -> URLComponents {
         var components        = URLComponents()
         components.scheme     = self.scheme
-        components.host       = self.host
-        components.queryItems = [self.authTokenQueryItem, self.formatQueryItem]
-        
+        components.host       = baseURL
+        components.queryItems = [self.formatQueryItem]
+
         return components
-    }()
+    }
     
     lazy var sessionConfig: URLSessionConfiguration = {
         let sessionConfig                       = URLSessionConfiguration.default
@@ -57,28 +56,35 @@ class NetworkClient {
         return sessionConfig
     }()
     
-    var authTokenQueryItem: URLQueryItem {
-        return URLQueryItem(name: "auth_token", value: accessToken)
-    }
-    
     let formatQueryItem = URLQueryItem(name: "format", value: "json")
     
-    func executeRequest(with endpoint: Endpoint, parameters: [URLQueryItem]? = nil, completion: ((Result<JSON>) -> Void)?) {
+    func executeRequest(with baseURL: String, endpoint: Endpoint, parameters: [URLQueryItem]? = nil, completion: ((Result<JSON>, _ user: String?) -> Void)?) {
+        var components = urlComponents(with: baseURL)
+
         if let parameters = parameters {
             components.queryItems?.append(contentsOf: parameters)
         }
-        
-        let url = components.url?.appendingPathComponent(endpoint.path)
-        let request = URLRequest(url: url!)
+
+        var url = components.url
+        if baseURL == Endpoint.DefaultBaseURL {
+            url = url?.appendingPathComponent("v1")
+        }
+
+        url = url?.appendingPathComponent(endpoint.path)
+        var request = URLRequest(url: url!)
+
+        request.setValue("Bearer thomasjcarey:2cff43a9ac56dd12fa89", forHTTPHeaderField: "Authorization")
+        if let accessToken = accessToken {
+        }
         
         let session = URLSession(configuration: sessionConfig)
         
-        let dataTask = session.dataTask(with: request) { data, response, error in
+        let dataTask = session.dataTask(with: request) { [weak self] data, response, error in
             if let error = error {
                 print(error)
             } else if let data = data, let response = response as? HTTPURLResponse {
                 if response.statusCode == StatusCode.ok.rawValue, let json = try? JSON(data: data) {
-                    completion?(Result.success(json))
+                    completion?(Result.success(json), self?.pinboardAccount?.username)
                 }
             }
         }

@@ -9,10 +9,13 @@
 import UIKit
 
 enum Icon: String {
+    case addBookmarkTabBar = "add-bookmark-tab-bar"
+    case bookmarkTabBar = "bookmark-tab-bar"
     case disclosure = "disclosure"
     case edit = "edit"
     case garbage = "garbage"
     case markAsRead = "mark-as-read"
+    case settingsTabBar = "settings-tab-bar"
     case x = "x"
 
     var image: UIImage? {

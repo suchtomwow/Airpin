@@ -70,12 +70,14 @@ class BookmarkDetailsViewModel: BaseViewModel {
 
         let dp = PinboardDataProvider()
         
-        dp.add(bookmark) { result in
+        dp.add(bookmark) { result, username in
             switch result {
             case .success:
                 DispatchQueue.global(qos: .default).async {
-                    bookmark.persist()
-                    
+                    bookmark.user = username ?? ""
+
+                    bookmark.persist(in: .defaultConfiguration)
+
                     DispatchQueue.main.async {
                         completion(Result.success(bookmark))
                     }

@@ -7,7 +7,9 @@
 //
 
 struct Endpoint {
-    let apiVersion = "v1"
+    static let DefaultBaseURL = "api.pinboard.in"
+    static let RSSBaseURL = "feeds.pinboard.in"
+
     let path: String
     
     init(resourceTypes: [ResourceType]) {
@@ -15,6 +17,6 @@ struct Endpoint {
         var resources: [Resource] = []
         resourceTypes.forEach { resources.append(Resource(resource: $0)) }
         
-        path = resources.reduce("/" + apiVersion) { $0 + "/" + $1.resourcePath }
+        path = resources.reduce("") { $0 + "/" + $1.resourcePath }
     }
 }

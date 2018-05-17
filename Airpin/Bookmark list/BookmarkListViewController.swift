@@ -53,7 +53,7 @@ class BookmarkListViewController: BaseViewController {
     override func configureView() {
         super.configureView()
         
-        title = viewModel.title
+        title = "Bookmarks"
 
         view.backgroundColor = .white
 
@@ -128,10 +128,11 @@ class BookmarkListViewController: BaseViewController {
     }
 
     private func editBookmark(_ bookmark: Bookmark) {
-        let viewModel = BookmarkDetailsViewModel(mode: .edit(bookmark))
-        let controller = BookmarkDetailsViewController(viewModel: viewModel, delegate: self)
-        let nav = UINavigationController(rootViewController: controller)
-        present(nav, animated: true, completion: nil)
+        // TODO: Hook up output in MainTabBarCoordinator
+//        let viewModel = BookmarkDetailsViewModel(mode: .edit(bookmark))
+//        let controller = BookmarkDetailsViewController(viewModel: viewModel)
+//        let nav = UINavigationController(rootViewController: controller)
+//        present(nav, animated: true, completion: nil)
     }
 }
 
@@ -188,14 +189,8 @@ extension BookmarkListViewController: UITableViewDelegate {
         edit.image = Icon.edit.image
         edit.backgroundColor = UIColor.primary.withAlphaComponent(0.4)
 
-        let actions = UISwipeActionsConfiguration(actions: [delete, toggleRead, edit])
+        let actions = UISwipeActionsConfiguration(actions: [viewModel.canDeleteBookmarks ? delete : nil, toggleRead, viewModel.canEditBookmarks ? edit : nil].compactMap { $0 })
         actions.performsFirstActionWithFullSwipe = false
         return actions
-    }
-}
-
-extension BookmarkListViewController: BookmarkDetailsViewControllerDelegate {
-    func didAdd(_ bookmark: Bookmark) {
-        dismiss(animated: true, completion: nil)
     }
 }

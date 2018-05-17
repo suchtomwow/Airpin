@@ -29,7 +29,8 @@ class Bookmark: Object {
     override static func primaryKey() -> String? {
         return "urlString"
     }
-    
+
+    @objc dynamic var user: String = ""
     @objc dynamic var pbHash: String = "" // API: "hash", unique identifier
     @objc dynamic var urlString: String = "" // API: "href"
     @objc dynamic var title: String = "" // API: "description", max 256 characters
@@ -41,8 +42,9 @@ class Bookmark: Object {
     let tags = List<Tag>() // API: "tags", space delimited list of words
 
     /// This is less dumb than it looks. If you implement an intializer to do the same thing, then you have to override a normal init as well as an init with Realm, which if you have time to figure out how to do, go for it.
-    class func from(json: JSON) -> Bookmark {
+    class func fromAPI(json: JSON, username: String?) -> Bookmark {
         let bookmark = Bookmark()
+        bookmark.user = username ?? bookmark.user
         bookmark.pbHash = json["hash"].stringValue
         bookmark.urlString = json["href"].stringValue
         bookmark.title = json["description"].stringValue
@@ -58,20 +60,33 @@ class Bookmark: Object {
         
         return bookmark
     }
+
+    class func fromRSS(json: JSON) -> Bookmark {
+        let bookmark = Bookmark()
+        bookmark.urlString = json["u"].stringValue
+        bookmark.title = json["d"].stringValue
+        bookmark.extended = json["n"].stringValue
+        bookmark.datetime = Formatter.JSON.date(from: json["dt"].stringValue)!
+        bookmark.toRead = true
+
+        let tags = json["t"].arrayObject?.filter { !String(describing: $0).isEmpty }.map { Tag(value: [$0]) } ?? []
+        bookmark.tags.append(objectsIn: tags)
+
+        return bookmark
+    }
     
     override static func ignoredProperties() -> [String] {
         return ["url", "displayURL", "readState"]
     }
     
-    func persist() {
+    func persist(in realmConfiguration: Realm.Configuration) {
         do {
-            let realm = try Realm()
-            
+            let realm = try Realm(configuration: realmConfiguration)
             try realm.write {
                 realm.add(self, update: true)
             }
         } catch {
-            print(error)
+            NSLog(error.localizedDescription)
         }
     }
     

@@ -10,7 +10,8 @@ import RealmSwift
 
 protocol BookmarkDataProviding: class {
     func updateFromNetworkIfNecessary(completion: (() -> Void)?)
-    func toggleReadState(bookmark: Bookmark)
+    func fetchPopularBookmarks()
+    func toggleReadState(bookmark: Bookmark, realmConfiguration: Realm.Configuration)
     func delete(bookmark: Bookmark)
 }
 
@@ -30,6 +31,10 @@ class PinboardDataProvider: BookmarkDataProviding {
             }
         }
     }
+
+    func fetchPopularBookmarks() {
+        networkOperations.fetchPopularBookmarks(completion: nil)
+    }
     
     private func fetchAllBookmarksFromNetwork(andStore lastUpdatedTime: Date, completion: (() -> Void)?) {
         networkOperations.fetchAllBookmarks { [weak self] in
@@ -38,11 +43,11 @@ class PinboardDataProvider: BookmarkDataProviding {
         }
     }
     
-    func toggleReadState(bookmark: Bookmark) {
+    func toggleReadState(bookmark: Bookmark, realmConfiguration: Realm.Configuration) {
         networkOperations.toggleReadState(toRead: !bookmark.toRead, for: bookmark, completion: nil)
         
         do {
-            try Realm().write {
+            try Realm(configuration: realmConfiguration).write {
                 bookmark.toRead = !bookmark.toRead
             }
         } catch {
@@ -64,7 +69,7 @@ class PinboardDataProvider: BookmarkDataProviding {
         }
     }
     
-    func add(_ bookmark: Bookmark, completion: @escaping (Result<Bool>) -> ()) {
+    func add(_ bookmark: Bookmark, completion: @escaping (Result<Bool>, _ username: String?) -> ()) {
         let url = bookmark.url
         let title = bookmark.title
         let extended = bookmark.extended
