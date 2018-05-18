@@ -17,12 +17,6 @@ class CategoryViewController: BaseViewController {
     
     // MARK: - View lifecycle -
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue == Segue.tokenEntryViewController, let controller = segue.destination as? TokenEntryViewController {
-            controller.delegate = self
-        }
-    }
-
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -143,20 +137,6 @@ extension CategoryViewController: UITableViewDelegate {
         showBookmarkList(for: indexPath.row)
     }
 }
-
-
-// MARK: - TokenEntryDelegate -
-
-extension CategoryViewController: TokenEntryDelegate {
-    func didFinishTokenEntry(didEnterToken: Bool) {
-        if didEnterToken {
-            updateView()
-        }
-        
-        dismiss(animated: true, completion: nil)
-    }
-}
-
 
 // MARK: - UIViewControllerTransitioningDelegate -
 
