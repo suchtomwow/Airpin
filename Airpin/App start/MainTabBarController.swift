@@ -11,7 +11,7 @@ import UIKit
 struct MainViewControllers {
     let bookmarkListViewController: UIViewController
     let addStubController: UIViewController
-    let settingsController: UIViewController
+    let settingsCoordinator: SettingsCoordinator
 }
 
 enum MainTabBarControllerPresentableOutput {
@@ -30,10 +30,10 @@ class MainTabBarController: UITabBarController {
 
     init(bookmarkListControllerFactory: BookmarkListControllerFactory,
          bookmarkDetailsControllerFactory: BookmarkDetailsControllerFactory,
-         settingsControllerFactory: SettingsControllerFactory) {
+         settingsCoordinatorFactory: SettingsCoordinatorFactory) {
         mainViewControllers = MainViewControllers(bookmarkListViewController: bookmarkListControllerFactory.makePopularBookmarkListController(),
                                                   addStubController: bookmarkDetailsControllerFactory.makeStubAddBookmarkController(),
-                                                  settingsController: settingsControllerFactory.makeSettingsController())
+                                                  settingsCoordinator: settingsCoordinatorFactory.makeSettingsCoordinator())
 
         super.init(nibName: nil, bundle: nil)
 
@@ -47,11 +47,15 @@ class MainTabBarController: UITabBarController {
     private func configure() {
         delegate = self
 
-        mainViewControllers.bookmarkListViewController.tabBarItem = UITabBarItem(title: nil, image: Icon.bookmarkTabBar.image, selectedImage: nil)
-        mainViewControllers.addStubController.tabBarItem = UITabBarItem(title: "Add", image: Icon.addBookmarkTabBar.image, selectedImage: nil)
-        mainViewControllers.settingsController.tabBarItem = UITabBarItem(title: "Settings", image: Icon.settingsTabBar.image, selectedImage: nil)
+        let bookmarkListViewController = mainViewControllers.bookmarkListViewController
+        let stubController = mainViewControllers.addStubController
+        let settingsController = mainViewControllers.settingsCoordinator.start()
 
-        viewControllers = [UINavigationController(rootViewController: mainViewControllers.bookmarkListViewController), mainViewControllers.addStubController, UINavigationController(rootViewController:  mainViewControllers.settingsController)]
+        bookmarkListViewController.tabBarItem = UITabBarItem(title: "Bookmarks", image: Icon.bookmarkTabBar.image, selectedImage: nil)
+        stubController.tabBarItem = UITabBarItem(title: "Add", image: Icon.addBookmarkTabBar.image, selectedImage: nil)
+        settingsController.tabBarItem = UITabBarItem(title: "Settings", image: Icon.settingsTabBar.image, selectedImage: nil)
+
+        viewControllers = [UINavigationController(rootViewController: bookmarkListViewController), stubController, settingsController]
     }
 }
 

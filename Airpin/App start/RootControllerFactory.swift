@@ -11,9 +11,9 @@ import UIKit
 class RootControllerFactory {
     func makeRootController(bookmarkListControllerFactory: BookmarkListControllerFactory,
                             bookmarkDetailsControllerFactory: BookmarkDetailsControllerFactory,
-                            settingsControllerFactory: SettingsControllerFactory) -> MainTabBarController {
+                            settingsCoordinatorFactory: SettingsCoordinatorFactory) -> MainTabBarController {
         return MainTabBarController(bookmarkListControllerFactory: bookmarkListControllerFactory,
                                     bookmarkDetailsControllerFactory: bookmarkDetailsControllerFactory,
-                                    settingsControllerFactory: settingsControllerFactory)
+                                    settingsCoordinatorFactory: settingsCoordinatorFactory)
     }
 }

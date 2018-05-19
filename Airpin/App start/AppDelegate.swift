@@ -26,18 +26,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = window
 
         coordinator = MainTabBarCoordinator(window: window,
-                                                rootControllerFactory: RootControllerFactory(),
-                                                bookmarkListControllerFactory: BookmarkListControllerFactory(),
-                                                bookmarkDetailsControllerFactory: BookmarkDetailsControllerFactory(),
-                                                settingsControllerFactory: SettingsControllerFactory(),
-                                                presenterType: PresenterImplementation.self)
+                                            rootControllerFactory: RootControllerFactory(),
+                                            bookmarkListControllerFactory: BookmarkListControllerFactory(),
+                                            bookmarkDetailsControllerFactory: BookmarkDetailsControllerFactory(),
+                                            settingsCoordinatorFactory: SettingsCoordinatorFactory(),
+                                            presenterType: PresenterImplementation.self)
 
         coordinator?.start()
 
         return true
     }
-}
-
-extension DispatchQueue {
-    static let realmQueue = DispatchQueue.init(label: "com.airpin.realm", qos: .default)
 }

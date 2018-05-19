@@ -15,7 +15,7 @@ class MainTabBarCoordinator {
     private let rootControllerFactory: RootControllerFactory
     private let bookmarkListControllerFactory: BookmarkListControllerFactory
     private let bookmarkDetailsControllerFactory: BookmarkDetailsControllerFactory
-    private let settingsControllerFactory: SettingsControllerFactory
+    private let settingsCoordinatorFactory: SettingsCoordinatorFactory
 
     private var presenterType: Presenter.Type
     private var presenter: Presenter?
@@ -24,20 +24,20 @@ class MainTabBarCoordinator {
          rootControllerFactory: RootControllerFactory,
          bookmarkListControllerFactory: BookmarkListControllerFactory,
          bookmarkDetailsControllerFactory: BookmarkDetailsControllerFactory,
-         settingsControllerFactory: SettingsControllerFactory,
+         settingsCoordinatorFactory: SettingsCoordinatorFactory,
          presenterType: Presenter.Type) {
         self.window = window
         self.rootControllerFactory = rootControllerFactory
         self.bookmarkListControllerFactory = bookmarkListControllerFactory
         self.bookmarkDetailsControllerFactory = bookmarkDetailsControllerFactory
-        self.settingsControllerFactory = settingsControllerFactory
+        self.settingsCoordinatorFactory = settingsCoordinatorFactory
         self.presenterType = presenterType
     }
 
     func start() {
         let rootController = rootControllerFactory.makeRootController(bookmarkListControllerFactory: bookmarkListControllerFactory,
                                                                       bookmarkDetailsControllerFactory: bookmarkDetailsControllerFactory,
-                                                                      settingsControllerFactory: settingsControllerFactory)
+                                                                      settingsCoordinatorFactory: settingsCoordinatorFactory)
 
         presenter = presenterType.init(presenter: rootController)
 

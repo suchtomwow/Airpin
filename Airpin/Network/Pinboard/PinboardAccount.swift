@@ -21,9 +21,21 @@ struct PinboardAccount: GenericPasswordSecureStorable, CreateableSecureStorable,
         return token
     }
     
-    init(account: String, password: String) {
+    let userDefaultsManager: UserDefaultsManager
+
+    init?(token: String, userDefaultsManager: UserDefaultsManager = UserDefaults.standard) {
+        let components = token.components(separatedBy: ":")
+        guard components.count == 2 else { return nil }
+
+        username = components[0]
+        password = components[1]
+        self.userDefaultsManager = userDefaultsManager
+    }
+
+    init(account: String, password: String, userDefaultsManager: UserDefaultsManager = UserDefaults.standard) {
         self.username = account
         self.password = password
+        self.userDefaultsManager = userDefaultsManager
     }
     
     let service = KeychainServiceIdentifier
@@ -42,16 +54,12 @@ struct PinboardAccount: GenericPasswordSecureStorable, CreateableSecureStorable,
     }
     
     func storeUsernameInUserDefaults() {
-        let defaults = UserDefaults.standard
-        
-        defaults.setValue(username, forKey: UserDefault.pinboardUsername)
-        defaults.synchronize()
+        userDefaultsManager.set(username, forKey: UserDefault.pinboardUsername)
+        userDefaultsManager.synchronize()
     }
     
-    static func readFromKeychain() -> PinboardAccount? {
-        let defaults = UserDefaults.standard
-        
-        if let username = defaults.string(forKey: UserDefault.pinboardUsername),
+    static func readFromKeychain(userDefaultsManager: UserDefaultsManager = UserDefaults.standard) -> PinboardAccount? {
+        if let username = userDefaultsManager.string(forKey: UserDefault.pinboardUsername),
             let data = Locksmith.loadDataForUserAccount(userAccount: username, inService: KeychainServiceIdentifier),
             let password = data[PasswordKey] as? String {
             
@@ -60,6 +68,17 @@ struct PinboardAccount: GenericPasswordSecureStorable, CreateableSecureStorable,
             return account
         } else {
             return nil
+        }
+    }
+
+    static func deleteFromSecureStore(userDefaultsManager: UserDefaultsManager = UserDefaults.standard) {
+        if let username = userDefaultsManager.string(forKey: UserDefault.pinboardUsername) {
+            do {
+                try Locksmith.deleteDataForUserAccount(userAccount: username)
+                userDefaultsManager.set(nil, forKey: UserDefault.pinboardUsername)
+            } catch {
+                NSLog(error.localizedDescription)
+            }
         }
     }
 }

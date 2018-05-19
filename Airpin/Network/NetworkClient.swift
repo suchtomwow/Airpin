@@ -24,10 +24,7 @@ class NetworkClient {
         return token
     }
     
-    lazy var pinboardAccount: PinboardAccount? = {
-        let account = PinboardAccount.readFromKeychain()
-        return account
-    }()
+    var pinboardAccount: PinboardAccount?
     
     func signOut(completion: () -> ()) {
         do {
@@ -73,8 +70,8 @@ class NetworkClient {
         url = url?.appendingPathComponent(endpoint.path)
         var request = URLRequest(url: url!)
 
-        request.setValue("Bearer thomasjcarey:2cff43a9ac56dd12fa89", forHTTPHeaderField: "Authorization")
         if let accessToken = accessToken {
+            request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
         }
         
         let session = URLSession(configuration: sessionConfig)
