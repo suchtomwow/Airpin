@@ -33,6 +33,8 @@
 		2FB6CE0B20B0CE2900209761 /* SettingsCoordinatorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB6CE0A20B0CE2900209761 /* SettingsCoordinatorFactory.swift */; };
 		2FB6CE0D20B0D30E00209761 /* DispatchQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB6CE0C20B0D30E00209761 /* DispatchQueue.swift */; };
 		2FB6CE1020B0D5A600209761 /* SettingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB6CE0F20B0D5A600209761 /* SettingsInteractor.swift */; };
+		2FB6CE1320B0DBA900209761 /* AccessTokenLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB6CE1220B0DBA900209761 /* AccessTokenLoader.swift */; };
+		2FB6CE1520B0DBB200209761 /* AccessTokenStorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB6CE1420B0DBB200209761 /* AccessTokenStorer.swift */; };
 		2FBB71FC204E69EA001F0CFC /* TagBookmarksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBB71FB204E69EA001F0CFC /* TagBookmarksViewModel.swift */; };
 		2FFB4251209E65DC0076A806 /* PopularBookmarkListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFB4250209E65DC0076A806 /* PopularBookmarkListViewModel.swift */; };
 		5CEED34AC3662E87270B4156 /* Pods_Airpin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C798048B61585BF34387C30 /* Pods_Airpin.framework */; };
@@ -115,6 +117,8 @@
 		2FB6CE0A20B0CE2900209761 /* SettingsCoordinatorFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinatorFactory.swift; sourceTree = "<group>"; };
 		2FB6CE0C20B0D30E00209761 /* DispatchQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchQueue.swift; sourceTree = "<group>"; };
 		2FB6CE0F20B0D5A600209761 /* SettingsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsInteractor.swift; sourceTree = "<group>"; };
+		2FB6CE1220B0DBA900209761 /* AccessTokenLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessTokenLoader.swift; sourceTree = "<group>"; };
+		2FB6CE1420B0DBB200209761 /* AccessTokenStorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessTokenStorer.swift; sourceTree = "<group>"; };
 		2FBB71FB204E69EA001F0CFC /* TagBookmarksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagBookmarksViewModel.swift; sourceTree = "<group>"; };
 		2FFB4250209E65DC0076A806 /* PopularBookmarkListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularBookmarkListViewModel.swift; sourceTree = "<group>"; };
 		7A3E749D206D0E59D6935693 /* Pods-Airpin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Airpin.release.xcconfig"; path = "Pods/Target Support Files/Pods-Airpin/Pods-Airpin.release.xcconfig"; sourceTree = "<group>"; };
@@ -253,6 +257,16 @@
 			path = Screen;
 			sourceTree = "<group>";
 		};
+		2FB6CE1120B0DB9500209761 /* Token */ = {
+			isa = PBXGroup;
+			children = (
+				E93228CC1CC498AA00121A97 /* PinboardAccount.swift */,
+				2FB6CE1220B0DBA900209761 /* AccessTokenLoader.swift */,
+				2FB6CE1420B0DBB200209761 /* AccessTokenStorer.swift */,
+			);
+			path = Token;
+			sourceTree = "<group>";
+		};
 		65272DB82B72755FB078401D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -289,6 +303,7 @@
 		9865E5001AD4E82100201BC5 /* Airpin */ = {
 			isa = PBXGroup;
 			children = (
+				2FB6CE1120B0DB9500209761 /* Token */,
 				2FB6CE0520B0BD5700209761 /* Data */,
 				2F99B389209D5E990006D2CF /* Flow */,
 				2F99B377209D52EF0006D2CF /* App start */,
@@ -381,7 +396,6 @@
 		E98D7E351B5F46E700D65A10 /* Pinboard */ = {
 			isa = PBXGroup;
 			children = (
-				E93228CC1CC498AA00121A97 /* PinboardAccount.swift */,
 				98B8038F1AE0E3A9006A1645 /* PinboardDataProvider.swift */,
 				E98D7E361B5F470200D65A10 /* PinboardNetworkOperations.swift */,
 				E99064CC1B6099C50054C503 /* PinboardDiskOperations.swift */,
@@ -699,6 +713,7 @@
 				2F99B380209D58EE0006D2CF /* SettingsControllerFactory.swift in Sources */,
 				98B8038A1AE0D4D7006A1645 /* BLSTableView.swift in Sources */,
 				2F99B386209D5A3E0006D2CF /* MainTabBarCoordinator.swift in Sources */,
+				2FB6CE1520B0DBB200209761 /* AccessTokenStorer.swift in Sources */,
 				2F99B37D209D54D10006D2CF /* MainTabBarController.swift in Sources */,
 				2FB6CE0120B0BA6C00209761 /* SettingsViewModel.swift in Sources */,
 				2FAF7F4E20ACE77B00F98460 /* Realm.swift in Sources */,
@@ -726,6 +741,7 @@
 				2F99B382209D59160006D2CF /* SettingsViewController.swift in Sources */,
 				98B803901AE0E3A9006A1645 /* PinboardDataProvider.swift in Sources */,
 				E91A6A901BC8E35300401B54 /* BookmarkListViewModel.swift in Sources */,
+				2FB6CE1320B0DBA900209761 /* AccessTokenLoader.swift in Sources */,
 				2F9B7BFF201E7BC90072D09F /* MetaDataGetter.swift in Sources */,
 				E94C20951CFCDAD500A1E620 /* Bool.swift in Sources */,
 				2FB6CE0920B0CBF100209761 /* SettingsCoordinator.swift in Sources */,

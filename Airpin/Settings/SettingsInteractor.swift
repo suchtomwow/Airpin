@@ -7,25 +7,14 @@ import Foundation
 
 class SettingsInteractor {
 
+    let accessTokenLoader = AccessTokenLoader()
+    let accessTokenStorer = AccessTokenStorer()
+
     func loadAccessToken() -> String {
-        if let account = PinboardAccount.readFromKeychain() {
-            NetworkClient.shared.pinboardAccount = account
-            return account.token
-        } else {
-            return ""
-        }
+        return accessTokenLoader.load()
     }
 
     func storeAccessToken(_ accessToken: String) {
-        if let account = PinboardAccount(token: accessToken) {
-            do {
-                try account.storeInKeychain()
-                NetworkClient.shared.pinboardAccount = account
-            } catch {
-                NSLog(error.localizedDescription)
-            }
-        } else {
-            PinboardAccount.deleteFromSecureStore()
-        }
+        accessTokenStorer.store(accessToken)
     }
 }
