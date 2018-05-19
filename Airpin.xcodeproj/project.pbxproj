@@ -162,8 +162,6 @@
 		E9A2A95C1D408EA600B82006 /* ModalTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalTransition.swift; sourceTree = "<group>"; };
 		E9A36E7D1D407BD80001A50A /* AlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		E9BA7AC61DED2CDE009433C3 /* Airpin.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Airpin.entitlements; sourceTree = "<group>"; };
-		E9CF69641E385A4A00BDE099 /* TagButton.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = TagButton.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		E9CF69651E385A5D00BDE099 /* TagCollectionView.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = TagCollectionView.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		E9DBB8241DED1A6D00CA8A41 /* BookmarkDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookmarkDetailsViewController.swift; sourceTree = "<group>"; };
 		E9DBB8261DED1A9400CA8A41 /* BookmarkDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookmarkDetailsViewModel.swift; sourceTree = "<group>"; };
 		E9F5CE141E20ACB600F9EC1A /* URL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
@@ -295,7 +293,6 @@
 				2F99B389209D5E990006D2CF /* Flow */,
 				2F99B377209D52EF0006D2CF /* App start */,
 				2F99B37E209D58E10006D2CF /* Settings */,
-				E9CF69631E385A2200BDE099 /* Playgrounds */,
 				E9CF695E1E38587400BDE099 /* Models */,
 				E96F04501E19F37E001FB2FF /* Eureka */,
 				E9AB33761CFE06750096B988 /* Modal */,
@@ -408,15 +405,6 @@
 				2F9965152053B1BB004C954D /* Tag.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		E9CF69631E385A2200BDE099 /* Playgrounds */ = {
-			isa = PBXGroup;
-			children = (
-				E9CF69641E385A4A00BDE099 /* TagButton.playground */,
-				E9CF69651E385A5D00BDE099 /* TagCollectionView.playground */,
-			);
-			path = Playgrounds;
 			sourceTree = "<group>";
 		};
 		E9DBB8231DED1A4200CA8A41 /* Bookmark details */ = {
