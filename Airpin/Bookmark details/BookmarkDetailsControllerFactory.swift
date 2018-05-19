@@ -17,4 +17,10 @@ class BookmarkDetailsControllerFactory {
         let viewModel = BookmarkDetailsViewModel(mode: .create)
         return BookmarkDetailsViewController(viewModel: viewModel)
     }
+
+    func makeSignInModal() -> AlertController {
+        let body = "To add bookmarks, enter your Pinboard token in Settings"
+        let buttonTitle = "Go to Settings"
+        return AlertController(headline: nil, body: body, buttonTitle: buttonTitle)
+    }
 }

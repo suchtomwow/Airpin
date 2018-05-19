@@ -16,6 +16,7 @@ class AccessTokenStorer {
             }
         } else {
             PinboardAccount.deleteFromSecureStore()
+            NetworkClient.shared.pinboardAccount = nil
         }
     }
 }

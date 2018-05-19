@@ -10,16 +10,20 @@ import UIKit
 
 class AlertController: BaseViewController {
 
+    enum Output {
+        case tappedButton
+    }
+
     let headline = UILabel()
     let body = UILabel()
     let button = UIButton()
     
     let strongTransitioningDelegate = ModalTransitioningDelegate()
     
-    let buttonTappedHandler: ((_: UIButton?) -> Void)?
+    var output: ((Output) -> Void)?
     
-    init(headline: String?, body: String?, buttonTitle: String?, buttonTappedHandler: ((_: UIButton?) -> Void)?) {
-        self.buttonTappedHandler = buttonTappedHandler
+    init(headline: String?, body: String?, buttonTitle: String?, buttonTappedHandler: ((Output) -> Void)? = nil) {
+        self.output = buttonTappedHandler
 
         super.init(nibName: nil, bundle: nil)
         
@@ -103,7 +107,7 @@ class AlertController: BaseViewController {
     
     @objc func buttonTapped(sender: UIButton?) {
         presentingViewController?.dismiss(animated: true) {
-            self.buttonTappedHandler?(sender)
+            self.output?(.tappedButton)
         }
     }
 }

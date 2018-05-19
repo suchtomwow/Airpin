@@ -20,6 +20,9 @@ class MainTabBarCoordinator {
     private var presenterType: Presenter.Type
     private var presenter: Presenter?
 
+    private var rootController: MainTabBarController!
+    private var bookmarkDetailsCoordinator: BookmarkDetailsCoordinator?
+
     init(window: UIWindow,
          rootControllerFactory: RootControllerFactory,
          bookmarkListControllerFactory: BookmarkListControllerFactory,
@@ -35,7 +38,7 @@ class MainTabBarCoordinator {
     }
 
     func start() {
-        let rootController = rootControllerFactory.makeRootController(bookmarkListControllerFactory: bookmarkListControllerFactory,
+        rootController = rootControllerFactory.makeRootController(bookmarkListControllerFactory: bookmarkListControllerFactory,
                                                                       bookmarkDetailsControllerFactory: bookmarkDetailsControllerFactory,
                                                                       settingsCoordinatorFactory: settingsCoordinatorFactory)
 
@@ -44,7 +47,7 @@ class MainTabBarCoordinator {
         rootController.output = { [unowned self] output in
             switch output {
             case .addBookmark:
-                self.presentAddBookmark()
+                self.startAddBookmarkCoordinator()
             }
         }
 
@@ -52,17 +55,22 @@ class MainTabBarCoordinator {
         window?.makeKeyAndVisible()
     }
 
-    private func presentAddBookmark() {
-        let controller = bookmarkDetailsControllerFactory.makeAddBookmarkController()
-        let nav = UINavigationController(rootViewController: controller)
+    private func startAddBookmarkCoordinator() {
+        guard let presenter = presenter else { return }
+        bookmarkDetailsCoordinator = BookmarkDetailsCoordinator(presenter: presenter)
 
-        controller.output = { [weak self] output in
+        bookmarkDetailsCoordinator?.output = { [weak self] output in
             switch output {
-            case .bookmarkAdded:
-                self?.presenter?.dismiss(animated: true, completion: nil)
+            case .tappedGoToSettings:
+                self?.goToSettings()
             }
         }
 
-        presenter?.present(nav, animated: true, completion: nil)
+        bookmarkDetailsCoordinator?.start()
+    }
+
+    func goToSettings() {
+        guard let settingsController = rootController.viewControllers?.filter({ ($0 as? UINavigationController)?.topViewController is SettingsViewController }).first else { return }
+        rootController.selectedViewController = settingsController
     }
 }

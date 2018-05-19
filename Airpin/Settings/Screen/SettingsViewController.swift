@@ -10,7 +10,7 @@ import Eureka
 
 enum SettingsViewControllerOutput {
     case getToken
-    case exitScreen(accessToken: String)
+    case accessTokenChanged(String)
 }
 
 class SettingsViewController: FormViewController {
@@ -37,7 +37,10 @@ class SettingsViewController: FormViewController {
         enterTokenRow.title = "Pinboard token"
         enterTokenRow.placeholder = "username:token"
         enterTokenRow.value = viewModel.accessToken
-
+        enterTokenRow.onChange { [unowned self] row in
+            self.output?(.accessTokenChanged(row.value ?? ""))
+        }
+        
         getTokenRow.title = "Get token"
         getTokenRow.onCellSelection { [unowned self] _, _ in
             self.output?(.getToken)
@@ -46,11 +49,6 @@ class SettingsViewController: FormViewController {
         title = viewModel.title
 
         configureForm()
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        output?(.exitScreen(accessToken: enterTokenRow.value ?? ""))
     }
 
     private func configureForm() {

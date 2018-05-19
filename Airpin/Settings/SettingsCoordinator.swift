@@ -24,7 +24,7 @@ class SettingsCoordinator {
             switch output {
             case .getToken:
                 self.presentGetToken()
-            case .exitScreen(let accessToken):
+            case .accessTokenChanged(let accessToken):
                 self.interactor.storeAccessToken(accessToken)
             }
         }

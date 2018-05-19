@@ -23,7 +23,11 @@ class NetworkClient {
         let token = pinboardAccount?.token
         return token
     }
-    
+
+    // TD: This is unfortunately the single source for
+    // knowing whether we have a valid token. Should be
+    // refactored eventually. Would be ideal to read from
+    // keychain each time but that is slow.
     var pinboardAccount: PinboardAccount?
     
     func signOut(completion: () -> ()) {
