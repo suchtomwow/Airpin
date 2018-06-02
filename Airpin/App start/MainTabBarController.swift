@@ -9,13 +9,13 @@
 import UIKit
 
 struct MainViewControllers {
-    let bookmarkListViewController: UIViewController
+    let bookmarkListCoordinator: BookmarkListCoordinator
     let addStubController: UIViewController
     let settingsCoordinator: SettingsCoordinator
 }
 
 enum MainTabBarControllerPresentableOutput {
-    case addBookmark
+    case addBookmark, tappedGoToSettings
 }
 
 protocol MainTabBarControllerPresentable {
@@ -28,10 +28,10 @@ class MainTabBarController: UITabBarController {
 
     fileprivate let mainViewControllers: MainViewControllers
 
-    init(bookmarkListControllerFactory: BookmarkListControllerFactory,
+    init(bookmarkListCoordinatorFactory: BookmarkListCoordinatorFactory,
          bookmarkDetailsControllerFactory: BookmarkDetailsControllerFactory,
          settingsCoordinatorFactory: SettingsCoordinatorFactory) {
-        mainViewControllers = MainViewControllers(bookmarkListViewController: bookmarkListControllerFactory.makePopularBookmarkListController(),
+        mainViewControllers = MainViewControllers(bookmarkListCoordinator: bookmarkListCoordinatorFactory.makeBookmarkListCoordinator(),
                                                   addStubController: bookmarkDetailsControllerFactory.makeStubAddBookmarkController(),
                                                   settingsCoordinator: settingsCoordinatorFactory.makeSettingsCoordinator())
 
@@ -47,7 +47,7 @@ class MainTabBarController: UITabBarController {
     private func configure() {
         delegate = self
 
-        let bookmarkListViewController = mainViewControllers.bookmarkListViewController
+        let bookmarkListViewController = startBookmarkListCoordinator()
         let stubController = mainViewControllers.addStubController
         let settingsController = mainViewControllers.settingsCoordinator.start()
 
@@ -55,7 +55,18 @@ class MainTabBarController: UITabBarController {
         stubController.tabBarItem = UITabBarItem(title: "Add", image: Icon.addBookmarkTabBar.image, selectedImage: nil)
         settingsController.tabBarItem = UITabBarItem(title: "Settings", image: Icon.settingsTabBar.image, selectedImage: nil)
 
-        viewControllers = [UINavigationController(rootViewController: bookmarkListViewController), stubController, settingsController]
+        viewControllers = [bookmarkListViewController, stubController, settingsController]
+    }
+
+    private func startBookmarkListCoordinator() -> UIViewController {
+        mainViewControllers.bookmarkListCoordinator.output = { [unowned self] output in
+            switch output {
+            case .tappedGoToSettings:
+                self.output?(.tappedGoToSettings)
+            }
+        }
+
+        return mainViewControllers.bookmarkListCoordinator.start()
     }
 }
 

@@ -26,8 +26,8 @@ class ModalTransitionPresentAnimation: NSObject, UIViewControllerAnimatedTransit
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        guard let toVC = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to),
-            let toView = transitionContext.view(forKey: UITransitionContextViewKey.to) else {
+        guard let toVC = transitionContext.viewController(forKey: .to),
+            let toView = transitionContext.view(forKey: .to) else {
                 return
         }
         

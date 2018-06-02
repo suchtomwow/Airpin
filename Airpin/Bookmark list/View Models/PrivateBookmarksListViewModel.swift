@@ -11,4 +11,5 @@ import RealmSwift
 class PrivateBookmarksListViewModel: BaseViewModel, BookmarkListViewModel {
     var bookmarks: Results<Bookmark> = try! Realm().objects(Bookmark.self).filter(NSPredicate(format: "shared == false")).sorted(byKeyPath: "datetime", ascending: false)
     let title: String = "Private"
+    let canSelectTags = true
 }

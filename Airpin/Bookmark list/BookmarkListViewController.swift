@@ -11,12 +11,20 @@ import SafariServices
 import RealmSwift
 
 class BookmarkListViewController: BaseViewController {
-    
+
+    enum Output {
+        case selectedLeftNavItem
+        case selectedTag(String)
+        case selectedEdit(Bookmark)
+    }
+
+    var output: ((Output) -> Void)?
+
     private let tableView = BLSTableView()
     private let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
     private let refreshControl = UIRefreshControl()
     
-    private let viewModel: BookmarkListViewModel
+    private var viewModel: BookmarkListViewModel
     private let dataProvider: BookmarkDataProviding = PinboardDataProvider()
     private var observerToken: NotificationToken?
 
@@ -25,19 +33,7 @@ class BookmarkListViewController: BaseViewController {
 
         super.init(nibName: nil, bundle: nil)
 
-        observerToken = viewModel.bookmarks.observe { [weak self] change in
-            guard let `self` = self else { return }
-
-            switch change {
-            case .initial(let bookmarks):
-                self.updateLoadingState(bookmarkCount: bookmarks.count)
-                self.tableView.reloadData()
-            case .update(let bookmarks, let deletions, let insertions, let modifications):
-                self.updateTableView(with: bookmarks, deletions: deletions, insertions: insertions, modifications: modifications)
-            case .error(let error):
-                fatalError("\(error)")
-            }
-        }
+        startObserving()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -46,16 +42,17 @@ class BookmarkListViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         viewModel.fetchBookmarks(dataProvider: dataProvider, completion: nil)
     }
     
     override func configureView() {
         super.configureView()
         
-        title = "Bookmarks"
+        navigationItem.title = viewModel.title
 
         view.backgroundColor = .white
+
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: Icon.hamburger.image, style: .plain, target: self, action: #selector(leftNavTapped))
 
         activityIndicator.hidesWhenStopped = true
         activityIndicator.startAnimating()
@@ -65,6 +62,7 @@ class BookmarkListViewController: BaseViewController {
         tableView.delegate = self
         tableView.register(BookmarkListTableViewCell.self, forCellReuseIdentifier: String(describing: BookmarkListTableViewCell.self))
         tableView.estimatedRowHeight = 120
+        tableView.separatorColor = .clear
 
         refreshControl.addTarget(self, action: #selector(refreshFromNetwork), for: .valueChanged)
         tableView.refreshControl = refreshControl
@@ -95,15 +93,30 @@ class BookmarkListViewController: BaseViewController {
     }
 
     private func showBookmarkList(for tag: String) {
-        let viewModel = TagBookmarksViewModel(bookmarkTag: tag)
-        let controller = BookmarkListViewController(viewModel: viewModel)
-        show(controller, sender: nil)
+        guard viewModel.canSelectTags else { return }
+        output?(.selectedTag(tag))
     }
 
     private func updateLoadingState(bookmarkCount: Int) {
         tableView.isHidden = bookmarkCount < 1
         activityIndicator.stopAnimating()
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "\(bookmarkCount)", style: .plain, target: nil, action: nil)
+    }
+
+    private func startObserving() {
+        observerToken = viewModel.bookmarks.observe { [weak self] change in
+            guard let `self` = self else { return }
+
+            switch change {
+            case .initial(let bookmarks):
+                self.updateLoadingState(bookmarkCount: bookmarks.count)
+                self.tableView.reloadData()
+            case .update(let bookmarks, let deletions, let insertions, let modifications):
+                self.updateTableView(with: bookmarks, deletions: deletions, insertions: insertions, modifications: modifications)
+            case .error(let error):
+                fatalError("\(error)")
+            }
+        }
     }
 
     private func updateTableView(with bookmarks: Results<Bookmark>, deletions: [Int], insertions: [Int], modifications: [Int]) {
@@ -127,12 +140,18 @@ class BookmarkListViewController: BaseViewController {
         }
     }
 
+    func updateViewModel(_ viewModel: BookmarkListViewModel) {
+        self.viewModel = viewModel
+        refreshFromNetwork()
+        startObserving()
+    }
+
     private func editBookmark(_ bookmark: Bookmark) {
-        // TODO: Hook up output in MainTabBarCoordinator
-//        let viewModel = BookmarkDetailsViewModel(mode: .edit(bookmark))
-//        let controller = BookmarkDetailsViewController(viewModel: viewModel)
-//        let nav = UINavigationController(rootViewController: controller)
-//        present(nav, animated: true, completion: nil)
+        output?(.selectedEdit(bookmark))
+    }
+
+    @objc private func leftNavTapped() {
+        output?(.selectedLeftNavItem)
     }
 }
 

@@ -9,10 +9,10 @@
 import UIKit
 
 class RootControllerFactory {
-    func makeRootController(bookmarkListControllerFactory: BookmarkListControllerFactory,
+    func makeRootController(bookmarkListCoordinatorFactory: BookmarkListCoordinatorFactory,
                             bookmarkDetailsControllerFactory: BookmarkDetailsControllerFactory,
                             settingsCoordinatorFactory: SettingsCoordinatorFactory) -> MainTabBarController {
-        return MainTabBarController(bookmarkListControllerFactory: bookmarkListControllerFactory,
+        return MainTabBarController(bookmarkListCoordinatorFactory: bookmarkListCoordinatorFactory,
                                     bookmarkDetailsControllerFactory: bookmarkDetailsControllerFactory,
                                     settingsCoordinatorFactory: settingsCoordinatorFactory)
     }

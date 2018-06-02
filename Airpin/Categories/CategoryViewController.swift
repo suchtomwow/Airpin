@@ -10,97 +10,50 @@ import UIKit
 import SafariServices
 
 class CategoryViewController: BaseViewController {
-    
-    @IBOutlet weak var tableView: BLSTableView!
-    
-    let viewModel = CategoryViewModel()
-    
-    // MARK: - View lifecycle -
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        let loggedIn = viewModel.isLoggedIn
-        let hasSeen = UserDefaults.standard.bool(forKey: UserDefault.hasDismissedTokenPrompt)
-        
-        if !loggedIn && !hasSeen {
-            perform(#selector(CategoryViewController.showTokenEntry), with: nil, afterDelay: 1)
-        }
+
+    enum Output {
+        case selectedCategory(CategoryViewModel.Category)
     }
+
+    var output: ((Output) -> Void)?
     
+    let tableView = BLSTableView()
     
+    let viewModel: CategoryViewModel
+
+    init(viewModel: CategoryViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     // MARK: - Common -
     
     override func configureView() {
         super.configureView()
+
+        view.addSubview(tableView)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
+        ])
         
         title = viewModel.title
         
         tableView.register(SingleLabelTableViewCell.self, forCellReuseIdentifier: String(describing: SingleLabelTableViewCell.self))
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 60
-        
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: viewModel.leftBarButtonText, style: .plain, target: self, action: #selector(CategoryViewController.leftBarButtonItemTapped(_:)))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(rightBarButtonItemTapped(_:)))
+        tableView.dataSource = self
+        tableView.delegate = self
 
-        updateView()
-    }
-    
-    private func showBookmarkList(for row: Int) {
-        guard let category = CategoryViewModel.Category(rawValue: row) else { return }
-
-        let viewModel: BookmarkListViewModel
-        switch category {
-        case .all:
-            viewModel = AllBookmarksListViewModel()
-        case .unread:
-            viewModel = UnreadBookmarksListViewModel()
-        case .untagged:
-            viewModel = UntaggedBookmarksListViewModel()
-        case .public:
-            viewModel = PublicBookmarkListViewModel()
-        case .private:
-            viewModel = PrivateBookmarksListViewModel()
-        }
-
-        let vc = BookmarkListViewController(viewModel: viewModel)
-        show(vc, sender: nil)
-    }
-
-    @objc private func showTokenEntry() {
-        performSegue(withIdentifier: Segue.tokenEntryViewController.rawValue, sender: nil)
-    }
-    
-    private func updateView() {
-        navigationItem.leftBarButtonItem?.title = viewModel.leftBarButtonText
-        tableView.reloadData()
-    }
-    
-    private func segueToTokenEntry() {
-        performSegue(withIdentifier: Segue.tokenEntryViewController.rawValue, sender: nil)
-    }
-    
-    
-    // MARK: - Responders -
-    
-    @objc private func leftBarButtonItemTapped(_ sender: UIBarButtonItem) {
-        if viewModel.isLoggedIn {
-            // perform logout
-            NetworkClient.shared.signOut { [unowned self] in
-                self.updateView()
-            }
-        } else {
-            // perform sign in
-            segueToTokenEntry()
-        }
-    }
-    
-    @objc private func rightBarButtonItemTapped(_ sender: UIBarButtonItem) {
-        if viewModel.isLoggedIn {
-            // TODO: Hook up output in MainTabBarCoordinator
-        } else {
-            segueToTokenEntry()
-        }
+        transitioningDelegate = self
     }
 }
 
@@ -116,8 +69,10 @@ extension CategoryViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SingleLabelTableViewCell.self), for: indexPath) as! SingleLabelTableViewCell
-        
-        if viewModel.isLoggedIn {
+
+        let category = CategoryViewModel.Category(rawValue: indexPath.row) ?? .all
+
+        if viewModel.isLoggedIn || CategoryViewModel.Category.loggedOutEnabled.contains(category) {
             cell.headline.alpha = 1.0
         } else {
             cell.headline.alpha = 0.5
@@ -134,18 +89,15 @@ extension CategoryViewController: UITableViewDataSource {
 
 extension CategoryViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        showBookmarkList(for: indexPath.row)
+        guard let category = CategoryViewModel.Category(rawValue: indexPath.row) else { return }
+        output?(.selectedCategory(category))
     }
 }
 
 // MARK: - UIViewControllerTransitioningDelegate -
 
 extension CategoryViewController: UIViewControllerTransitioningDelegate {
-    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return ModalTransitionPresentAnimation()
-    }
-    
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return ModalTransitionDismissAnimation()
+        return CategoryPresentationAnimation()
     }
 }

@@ -3,9 +3,10 @@
 // Copyright © 2018 Thomas Carey. All rights reserved.
 //
 
-class BookmarkDetailsInteractor {
-    let accountStatusUseCase = AccountStatusUseCase()
+class BookmarkListInteractor {
 
+    let accountStatusUseCase = AccountStatusUseCase()
+    
     func getAccountStatus(statusCallback: (AccountStatusOutput) -> Void) {
         accountStatusUseCase.getAccountStatus(statusCallback: statusCallback)
     }

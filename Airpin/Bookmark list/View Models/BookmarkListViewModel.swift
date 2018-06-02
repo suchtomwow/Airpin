@@ -10,9 +10,11 @@ import Foundation
 import RealmSwift
 
 protocol BookmarkListViewModel: class {
+    var title: String { get }
     var bookmarks: Results<Bookmark> { get }
     var canDeleteBookmarks: Bool { get }
     var canEditBookmarks: Bool { get }
+    var canSelectTags: Bool { get }
     func fetchBookmarks(dataProvider: BookmarkDataProviding, completion: (() -> Void)?)
     func toggleReadState(at index: Int, dataProvider: BookmarkDataProviding)
 }

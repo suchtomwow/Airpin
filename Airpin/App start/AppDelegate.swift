@@ -27,8 +27,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         coordinator = MainTabBarCoordinator(window: window,
                                             rootControllerFactory: RootControllerFactory(),
-                                            bookmarkListControllerFactory: BookmarkListControllerFactory(),
-                                            bookmarkDetailsControllerFactory: BookmarkDetailsControllerFactory(),
+                                            bookmarkListCoordinatorFactory: BookmarkListCoordinatorFactory(),
+                                            bookmarkDetailsControllerFactory: BookmarkDetailsControllerFactory(signInAlertFactory: SignInAlertFactory()),
                                             settingsCoordinatorFactory: SettingsCoordinatorFactory(),
                                             presenterType: PresenterImplementation.self)
 

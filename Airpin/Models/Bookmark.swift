@@ -69,7 +69,11 @@ class Bookmark: Object {
         bookmark.datetime = Formatter.JSON.date(from: json["dt"].stringValue)!
         bookmark.toRead = true
 
-        let tags = json["t"].arrayObject?.filter { !String(describing: $0).isEmpty }.map { Tag(value: [$0]) } ?? []
+        let tags = json["t"].arrayObject?
+            .filter { !String(describing: $0).isEmpty }
+            .map { Tag(value: [$0]) }
+            ?? []
+
         bookmark.tags.append(objectsIn: tags)
 
         return bookmark

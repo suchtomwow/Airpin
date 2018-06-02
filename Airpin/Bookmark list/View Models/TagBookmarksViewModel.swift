@@ -12,6 +12,7 @@ import Foundation
 class TagBookmarksViewModel: BaseViewModel, BookmarkListViewModel {
     let title: String
     var bookmarks: Results<Bookmark>
+    let canSelectTags = true
 
     init(bookmarkTag: String) {
         title = bookmarkTag

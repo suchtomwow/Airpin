@@ -9,10 +9,11 @@
 import RealmSwift
 
 class PopularBookmarkListViewModel: BaseViewModel, BookmarkListViewModel {
-    var title: String = "Popular"
+    let title: String = "Popular"
 
     let canDeleteBookmarks: Bool = false
     let canEditBookmarks: Bool = false
+    let canSelectTags = false
 
     private let inMemoryConfig = Realm.Configuration.inMemoryRealmConfiguration
     private var realm: Realm

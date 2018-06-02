@@ -10,6 +10,7 @@ import UIKit
 
 protocol Presenter: class {
     init(presenter: UIViewController)
+    func pushViewController(_ viewController: UIViewController, animated: Bool)
     func present(_ viewControllerToPresent: UIViewController, animated: Bool, completion: (() -> Void)?)
     func dismiss(animated: Bool, completion: (() -> Void)?)
 }
@@ -20,6 +21,11 @@ class PresenterImplementation: Presenter {
 
     required init(presenter: UIViewController) {
         self.presenter = presenter
+    }
+
+    func pushViewController(_ viewController: UIViewController, animated: Bool) {
+        assert(presenter.navigationController != nil)
+        presenter.navigationController?.pushViewController(viewController, animated: animated)
     }
 
     func present(_ viewControllerToPresent: UIViewController, animated: Bool, completion: (() -> Void)?) {

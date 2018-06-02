@@ -16,7 +16,7 @@ class BookmarkDetailsCoordinator {
     let controllerFactory: BookmarkDetailsControllerFactory
     let interactor: BookmarkDetailsInteractor
 
-    init(presenter: Presenter, controllerFactory: BookmarkDetailsControllerFactory = BookmarkDetailsControllerFactory(), interactor: BookmarkDetailsInteractor = BookmarkDetailsInteractor()) {
+    init(presenter: Presenter, controllerFactory: BookmarkDetailsControllerFactory, interactor: BookmarkDetailsInteractor = BookmarkDetailsInteractor()) {
         self.presenter = presenter
         self.controllerFactory = controllerFactory
         self.interactor = interactor
@@ -48,7 +48,7 @@ class BookmarkDetailsCoordinator {
     }
 
     func presentSignInModal() {
-        let controller = controllerFactory.makeSignInModal()
+        let controller = controllerFactory.makeSignInModal(message: "To add bookmarks, enter your Pinboard token in Settings")
 
         controller.output = { [unowned self] output in
             switch output {

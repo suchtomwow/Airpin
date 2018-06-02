@@ -14,6 +14,7 @@ enum Icon: String {
     case disclosure = "disclosure"
     case edit = "edit"
     case garbage = "garbage"
+    case hamburger = "hamburger"
     case markAsRead = "mark-as-read"
     case settingsTabBar = "settings-tab-bar"
     case x = "x"

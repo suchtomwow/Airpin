@@ -13,7 +13,7 @@ class MainTabBarCoordinator {
     weak private var window: UIWindow?
     
     private let rootControllerFactory: RootControllerFactory
-    private let bookmarkListControllerFactory: BookmarkListControllerFactory
+    private let bookmarkListCoordinatorFactory: BookmarkListCoordinatorFactory
     private let bookmarkDetailsControllerFactory: BookmarkDetailsControllerFactory
     private let settingsCoordinatorFactory: SettingsCoordinatorFactory
 
@@ -25,22 +25,22 @@ class MainTabBarCoordinator {
 
     init(window: UIWindow,
          rootControllerFactory: RootControllerFactory,
-         bookmarkListControllerFactory: BookmarkListControllerFactory,
+         bookmarkListCoordinatorFactory: BookmarkListCoordinatorFactory,
          bookmarkDetailsControllerFactory: BookmarkDetailsControllerFactory,
          settingsCoordinatorFactory: SettingsCoordinatorFactory,
          presenterType: Presenter.Type) {
         self.window = window
         self.rootControllerFactory = rootControllerFactory
-        self.bookmarkListControllerFactory = bookmarkListControllerFactory
+        self.bookmarkListCoordinatorFactory = bookmarkListCoordinatorFactory
         self.bookmarkDetailsControllerFactory = bookmarkDetailsControllerFactory
         self.settingsCoordinatorFactory = settingsCoordinatorFactory
         self.presenterType = presenterType
     }
 
     func start() {
-        rootController = rootControllerFactory.makeRootController(bookmarkListControllerFactory: bookmarkListControllerFactory,
-                                                                      bookmarkDetailsControllerFactory: bookmarkDetailsControllerFactory,
-                                                                      settingsCoordinatorFactory: settingsCoordinatorFactory)
+        rootController = rootControllerFactory.makeRootController(bookmarkListCoordinatorFactory: bookmarkListCoordinatorFactory,
+                                                                  bookmarkDetailsControllerFactory: bookmarkDetailsControllerFactory,
+                                                                  settingsCoordinatorFactory: settingsCoordinatorFactory)
 
         presenter = presenterType.init(presenter: rootController)
 
@@ -48,6 +48,8 @@ class MainTabBarCoordinator {
             switch output {
             case .addBookmark:
                 self.startAddBookmarkCoordinator()
+            case .tappedGoToSettings:
+                self.goToSettings()
             }
         }
 
@@ -57,7 +59,7 @@ class MainTabBarCoordinator {
 
     private func startAddBookmarkCoordinator() {
         guard let presenter = presenter else { return }
-        bookmarkDetailsCoordinator = BookmarkDetailsCoordinator(presenter: presenter)
+        bookmarkDetailsCoordinator = BookmarkDetailsCoordinator(presenter: presenter, controllerFactory: bookmarkDetailsControllerFactory)
 
         bookmarkDetailsCoordinator?.output = { [weak self] output in
             switch output {

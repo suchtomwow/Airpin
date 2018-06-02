@@ -25,7 +25,7 @@ class BaseViewController: UIViewController {
     }
     
     func configureStyles() {
-        
+        view.backgroundColor = .white
     }
     
     private func configureObservers() {

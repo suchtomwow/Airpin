@@ -9,6 +9,13 @@
 import UIKit
 
 class BookmarkDetailsControllerFactory {
+
+    private let signInAlertFactory: SignInAlertFactory
+
+    init(signInAlertFactory: SignInAlertFactory) {
+        self.signInAlertFactory = signInAlertFactory
+    }
+
     func makeStubAddBookmarkController() -> UIViewController {
         return UIViewController()
     }
@@ -18,9 +25,7 @@ class BookmarkDetailsControllerFactory {
         return BookmarkDetailsViewController(viewModel: viewModel)
     }
 
-    func makeSignInModal() -> AlertController {
-        let body = "To add bookmarks, enter your Pinboard token in Settings"
-        let buttonTitle = "Go to Settings"
-        return AlertController(headline: nil, body: body, buttonTitle: buttonTitle)
+    func makeSignInModal(message: String) -> AlertController {
+        return signInAlertFactory.makeSignInModal(message: message)
     }
 }
