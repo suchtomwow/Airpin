@@ -14,6 +14,8 @@
 		2F23A72E204D0EA400559D0B /* PublicBookmarkListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F23A72D204D0EA400559D0B /* PublicBookmarkListViewModel.swift */; };
 		2F23A730204D0F0400559D0B /* PrivateBookmarksListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F23A72F204D0F0400559D0B /* PrivateBookmarksListViewModel.swift */; };
 		2F62D8B320C3094B00631D20 /* SignInAlertFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F62D8B220C3094B00631D20 /* SignInAlertFactory.swift */; };
+		2F62D8B520C3289900631D20 /* CategoryTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F62D8B420C3289900631D20 /* CategoryTransitioningDelegate.swift */; };
+		2F62D8B720C3361800631D20 /* CategoryDismissalAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F62D8B620C3361700631D20 /* CategoryDismissalAnimation.swift */; };
 		2F9965162053B1BB004C954D /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9965152053B1BB004C954D /* Tag.swift */; };
 		2F99B379209D52FD0006D2CF /* RootControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F99B378209D52FD0006D2CF /* RootControllerFactory.swift */; };
 		2F99B37B209D53FA0006D2CF /* BookmarkListControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F99B37A209D53FA0006D2CF /* BookmarkListControllerFactory.swift */; };
@@ -104,6 +106,8 @@
 		2F23A72D204D0EA400559D0B /* PublicBookmarkListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicBookmarkListViewModel.swift; sourceTree = "<group>"; };
 		2F23A72F204D0F0400559D0B /* PrivateBookmarksListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateBookmarksListViewModel.swift; sourceTree = "<group>"; };
 		2F62D8B220C3094B00631D20 /* SignInAlertFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInAlertFactory.swift; sourceTree = "<group>"; };
+		2F62D8B420C3289900631D20 /* CategoryTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTransitioningDelegate.swift; sourceTree = "<group>"; };
+		2F62D8B620C3361700631D20 /* CategoryDismissalAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDismissalAnimation.swift; sourceTree = "<group>"; };
 		2F9965152053B1BB004C954D /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		2F99B378209D52FD0006D2CF /* RootControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootControllerFactory.swift; sourceTree = "<group>"; };
 		2F99B37A209D53FA0006D2CF /* BookmarkListControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkListControllerFactory.swift; sourceTree = "<group>"; };
@@ -485,6 +489,8 @@
 				9870DA181AE0B5E10088A50C /* CategoryViewModel.swift */,
 				98B803791AE0C390006A1645 /* SingleLabelTableViewCell.swift */,
 				2FB6CE2220B1213500209761 /* CategoryPresentationAnimation.swift */,
+				2F62D8B420C3289900631D20 /* CategoryTransitioningDelegate.swift */,
+				2F62D8B620C3361700631D20 /* CategoryDismissalAnimation.swift */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -742,6 +748,7 @@
 				E9F5CE151E20ACB600F9EC1A /* URL.swift in Sources */,
 				2F23A72C204D0E5F00559D0B /* UntaggedBookmarksListViewModel.swift in Sources */,
 				E98D7E371B5F470200D65A10 /* PinboardNetworkOperations.swift in Sources */,
+				2F62D8B520C3289900631D20 /* CategoryTransitioningDelegate.swift in Sources */,
 				9870DA171AE0B4A60088A50C /* BaseViewController.swift in Sources */,
 				E91FEDFC1BE098BB004187F3 /* TagButton.swift in Sources */,
 				E94C20961CFCDAD500A1E620 /* Constant.swift in Sources */,
@@ -795,6 +802,7 @@
 				2F62D8B320C3094B00631D20 /* SignInAlertFactory.swift in Sources */,
 				2FB6CE0B20B0CE2900209761 /* SettingsCoordinatorFactory.swift in Sources */,
 				2F23A72E204D0EA400559D0B /* PublicBookmarkListViewModel.swift in Sources */,
+				2F62D8B720C3361800631D20 /* CategoryDismissalAnimation.swift in Sources */,
 				E96F04521E19F398001FB2FF /* PasteableURLRow.swift in Sources */,
 				E94C20981CFCDAD500A1E620 /* Static.swift in Sources */,
 			);

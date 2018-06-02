@@ -12,7 +12,7 @@ import SafariServices
 class CategoryViewController: BaseViewController {
 
     enum Output {
-        case selectedCategory(CategoryViewModel.Category)
+        case selectedCategory(CategoryViewModel.Category), canceled
     }
 
     var output: ((Output) -> Void)?
@@ -21,9 +21,15 @@ class CategoryViewController: BaseViewController {
     
     let viewModel: CategoryViewModel
 
+    let strongTransitioningDelegate = CategoryTransitioningDelegate()
+
     init(viewModel: CategoryViewModel) {
         self.viewModel = viewModel
+
         super.init(nibName: nil, bundle: nil)
+
+        modalPresentationStyle = .custom
+        transitioningDelegate = strongTransitioningDelegate
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -35,6 +41,8 @@ class CategoryViewController: BaseViewController {
     override func configureView() {
         super.configureView()
 
+        title = viewModel.title
+        
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
 
@@ -44,16 +52,16 @@ class CategoryViewController: BaseViewController {
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
         ])
-        
-        title = viewModel.title
-        
+
         tableView.register(SingleLabelTableViewCell.self, forCellReuseIdentifier: String(describing: SingleLabelTableViewCell.self))
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 60
         tableView.dataSource = self
         tableView.delegate = self
+    }
 
-        transitioningDelegate = self
+    @objc func tappedOutsideTransition() {
+        output?(.canceled)
     }
 }
 
@@ -91,13 +99,5 @@ extension CategoryViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let category = CategoryViewModel.Category(rawValue: indexPath.row) else { return }
         output?(.selectedCategory(category))
-    }
-}
-
-// MARK: - UIViewControllerTransitioningDelegate -
-
-extension CategoryViewController: UIViewControllerTransitioningDelegate {
-    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return CategoryPresentationAnimation()
     }
 }

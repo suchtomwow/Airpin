@@ -42,10 +42,12 @@ class BookmarkListCoordinator {
                 switch output {
                 case .selectedCategory(let category):
                     self?.handleSelectedCategory(category: category, accountStatus: status)
+                case .canceled:
+                    self?.presenter?.dismiss(animated: true, completion: nil)
                 }
             }
 
-            self?.presenter?.present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
+            self?.presenter?.present(controller, animated: true, completion: nil)
         }
     }
 
